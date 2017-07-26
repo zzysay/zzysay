@@ -379,83 +379,18 @@
       
         
           
-            <h2 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h2><p>假如我们有一个数据集，里面的数据是俄勒冈州波特兰市的 47 套房屋的面积和价格，<br><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img001.png?imageMogr/!100p" alt=""></p>
-<p>上述数据映射到坐标系中如下图所示，我们应该怎么样才能从中找到房价和面积的关系呢，</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img002.png?imageMogr/!100p" alt=""></p>
-<p>用更加规范的方式来描述监督学习问题：我们的目标是，给定一个训练集，来让机器学习一个函数 h: X → Y，让 h(x) 能是一个与对应的真实 y 值比较接近的评估值。这个函数 h  就被叫做<strong>假设</strong>（hypothesis）。这个过程可以用如下的图来表示：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img003.png?imageMogr/!100p" alt=""></p>
-<p>如果我们要预测的<strong>目标变量</strong>是<strong>连续</strong>的，比如在我们这个房屋价格-面积的案例中，这种学习问题就被称为<strong>回归问题</strong>。如果 y 只能取一小部分的离散的值（比如给定房屋面积，我们要来确定这个房子是一个住宅还是公寓），这样的问题就叫做<strong>分类问题</strong>。</p>
-<h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3><p>为了让我们的房屋案例更有意思，咱们稍微对数据集进行一下补充，增加上每一个房屋的卧室数目，</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img004.png?imageMogr/!80p" alt=""></p>
-<p>现在，<strong>输入特征</strong> x 就是在 R2 范围取值的一个二维向量了。例如 x1(i) 就是训练集中第 i 个房屋的面积，而 x1(i) 就是训练集中第 i 个房屋的卧室数目。要进行这个监督学习，我们必须得确定好如何在计算机里面对这个<strong>函数</strong>/<strong>假设</strong> h 进行表示。咱们现在刚刚开始，就来个简单点的，咱们把 y 假设为一个以 x 为变量的线性函数：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img005.png?imageMogr/!80p" alt=""></p>
-<p>这里的 θi 是<strong>参数</strong>（也可以叫做<strong>权重</strong>），是从 X 到 Y的线性函数映射的空间参数。在不至于引起混淆的情况下，我们可以简写成 h(x)。另外为了简化公式，我们还设 x0 = 1。这样简化之后就有了：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img006.png?imageMogr/!80p" alt=""></p>
-<p>等式的最右边的 θ 和 x 都是向量，等式中的 n 是输入变量的个数（不包括x0）。</p>
-<p>现在，给定了一个<strong>训练集</strong>了，我们怎么来挑选/学习参数θ呢？一个看上去比较合理的方法就是让  h(x) 尽量逼近 y，至少对已有的训练样本能适用。用公式的方式来表示的话，就要定义一个函数，来衡量对于每个不同的 θ 值，h(x(i)) 与对应的 y(i) 的距离。这样用如下的方式定义了一个  <em>成本函数</em>  （<strong>cost function</strong>）:</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img007.png?imageMogr/!80p" alt=""></p>
-<h3 id="最小均方算法（LMS-Algorithm）"><a href="#最小均方算法（LMS-Algorithm）" class="headerlink" title="最小均方算法（LMS Algorithm）"></a>最小均方算法（LMS Algorithm）</h3><p>我们希望选择一个能让 J(θ) 最小的 θ 值。我们先用一个搜索的算法，从某一个对 θ 的“初始猜测值”，然后对 θ 值不断进行调整，来让 J(θ) 逐渐变小，最好是直到我们能够达到一个使 J(θ) 最小的  θ。具体来说，我们可以使用<strong>梯度下降法</strong>（gradient descent algorithm），这个方法就是从某一个 θ 的初始值开始，然后逐渐重复更新：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img008.png?imageMogr/!80p" alt=""></p>
-<p>这里的 α 也称为学习速率。这个算法是很自然的，逐步重复朝向 J 降低最快的方向移动。</p>
-<p>要实现这个算法，我们需要解决等号右边的导数项。首先来解决只有一组训练样本 (x, y) 的情况，这样就可以忽略掉等号右边对 J 的求和项目了。公式就简化下面这样：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img009.png?imageMogr/!80p" alt=""></p>
-<p>对单个训练样本，更新规则如下所示：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img010.png?imageMogr/!80p" alt=""></p>
-<p>当只有一个训练样本的时候，我们推导出了 以上的LMS规则。而扩展到多组数据样本中时，就得到了以下的算法，</p>
-<p>重复直到收敛</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img011.png?imageMogr/!80p" alt=""></p>
-<p>读者很容易能证明，这个更新规则实际上就是对原始的成本函数 J 进行简单的梯度下降。这一方法在每一个步长内检查所有整个训练集中的所有样本，也叫做批量梯度下降法（batch gradient descent）。这里要注意，因为梯度下降法容易被局部最小值影响，而我们要解决的这个线性回归的优化问题只能有一个全局的而不是局部的最优解；因此，梯度下降法应该总是收敛到全局最小值（假设学习速率 α 不设置的过大）。J 是一个凸的二次函数。下面是一个样例，其中对一个二次函数使用了梯度下降法来找到最小值。</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img012.png?imageMogr/!80p" alt=""></p>
-<p>上图的椭圆就是一个二次函数的轮廓图。图中还有梯度下降法生成的规矩，初始点位置在(48,30)。图中的画的 x （用直线连接起来了）标记了梯度下降法所经过的 θ 的可用值。</p>
-<p>对之前的房屋数据集进行批量梯度下降来拟合 θ，把房屋价格当作房屋面积的函数来进行预测，我们得到的结果是 θ0 = 71.27, θ1 = 0.1345。如果把 hθ(x) 作为一个定义域在 x 上的函数来投影，同时也投上训练集中的已有数据点，会得到下面这幅图：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img013.png?imageMogr/!80p" alt=""></p>
-<p>如果在数据集中添加上卧室数目作为输入特征，那么得到的结果就是 θ0 = 89.60, θ1 = 0.1392, θ2 = -8.738。</p>
-<p>这个结果就是用批量梯度下降法来获得的。此外还有另外一种方法能够替代批量梯度下降法，这种方法效果也不错。如下所示：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img014.png?imageMogr/!80p" alt=""></p>
-<p>在这个算法里，我们对整个训练集进行了循环遍历，每次遇到一个训练样本，根据每个单一训练样本的误差梯度来对参数进行更新。这个算法叫做<strong>随机梯度下降法（stochastic gradient descent）</strong>，或者叫<strong>增量梯度下降法（incremental gradient descent）</strong>。批量梯度下降法要在运行第一步之前先对整个训练集进行扫描遍历，当训练集的规模 m 变得很大的时候，因此引起的性能开销就很不划算了；随机梯度下降法就没有这个问题，而是可以立即开始，对查询到的每个样本都进行运算。通常情况下，随机梯度下降法查找到足够接近最低值的 θ 的速度要比批量梯度下降法更快一些。(也要注意，也有可能会一直无法<strong>收敛（converge）</strong>到最小值，这时候 θ 会一直在 J(θ) 最小值附近震荡；不过通常情况下足以满足我们的精度要求。</p>
-<p>所以在训练大规模数据集的时候，我们通常更推荐使用的都是随机梯度下降法，而不是批量梯度下降法。</p>
-<h3 id="法方程（The-Normal-Equations）"><a href="#法方程（The-Normal-Equations）" class="headerlink" title="法方程（The Normal Equations）"></a>法方程（The Normal Equations）</h3><p>上文中的梯度下降法是一种找出 J 最小值的办法。还有一种方法就是，我们直接利用找对应导数为 0 位置的 θj，这样就能找到 J 的最小值了</p>
-<h4 id="矩阵导数（Matrix-Derivatives）"><a href="#矩阵导数（Matrix-Derivatives）" class="headerlink" title="矩阵导数（Matrix Derivatives）"></a>矩阵导数（Matrix Derivatives）</h4><p>假如有一个函数 f: Rm×n → R 从 m * n大小的矩阵映射到实数域，那么就可以定义当矩阵为 A 的时候有导函数 f 如下所示：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img015.png?imageMogr/!80p" alt=""></p>
-<p>因此，这个梯度 <img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img016.png?imageMogr/!80p" alt=""> 本身也是一个 m<em>n 的矩阵，其中的第 (i, j)个元素是 ∂f / ∂Aij 。假如<img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img017.png?imageMogr/!80p" alt="">是一个 2</em>2 矩阵，然后给定的函数 f：R2×2 → R 为：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img018.png?imageMogr/!80p" alt=""></p>
-<p>这里面的 Aij 表示的意思是矩阵 A 的第(i, j) 个元素。然后就有了梯度：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img019.png?imageMogr/!80p" alt=""></p>
-<p>然后咱们还要引入 <strong>trace</strong> 求迹运算，简写为 <strong>tr</strong>。对于一个给定的 n*n 方形矩阵 A，它的迹定义为对角项和：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img020.png?imageMogr/!80p" alt=""></p>
-<p>假如 a 是一个实数，实际上 a 就可以看做是一个 1*1 的矩阵，那么就有 a 的迹 tr a = a。</p>
-<p>如果有两个矩阵 A 和 B，能够满足 AB 为方阵，trace 求迹运算就有一个特殊的性质： trAB = trBA. 在此基础上进行推论，就能得到类似下面这样的等式关系：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img021.png?imageMogr/!80p" alt=""></p>
-<p>下面这些和求迹运算相关的等量关系也很容易证明。其中 A 和 B 都是方形矩阵，a 是一个实数：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img022.png?imageMogr/!80p" alt=""></p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img023.png?imageMogr/!80p" alt=""></p>
-<h4 id="最小二乘法回顾（Least-Squares-Revisited）"><a href="#最小二乘法回顾（Least-Squares-Revisited）" class="headerlink" title="最小二乘法回顾（Least Squares Revisited）"></a>最小二乘法回顾（Least Squares Revisited）</h4><p>给定一个训练集，把设计矩阵（design matrix） X 设置为一个 m*n 矩阵，这个矩阵里面包含了训练样本的输入值作为每一行：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img024.png?imageMogr/!80p" alt=""></p>
-<p>设 $ \vec y $ 是一个 m 维向量（m-dimensional vector），其中包含了训练集中的所有目标值：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img025.png?imageMogr/!80p" alt=""></p>
-<p>因为$ h_{θ}(x^{(i)}) = (x^{(i)})^Tθ $，所以可以证明存在下面这种等量关系：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img026.png?imageMogr/!80p" alt=""></p>
-<p>对于向量 z ，则有 $ z^T z = z^2 $，因此利用这个性质，可以推出：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img027.png?imageMogr/!80p" alt=""></p>
-<p>最后，要让 J 的值最小，就要找到导数为 0 的点。结合等式（2）和等式（3），就能得到下面这个等式（5）：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img028.png?imageMogr/!80p" alt=""></p>
-<p>因此就有，</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img029.png?imageMogr/!80p" alt=""></p>
-<p>要让 J 取得最小值，就使导数为 0 ，然后就得到了下面的<strong>法线方程（normal equations）</strong>，</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img030.png?imageMogr/!80p" alt=""></p>
-<p>所以让 J(θ) 取值最小的 θ 就是，<br><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img031.png?imageMogr/!80p" alt=""></p>
-<h2 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h2><p>有这样一组数据，在磁盘中被存储为.csv格式，内容如下表所示：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/css229-note-0201.png" alt=""></p>
-<p>其中，待训练数据A、B为自变量，C为因变量。1-10为训练集，11-15为测试集。</p>
-<p>经过调试，当学习率为0.05，迭代次数为5000次时，可以达到最佳的学习效果。<br>通常情况下，循环次数越多，越接近真实值。一般达到以下的任意一种情况即可以停止学习循环：</p>
-<ol>
-<li>权重的更新低于某个阈值；</li>
-<li>预测的错误率低于某个阈值；</li>
-<li>达到预设的最大循环次数；</li>
-</ol>
-<p>具体Python实现过程及相关说明如下所示：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> genfromtxt</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 把A,B存入trainData，C存入trainLabel</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getData</span><span class="params">(dataSet)</span>:</span></div><div class="line">    m, n = np.shape(dataSet)</div><div class="line">    trainData = np.ones((m, n))</div><div class="line">    trainData[:, :<span class="number">-1</span>] = dataSet[:, :<span class="number">-1</span>]</div><div class="line">    trainLabel = dataSet[:, <span class="number">-1</span>]</div><div class="line">    <span class="keyword">return</span> trainData, trainLabel</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">batchGradientDescent</span><span class="params">(x, y, theta, alpha, m, maxIterations)</span>:</span></div><div class="line">    xTrains = x.transpose()</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, maxIterations):</div><div class="line">        hypothesis = np.dot(x, theta)  <span class="comment"># 按照当前theta计算出的y</span></div><div class="line">        loss = y - hypothesis  <span class="comment"># 当前误差</span></div><div class="line">        gradient = np.dot(xTrains, loss) / m  <span class="comment"># 梯度</span></div><div class="line">        theta = theta + alpha * gradient  <span class="comment"># 更新theta</span></div><div class="line">    <span class="keyword">return</span> theta</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(x, theta)</span>:</span></div><div class="line">    m, n = np.shape(x)</div><div class="line">    xTest = np.ones((m, n+<span class="number">1</span>))</div><div class="line">    xTest[:, :<span class="number">-1</span>] = x</div><div class="line">    yP = np.dot(xTest, theta)</div><div class="line">    <span class="keyword">return</span> yP</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 读取训练集信息并存入dataSet中</span></div><div class="line">dataPath = <span class="string">'1_train.csv'</span></div><div class="line">dataSet = genfromtxt(dataPath, delimiter=<span class="string">','</span>)</div><div class="line"></div><div class="line"></div><div class="line">trainData, trainLabel = getData(dataSet)  <span class="comment"># 训练集数据</span></div><div class="line">m, n = np.shape(trainData)  <span class="comment"># 训练集大小，m为样本总数，n为样本特征数</span></div><div class="line">theta = np.ones(n)  <span class="comment"># 初始化theta全为1</span></div><div class="line">alpha = <span class="number">0.1</span>  <span class="comment"># 学习率为0.1</span></div><div class="line">maxIteration = <span class="number">5000</span>  <span class="comment"># 迭代次数为5000次</span></div><div class="line"></div><div class="line">theta = batchGradientDescent(trainData, trainLabel, theta, alpha, m, maxIteration)</div><div class="line"></div><div class="line">x = np.array([[<span class="number">3.1</span>, <span class="number">5.5</span>], [<span class="number">3.3</span>, <span class="number">5.9</span>], [<span class="number">3.5</span>, <span class="number">6.3</span>], [<span class="number">3.7</span>, <span class="number">6.7</span>], [<span class="number">3.9</span>, <span class="number">7.1</span>]])</div><div class="line"></div><div class="line">print(theta)</div><div class="line">print(predict(x, theta))</div></pre></td></tr></table></figure></p>
+          理论知识假如我们有一个数据集，里面的数据是俄勒冈州波特兰市的 47 套房屋的面积和价格，
+上述数据映射到坐标系中如下图所示，我们应该怎么样才能从中找到房价和面积的关系呢，
 
-          
+用更加规范的方式来描述监督学习问题：我们的目标是，给定一个训练集，来让机器学习一个函数 h: X → Y，让 h(x) 能是一个与对应的真实 y 值比较接近的评估值。这个函数 h  就被叫做假设（hypothesis）。这个过
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/26/cs229-2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -608,17 +543,17 @@
 
       
         
-          
-            <h2 id="机器学习定义"><a href="#机器学习定义" class="headerlink" title="机器学习定义"></a>机器学习定义</h2><ol>
+          <h2 id="机器学习定义"><a href="#机器学习定义" class="headerlink" title="机器学习定义"></a>机器学习定义</h2><ol>
 <li>在不直接针对问题进行编程的情况下，赋予计算机学习能力的研究领域。</li>
 <li>对一个计算机程序来说，给它一个任务T和一个性能测量方法P，如果在经验E的影响下，P对T的测量结果得到了改进，那么就说该程序从E中学习了。</li>
 </ol>
-<h2 id="机器学习分类"><a href="#机器学习分类" class="headerlink" title="机器学习分类"></a>机器学习分类</h2><h3 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h3><p>监督学习是从标记的训练数据来推断一个功能的机器学习任务，主要应用有回归问题和分类问题。<br><strong>回归问题</strong><br>例：收集某地房屋价格统计，即房屋面积和价格的关系。我们可以通过画出一条拟合曲线对任意房屋面积估算其价格。<br><strong>分类问题</strong><br>例：判断肿瘤是还是恶性。通过画出肿瘤大小和肿瘤性质的坐标图，从而实现对肿瘤性质的分类，同时也可以引入年龄等特征，在处理多特征问题中，降维将会是分类问题中一个重要方法。</p>
-<h3 id="学习理论"><a href="#学习理论" class="headerlink" title="学习理论"></a>学习理论</h3><p>学习理论指的是解释学习型算法有效的原因（学习算法的理论基础），寻找什么样的算法能很好地近似不同的函数，训练集的规模是否合适。</p>
-<h3 id="无监督学习"><a href="#无监督学习" class="headerlink" title="无监督学习"></a>无监督学习</h3><p>无监督学习是根据无标记的训练样本解决模式识别中的各种问题的机器学习任务。<br>例：如上述肿瘤例子，图中的点不知道正确答案，而是通过机器学习从中找去一定的结构，即聚类。<br>再例：在鸡尾酒酒会问题中，从嘈杂的环境中提取出你所需要的声音。</p>
-<h3 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h3><p>通过决策产生的结论或对或错，故产生一系列的决策。<br>例：对一个模型飞机编写一个起飞程序，飞机在程序做了一连串错误决策是才会坠毁，只要做出连续的整体还不错的决策，即可保持飞机正常飞行。<br>程序需要不断做出决策，在不断尝试获得尽量多的正反馈时，逐渐学习并做出正确决策，关键在于要定义什么是正确决策，什么是错误决策，再设计算法获取尽量多的正反馈。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/25/cs229-1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -772,26 +707,23 @@
       
         
           
-            <blockquote>
-<p>今天是2017年7月22日，是我从中南毕业的第30天。</p>
-</blockquote>
-<ul>
-<li>今晚将要再一次踏上火车，不过再也不是熟悉的K1073，而是一路北上。</li>
-<li>换掉了长沙的手机卡，像是断掉了和长沙最后的联系，但是张口闭口还是习惯说，我的中南。</li>
-<li>本以为毕业会有大段的话要说，成篇的文字要写，但现如今才却觉得一切语言都显得如此乏力。</li>
-<li>初到长沙的时候只有本部门口在施工，四年后我们走的时候长沙到处都是施工的围墙和天窗。</li>
-<li>临行之前，又去了新校铁道湘雅，被中南大学四个字围绕的感觉，真好。</li>
-<li>朝着马路对面的同学挥挥手，我们就这样毕业了，无比平淡也无比真实。</li>
-<li>最后一次踏上立珊的时候，总想再多看一样这个城市，这里有着太多太多的地方承载着我们四年的记忆。</li>
-<li>在长沙最喜欢的一个公交站名是，锦绣潇湘，甚至就连公交车上的槟榔味也是独特的长沙味道。</li>
-<li>四年前阴差阳错来到的中南，却成了如今心心念念的地方，怀念在这里度过的无辣不欢的青春。</li>
-<li>嘿，左家垅男子职业技术学校。</li>
-</ul>
-<blockquote>
-<p>北京，你好。</p>
-</blockquote>
-
           
+今天是2017年7月22日，是我从中南毕业的第30天。
+
+
+今晚将要再一次踏上火车，不过再也不是熟悉的K1073，而是一路北上。
+换掉了长沙的手机卡，像是断掉了和长沙最后的联系，但是张口闭口还是习惯说，我的中南。
+本以为毕业会有大段的话要说，成篇的文字要写，但现如今才却觉得一切语言都显得如此乏力。
+初到长沙的时候只有本部门口在施工，四年后我们走的时候长沙到处都是施工的围墙和天窗。
+临行之前，又去
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/22/bu-wei-jiang-lai-bu-nian-guo-wang/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
