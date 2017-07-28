@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="公开课笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="理论知识概率解释（Probabilistic Interpretation）我们在面对回归问题的时候，可能有这样一些疑问，就是为什么选择线性回归，尤其是为什么是最小二乘法成本函数 J(θ). 在本节里，我们会给出一系列的概率基本假设，基于这些假设，就可以推出最小二乘法回归是一种非常自然的算法。 首先假设目标变量和输入值存在下面这种等量关系：  上式中 ε(i) 是误差项，用于存放由于建模所忽略的变">
+<meta name="keywords" content="公开课笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第三集 欠拟合与过拟合的概念">
+<meta property="og:url" content="http://zzysay.github.io/2017/07/28/cs229-3/index.html">
+<meta property="og:site_name" content="ZZY SAY">
+<meta property="og:description" content="理论知识概率解释（Probabilistic Interpretation）我们在面对回归问题的时候，可能有这样一些疑问，就是为什么选择线性回归，尤其是为什么是最小二乘法成本函数 J(θ). 在本节里，我们会给出一系列的概率基本假设，基于这些假设，就可以推出最小二乘法回归是一种非常自然的算法。 首先假设目标变量和输入值存在下面这种等量关系：  上式中 ε(i) 是误差项，用于存放由于建模所忽略的变">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img032.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img033.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img034.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img035.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img036.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img037.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img038.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img039.jpg?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img040.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img043.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img044.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img045.jpg?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img046.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img047.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img048.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img049.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img050.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img051.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img052.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img043.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img053.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img054.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img055.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img056.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img057.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/css229-note-0301.png">
+<meta property="og:updated_time" content="2017-07-28T16:14:07.325Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第三集 欠拟合与过拟合的概念">
+<meta name="twitter:description" content="理论知识概率解释（Probabilistic Interpretation）我们在面对回归问题的时候，可能有这样一些疑问，就是为什么选择线性回归，尤其是为什么是最小二乘法成本函数 J(θ). 在本节里，我们会给出一系列的概率基本假设，基于这些假设，就可以推出最小二乘法回归是一种非常自然的算法。 首先假设目标变量和输入值存在下面这种等量关系：  上式中 ε(i) 是误差项，用于存放由于建模所忽略的变">
+<meta name="twitter:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img032.jpg?imageMogr2/thumbnail/!75p">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzysay.github.io/2017/07/28/cs229-3/"/>
+
+
+
+
+
+  <title>第三集 欠拟合与过拟合的概念 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZZY SAY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I AM WHO I AM.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/07/28/cs229-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHANG ZH.Y.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZY SAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第三集 欠拟合与过拟合的概念</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-28T23:41:19+08:00">
+                2017-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/Andrew-Ng公开课/" itemprop="url" rel="index">
+                    <span itemprop="name">Andrew Ng公开课</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/Andrew-Ng公开课/第三集-欠拟合与过拟合的概念/" itemprop="url" rel="index">
+                    <span itemprop="name">第三集 欠拟合与过拟合的概念</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h2><h3 id="概率解释（Probabilistic-Interpretation）"><a href="#概率解释（Probabilistic-Interpretation）" class="headerlink" title="概率解释（Probabilistic Interpretation）"></a>概率解释（Probabilistic Interpretation）</h3><p>我们在面对回归问题的时候，可能有这样一些疑问，就是为什么选择线性回归，尤其是为什么是最小二乘法成本函数 J(θ). 在本节里，我们会给出一系列的概率基本假设，基于这些假设，就可以推出最小二乘法回归是一种非常自然的算法。</p>
+<p>首先假设目标变量和输入值存在下面这种等量关系：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img032.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>上式中 ε(i) 是误差项，用于存放由于建模所忽略的变量导致的效果 (比如可能某些特征对于房价的影响很明显，但我们做回归的时候忽略掉了)或者随机的噪音信息（random noise）。进一步假设 ε(i)  是独立同分布的 (IID ，independently and identically distributed) ，服从高斯分布（Gaussian distribution ，也叫正态分布 Normal distribution），其平均值为 0，方差（variance）为 σ2。这样就可以把这个假设写成 “ε(i) ~ N (0, σ2)”。然后 ε(i) 的密度函数就是：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img033.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>即：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img034.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这里的记号 “p(y(i)|x(i);θ)” 表示的是这是一个对于给定 x(i) 的 y(i) 的分布，用 θ 进行了参数化。  注意这里不能用 θ (“p(y(i)|x(i),θ)”)来当做条件，因为 θ 并不是一个随机变量。这个 y(i) 的分布还可以写成 y(i) | x(i); θ ~ N (θT x(i), σ2)。</p>
+<p>给定一个 X 为设计矩阵（design matrix），包含了全部 x(i)，然后再给定 θ，那么 y(i) 的分布是什么？数据的概率以p (y→|X; θ) 的形式给出。在 θ 取某个固定值的情况下，这个等式通常可以看做是一个 y→ 的函数（也可以看成是 X 的函数）。当我们要把它当做 θ 的函数的时候，就称它为似然函数（likelihood function）：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img035.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>结合之前对 ε(i) 的独立性假设 (这里对 y(i) 以及给定的 x(i) 也都做同样假设)，就可以把上面这个等式改写成下面的形式：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img036.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>现在，给定了 y(i) 和 x(i) 之间关系的概率模型了，用什么方法来选择咱们对参数  θ  的最佳猜测呢？最大似然法（maximum likelihood）告诉我们要选择能让数据的似然函数尽可能大的  θ。也就是说，咱们要找的  θ  能够让函数 L(θ) 取到最大值。</p>
+<p>除了找到 L(θ) 最大值，我们还以对任何严格递增的 L(θ) 的函数求最大值。如果我们不直接使用 L(θ)，而是使用对数函数，来找对数函数 l(θ)的最大值，那这样对于求导来说就简单了一些：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img037.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>因此，对 l(θ) 的最大值也就意味着下面这个子式取到最小值：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img038.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>到这里我们能发现这个子式实际上就是 J(θ)，也就是最原始的最小二乘成本函数（least-squares cost function）。即，在对数据进行概率假设的基础上，最小二乘回归得到的 θ 和最大似然法估计的 θ 是一致的。所以这是一系列的假设，其前提是认为最小二乘回归（least-squares regression）能够被判定为一种非常自然的方法，这种方法正好就进行了最大似然估计（maximum likelihood estimation）。</p>
+<h3 id="局部加权线性回归（Locally-Weighted-Linear-Regression）"><a href="#局部加权线性回归（Locally-Weighted-Linear-Regression）" class="headerlink" title="局部加权线性回归（Locally Weighted Linear Regression）"></a>局部加权线性回归（Locally Weighted Linear Regression）</h3><p>假如问题还是根据从实数域内取值的 x ∈ R 来预测 y。左下方的图显示了使用 y = θ0 + θ1x 来对一个数据集进行拟合。我们明显能看出来这个数据的趋势并不是一条严格的直线，所以用直线进行的拟合就不是好的方法。</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img039.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
+<p>那么增加一个二次项，用 y = θ0 + θ1x + θ2x2 来拟合。很明显，我们对特征补充得越多，效果就越好。最右边的图就是使用了五次多项式来进行拟合。从图中可以发现，虽然这个拟合曲线完美地通过了所有当前数据集中的数据，但我们明显不能认为这个曲线是一个合适的预测工具，比如针对不同的居住面积 x 来预测房屋价格 y。简单来说，最左边的图像就是一个<strong>欠拟合（under fitting）</strong>的例子，比如明显能看出拟合的模型漏掉了数据集中的结构信息；而最右边的图像就是一个<strong>过拟合（over fitting）</strong>的例子。</p>
+<p>在本节，我们将会简要地讲一下局部加权线性回归（locally weighted linear regression ，LWR），这个方法是假设有足够多的训练数据，对不太重要的特征进行一些筛选。</p>
+<p>在原始版本的线性回归算法中，要对一个查询点 x 进行预测，比如要衡量 h(x)，要经过下面的步骤：</p>
+<ol>
+<li>使用参数 θ进行拟合，让数据集中的值与拟合算出的值的差值平方(y(i) - θT x(i))2最小（最小二乘法的思想）；</li>
+<li>输出 θT x 。</li>
+</ol>
+<p>相应地，在 LWR 局部加权线性回归方法中，步骤如下：</p>
+<ol>
+<li>使用参数 θ进行拟合，让加权距离 ∑ w(i)(y(i) - θT x(i))2 最小；</li>
+<li>输出 θT x。</li>
+</ol>
+<p>上面式子中的 w(i) 是非负的权值。直观点说就是，如果对应某个 i 的权值 w(i) 特别大，那么在选择拟合参数 θ 的时候，就要尽量让这一点的 (y(i) - θT x(i))2  最小。而如果权值w(i) 特别小，那么这一点对应的(y(i) - θT x(i))2 就基本在拟合过程中忽略掉了。</p>
+<p>对于权值的选取可以使用下面这个比较标准的公式：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img040.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>要注意的是，权值是依赖每个特定的点 x 的，而这些点正是我们要去进行预测评估的点。此外，如果 |x(i) - x| 非常小，那么权值 w(i) 就接近 1；反之如果 |x(i) - x| 非常大，那么权值 w(i) 就变小。所以可以看出， θ 的选择过程中，查询点 x 附近的训练样本有更高得多的权值。</p>
+<p>随着点 x(i) 到查询点 x 的距离降低，训练样本的权值的也在降低，参数 τ 控制了这个降低的速度；τ 也叫做带宽参数。</p>
+<p>局部加权线性回归是我们接触的第一个非参数算法。而更早之前我们看到的无权重的线性回归算法就是一种参数学习算法，因为有固定的有限个数的参数（也就是 θi ），这些参数用来拟合数据。我们对 θi 进行了拟合之后，就把它们存了起来，也就不需要再保留训练数据样本来进行更进一步的预测了。与之相反，如果用局部加权线性回归算法，我们就必须一直保留着整个训练集。</p>
+<h3 id="逻辑回归（Logistic-Regression）"><a href="#逻辑回归（Logistic-Regression）" class="headerlink" title="逻辑回归（Logistic Regression）"></a>逻辑回归（Logistic Regression）</h3><p>分类问题其实和回归问题很像，只不过我们现在要来预测的 y 的值只局限于少数的若干个离散值。二值化分类问题意味着要判断的 y 只有两个取值，0 或者 1。例如，假如要建立一个垃圾邮件筛选器，那么就可以用 x(i) 表示一个邮件中的若干特征，然后如果这个邮件是垃圾邮件，y 就设为1，否则 y 为 0。0 也可以被称为<strong>消极类别（negative class）</strong>，而 1 就成为<strong>积极类别（positive class）</strong>，有的情况下也分别表示成“-” 和 “+”。对于给定的一个 x(i)，对应的y(i) 也称为训练样本的<strong>标签（label）</strong>。</p>
+<p>我们当然也可以还按照之前的线性回归的算法来根据给定的 x 来预测 y，只要忽略掉 y 是一个散列值就可以了。然而，这样构建的例子很容易遇到性能问题，这个方法运行效率会非常低，效果很差。而且从直观上来看，hθ(x) 的值如果大于 1 或者小于 0 就都没有意义了，因为已经确定了 y ∈ {0, 1}。</p>
+<p>所以我们可以选择下面这个函数：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img043.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>其中有：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img044.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这个函数叫做<strong>逻辑函数（logistic function）</strong>，或者也叫<strong>双弯曲S型函数（sigmoid function）</strong>。下图是 g(z) 的函数图像：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img045.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
+<p>当z → ∞的时候 g(z)趋向于1，而当z → -∞ 时 g(z) 趋向于 0 。此外，这里的 g(z)，也就是 h(x)，是一直在 0 和 1 之间波动的。然后依然像最开始那样来设置 x0 = 1，这样就有了：<img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img046.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>现在我们就把 g 作为选定的函数了。当然其他的从 0 到 1 之间光滑递增的函数也可以使用。在继续深入之前，下面是要讲解关于 S 型函数的导数，也就是 g′ 的一些性质：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img047.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>那么，给定了逻辑回归模型了，咱们怎么去拟合一个合适的 θ 呢？我们之前已经看到了在一系列假设的前提下，最小二乘法回归可以通过最大似然估计来推出，那么接下来就给我们的这个分类模型做一系列的统计学假设，然后用最大似然法来拟合参数吧。</p>
+<p>首先假设：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img048.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>更简洁的写法是：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img049.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>假设 m 个训练样本都是各自独立生成的，那么就可以按如下的方式来写参数的似然函数：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img050.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>还是跟之前一样取对数，更容易计算最大值：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img051.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>怎么让似然函数最大？就跟之前我们在线性回归的时候用了求导数的方法类似，咱们这次就是用<strong>梯度上升法（gradient ascent）</strong>。还是写成向量的形式，然后进行更新，也就是<img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img052.jpg?imageMogr2/thumbnail/!75p" alt="">。还是先从只有一组训练样本(x,y) 来开始，代入<img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img043.jpg?imageMogr2/thumbnail/!75p" alt="">，然后求导数来推出随机梯度上升规则：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img053.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>上面的式子里，我们用到了对函数求导的定理<img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img054.jpg?imageMogr2/thumbnail/!75p" alt="">。然后就得到了随机梯度上升规则：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img055.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>如果跟之前的 LMS 更新规则相对比，就能发现看上去挺相似的；不过这<strong>并不是同一个算法</strong>，因为这里的hθ(x(i))现在定义成了一个 θTx(i) 的非线性函数。</p>
+<h3 id="感知器学习算法（The-Perceptron-Learning-Algorithm）"><a href="#感知器学习算法（The-Perceptron-Learning-Algorithm）" class="headerlink" title="感知器学习算法（The Perceptron Learning Algorithm）"></a>感知器学习算法（The Perceptron Learning Algorithm）</h3><p>现在我们岔开一下话题，简要地聊一个算法。设想一下，对逻辑回归方法修改一下，“强迫”它输出的值要么是 0 要么是 1。要实现这个目的，很自然就应该把函数 g 的定义修改一下，改成一个阈值函数（threshold function）：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img056.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>如果我们还像之前一样令 hθ(x) = g(θT x)，但用刚刚上面的阈值函数作为 g 的定义，然后如果我们用了下面的更新规则：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img057.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这样我们就得到了感知器学习算法。</p>
+<p>在 1960 年代，这个“感知器（perceptron）”被认为是对大脑中单个神经元工作方法的一个粗略建模。鉴于这个算法的简单程度，这个算法也是我们后续在本课程中讲学习理论时的起点。</p>
+<h2 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h2><p>下面的代码使用梯度上升和随机梯度上升算法实现了逻辑回归，并二分类的训练集数据中学习出一条用于分类的直线。另外，还运用了 <em>matplotlib.pyplot</em> 来绘制数据图像。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 读取数据</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadDataSet</span><span class="params">()</span>:</span></div><div class="line">    dataMat = []</div><div class="line">    labelMat = []</div><div class="line">    fr = open(<span class="string">'2_train.txt'</span>)</div><div class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> fr.readlines():</div><div class="line">        lineArr = line.strip().split()</div><div class="line">        dataMat.append([<span class="number">1.0</span>, float(lineArr[<span class="number">0</span>]), float(lineArr[<span class="number">1</span>])])   <span class="comment"># 最左一列填充1表示方程的常量，即θ0</span></div><div class="line">        labelMat.append(int(lineArr[<span class="number">2</span>]))</div><div class="line">    <span class="keyword">return</span> dataMat, labelMat</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span><span class="params">(inX)</span>:</span></div><div class="line">    <span class="keyword">return</span> <span class="number">1.0</span>/(<span class="number">1</span> + exp(-inX))</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 梯度上升求最优参数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">gradAscent</span><span class="params">(dataMat, labelMat)</span>:</span></div><div class="line"></div><div class="line">    <span class="comment"># 将读取的数据转换为矩阵</span></div><div class="line">    dataMatrix = mat(dataMat)</div><div class="line">    classLabels = mat(labelMat).transpose()</div><div class="line">    m, n = shape(dataMatrix)</div><div class="line"></div><div class="line">    alpha = <span class="number">0.001</span>  <span class="comment"># 该值越大梯度上升幅度越大</span></div><div class="line">    maxCycles = <span class="number">500</span>  <span class="comment"># 迭代的次数</span></div><div class="line">    weights = ones((n, <span class="number">1</span>))  <span class="comment"># 设置初始的参数</span></div><div class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(maxCycles):</div><div class="line">        h = sigmoid(dataMatrix*weights)</div><div class="line">        error = (classLabels - h)  <span class="comment"># 求导后差值</span></div><div class="line">        weights = weights + alpha * dataMatrix.transpose() * error  <span class="comment"># 迭代更新权重</span></div><div class="line">    <span class="keyword">return</span> weights</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 随机梯度上升求最优参数，每次迭代都选择全量数据进行计算，计算量会非常大。所以每次迭代中一次只选择其中的一行数据进行更新权重。</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">stocGradAscent0</span><span class="params">(dataMat, labelMat)</span>:</span></div><div class="line">    dataMatrix = mat(dataMat)</div><div class="line">    classLabels = labelMat</div><div class="line">    m, n = shape(dataMatrix)</div><div class="line">    alpha = <span class="number">0.01</span></div><div class="line">    maxCycles = <span class="number">500</span></div><div class="line">    weights=ones((n, <span class="number">1</span>))</div><div class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(maxCycles):</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):  <span class="comment"># 遍历计算每一行</span></div><div class="line">            h = sigmoid(sum(dataMatrix[i] * weights))</div><div class="line">            error = classLabels[i] - h</div><div class="line">            weights = weights + alpha * error * dataMatrix[i].transpose()</div><div class="line">    <span class="keyword">return</span> weights</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 改进版随机梯度上升，在每次迭代中随机选择样本来更新权重，并且随迭代次数增加，权重变化越小。</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">stocGradAscent1</span><span class="params">(dataMat, labelMat)</span>:</span></div><div class="line">    dataMatrix = mat(dataMat)</div><div class="line">    classLabels = labelMat</div><div class="line">    m, n = shape(dataMatrix)</div><div class="line">    weights = ones((n,<span class="number">1</span>))</div><div class="line">    maxCycles = <span class="number">500</span></div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(maxCycles): <span class="comment">#迭代</span></div><div class="line">        dataIndex = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(m)]</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):  <span class="comment"># 随机遍历每一行</span></div><div class="line">            alpha = <span class="number">4</span>/(<span class="number">1</span>+j+i)+<span class="number">0.0001</span>  <span class="comment"># 随迭代次数增加，权重变化越小。</span></div><div class="line">            randIndex = int(random.uniform(<span class="number">0</span>, len(dataIndex)))  <span class="comment"># 随机抽样</span></div><div class="line">            h = sigmoid(sum(dataMatrix[randIndex]*weights))</div><div class="line">            error = classLabels[randIndex]-h</div><div class="line">            weights = weights+alpha*error*dataMatrix[randIndex].transpose()</div><div class="line">            <span class="keyword">del</span>(dataIndex[randIndex])  <span class="comment"># 去除已经抽取的样本</span></div><div class="line">    <span class="keyword">return</span> weights</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 画出最终分类的图像</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">plotBestFit</span><span class="params">(weights)</span>:</span></div><div class="line"></div><div class="line">    dataMat, labelMat = loadDataSet()</div><div class="line">    dataArr = array(dataMat)</div><div class="line">    n = shape(dataArr)[<span class="number">0</span>]</div><div class="line">    xcord1 = []</div><div class="line">    ycord1 = []</div><div class="line">    xcord2 = []</div><div class="line">    ycord2 = []</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">        <span class="keyword">if</span> int(labelMat[i]) == <span class="number">1</span>:</div><div class="line">            xcord1.append(dataArr[i, <span class="number">1</span>])</div><div class="line">            ycord1.append(dataArr[i, <span class="number">2</span>])</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            xcord2.append(dataArr[i, <span class="number">1</span>])</div><div class="line">            ycord2.append(dataArr[i, <span class="number">2</span>])</div><div class="line">    fig = plt.figure()</div><div class="line">    ax = fig.add_subplot(<span class="number">111</span>)</div><div class="line">    ax.scatter(xcord1, ycord1, s=<span class="number">30</span>, c=<span class="string">'red'</span>, marker=<span class="string">'s'</span>)</div><div class="line">    ax.scatter(xcord2, ycord2, s=<span class="number">30</span>, c=<span class="string">'blue'</span>)</div><div class="line">    x = arange(<span class="number">-3.0</span>, <span class="number">3.0</span>, <span class="number">0.1</span>)</div><div class="line">    y = (-weights[<span class="number">0</span>]-weights[<span class="number">1</span>]*x)/weights[<span class="number">2</span>]</div><div class="line">    ax.plot(x, y)</div><div class="line">    plt.xlabel(<span class="string">'X1'</span>)</div><div class="line">    plt.ylabel(<span class="string">'X2'</span>)</div><div class="line">    plt.show()</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    dataMat, labelMat = loadDataSet()</div><div class="line">    weights = gradAscent(dataMat, labelMat).getA()</div><div class="line">    plotBestFit(weights)</div></pre></td></tr></table></figure>
+<p>运行结果：<br><img src="http://otceoztx6.bkt.clouddn.com/css229-note-0301.png" alt=""></p>
+<p>数据下载：<br><a href="http://otceoztx6.bkt.clouddn.com/2_train.txt" target="_blank" rel="external">2_train.txt</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/公开课笔记/" rel="tag"># 公开课笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/26/cs229-2/" rel="next" title="第二集 监督学习的应用：梯度下降">
+                <i class="fa fa-chevron-left"></i> 第二集 监督学习的应用：梯度下降
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="ZHANG ZH.Y." />
+          <p class="site-author-name" itemprop="name">ZHANG ZH.Y.</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个<br>为了不做程序员而努力搬砖的<br>代码狗</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论知识"><span class="nav-number">1.</span> <span class="nav-text">理论知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概率解释（Probabilistic-Interpretation）"><span class="nav-number">1.1.</span> <span class="nav-text">概率解释（Probabilistic Interpretation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部加权线性回归（Locally-Weighted-Linear-Regression）"><span class="nav-number">1.2.</span> <span class="nav-text">局部加权线性回归（Locally Weighted Linear Regression）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑回归（Logistic-Regression）"><span class="nav-number">1.3.</span> <span class="nav-text">逻辑回归（Logistic Regression）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#感知器学习算法（The-Perceptron-Learning-Algorithm）"><span class="nav-number">1.4.</span> <span class="nav-text">感知器学习算法（The Perceptron Learning Algorithm）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python实现"><span class="nav-number">2.</span> <span class="nav-text">Python实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHANG ZH.Y.</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
