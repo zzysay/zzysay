@@ -378,12 +378,11 @@
 
       
         
-          
-          理论知识概率解释（Probabilistic Interpretation）我们在面对回归问题的时候，可能有这样一些疑问，就是为什么选择线性回归，尤其是为什么是最小二乘法成本函数 J(θ). 在本节里，我们会给出一系列的概率基本假设，基于这些假设，就可以推出最小二乘法回归是一种非常自然的算法。
-首先假设目标变量和输入值存在下面这种等量关系：
-
-上式中 ε(i) 是误差项，用于存放由于建模所忽略的变
-          ...
+          <h2 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h2><h3 id="概率解释（Probabilistic-Interpretation）"><a href="#概率解释（Probabilistic-Interpretation）" class="headerlink" title="概率解释（Probabilistic Interpretation）"></a>概率解释（Probabilistic Interpretation）</h3><p>我们在面对回归问题的时候，可能有这样一些疑问，就是为什么选择线性回归，尤其是为什么是最小二乘法成本函数 J(θ). 在本节里，我们会给出一系列的概率基本假设，基于这些假设，就可以推出最小二乘法回归是一种非常自然的算法。</p>
+<p>首先假设目标变量和输入值存在下面这种等量关系：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img032.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>上式中 ε(i) 是误差项，用于存放由于建模所忽略的变量导致的效果 (比如可能某些特征对于房价的影响很明显，但我们做回归的时候忽略掉了)或者随机的噪音信息（random noise）。进一步假设 ε(i)  是独立同分布的 (IID ，independently and identically distributed) ，服从高斯分布（Gaussian distribution ，也叫正态分布 Normal distribution），其平均值为 0，方差（variance）为 σ2。这样就可以把这个假设写成 “ε(i) ~ N (0, σ2)”。然后 ε(i) 的密度函数就是：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img033.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/07/28/cs229-3/#more" rel="contents">

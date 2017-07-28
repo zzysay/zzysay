@@ -127,7 +127,7 @@
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img056.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img057.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/css229-note-0301.png">
-<meta property="og:updated_time" content="2017-07-28T16:14:07.325Z">
+<meta property="og:updated_time" content="2017-07-28T16:15:25.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第三集 欠拟合与过拟合的概念">
 <meta name="twitter:description" content="理论知识概率解释（Probabilistic Interpretation）我们在面对回归问题的时候，可能有这样一些疑问，就是为什么选择线性回归，尤其是为什么是最小二乘法成本函数 J(θ). 在本节里，我们会给出一系列的概率基本假设，基于这些假设，就可以推出最小二乘法回归是一种非常自然的算法。 首先假设目标变量和输入值存在下面这种等量关系：  上式中 ε(i) 是误差项，用于存放由于建模所忽略的变">
@@ -407,6 +407,7 @@
 <p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img032.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
 <p>上式中 ε(i) 是误差项，用于存放由于建模所忽略的变量导致的效果 (比如可能某些特征对于房价的影响很明显，但我们做回归的时候忽略掉了)或者随机的噪音信息（random noise）。进一步假设 ε(i)  是独立同分布的 (IID ，independently and identically distributed) ，服从高斯分布（Gaussian distribution ，也叫正态分布 Normal distribution），其平均值为 0，方差（variance）为 σ2。这样就可以把这个假设写成 “ε(i) ~ N (0, σ2)”。然后 ε(i) 的密度函数就是：</p>
 <p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img033.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<a id="more"></a>
 <p>即：</p>
 <p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img034.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
 <p>这里的记号 “p(y(i)|x(i);θ)” 表示的是这是一个对于给定 x(i) 的 y(i) 的分布，用 θ 进行了参数化。  注意这里不能用 θ (“p(y(i)|x(i),θ)”)来当做条件，因为 θ 并不是一个随机变量。这个 y(i) 的分布还可以写成 y(i) | x(i); θ ~ N (θT x(i), σ2)。</p>
