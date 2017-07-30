@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="公开课笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="理论知识再回到用 S 型函数 g(z) 来进行逻辑回归的情况，我们来讲一个让 l(θ) 取最大值的另一个算法。开始之前，我们先想一下求一个方程零点的牛顿法。假如我们有一个从实数到实数的函数 f : R → R，然后要找到一个 θ ，来满足f(θ)=0，其中 θ∈R 是一个实数。牛顿法就是对 θ   进行如下的更新：  这个方法可以通过一个很自然的解释，我们可以把它理解成用一个线性函数来对函数 f">
+<meta name="keywords" content="公开课笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第四集 牛顿方法">
+<meta property="og:url" content="http://zzysay.github.io/2017/07/30/cs229-4/index.html">
+<meta property="og:site_name" content="ZZY SAY">
+<meta property="og:description" content="理论知识再回到用 S 型函数 g(z) 来进行逻辑回归的情况，我们来讲一个让 l(θ) 取最大值的另一个算法。开始之前，我们先想一下求一个方程零点的牛顿法。假如我们有一个从实数到实数的函数 f : R → R，然后要找到一个 θ ，来满足f(θ)=0，其中 θ∈R 是一个实数。牛顿法就是对 θ   进行如下的更新：  这个方法可以通过一个很自然的解释，我们可以把它理解成用一个线性函数来对函数 f">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img058.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img059.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img060.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img061.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img062.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img063.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img064.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img065.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img066.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img067.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img068.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img069.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img070.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img071.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img072.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img073.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img074.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img075.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img076.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img077.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img078.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:updated_time" content="2017-07-30T13:22:43.265Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第四集 牛顿方法">
+<meta name="twitter:description" content="理论知识再回到用 S 型函数 g(z) 来进行逻辑回归的情况，我们来讲一个让 l(θ) 取最大值的另一个算法。开始之前，我们先想一下求一个方程零点的牛顿法。假如我们有一个从实数到实数的函数 f : R → R，然后要找到一个 θ ，来满足f(θ)=0，其中 θ∈R 是一个实数。牛顿法就是对 θ   进行如下的更新：  这个方法可以通过一个很自然的解释，我们可以把它理解成用一个线性函数来对函数 f">
+<meta name="twitter:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img058.jpg?imageMogr2/thumbnail/!75p">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzysay.github.io/2017/07/30/cs229-4/"/>
+
+
+
+
+
+  <title>第四集 牛顿方法 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZZY SAY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I AM WHO I AM.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/07/30/cs229-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHANG ZH.Y.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZY SAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第四集 牛顿方法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-30T21:41:19+08:00">
+                2017-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/Andrew-Ng公开课/" itemprop="url" rel="index">
+                    <span itemprop="name">Andrew Ng公开课</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/Andrew-Ng公开课/第四集-牛顿方法/" itemprop="url" rel="index">
+                    <span itemprop="name">第四集 牛顿方法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h2><p>再回到用 S 型函数 g(z) 来进行逻辑回归的情况，我们来讲一个让 l(θ) 取最大值的另一个算法。开始之前，我们先想一下求一个方程零点的牛顿法。假如我们有一个从实数到实数的函数 f : R → R，然后要找到一个 θ ，来满足f(θ)=0，其中 θ∈R 是一个实数。牛顿法就是对 θ   进行如下的更新：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img058.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这个方法可以通过一个很自然的解释，我们可以把它理解成用一个线性函数来对函数 f 进行逼近，这条直线是 f 的切线，而猜测值是θ，解的方法就是找到线性方程等于零的点，把这一个零点作为  θ  设置给下一次猜测，然后依次类推。</p>
+<p>下面是对牛顿法的图解：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img059.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<a id="more"></a>
+<p>在最左边的图里面，可以看到函数 f 就是沿着 y=0 的一条直线。这时候是想要找一个 θ 来让 f(θ)=0。这时候发现这个 θ 值大概在 1.3 左右。加入咱们猜测的初始值设定为 θ=4.5。牛顿法就是在 θ=4.5 这个位置画一条切线（中间的图）。这样就给出了下一个 θ  猜测值的位置，也就是这个切线的零点，大概是2.8。最右面的图中的是再运行一次这个迭代产生的结果，这时候 θ 大概是1.8。就这样几次迭代之后，很快就能接近 θ=1.3。</p>
+<p>牛顿法的给出的解决思路是让 f(θ) = 0。函数 l 的最大值的点应该对应着是它的导数l′(θ) 等于零的点。所以通过令f(θ) = l′(θ)，咱们就可以同样用牛顿法来找到 l 的最大值，然后得到下面的更新规则：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img060.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>最后，在逻辑回归背景中，θ  是一个有值的向量，所以我们要对牛顿法进行扩展来适应这个情况。牛顿法进行扩展到多维情况，也叫牛顿-拉普森法（Newton-Raphson method），如下所示：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img061.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>上面这个式子中的 ▽θl(θ) 和之前的样例中的类似，是关于 θi 的 l(θ)的偏导数向量；而 H 是一个 n<em>n 矩阵 (实际上如果包含截距项的话，应该是, n + 1 </em> n + 1)，其详细定义是：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img062.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>牛顿法通常都能比（批量）梯度下降法收敛得更快，而且达到最小值所需要的迭代次数也低很多。然而，牛顿法中的单次迭代往往要比梯度下降法的单步耗费更多的性能开销，因为要查找和转换一个 n*n 的 Hessian矩阵；不过只要这个 n 不是太大，牛顿法通常就还是更快一些。当用牛顿法来在逻辑回归中求似然函数 l(θ) 的最大值的时候，得到这一结果的方法也叫做 Fisher评分。</p>
+<h3 id="指数族-（The-Exponential-Family）"><a href="#指数族-（The-Exponential-Family）" class="headerlink" title="指数族 （The Exponential Family）"></a>指数族 （The Exponential Family）</h3><p>在学习 GLMs 之前，我们要先定义一下指数组分布（exponential family distributions）。如果一个分布能用下面的方式来写出来，我们就说这类分布属于指数族：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img063.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>上面的式子中，η 叫做此分布的自然参数（natural parameter）； T(y) 叫做充分统计量（sufficient statistic），我们目前用的这些分布中通常 T (y) = y；而 a(η) 是一个<strong>对数分割函数（log partition function）</strong>。e-a(η) 这个量本质上扮演了归一化常数（normalization constant）的角色，也就是确保 p(y; η) 的总和等于1。</p>
+<p>对 T, a 和 b 的固定选择，就定义了一个用 η 进行参数化的分布族；通过改变 η，我们就能得到这个分布族中的不同分布。</p>
+<p>现在我们看到的伯努利（Bernoulli）分布和高斯（Gaussian）分布就都属于指数分布族。伯努利分布的均值是φ，也写作Bernoulli(φ)，确定的分布是 y∈ {0, 1}，因此有 p(y = 1; φ) = φ; p(y = 0;φ) = 1_φ。这时候只要修改φ，就能得到一系列不同均值的伯努利分布了。现在我们展示的通过修改φ,而得到的这种伯努利分布，就属于指数分布族；也就是说，只要给定一组 T，a 和 b，就可以用上面的等式(6)来确定一组特定的伯努利分布了。</p>
+<p>我们这样来写伯努利分布：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img064.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>因此，自然参数就给出了，即 $ η = log(φ/(1-φ)) $。很有趣的是，如果我们翻转这个定义，用 η 来解 φ 就会得到 $ φ = 1/(1+e^{-η}) $。这正好就是之前我们见到过的 sigmoid 函数,  在我们把逻辑回归作为一种广义线性模型（GLM）的时候还会遇到这个情况。</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img065.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>上面这组式子就表明了伯努利分布可以写成等式(6)的形式，使用一组合适的 T，a 和 b。</p>
+<p>接下来再来看看高斯分布吧。在推导线性回归的时候，σ2 的值对我们最终选择的  θ  和 hθ(x) 都没有影响。所以我们可以给 σ2 取一个任意值。为了简化推导过程，就令 σ2 = 1。然后就有了下面的等式：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img066.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这样，我们就可以看出来高斯分布是属于指数分布族的，可以写成下面这样：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img067.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>指数分布族里面还有很多其他的分布：例如<strong>多项式分布（multinomial）</strong>，这个稍后我们会看到；<strong>泊松分布（Poisson）</strong>，用于对计数类数据进行建模，后面再问题集里面也会看到；<strong>γ和指数分布（the gamma and the exponential）</strong>，这个用于对连续的、非负的随机变量进行建模，例如时间间隔；<strong>β和狄利克雷分布（the beta and the Dirichlet）</strong>，这个是用于概率的分布。在下一节里面，我们就来讲一讲对于建模的一个更通用的“方案”，其中的y (给定 x 和 θ)可以是上面这些分布中的任意一种。</p>
+<h3 id="构建广义线性模型（Constructing-GLMs）"><a href="#构建广义线性模型（Constructing-GLMs）" class="headerlink" title="构建广义线性模型（Constructing GLMs）"></a>构建广义线性模型（Constructing GLMs）</h3><p>设想你要构建一个模型，来估计在给定的某个小时内来到你商店的顾客人数（或者是你的网站的页面访问次数），基于某些确定的特征 x ，例如商店的促销、最近的广告、天气、星期等等。我们已经知道泊松分布（Poisson distribution）通常能适合用来对访客数目进行建模。知道了这个之后，怎么来建立一个模型来解决咱们这个具体问题呢？非常幸运的是，泊松分布是属于指数分布族的一个分部，所以我们可以使用一个广义线性模型（Generalized Linear Model，缩写为 GLM）。在本节，我们讲一种对刚刚这类问题来构建广义线性模型的方法。</p>
+<p>进一步泛化，设想一个分类或者回归问题，要预测一些随机变量 y 的值，作为 x的一个函数。要导出适用于这个问题的广义线性模型，就要对我们的模型、给定 x 下 y 的条件分布来做出以下三个假设：</p>
+<ol>
+<li><p>y | x; θ ~ Exponential Family(η)，即给定 x 和 θ, y 的分布属于指数分布族，是一个参数为 η的指数分布。</p>
+</li>
+<li><p>给定 x，目的是要预测对应这个给定 x 的 T(y) 的期望值。我们的例子中绝大部分情况都是 T(y) = y，这也就意味着我们的学习假设 h 输出的预测值 h(x) 要满足 h(x) = E[y|x]。</p>
+</li>
+<li><p>自然参数 η 和输入值 x 是线性相关的，η = θT x，或者如果 η 是有值的向量，则有 ηi = θiT x。</p>
+</li>
+</ol>
+<p>上面的几个假设中，第三个可能看上去证明得最差，所以也更适合把这第三个假设看作是一个我们在设计广义线性模型时候的一种设计选择，而不是一个假设。那么这三个假设/设计，就可以用来推导出一个非常合适的学习算法类别，也就是广义线性模型 GLMs，这个模型有很多特别友好又理想的性质，比如很容易学习。</p>
+<p>此外，这类模型对一些关于 y 的分布的不同类型建模来说通常效率都很高；例如，我们下面就将要简单介绍一些逻辑回归以及普通最小二乘法这两者如何作为广义线性模型来推出。</p>
+<h3 id="普通最小二乘法（Ordinary-Least-Squares）"><a href="#普通最小二乘法（Ordinary-Least-Squares）" class="headerlink" title="普通最小二乘法（Ordinary Least Squares）"></a>普通最小二乘法（Ordinary Least Squares）</h3><p>我们这一节要讲的是普通最小二乘法实际上是广义线性模型中的一种特例，设想如下的背景设置：目标变量 y（在广义线性模型的术语也叫做响应变量）是连续的，然后我们将给定 x 的 y 的分布以高斯分布 N(μ,σ2) 来建模，其中 μ 可以是依赖 x 的一个函数。这样，我们就让上面的指数分布族的(η)分布成为了一个高斯分布。在前面内容中我们提到过，在把高斯分布写成指数分布族的分布的时候，有μ = η。所以就能得到下面的等式：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img068.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>第一行的等式是基于假设2；<br>第二个等式是基于定理当 y|x; θ ~ N (μ, σ2)，则 y 的期望就是 μ；<br>第三个等式是基于假设1，以及我们此前将高斯分布写成指数族分布的时候推导出来的性质 μ = η；<br>最后一个等式就是基于假设3。</p>
+<h3 id="逻辑回归（Logistic-Regression）"><a href="#逻辑回归（Logistic-Regression）" class="headerlink" title="逻辑回归（Logistic Regression）"></a>逻辑回归（Logistic Regression）</h3><p>接下来我们再来看看逻辑回归。这里我们还是看看二值化分类问题，也就是 y ∈ {0, 1}。给定了 y 是一个二选一的值，那么很自然就选择伯努利分布（Bernoulli distribution）来对给定 x 的 y 的分布进行建模了。在我们把伯努利分布写成一种指数族分布的时候，有 $ φ = 1/ (1 + e^{-η}) $。另外还要注意的是，如果有 y|x; θ ~ Bernoulli(φ)，那么 E [y|x; θ] = φ。所以就跟刚刚推导普通最小二乘法的过程类似，有以下等式：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img069.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>所以，上面的等式就给出了假设函数的形式。一旦我们假设以 x 为条件的 y 的分布是伯努利分布，那么根据广义线性模型和指数分布族的定义，就会得出这个式子。</p>
+<p>再解释一点术语，这里给出分布均值的函数 g 是一个对自然参数的函数，g(η) = E[T(y); η]，这个函数也叫做规范响应函数（canonical response function），它的反函数 g-1 叫做规范链接函数（canonical link function）。因此，对于高斯分布来说，它的规范响应函数正好就是识别函数（identify function）；而对于伯努利分布来说，它的规范响应函数则是逻辑函数（logistic function）。</p>
+<h3 id="Softmax-回归（Softmax-Regression）"><a href="#Softmax-回归（Softmax-Regression）" class="headerlink" title="Softmax 回归（Softmax Regression）"></a>Softmax 回归（Softmax Regression）</h3><p>设想有这样的一个分类问题，其中响应变量 y 的取值可以是 k 个值当中的任意一个，也就是y ∈ {1, 2, …, k}。例如，我们这次要进行的分类就比把邮件分成垃圾邮件和正常邮件两类这种二值化分类要更加复杂一些，比如可能是要分成三类，例如垃圾邮件、个人邮件、工作相关邮件。这样响应变量依然还是离散的，但取值就不只有两个了。因此咱们就用<strong>多项式分布（multinomial distribution）</strong>来进行建模。</p>
+<p>要对一个可能有 k 个不同输出值的多项式进行参数化，就可以用 k 个参数 φ1,…,φk 来对应各自输出值的概率。不过这么多参数可能太多了，他们也未必都是互相独立的（比如对于任意一个φi中的值来说，只要知道其他的 k-1 个值，就能知道这最后一个了，因为总和等于1。所以我们就去掉一个参数，只用 k-1 个：φ1, …, φk_1 来对多项式进行参数化，其中 $ φ<em>i = p (y = i; φ) $，$ p (y = k; φ) = 1 -\sum </em>{i=1}^{k-1} φ_i $ 。为了表述起来方便，我们还要设 $ φ<em>k = 1 -\sum </em>{i=1}^{k-1} φ_i $ ，但一定要注意，这个并不是一个参数，而是完全由其他的 k-1 个参数来确定的。要把一个多项式表达成为指数组分布，还要按照下面的方式定义一个 T (y)∈ Rk_1：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img070.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这次和之前的样例都不一样了，就是 T(y) != y；然后，T(y) 现在是一个 k-1 维的向量。向量 T(y)中的第 i个元素写成(T(y))i 。</p>
+<p>现在介绍一种非常有用的记号。指示函数（indicator function）1{·}，如果参数为真，则等于1；反之则等于0（1{True} = 1, 1{False} = 0）。例如1{2 = 3} = 0, 而1{3 = 5 - 2} = 1。所以我们可以把T (y) 和 y 的关系写成  (T(y))i = 1{y = i}。在此基础上，就有了E[(T(y))i] = P (y = i) = φi。</p>
+<p>现在一切就绪，可以把多项式写成指数族分布了。</p>
+<p>写出来如下所示：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img071.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>其中</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img072.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这样我们就把多项式方程作为一个指数族分布来写了出来。</p>
+<p>与 i（for i = 1, …, k）对应的链接函数为：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img073.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>为了方便起见，我们再定义 ηk = log(φk/φk) = 0。对链接函数取反函数然后推导出响应函数，就得到了下面的等式：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img074.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这就说明了 $ φ<em>k = 1/ \sum</em>{i=1}^k e^{ηi} $ ，然后可以把这个关系代入回到等式(7)，这样就得到了响应函数：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img075.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>上面这个函数从η 映射到了φ，称为 Softmax 函数。要完成我们的建模，还要用到前文提到的假设3，也就是 ηi 是一个 x 的线性函数。所以就有了 ηi = θiTx (for i = 1, …, k _ 1)，其中的 θ1, …, θk_1 ∈ Rn+1 就是我们建模的参数。为了表述方便，我们这里还是定义θk = 0，这样就有 ηk = θkT x = 0，跟前文提到的相符。因此，我们的模型假设了给定 x 的y 的条件分布为：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img076.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这个适用于解决 y∈ {1, …, k} 的分类问题的模型，就叫做 Softmax 回归。  这种回归是对逻辑回归的一种扩展泛化。</p>
+<p>假设 h 则如下所示：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img077.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>也就是说，我们的假设函数会对每一个 i = 1,…,k，给出 p (y = y|x;θ) 概率的估计值。（虽然咱们在前面假设的这个 hθ(x) 只有 k-1 维，但很明显p (y = y|x; θ) 可以通过用1 减去其他所有项目概率的和来得到。）</p>
+<p>最后，我们再来讲一下参数拟合。和我们之前对普通最小二乘线性回归和逻辑回归的原始推导类似，如果咱们有一个有 m 个训练样本的训练集，{(x(i), y(i)); i = 1, …, m}，然后要研究这个模型的参数 θi ，我们可以先写出其似然函数的对数：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img078.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>要得到上面等式的第二行，要用到等式(8)中的设定 p(y|x;θ)。现在就可以通过对 l(θ)取最大值得到的 θ而得到对参数的最大似然估计，使用的方法就可以用梯度上升发或者牛顿法了。</p>
+<h3 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h3><p>下面的代码使用Python实现了softmax回归函数。</p>
+<p>$ softmax(x_i) = \frac {exp(x<em>i)} {\sum</em>{j=1}^k exp(x_j)} $</p>
+<p>softmax函数加入了e的幂函数正是为了两极化：正样本的结果将趋近于 1 ，而负样本的结果趋近于 0 。这样为多类别分类提供了方便（可以把 P(i) 看作是样本属于类别i的概率）。可以说，Softmax 函数是 Logistic 函数的一种泛化。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">softmax</span><span class="params">(x)</span>:</span></div><div class="line">    x = np.array(x)</div><div class="line">    x = np.exp(x)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> x.ndim == <span class="number">1</span>:  <span class="comment"># 数组的维度</span></div><div class="line">        sum_col = sum(x)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(x.size):</div><div class="line">            x[i] = x[i] / float(sum_col)</div><div class="line">    <span class="keyword">if</span> x.ndim &gt; <span class="number">1</span>:</div><div class="line">        sum_col = x.sum(axis=<span class="number">0</span>)</div><div class="line">        print(sum_col)</div><div class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> x:</div><div class="line">            print(row)</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(row.size):</div><div class="line">                row[i] = row[i] / float(sum_col[i])</div><div class="line">    <span class="keyword">return</span> x</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    x = [<span class="number">3.0</span>, <span class="number">1.0</span>, <span class="number">0.2</span>]</div><div class="line">    sm = softmax(x)</div><div class="line">    print(sm)</div><div class="line">    print(sum(sm))</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[ 0.8360188   0.11314284  0.05083836]</div><div class="line">1.0</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/公开课笔记/" rel="tag"># 公开课笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/28/cs229-3/" rel="next" title="第三集 欠拟合与过拟合的概念">
+                <i class="fa fa-chevron-left"></i> 第三集 欠拟合与过拟合的概念
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="ZHANG ZH.Y." />
+          <p class="site-author-name" itemprop="name">ZHANG ZH.Y.</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个<br>为了不做程序员而努力搬砖的<br>代码狗</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论知识"><span class="nav-number">1.</span> <span class="nav-text">理论知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指数族-（The-Exponential-Family）"><span class="nav-number">1.1.</span> <span class="nav-text">指数族 （The Exponential Family）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建广义线性模型（Constructing-GLMs）"><span class="nav-number">1.2.</span> <span class="nav-text">构建广义线性模型（Constructing GLMs）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#普通最小二乘法（Ordinary-Least-Squares）"><span class="nav-number">1.3.</span> <span class="nav-text">普通最小二乘法（Ordinary Least Squares）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑回归（Logistic-Regression）"><span class="nav-number">1.4.</span> <span class="nav-text">逻辑回归（Logistic Regression）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Softmax-回归（Softmax-Regression）"><span class="nav-number">1.5.</span> <span class="nav-text">Softmax 回归（Softmax Regression）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python实现"><span class="nav-number">1.6.</span> <span class="nav-text">Python实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHANG ZH.Y.</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
