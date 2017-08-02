@@ -127,7 +127,7 @@
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img024.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img025.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/css229-note-0501.png">
-<meta property="og:updated_time" content="2017-08-02T09:28:43.853Z">
+<meta property="og:updated_time" content="2017-08-02T09:31:28.251Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第五集 生成学习算法">
 <meta name="twitter:description" content="理论知识目前为止，我们讲过的学习算法的模型都是p (y|x;θ)，也就是给定 x 下的 y 的条件分布，以  θ  为参数。例如，逻辑回归中就是以 hθ(x) = g(θT x) 作为 p (y|x;θ) 的模型，这里的 g 是一个 S型函数（sigmoid function）。接下来，我们要讲一种不同类型的学习算法。 设想有这样一种分类问题，我们要学习基于一个动物的某个特征来辨别它是大象（y=1">
@@ -394,6 +394,7 @@
         <h2 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h2><p>目前为止，我们讲过的学习算法的模型都是p (y|x;θ)，也就是给定 x 下的 y 的条件分布，以  θ  为参数。例如，逻辑回归中就是以 hθ(x) = g(θT x) 作为 p (y|x;θ) 的模型，这里的 g 是一个 S型函数（sigmoid function）。接下来，我们要讲一种不同类型的学习算法。</p>
 <p>设想有这样一种分类问题，我们要学习基于一个动物的某个特征来辨别它是大象（y=1）还是小狗 ( y=0 ) 。给定一个训练集，用逻辑回归或者感知器算法（perceptron algorithm）能找到一条直线，作为区分开大象和小狗的边界。接下来，要辨别一个新的动物是大象还是小狗，程序就要检查这个新动物的值落到了划分出来的哪个区域中，然后根据所落到的区域来给出预测。</p>
 <p>还有另外一种方法。首先，观察大象，然后我们针对大象的样子来进行建模。然后，再观察小狗，针对小狗的样子另外建立一个模型。最后要判断一种新动物归属哪一类，我们可以把新动物分别用大象和小狗的模型来进比对，看看新动物更接近哪个训练集中已有的模型。</p>
+<a id="more"></a>
 <p>例如逻辑回归之类的直接试图建立 p(y|x)的算法，以及感知器算法（perceptron algorithm）等直接用投图（mappings directly）的思路来判断对应 X 的值落到了 {0, 1}中哪个区域的算法，这些都叫判别式学习算法（discriminative learning algorithms）。和之前的这些判别式算法不同，下面我们要讲的新算法是对 p(x|y)和 p(y)来进行建模。这类算法叫<strong>做生成学习算法（generative learning algorithms）</strong>。例如如果 y 是用来表示一个样例是小狗 (0) 或者大象 (1)，那么p(x|y=0)就是对小狗特征的分布的建模，而p(x|y=1)就是对大象特征分布的建模。</p>
 <p>对 p(y) 和p(x|y) 进行建模之后，我们的算法用<strong>贝叶斯规则（Bayes rule）</strong>来推导对应给定的 x 的 y 的<strong>后验分布（posterior distribution）</strong>：</p>
 <p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img001.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
