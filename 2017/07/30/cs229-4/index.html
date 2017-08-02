@@ -122,7 +122,7 @@
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img076.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img077.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note-img078.jpg?imageMogr2/thumbnail/!75p">
-<meta property="og:updated_time" content="2017-07-30T13:22:43.265Z">
+<meta property="og:updated_time" content="2017-08-02T09:24:21.560Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第四集 牛顿方法">
 <meta name="twitter:description" content="理论知识再回到用 S 型函数 g(z) 来进行逻辑回归的情况，我们来讲一个让 l(θ) 取最大值的另一个算法。开始之前，我们先想一下求一个方程零点的牛顿法。假如我们有一个从实数到实数的函数 f : R → R，然后要找到一个 θ ，来满足f(θ)=0，其中 θ∈R 是一个实数。牛顿法就是对 θ   进行如下的更新：  这个方法可以通过一个很自然的解释，我们可以把它理解成用一个线性函数来对函数 f">
@@ -359,17 +359,6 @@
 
                 
                 
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/Andrew-Ng公开课/第四集-牛顿方法/" itemprop="url" rel="index">
-                    <span itemprop="name">第四集 牛顿方法</span>
-                  </a>
-                </span>
-
-                
-                
               
             </span>
           
@@ -471,7 +460,7 @@
 <p>最后，我们再来讲一下参数拟合。和我们之前对普通最小二乘线性回归和逻辑回归的原始推导类似，如果咱们有一个有 m 个训练样本的训练集，{(x(i), y(i)); i = 1, …, m}，然后要研究这个模型的参数 θi ，我们可以先写出其似然函数的对数：</p>
 <p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note-img078.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
 <p>要得到上面等式的第二行，要用到等式(8)中的设定 p(y|x;θ)。现在就可以通过对 l(θ)取最大值得到的 θ而得到对参数的最大似然估计，使用的方法就可以用梯度上升发或者牛顿法了。</p>
-<h3 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h3><p>下面的代码使用Python实现了softmax回归函数。</p>
+<h2 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h2><p>下面的代码使用Python实现了softmax回归函数。</p>
 <p>$ softmax(x_i) = \frac {exp(x<em>i)} {\sum</em>{j=1}^k exp(x_j)} $</p>
 <p>softmax函数加入了e的幂函数正是为了两极化：正样本的结果将趋近于 1 ，而负样本的结果趋近于 0 。这样为多类别分类提供了方便（可以把 P(i) 看作是样本属于类别i的概率）。可以说，Softmax 函数是 Logistic 函数的一种泛化。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding:utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">softmax</span><span class="params">(x)</span>:</span></div><div class="line">    x = np.array(x)</div><div class="line">    x = np.exp(x)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> x.ndim == <span class="number">1</span>:  <span class="comment"># 数组的维度</span></div><div class="line">        sum_col = sum(x)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(x.size):</div><div class="line">            x[i] = x[i] / float(sum_col)</div><div class="line">    <span class="keyword">if</span> x.ndim &gt; <span class="number">1</span>:</div><div class="line">        sum_col = x.sum(axis=<span class="number">0</span>)</div><div class="line">        print(sum_col)</div><div class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> x:</div><div class="line">            print(row)</div><div class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(row.size):</div><div class="line">                row[i] = row[i] / float(sum_col[i])</div><div class="line">    <span class="keyword">return</span> x</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    x = [<span class="number">3.0</span>, <span class="number">1.0</span>, <span class="number">0.2</span>]</div><div class="line">    sm = softmax(x)</div><div class="line">    print(sm)</div><div class="line">    print(sum(sm))</div></pre></td></tr></table></figure>
@@ -528,6 +517,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/01/cs229-5/" rel="prev" title="第五集 生成学习算法">
+                第五集 生成学习算法 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -600,7 +593,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -611,7 +604,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -657,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论知识"><span class="nav-number">1.</span> <span class="nav-text">理论知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指数族-（The-Exponential-Family）"><span class="nav-number">1.1.</span> <span class="nav-text">指数族 （The Exponential Family）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建广义线性模型（Constructing-GLMs）"><span class="nav-number">1.2.</span> <span class="nav-text">构建广义线性模型（Constructing GLMs）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#普通最小二乘法（Ordinary-Least-Squares）"><span class="nav-number">1.3.</span> <span class="nav-text">普通最小二乘法（Ordinary Least Squares）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑回归（Logistic-Regression）"><span class="nav-number">1.4.</span> <span class="nav-text">逻辑回归（Logistic Regression）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Softmax-回归（Softmax-Regression）"><span class="nav-number">1.5.</span> <span class="nav-text">Softmax 回归（Softmax Regression）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Python实现"><span class="nav-number">1.6.</span> <span class="nav-text">Python实现</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论知识"><span class="nav-number">1.</span> <span class="nav-text">理论知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指数族-（The-Exponential-Family）"><span class="nav-number">1.1.</span> <span class="nav-text">指数族 （The Exponential Family）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建广义线性模型（Constructing-GLMs）"><span class="nav-number">1.2.</span> <span class="nav-text">构建广义线性模型（Constructing GLMs）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#普通最小二乘法（Ordinary-Least-Squares）"><span class="nav-number">1.3.</span> <span class="nav-text">普通最小二乘法（Ordinary Least Squares）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑回归（Logistic-Regression）"><span class="nav-number">1.4.</span> <span class="nav-text">逻辑回归（Logistic Regression）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Softmax-回归（Softmax-Regression）"><span class="nav-number">1.5.</span> <span class="nav-text">Softmax 回归（Softmax Regression）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python实现"><span class="nav-number">2.</span> <span class="nav-text">Python实现</span></a></li></ol></div>
             
 
           </div>
