@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="公开课笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="理论知识拉普拉斯光滑（Laplace Smoothing）还是考虑垃圾邮件分类的过程，设想你学完了 CS229 的课程，然后做了很棒的研究项目，之后你决定在2003年6月把自己的作品投稿到 NIPS 会议，NIPS 是机器学习领域的一个顶级会议，递交论文的截止日期一般是六月末到七月初。你通过邮件来对这个会议进行了讨论，然后你也开始受到带有 NIPS 四个字母的信息。但这个是你第一个 NIPS 论文">
+<meta name="keywords" content="公开课笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第六集 朴素贝叶斯算法">
+<meta property="og:url" content="http://zzysay.github.io/2017/08/02/cs229-6/index.html">
+<meta property="og:site_name" content="ZZY SAY">
+<meta property="og:description" content="理论知识拉普拉斯光滑（Laplace Smoothing）还是考虑垃圾邮件分类的过程，设想你学完了 CS229 的课程，然后做了很棒的研究项目，之后你决定在2003年6月把自己的作品投稿到 NIPS 会议，NIPS 是机器学习领域的一个顶级会议，递交论文的截止日期一般是六月末到七月初。你通过邮件来对这个会议进行了讨论，然后你也开始受到带有 NIPS 四个字母的信息。但这个是你第一个 NIPS 论文">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img026.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img027.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img028.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img029.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img030.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img033.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img034.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img035.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img001.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img002.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img003.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img004.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img005.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img006.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img007.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img008.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img009.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img010.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img011.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img012.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img013.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:updated_time" content="2017-08-03T05:36:31.455Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第六集 朴素贝叶斯算法">
+<meta name="twitter:description" content="理论知识拉普拉斯光滑（Laplace Smoothing）还是考虑垃圾邮件分类的过程，设想你学完了 CS229 的课程，然后做了很棒的研究项目，之后你决定在2003年6月把自己的作品投稿到 NIPS 会议，NIPS 是机器学习领域的一个顶级会议，递交论文的截止日期一般是六月末到七月初。你通过邮件来对这个会议进行了讨论，然后你也开始受到带有 NIPS 四个字母的信息。但这个是你第一个 NIPS 论文">
+<meta name="twitter:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img026.jpg?imageMogr2/thumbnail/!75p">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzysay.github.io/2017/08/02/cs229-6/"/>
+
+
+
+
+
+  <title>第六集 朴素贝叶斯算法 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZZY SAY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I AM WHO I AM.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/08/02/cs229-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHANG ZH.Y.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZY SAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第六集 朴素贝叶斯算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T23:35:13+08:00">
+                2017-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/Andrew-Ng公开课/" itemprop="url" rel="index">
+                    <span itemprop="name">Andrew Ng公开课</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h2><h3 id="拉普拉斯光滑（Laplace-Smoothing）"><a href="#拉普拉斯光滑（Laplace-Smoothing）" class="headerlink" title="拉普拉斯光滑（Laplace Smoothing）"></a>拉普拉斯光滑（Laplace Smoothing）</h3><p>还是考虑垃圾邮件分类的过程，设想你学完了 CS229 的课程，然后做了很棒的研究项目，之后你决定在2003年6月把自己的作品投稿到 NIPS 会议，NIPS 是机器学习领域的一个顶级会议，递交论文的截止日期一般是六月末到七月初。你通过邮件来对这个会议进行了讨论，然后你也开始受到带有 NIPS 四个字母的信息。但这个是你第一个 NIPS 论文，而在此之前， NIPS  这个单词就从来都没有出现在你的垃圾/正常邮件训练集里面。加入这个  NIPS  是你字典中的第 35000 个单词，那么你的朴素贝叶斯垃圾邮件筛选器就要对参数 $ φ_{35000}|y $ 进行最大似然估计：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img026.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>也就是说，因为之前程序从来没有在别的垃圾邮件或者正常邮件的训练样本中看到过 NIPS 这个词，所以它就认为看到这个词出现在这两种邮件中的概率都是 0 ，因此当要决定一个包含 NIPS 这个单词的邮件是否为垃圾邮件的时候，检验这个类的后验概率就得到了：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img027.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<a id="more"></a>
+<p>这是因为对于 $     \Pi_{i=1}^n =  p(x_i|y) $ 中包含了 $ p(x_{35000}|y)=0 $。所以我们的算法得到的就是 0/0，也就是不知道该做出怎么样的预测了。</p>
+<p>然后进一步拓展一下这个问题，统计学上来说，只因为你在自己以前的有限的训练数据集中没见到过一件事，就估计这个事件的概率为零，明显是个坏主意。假设问题是估计一个多项式随机变量 z ，其取值范围在 {1,  …, k} 之内。接下来就可以用 $ φ_i = p(z=i) $ 来作为多项式参数。给定一个 m 个独立观测 {z(1), …, z(m)} 组成的集合，然后最大似然估计的形式如下：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img028.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>正如我们之前见到的，如果我们用这些最大似然估计，那么一些 $ φ_j $ 可能最终就是零了。要避免这个情况，我们引入了拉普拉斯光滑（Laplace Smoothing），这种方法把上面的估计替换成：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img029.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这里首先是对分子加1，然后对分母加K，要注意 $ Σ^k_{j=1} \phi_j = 1 $ 依然成立，这是一个必须有的性质，因为 φj 是对概率的估计，所有的概率加到一起必然等于1。另外对于所有的 j 值，都有 $ φ_j ≠0 $，这就解决了刚刚的概率估计为零的问题了。在某些特定的条件下，可以发现拉普拉斯光滑甚至能给出对参数 $ φ_j $ 的最佳估计（optimal estimator）。</p>
+<p>回到我们的朴素贝叶斯分选器问题上，使用了拉普拉斯光滑之后，对参数的估计就写成了下面的形式：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img030.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<h3 id="针对文本分类的事件模型（Event-Models-For-Text-Classification）"><a href="#针对文本分类的事件模型（Event-Models-For-Text-Classification）" class="headerlink" title="针对文本分类的事件模型（Event Models For Text Classification）"></a>针对文本分类的事件模型（Event Models For Text Classification）</h3><p>到这里就要给生成学习算法的讨论收尾了，所以就接着讲一点关于文本分类方面的另一个模型。我们刚已经演示过的朴素贝叶斯方法能够解决很多分类问题了，不过另一个相关的算法在针对文本的分类效果还要更好。</p>
+<p>在针对文本进行分类的特定背景下，朴素贝叶斯方法使用的是一种叫做多元伯努利事件模型。在这个模型里面，我们都是在假设这个邮件中的内容首先是随机生成的，而不管这个垃圾邮件或者非垃圾邮件的发送者是否还会再给你发一次消息。然后，这个发邮件的人就遍历整个词典，然后根据概率分布 $p (x_i = 1|y) = φ_i|y $，独立地决定是否在邮件中包含每一个单词 i 。这样的话，这个消息的概率 $ p(y)  \Pi_{i=1}^n p(x_i|y) $。</p>
+<p>下面就是一个不同的模型，叫做多项式事件模型。我们用一个不同的记号和特征集合来表示邮件。我们用 xi 来表示邮件中的第 i 个单词。这样 $ x_i $ 现在就是一个整形了，取值范围在 {1, …, |V|} 中，其中 |V| 指代的是词汇表（也就是字典）的长度。这样一个由 n 个单词组成的邮件现在就表示成了一个 n 维向量 $ (x_1,x_2,…,x_n) $；要注意这里的 n 可以根据文档的变化而变化。例如，如果一个邮件的开头是 “A NIPS …”，那么 x1 = 1 (“a” 是词典中的第一个)，而 $ x_2 = 35000 $ (“nips”是词典中的第35000个)。</p>
+<p>在多项式事件模型中，我们假设邮件的生成是通过一个随机过程的，在这个过程中，首先确定是否为垃圾邮件，这个和之前的模型假设一样。然后邮件的发送者首先从某个多项式分布 $ (p(x_1|y))$ 中生成 $x_1$， 其次从相同的多项式分布中来选取独立于 $x_1$ 的  $x_2$，随后是 $x_3$、$x_4$ 等等，以此类推，直到生成了整个邮件中的所有的词。因此，一个邮件的总体概率就是 $ p(y)  \Pi_{i=1}^n p(x_i|y) $。这和我们之前那个多元伯努利事件模型里面的邮件概率很相似，但实际上这里面的意义完全不同了。尤其是这里的 $ x_i|y $ 现在是一个多项式分布了，而不是伯努利分布了。</p>
+<p>我们新模型的参数还是 $ φ_y = p(y) $，这个跟以前一样，然后还有 $ φ_k|y=1 = p(x_j=k|y=1) $ 以及 $ φ_i|y=0 =p(x_j =k|y=0) $ 。要注意这里我们已经假设了对于任何 j 的值，$ p(x_j|y) $ 这个概率都是相等的，也就是意味着在第 j 个位置生成那个单词和位置无关。</p>
+<p>如果给定一个训练集 $ {(x^{(i)},y^{(i)}); i = 1, …, m} $，其中 $ x^{(i)} = (x^{(i)}_1 ,x^{(i)}_2,…,x^{(i)}_n) $（这里的 n 是在第 i 个训练样本中的单词数目），那么这个数据的似然函数如下所示：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img033.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>让上面的这个函数最大化就可以产生对参数的最大似然估计：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img034.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>如果使用拉普拉斯光滑来估计 $ φ_k|y=0 $ 和 $ φ_k|y=1 $，就在分子上加1，然后分母上加 |V| ，就得到了下面的等式：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img035.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>当然，这个并不见得就是一个最好的分类算法，不过朴素贝叶斯分选器通常用起来还都出乎意料地那么好。所以这个方法就是一个很好的“首发选择”，因为它很简单又很好实现。</p>
+<h3 id="支持向量机（Support-Vector-Machines）"><a href="#支持向量机（Support-Vector-Machines）" class="headerlink" title="支持向量机（Support Vector Machines）"></a>支持向量机（Support Vector Machines）</h3><p>支持向量机（support vector machines, SVM）是当前最好的监督学习算法之一，在讲SVM之前，我们要先讲一下最优边界分类器（optimal margin classifier），以及拉格朗日对偶（Lagrange duality）的内容，以及用于降维的核方法。</p>
+<h4 id="边界（Margins）"><a href="#边界（Margins）" class="headerlink" title="边界（Margins）"></a>边界（Margins）</h4><p>考虑逻辑回归，其中的概率分布 $ p(y=1|x; \theta) $ 是基于 $ h_{\theta}(x)=g(\theta^Tx) $ 而建立的模型，当且仅当  $ h_{\theta}(x) ≥ 5 $ ，即 $ \theta^Tx ≥ 0 $ 时，我们才能预测得到 1 。接入有一个正向的（positive）训练样本，即 y=1，那么 $ \theta^Tx $ 越大， $ h_{\theta}(x) = p(y=1|x; w, b) $ 也就越大，我们对预测为 1 的信心也就越大，所以如果 y=1 并且 $ \theta^Tx $ 远大于 0 ，那么我们就对当前的预测非常有信心。与之类似，在逻辑回归中，如果有 y = 0 且 $ \theta^Tx $ 远小于 0 ， ，我们 也对这时候给出的预测很有信心。。所以还是以一种非常不正式 的方式来说，对于一个给定的训练集，如果我们能找到一个 θ，满足当 y(i)=1 的时候总有 $ \theta^Tx^{(x)} &gt;&gt; 0 $ ，而 y(i)=0 的时候 $ \theta^Tx^{(x)} &lt;&lt; 0 $， 我们就说这个对训练数据的拟合很好，因为这就能对所有训练样本给出可靠（甚至正确）的分类。</p>
+<p>还有另外一种的直观表示，例如下面这个图当中，画叉的点表示的是正向训练样本，而小圆圈的点表示的是负向训练样本， 图中还画出了<strong>分类边界（decision boundary）</strong>，这条线也就是通过等式 $ \theta^Tx = 0$ 来确定的，也叫做<strong>分类超平面（separating hyperplane）</strong>。图中还标出了三个点 A，B 和 C。 </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img001.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>可以发现 A 点距离分界线很远。如果我们对 A 点的 y 值进行预测，我们会很有信心地认为在那个位置的 y=1。与之相反的是 C，这个点距离边界线很近，虽然这个 C 点 也在预测值 y=1 的一侧，但距离边界线的距离很近，所以也很可能会让我们对这个点的预测为 y=0。 因此，我们对 A 点的预测要比对 C 点的预测更有把握得多。B 点正好在上面两种极端情况之间，更广泛地说，如果 一个点距离分类超平面比较远，我们就可以对给出的预测很有信心。那么给定一个训练集，如果我们能够找到一个分类边界，利用这个边界我们可以对所有的训练样本给出正确并且有信心的预测，那这就是我们想要达到的状态了。后面我们会使用几何边界记号（notion of geometric margins）来更正规地来表达。 </p>
+<h4 id="记号（Notation）"><a href="#记号（Notation）" class="headerlink" title="记号（Notation）"></a>记号（Notation）</h4><p>在讨论 SVMs 的时候，出于简化的目的，我们先要引入一个新的记号，用来表示分类。假设我们要针对一个二值化分类的问题建立一个线性分类器，其中用来分类的标签（label）为 y，分类特征（feature）为 x。从此以后我们就用 y ∈ {−1, 1} 来表示这个分类标签了。另外，以后我们也不再使用向量 θ 来表示咱们这个线性分类器的参数了，而是使用参数 w 和 b，把分类器写成下面这样： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img002.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>当 z≥0，则 g(z)=1；而反之若 z＜0，则g(z)=-1。这里的 “w, b”  记号就可以让我们能把截距项（intercept term） b 与其他的参数区别开。所以，这里的这个参数 b 扮演的角色就相当于之前的参数 $ θ_0 $ ，而参数 w 则相当于 $ [θ1 . . . θn]^T $</p>
+<p>从我们上面对函数 g 的定义，可以发分类器给出的预测是 1 或者 -1（参考感知器算法），这样也就不需要先通过中间步骤来估计 y 为 1 的概率（逻辑回归中的步骤）。 </p>
+<h4 id="函数边界和几何边界（Functional-And-Geometric-Margins）"><a href="#函数边界和几何边界（Functional-And-Geometric-Margins）" class="headerlink" title="函数边界和几何边界（Functional And Geometric Margins）"></a>函数边界和几何边界（Functional And Geometric Margins）</h4><p>让我们用正规语言来描述函数边界和几何边界的记号的概念。给定一个训练集 $ (x^{(i)}, y^{(i)}) $ ，我们用下面的方法来定义对应该训练集的函数边界 (w, b)： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img003.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>要注意，如果 $ y^{(i)}=1 $，那么为了让函数边界很大，我们就需要 $ w^Tx + b $ 是一个很大的正数。与此相对，如果 $ y^{(i)}=-1 $，我们就需要  $ w^Tx + b $ 是一个（绝对值）很大的负数。而且，只要满足  $ y^{(i)}w^Tx + b ＞ 0 $ 。那我们针对这个样本的预测就是正确的。因此，一个大的函数边界就表示了一个可信且正确的预测。</p>
+<p>对于一个线性分类器，选择上面给定的函数 g （取值范围为 {−1, 1}），函数边界的一个性质却使得这个分类器并不具有对置信度的良好量度。例如上面给定的这个函数 g，我们会发现，如果用 2w 替换掉 w，然后用 2b 替换 b，那么由于有 $ g(w^Tx + b) = g(2w^Tx + 2b) $，所以这样改变也并不会影响 $ h_{w,b}(x) $。也就是说，函数 g 以及 $ h_{w,b}(x) $ 只取决于 $ w^Tx + b $ 的正负符号，而不受其大小的影响。然而，把 (w, b) 翻倍成 (2w,2b) 还会导致函数距离也被放大了 2 倍。因此，这样看来就是只要随意去调整 w 和 b 的范围，我们就可以人为调整函数边界到足够大了，而不用去改变 任何有实际意义的变量。直观地看，这就导致我们有必要引入某种归一化条件，例如使 $ ||w||_2 = 1 $ ；也就是说，我们可以将 (w, b) 替换成 $ (w/||w||_2,b/||w||_2) $，然后考虑对应 $ (w/||w||_2,b/||w||_2) $ 的函数边界。</p>
+<p>给定一个训练集 $ S = {(x^{(i)},y^{(i)}); i = 1, …, m} $ ，我们将对应 S 的函数边界 (w, b) 定义为每个训练样本的函数边界的小值。 记作 $ γ $，可以写成： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img004.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>接下来，我们要讲的几何边界（geometric margins）如下图所示： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img005.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>图中给出了对应 (w, b) 的分类边界，其倾斜方向（即法线方向）为向量 w 的方向。这里的向量 w 是与分类超平面垂直的。假设有图中所示的一个点 A，此点表示的是针对某训练样本的输入特征为 $ x^{(i)} $ ，对应的标签为 $y^{(i)} = 1$。然后这个点到分类边界的距离 $ γ^{(i)} $, 就通过 AB 之间的线段能够获得。</p>
+<p>怎么找到 $ γ^{(i)} $ 的值呢？ w/||w|| 是一个单位长度的向量，指向与 w 相同的方向。因为这里 A 点表示的 $ x^{(i)} $， 所以就能找到一个点 B，其位置为 $ x^{(i)} - γ^{(i)} ·w/||w|| $ 。这个 B 点正好位于分类边界线上面，而这条线上的所有 x 都满足等式 $ w^Tx+b=0 $，所以有： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img006.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>通过上面的方程解出来的 $ γ^{(i)} $ 为： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img007.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这个解是针对图中 A 处于训练样本中正向部分这种情况，这时候位于 “正向（positive）” 一侧就是很理想的情况。如果更泛化一下，就可以定义对应训练样本 $ (x^{(i)}, y^{(i)}) $  的几何边界 (w, b) 为：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img008.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这里要注意，如果 ||w|| = 1，那么函数边界（functional margin）就等于几何边界（geometric margin）。我们可以用这种方法来将两个边界记号联系起来。此外，几何边界是不受参数缩放的影响的；也就是说，如果我们把 w 改为 2w，b 改为 2b，那么几何边界并不会改变。特别要注意的是，由于这个与参数缩放的无关性，当试图对某个数据集的 w 和 b 进行拟合的时候，我们就可以倒入一个任意设置的缩放参数来约束 w，而不会改变什么重 要项；例如，我们可以设置 $ ||w|| = 1 $ ，或者 $ |w_1| = 5 $，或者 $ |w_1+b|+|w_2| = 2 $，这些都只需要对 w 和 b 进行缩放就可以了。</p>
+<p>最后，给定一个训练集集 $ S = {(x^{(i)},y^{(i)}); i = 1, …, m} $ ，我们也可以我们将对应 S 的几何边界 (w, b) 定义为每个训练样本的几何边界的小值： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img009.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<h4 id="最优边界分类器（Optimal-Margin-Classifier）"><a href="#最优边界分类器（Optimal-Margin-Classifier）" class="headerlink" title="最优边界分类器（Optimal Margin Classifier）"></a>最优边界分类器（Optimal Margin Classifier）</h4><p>给定一个训练集，根据前文的讨论，似乎很自然地第一要务就是要尝试着找出一个分类边界，使（几何）边界能够大，因为这会反映出对训练集进行的一系列的置信度很高的分类预测，也是对训练数据的一个良好 “拟合（fit）” 。这样生成的一个分类器，能够把正向和负向的训练样本分隔开，中间有一个 “空白区（gap）” ，也就是几何边界。 到目前为止，我们都是假定给定的训练集是线性可分的；也就是说，能够在正向和负向的样本之间用某种分类超平面来进行划分。那要怎样找到能够得到最大几何边界的那一组呢？我们可以提出下面的这样一个优化问题（optimization problem）：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img010.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>也就是说，我们要让 $γ$ 取大值，使得每一个训练样本的函数边界都至少为 $γ$ 。另外 ||w|| = 1 这个约束条件还能保证函数边界与几何边界相等，所以我们同时也能够保证所有的几何边界都至少为 $γ$ 。因此，对上面这个优化问题进行求解，就能得出对应训练集的大可能几何边界的 (w, b)。但 “||w|| = 1” 是非凸的，所以我们要把这个问题进行改善，让它更好解。例如： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img011.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这时候，我们要让 $γ/||w||$ 的取值大，使得函数边界都至少为 $γ$。由于几何边界和函数边界可以通过 $γ=γ/||w||$ 来联系起来，所以这样就能得到我们想要的结果了。而且，这样还能摆脱掉 ||w||=1 的约束条件。然而，目标函数 $γ/||w||$ 依旧是非凸的；而且，我们还是没有什么现成的软件能够解出来这样的一个优化问题。</p>
+<p>我们之前讲过的可以对 w 和 b 设置任意的一个缩放约束参数，而不会改变任何实质性内容。下面我们就来引入一个缩放约束 参数，这样一个针对训练集函数边界 w, b 的参数就可以被设置为 1： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img012.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>对 w 和 b 使用某些常数来进行翻倍，结果就是函数边界也会以相同的常数进行加倍，这就确实是一个缩放约束了，而且只要对 w 和 b 进行缩放就可以满足。把这个性质用到上面的优化问题中去，同时要注意到当 $γ/||w||=1/||w||$ 取得最大值的时候，$||w||^2$ 取得小值，所以就得到了下面的这个优化问题： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img013.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>通过上面这样的转换，这个问题就变得容易解决了。上面的问题有一个凸二次对象，且仅受线性约束。对这个问题进行求解，我们就能得到优边界分类器。</p>
+<h2 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h2><p>朴素贝叶斯算法是一个以贝叶斯定理为基础，广泛应用于情感分类、文本分类领域的优秀分类器，所谓贝叶斯定理如下所示：</p>
+<p>$$ P(C|F_1) = \frac {P(CF_1)} {P(F_1)} = \frac {P(F_1|C)P(C)} {P(F_1)} $$</p>
+<p>对于某个数据集，上式中随机变量 $C$ 表示样本为 <strong>C 类</strong>的概率，$F_1$ 表示测试样本中<strong>$F_1$ 特征</strong>出现的概率。举例来说，有个测试样本，其特征 $F_1$ 出现了$（F_1=1）$，那么就计算 $P(C=0|F_1=1)$ 和 $P(A=1|F_1=1) $的概率值。前者大则该样本被认为是 $0$ 类；后者大则分为 $1$ 类。</p>
+<ul>
+<li>$P(C)$ 是 $C$ 的<strong>先验概率</strong>，即从已有训练集计算出的 A 类样本所占的比重。</li>
+<li>$P(F_1)$ 表示对于某测试集，特征 $F_1$ 出现的概率，同样也可以从已有训练集中计算得来。</li>
+<li>$P(F_1|A)$ 被称为<strong>似然</strong>，即已知一个样本属于 A 类，特征 $F_1$ 出现的概率。</li>
+</ul>
+<p>所谓朴素的概念，指的是朴素贝叶斯算法做了一假设：“朴素地认为各个特征相互独立”。这么一来：<br>$$ P(C|F_1F_2F_3…F_n) = \frac {P(C)P(F_1F_2F_3…F_n|C)} {P(F_1F_2F_3…F_n)} = \frac {P(C)·P(F_1|C)P(F_2|C)…P(F_n|C)} {P(F_1F_2F_3…F_n)} $$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_data_set</span><span class="params">()</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    加载词库和分类信息</div><div class="line">    :return: posting_list表示词列表，class_list表示分类列表</div><div class="line">    """</div><div class="line">    posting_list = [[<span class="string">'my'</span>, <span class="string">'dog'</span>, <span class="string">'has'</span>, <span class="string">'flea'</span>, <span class="string">'problems'</span>, <span class="string">'help'</span>, <span class="string">'please'</span>],</div><div class="line">                    [<span class="string">'maybe'</span>, <span class="string">'not'</span>, <span class="string">'take'</span>, <span class="string">'him'</span>, <span class="string">'to'</span>, <span class="string">'dog'</span>, <span class="string">'park'</span>, <span class="string">'stupid'</span>],</div><div class="line">                    [<span class="string">'my'</span>, <span class="string">'dalmation'</span>, <span class="string">'is'</span>, <span class="string">'so'</span>, <span class="string">'cute'</span>, <span class="string">'I'</span>, <span class="string">'love'</span>, <span class="string">'him'</span>],</div><div class="line">                    [<span class="string">'stop'</span>, <span class="string">'posting'</span>, <span class="string">'stupid'</span>, <span class="string">'worthless'</span>, <span class="string">'garbage'</span>],</div><div class="line">                    [<span class="string">'mr'</span>, <span class="string">'licks'</span>, <span class="string">'ate'</span>, <span class="string">'my'</span>, <span class="string">'steak'</span>, <span class="string">'how'</span>, <span class="string">'to'</span>, <span class="string">'stop'</span>, <span class="string">'him'</span>],</div><div class="line">                    [<span class="string">'quit'</span>, <span class="string">'buying'</span>, <span class="string">'worthless'</span>, <span class="string">'dog'</span>, <span class="string">'food'</span>, <span class="string">'stupid'</span>]]</div><div class="line">    class_list = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]  <span class="comment"># 1代表侮辱性文字（正例），0代表正常言论（负例）</span></div><div class="line">    <span class="keyword">return</span> posting_list, class_list</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_vocab_list</span><span class="params">(posting_list)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    创建不重复词表库</div><div class="line">    :param posting_list: 输入词列表</div><div class="line">    :return: vocab_set表述输入的的词汇表</div><div class="line">    """</div><div class="line">    vocab_set = set([])</div><div class="line">    <span class="keyword">for</span> document <span class="keyword">in</span> posting_list:</div><div class="line">        vocab_set = vocab_set | set(document)  <span class="comment"># 取两个集合的并集</span></div><div class="line">    <span class="keyword">return</span> list(vocab_set)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_of_words_2_vec</span><span class="params">(vocab_list, input_set)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    遍历文档中的所有单词，如果出现了词汇表中的单词，则将输出的文档向量中的对应值设为1</div><div class="line">    :param vocab_list: 词汇表</div><div class="line">    :param input_set: 输入的词序列</div><div class="line">    :return: return_vec表示带有词汇标记的向量</div><div class="line">    """</div><div class="line">    return_vec = np.zeros(len(vocab_list))  <span class="comment"># 初始化置0</span></div><div class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> input_set:</div><div class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> vocab_list:</div><div class="line">            return_vec[vocab_list.index(word)] = <span class="number">1</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            print(<span class="string">"the word: %s is not in my Vocabulary!"</span> % word)</div><div class="line">    <span class="keyword">return</span> return_vec</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bag_of_words_2_vec</span><span class="params">(vocab_list, input_set)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    我们将每个词的出现与否作为一个特征，这可以被描述为词集模型(set-of-words model)。</div><div class="line">    如果一个词在文档中出现不止一次，词集模型可能会损失很多数据，这种方法被称为词袋模型(bag-of-words model)。</div><div class="line">    在词袋中，每个单词可以出现多次，而在词集中，每个词只能出现一次。</div><div class="line">    为适应词袋模型，需要对函数sset_of_words_2_vec稍加修改，修改后的函数称为bag_of_words_2_vec</div><div class="line">    :param vocab_list: 词汇表</div><div class="line">    :param input_set: 输入的词序列</div><div class="line">    :return: return_vec表示带有词汇出现次数的向量</div><div class="line">    """</div><div class="line">    return_vec = np.zeros(len(vocab_list))  <span class="comment"># 初始化置0</span></div><div class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> input_set:</div><div class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> vocab_list:</div><div class="line">            return_vec[vocab_list.index(word)] += <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> return_vec</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(train_matrix, train_category)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    朴素贝叶斯分类器训练函数</div><div class="line">    :param train_matrix: 文档标记矩阵</div><div class="line">    :param train_category: 文档类别标签矩阵（序列）</div><div class="line">    :return: p0和p1分别表示类别0和1的词频向量（各单词在此类别所有词汇的比重)），p_abusive表示正例概率</div><div class="line">    """</div><div class="line"></div><div class="line">    num_train_docs = len(train_matrix)</div><div class="line">    num_words = len(train_matrix[<span class="number">0</span>])</div><div class="line">    p_abusive = sum(train_category)/float(num_train_docs)</div><div class="line"></div><div class="line">    <span class="comment"># 拉普拉斯光滑：初始化所有词出现数为1，并将分母初始化为2。</span></div><div class="line">    p0_num = np.ones(num_words)</div><div class="line">    p1_num = np.ones(num_words)</div><div class="line">    p0_denom = <span class="number">2.0</span></div><div class="line">    p1_denom = <span class="number">2.0</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(num_train_docs):</div><div class="line">        <span class="keyword">if</span> train_category[i] == <span class="number">1</span>:</div><div class="line">            p1_num += train_matrix[i]</div><div class="line">            p1_denom += sum(train_matrix[i])</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            p0_num += train_matrix[i]</div><div class="line">            p0_denom += sum(train_matrix[i])</div><div class="line"></div><div class="line">    <span class="comment"># 将结果取自然对数，避免下溢出</span></div><div class="line">    p1_vec = np.log(p1_num/p1_denom)</div><div class="line">    p0_vec = np.log(p0_num/p0_denom)</div><div class="line">    <span class="keyword">return</span> p0_vec, p1_vec, p_abusive</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify</span><span class="params">(vec_2_classify, p0_vec, p1_vec, p_abusive)</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    朴素贝叶斯分类器分类函数</div><div class="line">    :param vec_2_classify: 要分类的向量</div><div class="line">    :param p0_vec: 分别对应trainNB0计算得到的3个概率</div><div class="line">    :param p1_vec:</div><div class="line">    :param p_abusive:</div><div class="line">    :return: 分类结果</div><div class="line">    """</div><div class="line"></div><div class="line">    p1 = sum(vec_2_classify * p1_vec) + np.log(p_abusive)</div><div class="line">    p0 = sum(vec_2_classify * p0_vec) + np.log(<span class="number">1.0</span> - p_abusive)</div><div class="line">    <span class="keyword">if</span> p1 &gt; p0:</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line"></div><div class="line">    list_posts, list_classes = load_data_set()</div><div class="line">    my_vocab_list = create_vocab_list(list_posts)</div><div class="line">    train_mat = []</div><div class="line">    <span class="keyword">for</span> post_in_doc <span class="keyword">in</span> list_posts:</div><div class="line">        train_mat.append(set_of_words_2_vec(my_vocab_list, post_in_doc))</div><div class="line"></div><div class="line">    p0, p1, p_c = train(np.array(train_mat), np.array(list_classes))</div><div class="line">    testEntry = [<span class="string">'love'</span>, <span class="string">'my'</span>, <span class="string">'maybe'</span>]</div><div class="line">    thisDoc = np.array(set_of_words_2_vec(my_vocab_list, testEntry))</div><div class="line">    print(testEntry, <span class="string">'classified as: '</span>, classify(thisDoc, p0, p1, p_c))</div><div class="line"></div><div class="line">    testEntry = [<span class="string">'stupid'</span>, <span class="string">'garbage'</span>]</div><div class="line">    thisDoc = np.array(set_of_words_2_vec(my_vocab_list, testEntry))</div><div class="line">    print(testEntry, <span class="string">'classified as: '</span>, classify(thisDoc, p0, p1, p_c))</div></pre></td></tr></table></figure>
+<p>运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">([&apos;love&apos;, &apos;my&apos;, &apos;maybe&apos;], &apos;classified as: &apos;, 0)</div><div class="line">([&apos;stupid&apos;, &apos;garbage&apos;], &apos;classified as: &apos;, 1)</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/公开课笔记/" rel="tag"># 公开课笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/01/cs229-5/" rel="next" title="第五集 生成学习算法">
+                <i class="fa fa-chevron-left"></i> 第五集 生成学习算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="ZHANG ZH.Y." />
+          <p class="site-author-name" itemprop="name">ZHANG ZH.Y.</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个<br>为了不做程序员而努力搬砖的<br>代码狗</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论知识"><span class="nav-number">1.</span> <span class="nav-text">理论知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拉普拉斯光滑（Laplace-Smoothing）"><span class="nav-number">1.1.</span> <span class="nav-text">拉普拉斯光滑（Laplace Smoothing）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#针对文本分类的事件模型（Event-Models-For-Text-Classification）"><span class="nav-number">1.2.</span> <span class="nav-text">针对文本分类的事件模型（Event Models For Text Classification）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机（Support-Vector-Machines）"><span class="nav-number">1.3.</span> <span class="nav-text">支持向量机（Support Vector Machines）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#边界（Margins）"><span class="nav-number">1.3.1.</span> <span class="nav-text">边界（Margins）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#记号（Notation）"><span class="nav-number">1.3.2.</span> <span class="nav-text">记号（Notation）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数边界和几何边界（Functional-And-Geometric-Margins）"><span class="nav-number">1.3.3.</span> <span class="nav-text">函数边界和几何边界（Functional And Geometric Margins）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#最优边界分类器（Optimal-Margin-Classifier）"><span class="nav-number">1.3.4.</span> <span class="nav-text">最优边界分类器（Optimal Margin Classifier）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python实现"><span class="nav-number">2.</span> <span class="nav-text">Python实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHANG ZH.Y.</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
