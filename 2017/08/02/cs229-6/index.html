@@ -101,14 +101,14 @@
 <meta property="og:site_name" content="ZZY SAY">
 <meta property="og:description" content="理论知识拉普拉斯光滑（Laplace Smoothing）还是考虑垃圾邮件分类的过程，设想你学完了 CS229 的课程，然后做了很棒的研究项目，之后你决定在2003年6月把自己的作品投稿到 NIPS 会议，NIPS 是机器学习领域的一个顶级会议，递交论文的截止日期一般是六月末到七月初。你通过邮件来对这个会议进行了讨论，然后你也开始受到带有 NIPS 四个字母的信息。但这个是你第一个 NIPS 论文">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img026.jpg?imageMogr2/thumbnail/!75p">
-<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img027.jpg?imageMogr2/thumbnail/!75p">
-<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img028.jpg?imageMogr2/thumbnail/!75p">
-<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img029.jpg?imageMogr2/thumbnail/!75p">
-<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img030.jpg?imageMogr2/thumbnail/!75p">
-<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img033.jpg?imageMogr2/thumbnail/!75p">
-<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img034.jpg?imageMogr2/thumbnail/!75p">
-<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img035.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img026.jpg?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img027.jpg?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img028.jpg?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img029.jpg?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img030.jpg?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img033.jpg?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img034.jpg?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img035.jpg?imageMogr2/thumbnail/!50p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img001.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img002.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img003.jpg?imageMogr2/thumbnail/!75p">
@@ -122,11 +122,11 @@
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img011.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img012.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img013.jpg?imageMogr2/thumbnail/!75p">
-<meta property="og:updated_time" content="2017-08-03T05:36:31.455Z">
+<meta property="og:updated_time" content="2017-08-03T05:42:58.950Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第六集 朴素贝叶斯算法">
 <meta name="twitter:description" content="理论知识拉普拉斯光滑（Laplace Smoothing）还是考虑垃圾邮件分类的过程，设想你学完了 CS229 的课程，然后做了很棒的研究项目，之后你决定在2003年6月把自己的作品投稿到 NIPS 会议，NIPS 是机器学习领域的一个顶级会议，递交论文的截止日期一般是六月末到七月初。你通过邮件来对这个会议进行了讨论，然后你也开始受到带有 NIPS 四个字母的信息。但这个是你第一个 NIPS 论文">
-<meta name="twitter:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img026.jpg?imageMogr2/thumbnail/!75p">
+<meta name="twitter:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note2-img026.jpg?imageMogr2/thumbnail/!50p">
 
 
 
@@ -387,29 +387,29 @@
 
       
         <h2 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h2><h3 id="拉普拉斯光滑（Laplace-Smoothing）"><a href="#拉普拉斯光滑（Laplace-Smoothing）" class="headerlink" title="拉普拉斯光滑（Laplace Smoothing）"></a>拉普拉斯光滑（Laplace Smoothing）</h3><p>还是考虑垃圾邮件分类的过程，设想你学完了 CS229 的课程，然后做了很棒的研究项目，之后你决定在2003年6月把自己的作品投稿到 NIPS 会议，NIPS 是机器学习领域的一个顶级会议，递交论文的截止日期一般是六月末到七月初。你通过邮件来对这个会议进行了讨论，然后你也开始受到带有 NIPS 四个字母的信息。但这个是你第一个 NIPS 论文，而在此之前， NIPS  这个单词就从来都没有出现在你的垃圾/正常邮件训练集里面。加入这个  NIPS  是你字典中的第 35000 个单词，那么你的朴素贝叶斯垃圾邮件筛选器就要对参数 $ φ_{35000}|y $ 进行最大似然估计：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img026.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
-<p>也就是说，因为之前程序从来没有在别的垃圾邮件或者正常邮件的训练样本中看到过 NIPS 这个词，所以它就认为看到这个词出现在这两种邮件中的概率都是 0 ，因此当要决定一个包含 NIPS 这个单词的邮件是否为垃圾邮件的时候，检验这个类的后验概率就得到了：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img027.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img026.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
 <a id="more"></a>
+<p>也就是说，因为之前程序从来没有在别的垃圾邮件或者正常邮件的训练样本中看到过 NIPS 这个词，所以它就认为看到这个词出现在这两种邮件中的概率都是 0 ，因此当要决定一个包含 NIPS 这个单词的邮件是否为垃圾邮件的时候，检验这个类的后验概率就得到了：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img027.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
 <p>这是因为对于 $     \Pi_{i=1}^n =  p(x_i|y) $ 中包含了 $ p(x_{35000}|y)=0 $。所以我们的算法得到的就是 0/0，也就是不知道该做出怎么样的预测了。</p>
 <p>然后进一步拓展一下这个问题，统计学上来说，只因为你在自己以前的有限的训练数据集中没见到过一件事，就估计这个事件的概率为零，明显是个坏主意。假设问题是估计一个多项式随机变量 z ，其取值范围在 {1,  …, k} 之内。接下来就可以用 $ φ_i = p(z=i) $ 来作为多项式参数。给定一个 m 个独立观测 {z(1), …, z(m)} 组成的集合，然后最大似然估计的形式如下：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img028.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img028.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
 <p>正如我们之前见到的，如果我们用这些最大似然估计，那么一些 $ φ_j $ 可能最终就是零了。要避免这个情况，我们引入了拉普拉斯光滑（Laplace Smoothing），这种方法把上面的估计替换成：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img029.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img029.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
 <p>这里首先是对分子加1，然后对分母加K，要注意 $ Σ^k_{j=1} \phi_j = 1 $ 依然成立，这是一个必须有的性质，因为 φj 是对概率的估计，所有的概率加到一起必然等于1。另外对于所有的 j 值，都有 $ φ_j ≠0 $，这就解决了刚刚的概率估计为零的问题了。在某些特定的条件下，可以发现拉普拉斯光滑甚至能给出对参数 $ φ_j $ 的最佳估计（optimal estimator）。</p>
 <p>回到我们的朴素贝叶斯分选器问题上，使用了拉普拉斯光滑之后，对参数的估计就写成了下面的形式：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img030.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img030.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
 <h3 id="针对文本分类的事件模型（Event-Models-For-Text-Classification）"><a href="#针对文本分类的事件模型（Event-Models-For-Text-Classification）" class="headerlink" title="针对文本分类的事件模型（Event Models For Text Classification）"></a>针对文本分类的事件模型（Event Models For Text Classification）</h3><p>到这里就要给生成学习算法的讨论收尾了，所以就接着讲一点关于文本分类方面的另一个模型。我们刚已经演示过的朴素贝叶斯方法能够解决很多分类问题了，不过另一个相关的算法在针对文本的分类效果还要更好。</p>
 <p>在针对文本进行分类的特定背景下，朴素贝叶斯方法使用的是一种叫做多元伯努利事件模型。在这个模型里面，我们都是在假设这个邮件中的内容首先是随机生成的，而不管这个垃圾邮件或者非垃圾邮件的发送者是否还会再给你发一次消息。然后，这个发邮件的人就遍历整个词典，然后根据概率分布 $p (x_i = 1|y) = φ_i|y $，独立地决定是否在邮件中包含每一个单词 i 。这样的话，这个消息的概率 $ p(y)  \Pi_{i=1}^n p(x_i|y) $。</p>
 <p>下面就是一个不同的模型，叫做多项式事件模型。我们用一个不同的记号和特征集合来表示邮件。我们用 xi 来表示邮件中的第 i 个单词。这样 $ x_i $ 现在就是一个整形了，取值范围在 {1, …, |V|} 中，其中 |V| 指代的是词汇表（也就是字典）的长度。这样一个由 n 个单词组成的邮件现在就表示成了一个 n 维向量 $ (x_1,x_2,…,x_n) $；要注意这里的 n 可以根据文档的变化而变化。例如，如果一个邮件的开头是 “A NIPS …”，那么 x1 = 1 (“a” 是词典中的第一个)，而 $ x_2 = 35000 $ (“nips”是词典中的第35000个)。</p>
 <p>在多项式事件模型中，我们假设邮件的生成是通过一个随机过程的，在这个过程中，首先确定是否为垃圾邮件，这个和之前的模型假设一样。然后邮件的发送者首先从某个多项式分布 $ (p(x_1|y))$ 中生成 $x_1$， 其次从相同的多项式分布中来选取独立于 $x_1$ 的  $x_2$，随后是 $x_3$、$x_4$ 等等，以此类推，直到生成了整个邮件中的所有的词。因此，一个邮件的总体概率就是 $ p(y)  \Pi_{i=1}^n p(x_i|y) $。这和我们之前那个多元伯努利事件模型里面的邮件概率很相似，但实际上这里面的意义完全不同了。尤其是这里的 $ x_i|y $ 现在是一个多项式分布了，而不是伯努利分布了。</p>
 <p>我们新模型的参数还是 $ φ_y = p(y) $，这个跟以前一样，然后还有 $ φ_k|y=1 = p(x_j=k|y=1) $ 以及 $ φ_i|y=0 =p(x_j =k|y=0) $ 。要注意这里我们已经假设了对于任何 j 的值，$ p(x_j|y) $ 这个概率都是相等的，也就是意味着在第 j 个位置生成那个单词和位置无关。</p>
 <p>如果给定一个训练集 $ {(x^{(i)},y^{(i)}); i = 1, …, m} $，其中 $ x^{(i)} = (x^{(i)}_1 ,x^{(i)}_2,…,x^{(i)}_n) $（这里的 n 是在第 i 个训练样本中的单词数目），那么这个数据的似然函数如下所示：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img033.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img033.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
 <p>让上面的这个函数最大化就可以产生对参数的最大似然估计：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img034.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img034.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
 <p>如果使用拉普拉斯光滑来估计 $ φ_k|y=0 $ 和 $ φ_k|y=1 $，就在分子上加1，然后分母上加 |V| ，就得到了下面的等式：</p>
-<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img035.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note2-img035.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
 <p>当然，这个并不见得就是一个最好的分类算法，不过朴素贝叶斯分选器通常用起来还都出乎意料地那么好。所以这个方法就是一个很好的“首发选择”，因为它很简单又很好实现。</p>
 <h3 id="支持向量机（Support-Vector-Machines）"><a href="#支持向量机（Support-Vector-Machines）" class="headerlink" title="支持向量机（Support Vector Machines）"></a>支持向量机（Support Vector Machines）</h3><p>支持向量机（support vector machines, SVM）是当前最好的监督学习算法之一，在讲SVM之前，我们要先讲一下最优边界分类器（optimal margin classifier），以及拉格朗日对偶（Lagrange duality）的内容，以及用于降维的核方法。</p>
 <h4 id="边界（Margins）"><a href="#边界（Margins）" class="headerlink" title="边界（Margins）"></a>边界（Margins）</h4><p>考虑逻辑回归，其中的概率分布 $ p(y=1|x; \theta) $ 是基于 $ h_{\theta}(x)=g(\theta^Tx) $ 而建立的模型，当且仅当  $ h_{\theta}(x) ≥ 5 $ ，即 $ \theta^Tx ≥ 0 $ 时，我们才能预测得到 1 。接入有一个正向的（positive）训练样本，即 y=1，那么 $ \theta^Tx $ 越大， $ h_{\theta}(x) = p(y=1|x; w, b) $ 也就越大，我们对预测为 1 的信心也就越大，所以如果 y=1 并且 $ \theta^Tx $ 远大于 0 ，那么我们就对当前的预测非常有信心。与之类似，在逻辑回归中，如果有 y = 0 且 $ \theta^Tx $ 远小于 0 ， ，我们 也对这时候给出的预测很有信心。。所以还是以一种非常不正式 的方式来说，对于一个给定的训练集，如果我们能找到一个 θ，满足当 y(i)=1 的时候总有 $ \theta^Tx^{(x)} &gt;&gt; 0 $ ，而 y(i)=0 的时候 $ \theta^Tx^{(x)} &lt;&lt; 0 $， 我们就说这个对训练数据的拟合很好，因为这就能对所有训练样本给出可靠（甚至正确）的分类。</p>
