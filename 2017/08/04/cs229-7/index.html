@@ -93,13 +93,13 @@
 
 
 
-<meta name="description" content="##理论知识 拉格朗日对偶性（Lagrange Duality）我们先把 SVMs 以及最大化边界分类器都放到一边，先来谈一下约束优化问题的求解。例如下面这样的一个问题：  在这个方法中，我们定义了一个拉格朗日函数 （Lagrangian）为：   上面这个等式中，这个 $ β_i$ 就叫做拉格朗日乘数（Lagrange multipliers）。然后接下来对 $L$ 取偏导数，并使其为零。  然">
+<meta name="description" content="理论知识拉格朗日对偶性（Lagrange Duality）我们先把 SVMs 以及最大化边界分类器都放到一边，先来谈一下约束优化问题的求解。例如下面这样的一个问题：  在这个方法中，我们定义了一个拉格朗日函数 （Lagrangian）为：   上面这个等式中，这个 $ β_i$ 就叫做拉格朗日乘数（Lagrange multipliers）。然后接下来对 $L$ 取偏导数，并使其为零。  然后就可">
 <meta name="keywords" content="公开课笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第七集 最优间隔分类器问题">
 <meta property="og:url" content="http://zzysay.github.io/2017/08/04/cs229-7/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="##理论知识 拉格朗日对偶性（Lagrange Duality）我们先把 SVMs 以及最大化边界分类器都放到一边，先来谈一下约束优化问题的求解。例如下面这样的一个问题：  在这个方法中，我们定义了一个拉格朗日函数 （Lagrangian）为：   上面这个等式中，这个 $ β_i$ 就叫做拉格朗日乘数（Lagrange multipliers）。然后接下来对 $L$ 取偏导数，并使其为零。  然">
+<meta property="og:description" content="理论知识拉格朗日对偶性（Lagrange Duality）我们先把 SVMs 以及最大化边界分类器都放到一边，先来谈一下约束优化问题的求解。例如下面这样的一个问题：  在这个方法中，我们定义了一个拉格朗日函数 （Lagrangian）为：   上面这个等式中，这个 $ β_i$ 就叫做拉格朗日乘数（Lagrange multipliers）。然后接下来对 $L$ 取偏导数，并使其为零。  然后就可">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img014.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img015.jpg?imageMogr2/thumbnail/!75p">
@@ -127,10 +127,10 @@
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img037.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img038.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img039.jpg?imageMogr2/thumbnail/!75p">
-<meta property="og:updated_time" content="2017-08-04T06:52:12.182Z">
+<meta property="og:updated_time" content="2017-08-04T06:53:30.227Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第七集 最优间隔分类器问题">
-<meta name="twitter:description" content="##理论知识 拉格朗日对偶性（Lagrange Duality）我们先把 SVMs 以及最大化边界分类器都放到一边，先来谈一下约束优化问题的求解。例如下面这样的一个问题：  在这个方法中，我们定义了一个拉格朗日函数 （Lagrangian）为：   上面这个等式中，这个 $ β_i$ 就叫做拉格朗日乘数（Lagrange multipliers）。然后接下来对 $L$ 取偏导数，并使其为零。  然">
+<meta name="twitter:description" content="理论知识拉格朗日对偶性（Lagrange Duality）我们先把 SVMs 以及最大化边界分类器都放到一边，先来谈一下约束优化问题的求解。例如下面这样的一个问题：  在这个方法中，我们定义了一个拉格朗日函数 （Lagrangian）为：   上面这个等式中，这个 $ β_i$ 就叫做拉格朗日乘数（Lagrange multipliers）。然后接下来对 $L$ 取偏导数，并使其为零。  然后就可">
 <meta name="twitter:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img014.jpg?imageMogr2/thumbnail/!75p">
 
 
@@ -391,8 +391,7 @@
       
 
       
-        <p>##理论知识</p>
-<h3 id="拉格朗日对偶性（Lagrange-Duality）"><a href="#拉格朗日对偶性（Lagrange-Duality）" class="headerlink" title="拉格朗日对偶性（Lagrange Duality）"></a>拉格朗日对偶性（Lagrange Duality）</h3><p>我们先把 SVMs 以及最大化边界分类器都放到一边，先来谈一下约束优化问题的求解。例如下面这样的一个问题：</p>
+        <h2 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h2><h3 id="拉格朗日对偶性（Lagrange-Duality）"><a href="#拉格朗日对偶性（Lagrange-Duality）" class="headerlink" title="拉格朗日对偶性（Lagrange Duality）"></a>拉格朗日对偶性（Lagrange Duality）</h3><p>我们先把 SVMs 以及最大化边界分类器都放到一边，先来谈一下约束优化问题的求解。例如下面这样的一个问题：</p>
 <p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img014.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
 <p>在这个方法中，我们定义了一个拉格朗日函数 （Lagrangian）为： </p>
 <p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img015.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
@@ -631,7 +630,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#拉格朗日对偶性（Lagrange-Duality）"><span class="nav-number">1.</span> <span class="nav-text">拉格朗日对偶性（Lagrange Duality）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最优边界分类器（Optimal-Margin-Classifiers）"><span class="nav-number">2.</span> <span class="nav-text">最优边界分类器（Optimal Margin Classifiers）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论知识"><span class="nav-number">1.</span> <span class="nav-text">理论知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拉格朗日对偶性（Lagrange-Duality）"><span class="nav-number">1.1.</span> <span class="nav-text">拉格朗日对偶性（Lagrange Duality）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最优边界分类器（Optimal-Margin-Classifiers）"><span class="nav-number">1.2.</span> <span class="nav-text">最优边界分类器（Optimal Margin Classifiers）</span></a></li></ol></li></ol></div>
             
 
           </div>
