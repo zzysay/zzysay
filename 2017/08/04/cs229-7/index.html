@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="公开课笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="##理论知识 拉格朗日对偶性（Lagrange Duality）我们先把 SVMs 以及最大化边界分类器都放到一边，先来谈一下约束优化问题的求解。例如下面这样的一个问题：  在这个方法中，我们定义了一个拉格朗日函数 （Lagrangian）为：   上面这个等式中，这个 $ β_i$ 就叫做拉格朗日乘数（Lagrange multipliers）。然后接下来对 $L$ 取偏导数，并使其为零。  然">
+<meta name="keywords" content="公开课笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第七集 最优间隔分类器问题">
+<meta property="og:url" content="http://zzysay.github.io/2017/08/04/cs229-7/index.html">
+<meta property="og:site_name" content="ZZY SAY">
+<meta property="og:description" content="##理论知识 拉格朗日对偶性（Lagrange Duality）我们先把 SVMs 以及最大化边界分类器都放到一边，先来谈一下约束优化问题的求解。例如下面这样的一个问题：  在这个方法中，我们定义了一个拉格朗日函数 （Lagrangian）为：   上面这个等式中，这个 $ β_i$ 就叫做拉格朗日乘数（Lagrange multipliers）。然后接下来对 $L$ 取偏导数，并使其为零。  然">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img014.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img015.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img016.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img017.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img018.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img019.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img020.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img021.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img022.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img023.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img024.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img025.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img026.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img027.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img028.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img029.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img030.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img031.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img032.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img033.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img034.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img035.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img036.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img037.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img038.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img039.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:updated_time" content="2017-08-04T06:52:12.182Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第七集 最优间隔分类器问题">
+<meta name="twitter:description" content="##理论知识 拉格朗日对偶性（Lagrange Duality）我们先把 SVMs 以及最大化边界分类器都放到一边，先来谈一下约束优化问题的求解。例如下面这样的一个问题：  在这个方法中，我们定义了一个拉格朗日函数 （Lagrangian）为：   上面这个等式中，这个 $ β_i$ 就叫做拉格朗日乘数（Lagrange multipliers）。然后接下来对 $L$ 取偏导数，并使其为零。  然">
+<meta name="twitter:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note3-img014.jpg?imageMogr2/thumbnail/!75p">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzysay.github.io/2017/08/04/cs229-7/"/>
+
+
+
+
+
+  <title>第七集 最优间隔分类器问题 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZZY SAY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I AM WHO I AM.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/08/04/cs229-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHANG ZH.Y.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZY SAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第七集 最优间隔分类器问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-04T14:50:06+08:00">
+                2017-08-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/Andrew-Ng公开课/" itemprop="url" rel="index">
+                    <span itemprop="name">Andrew Ng公开课</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##理论知识</p>
+<h3 id="拉格朗日对偶性（Lagrange-Duality）"><a href="#拉格朗日对偶性（Lagrange-Duality）" class="headerlink" title="拉格朗日对偶性（Lagrange Duality）"></a>拉格朗日对偶性（Lagrange Duality）</h3><p>我们先把 SVMs 以及最大化边界分类器都放到一边，先来谈一下约束优化问题的求解。例如下面这样的一个问题：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img014.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>在这个方法中，我们定义了一个拉格朗日函数 （Lagrangian）为： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img015.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>上面这个等式中，这个 $ β_i$ 就叫做拉格朗日乘数（Lagrange multipliers）。然后接下来对 $L$ 取偏导数，并使其为零。</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img016.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>然后就可以解出对应的 $w$ 和 $β$ 了。在本节，我们对此进行一下泛化，扩展到约束优化（constrained optimization）的问题 上，其中同时包含不等约束和等式约束。</p>
+<a id="more"></a>
+<p>下面这个，我们称之为主优化问题（primal optimization problem）： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img017.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>要解决上面这样的问题，首先要定义广义拉格朗日函数 （generalized Lagrangian）：  </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img018.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>上面的式子中， $α_i$ 和 $β_i$ 都是拉格朗日乘数（Lagrange multipliers），设有下面这样一个量： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img019.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>上式中的 $p$ 是对 “primal” 的简写。设已经给定了某些 $w$。如果 $w$ 不能满足某些主要约束，（例如对于存在某些 $i$ 使得 $g_i(w) &gt; 0$ 或者 $h_i(w) ≠ 0）$，我们就能够证明存在下面的等式关系： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img020.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>与之相反，如果 $w$ 的某些特定值确实能满足约束条件，那么 则有 $θ_p(w) = f(w)$，因此：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img021.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>因此，如果 $w$ 的所有值都满足主要约束条件，那么 $θ_p$ 的值就等于此优化问题的目标量，而如果 约束条件不能被满足，那 $θ_p$ 的值就是正无穷了。所以，进一步就可以引出下面这个最小化问题： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img022.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这个新提出的问题与之前主要约束问题有一样的解。我们要在这里定义一个目标量的最优值 $p^∗ = min_wθ_p (w)$；我们把这个值称为主要优化问题的值。接下来我们来看一个稍微不太一样的问题。我们定义： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img023.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>上面的式子中，$D$ 是 “dual” 的缩写。这里要注意，在对 $θ_p$ 的定义中是对 $α$ 和 $β$ 进行优化，这里则是找 $w$ 的小值。现在我们就能给出这个对偶优化问题了：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img024.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这个形式基本就和我们之前看到过的主要约束问题是一样的了，唯一不同是这里的 “max” 和 “min” 互 换了位置。我们也可以对这种对偶问题对象的优值进行定义，即 $d^∗ = max_{α,β:α_i≥0} θ_D(w) $。 而主要约束问题和这里的对偶性问题是怎么联系起来的呢？</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img025.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>（这里以及以后的一个函数的最大的最小值 “max min” 总是小于等于最小的最大值 “min max”）不过 在某些特定的情况下，就会有二者相等的情况：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img026.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这样就可以解对偶问题来代替原来的主要约束问题了。接下来就来看看导致上面二者相等的特定条件是什么。 假设 $f$ 和 $g_i$ 都是凸的，$h_i$ 是仿射（affine）函数。进一步设 $g$ 是严格可行的(strictly feasible)；这就意味着会存在某个 $w$，使得对所有的 $i$ 都有 $g_i(w) &lt; 0$。 </p>
+<p>基于上面的假设，可知必然存在 $w^∗$，$α^∗$， $β^∗$ 满足 $w^∗$ 主要约束问题（primal problem）的解，而 $α^∗$， $β^∗$ 为对偶问题的解，此外存在一个  $p^∗ = d^∗ = L(w^∗, α^∗, β^∗)$。另外，w$w^∗$，$α^∗$， $β^∗$ 这三个还会满足卡罗需-库恩-塔克条件（Karush-Kuhn-Tucker conditions, 缩写为 $KKT$），如下所示：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img027.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>反过来，如果某一组 $w^∗$，$α^∗$， $β^∗$ 满足 $KKT$ 条件，那么这 一组值就也是主要约束问题和对偶问题的解。 这里咱们要注意一下等式（5），这个等式也叫做 $KKT$ 对偶 互补条件（dual complementarity condition）。这个等式暗示， 当 $α_i^∗ &gt; 0$ 的时候，则有 $g_i(w^∗) = 0$ 。（也就是说，$g_i(w) ≤ 0$ 这个约束条件存在的话，则应该是相等关系，而不是不等关 系。）后面的学习中，这个等式很重要，尤其对于表明 SVM 只有少数的 “支持向量（support vectors）”；在学习 SMO 算法的时候，还可以用 KKT 对偶互补条件来进行收敛性检测（convergence test）。</p>
+<h3 id="最优边界分类器（Optimal-Margin-Classifiers）"><a href="#最优边界分类器（Optimal-Margin-Classifiers）" class="headerlink" title="最优边界分类器（Optimal Margin Classifiers）"></a>最优边界分类器（Optimal Margin Classifiers）</h3><p>在前面的内容中，我们讲到了下面这种（主要约束）优化问题，用于寻找优边界分类器： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img028.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这里的约束条件可以写成下面的形式：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img029.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>对于训练集中的每一个样本，都有这样的一个约束条件。要注意，通过 $KKT$ 对偶互补条件可知，只有训练样本的函数边界确定为 1 的情况下，才有 $α_i &gt; 0$ （即 $g_i(w) = 0$）。如下图所示，其中用实线所表示的就是大间隔分界超平面（maximum margin separating hyperplane）:</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img030.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>具有小边界的样本点正好就是距离分类边界近的那些点；图中所示，一共有三个这样的点，一个是空心圆的负值，两个是叉号的正值，他们所处的位置有虚线与分类边界线（即实线）相平行。因此，在这个优化问题中的优解里面，只有这三个样本点所对应的 $α_i$ 是非零的。这种现象就是，支持向量的规模比整个训练集的规模小得多，这在稍后的内容中会用到。 </p>
+<p>接着往下来。我们已经给出了问题的对偶形式，那么一个关键的思路就是，接下来我们需要把算法写成仅包含内积的形式 （ $ <x^{(i)},x^{(j)}>$ ，也可以理解为 $ (x^{(i)})^Tx^{(j)} $），即输入特征空间中的点相乘得到的内积。当使用核技巧（kernel trick）的时候，把算法用内积的形式表达就非常重要了。 </x^{(i)},x^{(j)}></p>
+<p>在构建优化问题的拉格朗日函数（Lagrangian）的时候，有下面的等式： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img031.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>注意这里的拉格朗日乘数中只有 $α_i$  而没有 $β_i$，因为这时候问题还只有不等式约束条件。接下来寻找这个问题的对偶性。首先就使 $L(w,b,α)$ 取小值，调整 $w$ 和 $b$，使 $α$ 固定，这样就能得到 $θ_D$，具体方法就是令 $L$ 关于 $w$ 和 $b$ 的导数为0：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img032.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>所以：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img033.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>关于 $b$ 的导数为零，就有：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img034.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>通过上面的等式 (9) 取得 $w$ 的一种定义方式，然后把这个代入到拉格朗日函数，也就是等式 (8) 中，化简得到：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img035.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>然后根据上面的等式 (10) 就能知道后一项必然是 0，所以 可以进一步简化得到：  </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img036.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>还记得之前我们得到的关于 $w$ 和 $b$ 来取 $L$ 最小值的等式吧。把这些与约束条件 $α_i ≥ 0$ 结合起来，然后再结合等式 (10)，就得到了下面的对偶优化问题了： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img037.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>我们这个优化问题的条件是满足 $p^∗ = d^∗$ 和 $KKT$ 条件的。这样，我们就可以通过解这个对偶问题来解决掉原来的主优化问题。具体来说，就是我们构建了一个以 $α_i$ 作为参数的取大值问题，如果能把这个问题解出来（也就是说找到 $α$ ，使得 $W(α)$ 取大值，且满足约束条件）那么就可以利用等式 (9) 来返回到问题中，找到最优的 $w$，作为一个关于 $α$ 的函数。得到了 $w^∗$ 之后，再考虑主优化问题，就能直接找到截距项 $b$ 的优值了： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img038.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>在继续之前，我们再回头看一下等式 (9)，其中以 $α$ （优值的）形式来表达了 $w$ 的优 值。加入我们已经使用一个训练集对模型的参数进行了拟合，然后接下来要对一个新输入的 x 的目标值进行预测。就要对 $w^T x + b$ 进行计算，如果得到的值大于 0，就预测 y = 1。通过利用等式 (9)，这个性质也可以写成： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note3-img039.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>这样的话，要进行一个预测，如果已经找到了 $α_i$，那就必须要计算一个值，该值只依赖新的输入特征 x 与训练集中各个点的内积。另外，之前我们就已经发现所有支持向量的 $α_i$ 的值都是 0。这样上面的求和项目中的很多项就都是 0 了，接下来我们就只需要找到 x 与支持向量的内积，然后就可以计算等式 (13)  得到结果，就可以用于预测了。通过检验优化问题的对偶形式，我们对要解决的问题的结构有了深入的了解，并且还根据输入特征向量之间的内积来编写整 个算法。 在下一节中，我们将充分利用这些内容，然后对我们的分类问题使用核（kernels）方法。最终得到的算法就是支持向量机算法，将能够在非常高的维度空间中有效地学习。 </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/公开课笔记/" rel="tag"># 公开课笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/02/cs229-6/" rel="next" title="第六集 朴素贝叶斯算法">
+                <i class="fa fa-chevron-left"></i> 第六集 朴素贝叶斯算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="ZHANG ZH.Y." />
+          <p class="site-author-name" itemprop="name">ZHANG ZH.Y.</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个<br>为了不做程序员而努力搬砖的<br>代码狗</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#拉格朗日对偶性（Lagrange-Duality）"><span class="nav-number">1.</span> <span class="nav-text">拉格朗日对偶性（Lagrange Duality）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最优边界分类器（Optimal-Margin-Classifiers）"><span class="nav-number">2.</span> <span class="nav-text">最优边界分类器（Optimal Margin Classifiers）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHANG ZH.Y.</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
