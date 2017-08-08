@@ -267,6 +267,157 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/08/08/cs229-9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHANG ZH.Y.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZY SAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/08/cs229-9/" itemprop="url">第九集 经验风险最小化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T14:30:14+08:00">
+                2017-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/Andrew-Ng公开课/" itemprop="url" rel="index">
+                    <span itemprop="name">Andrew Ng公开课</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h2><h3 id="学习理论（Learning-Theory）"><a href="#学习理论（Learning-Theory）" class="headerlink" title="学习理论（Learning Theory）"></a>学习理论（Learning Theory）</h3><h4 id="偏差-方差的权衡（Bias-Variance-Tradeoff）"><a href="#偏差-方差的权衡（Bias-Variance-Tradeoff）" class="headerlink" title="偏差/方差的权衡（Bias/Variance Tradeoff）"></a>偏差/方差的权衡（Bias/Variance Tradeoff）</h4><p>在讲线性回归的时候，我们讨论过这样的问题：拟合数据的时候，选择线性的 $y = θ_0 +θ_1x$ 这样的”简单”模型，还是选择多项式的 $y=θ_0+θ_1x^1+···θ_5x^5$ 这种”复杂”模型： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note4-img001.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
+<p>如最右图所示，用一个五次多项式来进行拟合得到的并不是一个好模型。这个五次多项式对于训练集中的每一个 $x$ 都给出了非常好的预测的 $y$ 值，并不代表这个模型能够对训练集之外的点给出靠谱的预测。一个推测模型的泛化误差正是那些不属于训练集的样本潜在的预期偏差。上面图中最左边的线性拟合和最右边的高次多项式拟合都有非常大的泛化误差。如果 $x$ 和 $y$ 之间的关系不是线性的，那么即便我们有一个非常大规模的训练集，然后用来进行线性拟合得到的线性模型都不能够准确捕捉到数据的结构。我们粗略地将一个模型的偏差定义为预期的泛化误差，即便我们要去拟合的对象是一个非常大的甚至是无限的训练数据集。这样的话，对于上面三幅图中所展示的那个情况来看，最左边的那个线性模型就具有特别大的偏差，可能是对数据的欠拟合。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/08/08/cs229-9/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/08/05/cs229-8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1684,7 +1835,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
