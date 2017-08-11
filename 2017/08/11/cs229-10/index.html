@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="公开课笔记," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="理论知识无限个假设的情况（The Case Of Inﬁnite $H$）我们已经针对有限个假设类的情况证明了一些有用的定理。然而有很多的假设类都包含有无限个函数，其中包括用实数参数化的类（比如线性分类问题）。那针对这种无限个假设的情况，我们能证明出类似的结论么？   我们先从一些不太“准确”论证的内容开始。若我们有一个假设集合 $H$，使用 $d$ 个实数来进行参数化。由于我们使用计算机表述实数">
+<meta name="keywords" content="公开课笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第十集 特征选择">
+<meta property="og:url" content="http://zzysay.github.io/2017/08/11/cs229-10/index.html">
+<meta property="og:site_name" content="ZZY SAY">
+<meta property="og:description" content="理论知识无限个假设的情况（The Case Of Inﬁnite $H$）我们已经针对有限个假设类的情况证明了一些有用的定理。然而有很多的假设类都包含有无限个函数，其中包括用实数参数化的类（比如线性分类问题）。那针对这种无限个假设的情况，我们能证明出类似的结论么？   我们先从一些不太“准确”论证的内容开始。若我们有一个假设集合 $H$，使用 $d$ 个实数来进行参数化。由于我们使用计算机表述实数">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note4-img017.jpg?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note4-img018.jpg?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note4-img019.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note4-img020.jpg?imageMogr2/thumbnail/!50p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note4-img021.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note4-img022.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note5-img001.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note5-img002.jpg?imageMogr2/thumbnail/!75p">
+<meta property="og:updated_time" content="2017-08-11T03:47:32.477Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第十集 特征选择">
+<meta name="twitter:description" content="理论知识无限个假设的情况（The Case Of Inﬁnite $H$）我们已经针对有限个假设类的情况证明了一些有用的定理。然而有很多的假设类都包含有无限个函数，其中包括用实数参数化的类（比如线性分类问题）。那针对这种无限个假设的情况，我们能证明出类似的结论么？   我们先从一些不太“准确”论证的内容开始。若我们有一个假设集合 $H$，使用 $d$ 个实数来进行参数化。由于我们使用计算机表述实数">
+<meta name="twitter:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note4-img017.jpg?imageMogr2/thumbnail/!50p">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzysay.github.io/2017/08/11/cs229-10/"/>
+
+
+
+
+
+  <title>第十集 特征选择 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZZY SAY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I AM WHO I AM.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/08/11/cs229-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHANG ZH.Y.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZY SAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第十集 特征选择</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-11T11:38:01+08:00">
+                2017-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/Andrew-Ng公开课/" itemprop="url" rel="index">
+                    <span itemprop="name">Andrew Ng公开课</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h2><h3 id="无限个假设的情况（The-Case-Of-Inﬁnite-H-）"><a href="#无限个假设的情况（The-Case-Of-Inﬁnite-H-）" class="headerlink" title="无限个假设的情况（The Case Of Inﬁnite $H$）"></a>无限个假设的情况（The Case Of Inﬁnite $H$）</h3><p>我们已经针对有限个假设类的情况证明了一些有用的定理。然而有很多的假设类都包含有无限个函数，其中包括用实数参数化的类（比如线性分类问题）。那针对这种无限个假设的情况，我们能证明出类似的结论么？  </p>
+<p>我们先从一些不太“准确”论证的内容开始。若我们有一个假设集合 $H$，使用 $d$ 个实数来进行参数化。由于我们使用计算机表述实数，而 IEEE 的双精度浮点数使用了 64 bit 来表示一个浮点数，这就意味着如果我们在学习算法中使用双精度浮点数，那我们的算法就由 64 $d$ 个 bit 来进行参数化。这样我们的这个假设类实际上包含的不同假设的个数最多为 $ k = 2^{64}d$ 。结合上一节的最后一段那个推论，我们就能发现，要保证 $ ε(\hat h) ≤ ε(h^\star) + 2\gamma$ ，同时还要保证概率至少为 $1 − δ$ ，则需要训练样本规模 $m$ 满足<img src="http://otceoztx6.bkt.clouddn.com/cs229-note4-img017.jpg?imageMogr2/thumbnail/!50p" alt="">（这里的 $\gamma，δ$ 下标表示最后一个大 $O$ 可能是一个依赖于$\gamma$和 $δ$的隐藏常数）因此所需的训练样本规模在模型参数中最多也就是线性的。</p>
+<p>由于我们要依赖 64 bit 浮点数，所以上面的论证还不能完全令人满意，但这个结论大致上是正确的：如果我们试图使训练误差最小化，那么为了使用具有 $d$ 个参数的假设类的学习效果 “较好”，通常就需要按照 $d$ 的线性数量来确定训练样本规模。</p>
+<a id="more"></a>
+<p>（在这里要注意的是，对于使用经验风险最小化的学习算法，上面这些结论已经被证明适用。因此，样本复杂度对 $d$ 的线性依赖性通常适用于大多数分类识别学习算法，但训练误差或者训练误差近似值的最小化，就未必适用于分类识别了。对很多的非 ERM 学习算法提供可靠的理论论证，仍然是目前很活跃的一个研究领域。）</p>
+<p>前面的论证还有另外一部分让人不太满意，就是依赖于对 $H$ 的参数化。根据直觉来看，这个参数化似乎应该不会有太大影响：我们已经把线性分类器写成了 $h_θ(x) = 1{θ_0 + θ_1x_1 + … +θ_nx_n ≥ 0}$ 的形式， 其中有 $n+1$ 个参数 $θ_0,…,θ_n$ 。但也可以写成 $h_{u,v}(x) = 1{(u^2_0 − v^0_2) + (u^2_1 − v^1_2)x_1 + ··· + (u^2_n − v^n_2)x^n ≥ 0}$ 的形式，这样就有 $2n+2$ 个参数 $u_i, v_i$ 了。然而这两种形式都定义了同样的一个 $H$： 一个 $n$ 维的线性分类器集合。</p>
+<p>要推导出更让人满意的论证结果，我们需要再额外定义一些概念。 </p>
+<p>给定一个点的集合 $S = {x^{(i)}, …, x^{(d)}}$，其中 $x^{(i)} \in X$，如果 $H$ 能够对集合 $S$ 实现任意的标签化，则称 H 打散（shatter）了 S。例如，对于任意的标签集合 $∂ {y^{(1)}, …, y^{(d)}}$，都有类 $H$ 中的某个函数 $h$ 满足 $h(x^{(i)}) = y^{(i)}$，其中 $i = 1, …d$。</p>
+<p>给定一个假设类 $H$，我们定义其 $VC$ 维度（VapnikChervonenkis dimension），写作 $VC(H)$，这个值也就是能被 $H$ 打散的最大的集合规模。 例如，若一个集合由下图所示的三个点组成： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note4-img018.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
+<p>那么二维线性分类器 $h(x) = 1{θ_0 +θ_1x_1 + θ_2x_2 ≥ 0}$ 的集合 $H$ 能否将上图所示的这个集合打散呢？答案是能。具体来看则如下图所示，以下八种分类情况中的任意一个，我们都能找到一种用能够实现 “零训练误差” 的线性分类器：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note4-img019.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>此外，这也有可能表明，这个假设类 $H$ 不能打散 4 个点构成的集合。因此，$H$ 可以打散的最大集合规模为 3，也就是说 $VC(H)= 3$。 这里要注意，$H$ 的 $VC$ 维为3，即便有某些 3 个点的集合不能被 $H$ 打散。例如如果三个点都在一条直线上，那就没办法能够用线性分类器来对这三个点的类别进行划分了。 </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note4-img020.jpg?imageMogr2/thumbnail/!50p" alt=""></p>
+<p>换个方式来说，在 $VC$ 维的定义之下，要保证 $VC(H)$ 至少为 $D$，只需要证明至少有一个规模为 $d$ 的集合能够被 $H$ 打散就可以了。 这样就能够给出下面的定理了，该定理来自 Vapnik。（有不少人认为这是所有学习理论中最重要的一个定理。） </p>
+<p>定理：给定 $H$，设 $d = VC(H)$。然后对于所有的 $h \in H$，都有 至少为 $1−δ$ 的概率使下面的关系成立： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note4-img021.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>此外，有至少为 $1−δ$ 的概率： </p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note4-img022.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>换句话说，如果一个假设类有有限的 $VC$ 维，那么只要训练样本规模 $m$ 增大，就能够保证联合收敛成立。和之前一样，这就能够让我们以 $ε(h^\star)$ 的形式来给  $ε(h^\star)$  建立一个约束。此外还有下面的推论（corollary）：<br>对于所有的 $h \in H$ 成立的 $|ε(h) − \hat ε(h)| ≤ \gamma$ （因此也有 $ε(\hat h) ≤ ε(h^\star) + 2\gamma）$，则有至少为 $1 – δ$ 的概 率，满足 $m = O_{γ,δ}(d)$。 </p>
+<p>换个方式来说，要保证使用假设集合 $H$ 的 机器学习的算法的学习效果“良好”，那么训练集样本规模 $m$ 需要与 $H$ 的 $VC$ 维度线性相关。这也表明，对于“绝大多数”假设来说，VC 维度也会和参数的个数线性相关。把这些综合到一起，我们就能得出这样的一个结论：对于一个试图将训练误差最小化的学习算法来说：训练样本个数通常都大概与假设类 $H$ 的参数个数线性相关。 </p>
+<h3 id="模型选择（Model-Selection）"><a href="#模型选择（Model-Selection）" class="headerlink" title="模型选择（Model Selection）"></a>模型选择（Model Selection）</h3><p>设想有一个机器学习的问题，我们要从一系列不同的模型中进行挑选。例如，我们可能是用一个多项式回归模型$h_θ(x) = g(θ_0 + θ_1x + θ_2x^2 + … + θ_kx^k)$，然后想要判定这里的多项式次数 $k$ 应该是多少，0， 1，…，或者 10。那我们怎么才能自动来选择一个能够在偏差/方差之间进行权衡的模型呢？<br>换一个说法，假如我们希望能够自动选出来一个带宽参数 $τ$ 来用于局部加权回归（locally weighted regression，LWR），或者要自动选出一个参数 $C$ 用于拉格朗日正则化的支持向量机算法。怎么来实现呢？</p>
+<p>我们假设备选集合的模型个数有限 $M = {M_1,…,M_d}$。例如上面第一个例子中，$M_i$ 就是一个 $i$ 次多项式拟合模型。换个说法就是，如果我们要从支持向量机算法（SVM）、神经网络算法（neural network）、逻辑回归算法（logistic regression）当中三选一，那么这里的 $M$ 就应该都包含了这些模型了。</p>
+<h4 id="交叉验证（Cross-validation）"><a href="#交叉验证（Cross-validation）" class="headerlink" title="交叉验证（Cross validation）"></a>交叉验证（Cross validation）</h4><p>假如我们得到了一个训练集 $S$。我们已经了解了经验风险最小化（empirical risk minimization，ERM），那么接下来就要通过使用 ERM 来进行模型选择来推导出一种新的算法：</p>
+<ol>
+<li>对训练集 $S$ 中的每一个模型 $M_i$ 进行训练，得到某假设类 $h_i$；</li>
+<li>从这些假设中选取训练误差最小的假设 $h$</li>
+</ol>
+<p>但是这个算法是行不通的。比如考虑要选择多项式的阶（最高次项的次数）的情况。多项式的阶越高，对训练集 $S$ 的拟合程度就越好，训练误差自然也就更小。然而，这个方法选出来的总是那种波动非常强的高次多项式模型，这种情况通常都是很差的选择。</p>
+<p>下面这个算法就更好一些。这个方法叫做保留交叉验证（hold-out cross validation），也叫做简单交叉验证（simple cross validation），步骤如下：</p>
+<ol>
+<li>随机拆分训练集 $S$ 成 $S_{train}$ (例如可以选择整体数据中的 70% 用于训练) 和 $S_{cv}$ (训练集中剩余的 30% 用于验证)。这里的 $S_{cv}$ 就叫做保留交叉验证集（hold-out cross validation set）；</li>
+<li>只对集合 $S_{train}$ 中的每一个模型 $M_i$ 进行训练，然后得到假设类 $h_i$；</li>
+<li>筛选并输出对保留交叉验证集有最小误差 $\hat ε _{S_{cv}} (h_i)$ 的假设 $h_i$ 。（这里的 $\hat ε _{S_{cv}} (h_i)$ 表示的是假设 $h$ 在保留交叉验证集 $S_{cv}$ 中的样本的经验误差)</li>
+</ol>
+<p>这样通过在一部分未进行训练的样本集合 $S_{cv}$ 上进行测试，我们对每个假设 $h_i$ 的真实泛化误差就能得到一个比上一个方法更好的估计，然后就能选择出来一个有最小估计泛化误差的假设了。通常可以选择 1/4 到 1/3 的数据样本用来作为保留交叉验证集，30% 是一个很典型的选择。</p>
+<p>还有另外一种备选方法，就是在第三步的时候，也可以选择与最小估计经验误差$\hat ε _{S_{cv}} (h_i)$ 对应的模型 $M_i$ ，然后对整个训练样本数据集 $S$ 使用 $M_i$ 来进行再次训练。使用保留交叉验证集的一个弊端就是“浪费”了训练样本数据集的 30% 左右。因为这相当于我们只尝试在一个 $0.7m$ 规模的训练样本集上试图寻找一个好的模型来解决一个机器学习问题，而并不是使用了全部的 $m$ 个训练样本，因为我们进行测试的都是每次在仅 $0.7m$ 规模样本上进行训练而得到的模型。当然了，如果数据非常充足，或者是很廉价的话，也可以用这种方法，而如果训练样本数据本身就很稀缺的话，那就最好使用下面这种方法了。</p>
+<p>k-折交叉验证(k-fold cross validation)，这样每次的用于验证的保留数据规模都更小：</p>
+<ol>
+<li>随机讲训练集 $S$ 切分成 $k$ 个不相交的子集，其中每一个子集的规模为 $m/k$ 个训练样本。我们就把这些子集称为 $S_1,…,S_k$。</li>
+<li>对每个模型 $M_i$，我们都按照下面的步骤来进行评估：对 $j = 1, …, k$，在 $S_1 \cup···\cup S_{j−1} \cup S_{j+1} \cup···S_k$ （也就是除了 $S_j$ 之外的其他所有数据）对模型 $M_i$ 进行训练，然后得到假设 $h_{ij}$ 。接下来针对 $S_j$ 使用假设 $h_{ij}$ 进行测试，得到经验误差 $\hat ε_{S_j} (h_{ij})$ 。对 $\hat ε_{S_j} (h_{ij})$ 取平均值（也就是对所有的 $j$ 都计算然后取平均值），计算得到的值就当做是模型 $M_i$ 的估计泛化误差。</li>
+<li>选择具有最小估计泛化误差的模型 $M_i$ ，然后在整个训练样本集 $S$  上重新训练该模型。这样得到的假设就可以输出作为最终结果了。</li>
+</ol>
+<p>通常这里进行折叠的次数 $k$ 一般是 10，即 $k = 10$。这样每次进行保留用于验证的数据块就只有 $1/k$ ，这就比之前的 30% 要小多了，当然这样一来这个过程也要比简单的保留交叉验证方法消耗更多，因为现在需要对每个模型都进行 $k$ 次训练。<br>虽然通常选择都是设置 $k = 10$，不过如果一些问题中数据量确实很匮乏，那有时候也可以设 $k = m$，这样是为了每次能够尽可能多地利用数据，尽可能少地排除数据。这种情况下，我们需要在训练样本集 $S$ 中除了某一个样本外的其他所有样本上进行训练，然后在保留出来的单独样本上进行检验。然后把计算出来的 $m = k$ 个误差放到一起求平均值，这样就得到了对一个模型的泛化误差的估计。这个方法有专门的名字；由于每次都保留了一个训练样本，所以这个方法就叫做弃一法交叉验证（leave-one-out cross validation）。</p>
+<h4 id="特征选择（Feature-Selection）"><a href="#特征选择（Feature-Selection）" class="headerlink" title="特征选择（Feature Selection）"></a>特征选择（Feature Selection）</h4><p>模型选择的一个非常重要的特殊情况就是特征选择。设想你面对一个监督学习问题，其中特征值的数量 $n$ 特别大，然而你怀疑可能只有一小部分的特征是与学习任务相关的。甚至即便是针对 $n$ 个输入特征值使用一个简单的线性分类器，你的假设类的 $VC$ 维也依然能达到 $O(n)$，然后这样的话就很有过拟合的潜在风险，除非训练样本集也足够巨大。</p>
+<p>在这样的一个背景下，我们可以使用一个特征选择算法，来降低特征值的数目。假设有 $n$ 个特征，那么就有 $2^n$ 种可能的特征子集（因为 $n$ 个特征中的任意一个都可以被某个特征子集包含或者排除），因此特征选择就可以看做是一个对 $2^n$ 种可能的模型进行选择的形式。对于特别大的 $n$，彻底枚举和对比全部 $2^n$ 种模型，成本就太高了，所以通常的做法都是使用某些启发式的搜索过程来找到一个好的特征子集。下面的搜索过程叫做前向搜索（forward search）：</p>
+<ol>
+<li>初始化一个集合为空集 $F = \varnothing $. </li>
+<li>循环下面的过程<br>(a) 对于 $i =1, …, n$ ，如果 $i \notin F$, 则令 $Fi =F\cup{i}$，然后使用某种交叉验证来评估特征 $F_i$。（也就是说，仅仅使用 $F_i$ 当中的特征来训练你的学习算法，然后估计一下泛化误差）<br>(b) 将 $F$ 设为步骤 (a) 中的最佳特征子集</li>
+<li>整个搜索过程中筛选出最佳特征子集并将其输出。</li>
+</ol>
+<p>上面这个算法最外层的循环体可以在 $F = {1, … , n} $ 达到全部特征规模的时候终止，或者也可以在 $|F|$ 超过某个预设阈值的情况下终止。<br>这个算法描述的是对模型特征选择进行包装的一个实例，此算法本身就是一个将学习算法进行“打包”的过程，然后重复调用这个学习算法来评估此算法对不同的特征子集的处理效果。除了向前搜索外，还可以使用其他的搜索过程。例如，可以逆向搜索，从 $F = {1, …, n}$ ，即规模等同于全部特征开始，然后重复，每次删减一个特征，直到 $F$ 为空集，即 $F = \varnothing$ 时终止。<br>这种包装器特征选择算法通常效果不错，不过开销也很大，尤其是要对学习算法进行多次调用。实际上，完整的前向搜索将要对学习算法调用约 $O(n^2)$ 次。</p>
+<p>过滤器特征选择法给出的特征子集选择方法更具有启发性，而且开销成本更低。这里的一个思路是，计算一个简单的分值 $S(i)$，用来衡量每个特征 $x_i$  对分类标签$y$ 所能体现的信息量。然后，只需找到最大信息量分值 $S(i)$ 的一组，选择使用其中的 $k$ 个特征。</p>
+<p>怎么去定义用于衡量信息量的分值 $S(i)$ 呢？一种思路是使用 $x_i$ 和 $y$ 之间的相关系数的值，这可以在训练样本数据中算出。这样我们选出的就是与分类标签的关系最密切的特征值。通常选择 $x_i$ 和 $y$ 的互信息（mutual information）来作为 $S(i)$，缩写为 $MI(x_i, y)$。</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note5-img001.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>上面这个等式中，假设了 $x_i$ 和 $y$ 都是二值化的二进制值，更广泛的情况下总和将会超过变量的范围。$p(x_i,y)$， $p(x_i)$ 和 $p(y)$ 的概率都可以根据它们在训练集上的经验分布而推测得到。</p>
+<p>要对这个信息量分值的作用有一个更直观的印象，也可以将互信息表达成 $KL$ 散度（Kullback-Leibler divergence，也称 $KL$ 距离，常用来衡量两个概率分布的距离）：</p>
+<p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note5-img002.jpg?imageMogr2/thumbnail/!75p" alt=""></p>
+<p>如果 $x_i$ 和 $y$ 是两个独立的随机变量，那么必然有 $p(x_i, y) = p(x_i)p(y)$，而两个分布之间的 $KL$ 散度就应该是 0。这也符合下面这种很自然的认识：如果 $x_i$ 和 $y$ 相互独立，那么 $x_i$ 很明显对 $y$ 是“完全无信息量（non-informative）”的，因此对应的信息量分值 $S(i)$ 就应该很小。与之相反地，如果 $x_i$对 $y$ “有很大的信息量”，那么这两者的互信息 $MI(x_i,y)$ 就应该很大。</p>
+<p>现在你已经根据信息量分值 $S(i)$ 的高低来对特征组合进行了排序，那么要如何选择特征个数 $k$ 呢？一个标准办法就是使用交叉验证来从可能的不同 $k$ 值中进行筛选。例如，在对文本分类使用朴素贝叶斯方法，这个问题中的词汇规模 $n$ 通常都会特别大，使用交叉验证的方法来选择特征子集，一般都能提高分类器精度。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/公开课笔记/" rel="tag"># 公开课笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/08/cs229-9/" rel="next" title="第九集 经验风险最小化">
+                <i class="fa fa-chevron-left"></i> 第九集 经验风险最小化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="ZHANG ZH.Y." />
+          <p class="site-author-name" itemprop="name">ZHANG ZH.Y.</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个<br>为了不做程序员而努力搬砖的<br>代码狗</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#理论知识"><span class="nav-number">1.</span> <span class="nav-text">理论知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无限个假设的情况（The-Case-Of-Inﬁnite-H-）"><span class="nav-number">1.1.</span> <span class="nav-text">无限个假设的情况（The Case Of Inﬁnite $H$）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型选择（Model-Selection）"><span class="nav-number">1.2.</span> <span class="nav-text">模型选择（Model Selection）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#交叉验证（Cross-validation）"><span class="nav-number">1.2.1.</span> <span class="nav-text">交叉验证（Cross validation）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#特征选择（Feature-Selection）"><span class="nav-number">1.2.2.</span> <span class="nav-text">特征选择（Feature Selection）</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHANG ZH.Y.</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
