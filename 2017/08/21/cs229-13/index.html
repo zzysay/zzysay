@@ -133,7 +133,7 @@
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note9-img005.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note9-img006.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note9-img007.jpg?imageMogr2/thumbnail/!75p">
-<meta property="og:updated_time" content="2017-08-21T04:53:48.101Z">
+<meta property="og:updated_time" content="2017-08-23T05:30:40.490Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第十三集 高斯混合模型">
 <meta name="twitter:description" content="理论知识期望最大化算法(EM Algorithm)在前面的若干讲义中，我们已经讲过了期望最大化算法（EM Algorithm），使用场景是对一个高斯混合模型进行拟合。在本章里面，我们要给出期望最大化算法的更广泛应用，并且演示如何应用于一个大系列的具有潜在变量的估计问题。我们的讨论从 Jensen 不等式（Jensen’s inequality）开始，这是一个非常有用的结论    。 Jensen">
@@ -421,7 +421,7 @@
 <p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note8-img006.jpg?imageMogr2/thumbnail/!66p" alt=""></p>
 <p>其中常数 $c$ 不依赖 $z^{(i)}$。要实现这一条件，只需满足：</p>
 <p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note8-img007.jpg?imageMogr2/thumbnail/!66p" alt=""></p>
-<p>实际上，由于我们已知 $Q_i(z^{(i)}) = 1$，这就进一步表明：</p>
+<p>实际上，由于我们已知 $Σ Q_i(z^{(i)}) = 1$，这就进一步表明：</p>
 <p><img src="http://otceoztx6.bkt.clouddn.com/cs229-note8-img008.jpg?imageMogr2/thumbnail/!66p" alt=""></p>
 <p>因此，在给定 $x^{(i)}$ 和参数 $θ$ 的设置下，我们可以简单地把 $Q_i$ 设置为 $z^{(i)}$ 的后验分布。</p>
 <p>接下来，对 $Q_i$ 的选择，等式 (3) 就给出了似然函数对数的一个下限，而似然函数正是我们要试图求最大值的。这就是 $E$ 步骤。接下来在算法的 $M$ 步骤中，就最大化等式 (3) 当中的方程，然后得到新的参数 $θ$。重复这两个步骤，就是完整的 $EM$ 算法，如下所示：</p>
