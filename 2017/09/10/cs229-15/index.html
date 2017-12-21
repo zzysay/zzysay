@@ -109,7 +109,7 @@
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note11-img006.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note11-img007.jpg?imageMogr2/thumbnail/!75p">
 <meta property="og:image" content="http://otceoztx6.bkt.clouddn.com/cs229-note11-img008.jpg?imageMogr2/thumbnail/!75p">
-<meta property="og:updated_time" content="2017-12-21T10:24:58.488Z">
+<meta property="og:updated_time" content="2017-12-21T10:28:49.808Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第十五集 独立成分分析法">
 <meta name="twitter:description" content="理论知识独立成分分析（Independent Components Analysis）接下来我们要讲的主体是独立成分分析（Independent Components Analysis，ICA）。这个方法和主成分分析（PCA）类似，也是要找到一组新的基向量来表征样本数据。然而，这两个方法的目的是不同的。 依旧用“鸡尾酒会问题”为例。在一个聚会场合中，有 $n$ 个人同时说话，而屋子里的任意一个话筒">
@@ -375,6 +375,7 @@
       
         <h2 id="理论知识"><a href="#理论知识" class="headerlink" title="理论知识"></a>理论知识</h2><h3 id="独立成分分析（Independent-Components-Analysis）"><a href="#独立成分分析（Independent-Components-Analysis）" class="headerlink" title="独立成分分析（Independent Components Analysis）"></a>独立成分分析（Independent Components Analysis）</h3><p>接下来我们要讲的主体是独立成分分析（Independent Components Analysis，ICA）。这个方法和主成分分析（PCA）类似，也是要找到一组新的基向量来表征样本数据。然而，这两个方法的目的是不同的。</p>
 <p>依旧用“鸡尾酒会问题”为例。在一个聚会场合中，有 $n$ 个人同时说话，而屋子里的任意一个话筒录制的都是叠加在一起的 $n$ 个人的声音。但如果假设我们也有 $n$ 个不同的话筒安装在屋子里，并且这些话筒与每个说话人的距离都各自不同，那么录下来的也就是不同的组合形式的所有人的声音叠加。使用这样布置的 $n$ 个话筒来录音，能不能区分开原始的 $n$ 个说话者每个人的声音信号呢？</p>
+<a id="more"></a>
 <p>把这个问题用方程的形式来表示，我们需要先假设有某个样本数据 $s ∈ R^n$，这个数据是由 $n$ 个独立的来源生成的。我们观察到的则为：</p>
 <p>$$ x = As $$</p>
 <p>上面式子中的 $A$ 是一个未知的正方形矩阵，叫做混合矩阵。通过重复的观察，我们就得到了训练集 ${x^{(i)} ; i = 1, . . . , m}$，我们的目的是恢复出生成这些样本 $x^{(i)} = As^{(i)}$ 的原始声音源 $s^{(i)}$ 。<br>在咱们的“鸡尾酒会问题”中，$s^{(i)}$ 就是一个 $n$ 维度向量，而 $s_j^{(i)}$ 是第 $j$ 个说话者在第 $i$ 次录音时候发出的声音。$x^{(i)}$ 同样也是一个 $n$ 维度向量，而 $x_j^{(i)}$ 是第 $j$ 个话筒在第 $i$ 次录制到的声音。<br>设混合矩阵 $A$ 的逆矩阵 $W = A^{−1}$ 是混合的逆向过程，称之为还原矩阵。那么我们的目标就是找出这个 $W$，这样针对给定的话筒录音 $x^{(i)}$，我们就可以通过计算 $s^{(i)} = Wx^{(i)}$ 来还原出来声音源。为了方便起见，我们就用 $w_i^T$ 来表示 $W$ 的第 $i$ 行，这样就有：</p>
@@ -457,6 +458,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/09/16/cs229-16/" rel="prev" title="第十六集 马尔可夫决策过程">
+                第十六集 马尔可夫决策过程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -528,7 +533,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
