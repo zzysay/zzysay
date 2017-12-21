@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="公开课笔记," />
+  <meta name="keywords" content="数据挖掘," />
 
 
 
@@ -93,18 +93,31 @@
 
 
 
-<meta name="description" content="机器学习定义 在不直接针对问题进行编程的情况下，赋予计算机学习能力的研究领域。 对一个计算机程序来说，给它一个任务T和一个性能测量方法P，如果在经验E的影响下，P对T的测量结果得到了改进，那么就说该程序从E中学习了。">
-<meta name="keywords" content="公开课笔记">
+<meta name="description" content="关联规则">
+<meta name="keywords" content="数据挖掘">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一集 机器学习的动机与应用">
-<meta property="og:url" content="http://zzysay.github.io/2017/07/25/cs229-1/index.html">
+<meta property="og:title" content="从关联规则到Apriori算法">
+<meta property="og:url" content="http://zzysay.github.io/2017/12/21/apriori/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="机器学习定义 在不直接针对问题进行编程的情况下，赋予计算机学习能力的研究领域。 对一个计算机程序来说，给它一个任务T和一个性能测量方法P，如果在经验E的影响下，P对T的测量结果得到了改进，那么就说该程序从E中学习了。">
+<meta property="og:description" content="关联规则">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-02T09:25:24.000Z">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138466746050.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138473464032.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138472565854.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138478297230.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138478022280.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138481114019.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138502597373.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138484468754.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138488845607.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138499462222.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138498963418.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138500809875.jpg">
+<meta property="og:updated_time" content="2017-12-21T10:40:24.836Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第一集 机器学习的动机与应用">
-<meta name="twitter:description" content="机器学习定义 在不直接针对问题进行编程的情况下，赋予计算机学习能力的研究领域。 对一个计算机程序来说，给它一个任务T和一个性能测量方法P，如果在经验E的影响下，P对T的测量结果得到了改进，那么就说该程序从E中学习了。">
+<meta name="twitter:title" content="从关联规则到Apriori算法">
+<meta name="twitter:description" content="关联规则">
+<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15138466746050.jpg">
 
 
 
@@ -132,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://zzysay.github.io/2017/07/25/cs229-1/"/>
+  <link rel="canonical" href="http://zzysay.github.io/2017/12/21/apriori/"/>
 
 
 
 
 
-  <title>第一集 机器学习的动机与应用 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>从关联规则到Apriori算法 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -267,7 +280,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/07/25/cs229-1/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/12/21/apriori/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZHANG ZH.Y.">
@@ -284,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">第一集 机器学习的动机与应用</h1>
+          <h1 class="post-title" itemprop="name headline">从关联规则到Apriori算法</h1>
         
 
         <div class="post-meta">
@@ -296,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-25T10:15:25+08:00">
-                2017-07-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-21T18:38:44+08:00">
+                2017-12-21
               </time>
             
 
@@ -319,8 +332,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/课堂笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">课堂笔记</span>
                   </a>
                 </span>
 
@@ -330,8 +343,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/Andrew-Ng公开课/" itemprop="url" rel="index">
-                    <span itemprop="name">Andrew Ng公开课</span>
+                  <a href="/categories/课堂笔记/网络数据挖掘/" itemprop="url" rel="index">
+                    <span itemprop="name">网络数据挖掘</span>
                   </a>
                 </span>
 
@@ -364,15 +377,29 @@
       
 
       
-        <h2 id="机器学习定义"><a href="#机器学习定义" class="headerlink" title="机器学习定义"></a>机器学习定义</h2><ol>
-<li>在不直接针对问题进行编程的情况下，赋予计算机学习能力的研究领域。</li>
-<li>对一个计算机程序来说，给它一个任务T和一个性能测量方法P，如果在经验E的影响下，P对T的测量结果得到了改进，那么就说该程序从E中学习了。</li>
-</ol>
+        <h2 id="关联规则"><a href="#关联规则" class="headerlink" title="关联规则"></a>关联规则</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138466746050.jpg" alt=""></p>
 <a id="more"></a>
-<h2 id="机器学习分类"><a href="#机器学习分类" class="headerlink" title="机器学习分类"></a>机器学习分类</h2><h3 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h3><p>监督学习是从标记的训练数据来推断一个功能的机器学习任务，主要应用有回归问题和分类问题。<br><strong>回归问题</strong><br>例：收集某地房屋价格统计，即房屋面积和价格的关系。我们可以通过画出一条拟合曲线对任意房屋面积估算其价格。<br><strong>分类问题</strong><br>例：判断肿瘤是还是恶性。通过画出肿瘤大小和肿瘤性质的坐标图，从而实现对肿瘤性质的分类，同时也可以引入年龄等特征，在处理多特征问题中，降维将会是分类问题中一个重要方法。</p>
-<h3 id="学习理论"><a href="#学习理论" class="headerlink" title="学习理论"></a>学习理论</h3><p>学习理论指的是解释学习型算法有效的原因（学习算法的理论基础），寻找什么样的算法能很好地近似不同的函数，训练集的规模是否合适。</p>
-<h3 id="无监督学习"><a href="#无监督学习" class="headerlink" title="无监督学习"></a>无监督学习</h3><p>无监督学习是根据无标记的训练样本解决模式识别中的各种问题的机器学习任务。<br>例：如上述肿瘤例子，图中的点不知道正确答案，而是通过机器学习从中找去一定的结构，即聚类。<br>再例：在鸡尾酒酒会问题中，从嘈杂的环境中提取出你所需要的声音。</p>
-<h3 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h3><p>通过决策产生的结论或对或错，故产生一系列的决策。<br>例：对一个模型飞机编写一个起飞程序，飞机在程序做了一连串错误决策是才会坠毁，只要做出连续的整体还不错的决策，即可保持飞机正常飞行。<br>程序需要不断做出决策，在不断尝试获得尽量多的正反馈时，逐渐学习并做出正确决策，关键在于要定义什么是正确决策，什么是错误决策，再设计算法获取尽量多的正反馈。</p>
+<h2 id="支持度和置信度"><a href="#支持度和置信度" class="headerlink" title="支持度和置信度"></a>支持度和置信度</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138473464032.jpg" alt=""></p>
+<p>举例说明：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15138472565854.jpg" alt=""></p>
+<p>由此可见，关联规则挖掘的目标即为，规定交易集合，找到所有满足<strong>最小支持度(minsup)和最小置信度(minconf)</strong>的规则。而在实际运用中，即需要找到所有满足条件的规则，又不能将数据全部读入内存进行计算。</p>
+<h2 id="频繁集挖掘算法"><a href="#频繁集挖掘算法" class="headerlink" title="频繁集挖掘算法"></a>频繁集挖掘算法</h2><h3 id="频繁集"><a href="#频繁集" class="headerlink" title="频繁集"></a>频繁集</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138478297230.jpg" alt=""></p>
+<p>Apriori算法是关联规则挖掘中最著名的算法，算法分为两个步骤：</p>
+<ol>
+<li>寻找所有满足最小支持度minsup的<strong>频繁集</strong>(frequent itemset)</li>
+<li>基于频繁集产生规则</li>
+</ol>
+<p>由此产生的频繁集挖掘算法：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15138478022280.jpg" alt=""></p>
+<h3 id="Apriori算法"><a href="#Apriori算法" class="headerlink" title="Apriori算法"></a>Apriori算法</h3><h4 id="Apriori算法过程"><a href="#Apriori算法过程" class="headerlink" title="Apriori算法过程"></a>Apriori算法过程</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138481114019.jpg" alt=""></p>
+<p>函数 $candidate-gen(F_{k-1})$:</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15138502597373.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15138484468754.jpg" alt=""></p>
+<h4 id="Apriori算法举例"><a href="#Apriori算法举例" class="headerlink" title="Apriori算法举例"></a>Apriori算法举例</h4><p>步骤1： 寻找频繁集</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15138488845607.jpg" alt=""></p>
+<p>步骤2: 生成规则</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15138499462222.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15138498963418.jpg" alt=""></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138500809875.jpg" alt=""></p>
+<p>参考文献：<br>[1] 徐君,《网络数据挖掘》,中国科学院大学2017年秋季研究生课程</p>
 
       
     </div>
@@ -402,7 +429,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/公开课笔记/" rel="tag"># 公开课笔记</a>
+            <a href="/tags/数据挖掘/" rel="tag"># 数据挖掘</a>
           
         </div>
       
@@ -415,8 +442,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/22/bu-wei-jiang-lai-bu-nian-guo-wang/" rel="next" title="不畏将来，不念过往">
-                <i class="fa fa-chevron-left"></i> 不畏将来，不念过往
+              <a href="/2017/09/16/cs229-16/" rel="next" title="第十六集 马尔可夫决策过程">
+                <i class="fa fa-chevron-left"></i> 第十六集 马尔可夫决策过程
               </a>
             
           </div>
@@ -424,10 +451,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/26/cs229-2/" rel="prev" title="第二集 监督学习的应用：梯度下降">
-                第二集 监督学习的应用：梯度下降 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -557,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习定义"><span class="nav-number">1.</span> <span class="nav-text">机器学习定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习分类"><span class="nav-number">2.</span> <span class="nav-text">机器学习分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#监督学习"><span class="nav-number">2.1.</span> <span class="nav-text">监督学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习理论"><span class="nav-number">2.2.</span> <span class="nav-text">学习理论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无监督学习"><span class="nav-number">2.3.</span> <span class="nav-text">无监督学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强化学习"><span class="nav-number">2.4.</span> <span class="nav-text">强化学习</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关联规则"><span class="nav-number">1.</span> <span class="nav-text">关联规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持度和置信度"><span class="nav-number">2.</span> <span class="nav-text">支持度和置信度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#频繁集挖掘算法"><span class="nav-number">3.</span> <span class="nav-text">频繁集挖掘算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#频繁集"><span class="nav-number">3.1.</span> <span class="nav-text">频繁集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Apriori算法"><span class="nav-number">3.2.</span> <span class="nav-text">Apriori算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Apriori算法过程"><span class="nav-number">3.2.1.</span> <span class="nav-text">Apriori算法过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apriori算法举例"><span class="nav-number">3.2.2.</span> <span class="nav-text">Apriori算法举例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -684,7 +707,7 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
 
 
 
@@ -728,6 +751,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
