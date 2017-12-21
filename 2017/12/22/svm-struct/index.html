@@ -120,7 +120,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138743582891.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138750317473.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138750990256.jpg">
-<meta property="og:updated_time" content="2017-12-21T16:57:54.043Z">
+<meta property="og:updated_time" content="2017-12-21T17:21:35.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从支持向量机到结构化输出预测">
 <meta name="twitter:description" content="支持向量机边距的表示">
@@ -388,11 +388,11 @@
 <a id="more"></a>
 <p>即 $SVM$ 的学习过程归结为寻找合适的 $w$ 和 $b$ 使边距 $M$ 最大化</p>
 <ul>
-<li>若所有的训练数据都在正确的分类区域，则有 $𝑦_𝑖(&lt;𝐰,𝐱𝑖&gt;+𝑏)≥1 $，其中 $𝑦_𝑖∈{+1,−1}$</li>
-<li>$ max \frac 2 {\sqrt{<w,w>}} \Leftrightarrow min ||w||^2 $</w,w></li>
+<li>若所有的训练数据都在正确的分类区域，则有 $y_i(\langle 𝐰,𝐱_i \rangle+b)≥1 $，其中 $y_i \in \lbrace +1,−1 \rbrace $</li>
+<li>$ max \frac 2 {\sqrt{\langle w,w \rangle}} \Leftrightarrow min ||w||^2 $</li>
 </ul>
 <p>即 $SVM$ 的优化问题可以表示为：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15138582978767.jpg" alt=""></p>
-<p>$(<w, x_i="">+b)$ 应当是一个绝对值大于等于 $1$ 的值，约束条件就意味着所有点均位于正边距和负边距之上或之外</w,></p>
+<p>$(\langle 𝐰,𝐱_i \rangle+b)$ 应当是一个绝对值大于等于 $1$ 的值，约束条件就意味着所有点均位于正边距和负边距之上或之外</p>
 <h3 id="软边距SVM"><a href="#软边距SVM" class="headerlink" title="软边距SVM"></a>软边距SVM</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138585285953.jpg" alt=""></p>
 <h3 id="原问题的对偶问题"><a href="#原问题的对偶问题" class="headerlink" title="原问题的对偶问题"></a>原问题的对偶问题</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138588065447.jpg" alt=""></p>
 <p><strong>推导：</strong></p>
@@ -400,7 +400,7 @@
 <p>显然：<br>$$ \frac 1 2 ||w||^2 ≥ L(w, b, \xi, \mu, a) ≥ \mathop{inf} \limits_{w,b} L(w, b, \xi, \mu, a)$$</p>
 <p>对偶问题是拉格朗日函数的极大极小问题，首先求 $L(w, b, \xi, \mu, a)$ 对 $w, b, \xi$ 的极小值，由：<br>$$ \nabla_w L(w, b, \xi, \mu, a) = w - \sum_{i=1}^n a_iy_ix_i = 0 $$$$ \nabla_b L(w, b, \xi, \mu, a) = - \sum_{i=1}^n a_iy_i = 0 $$$$\nabla_{\xi_i} L(w, b, \xi, \mu, a) = C - a_i - \mu_i = 0 $$<br>得：<br>$$ w = \sum_{i=1}^n a_iy_ix_i $$$$ \sum_{i=1}^n a_iy_i = 0 $$$$ C - a_i - \mu_i = 0 $$</p>
 <p>原式可化为：<br>$$ L(w, b, \xi, \mu, a) =  \frac 1 2 ||w||^2 + \sum_{i=1}^n \xi_i  (C - a_i - \mu_i) - \sum_{i=1}^n a_iy_i(w·x_i+b) + \sum_{i=1}^n a_i $$</p>
-<p>代入易得：<br>$$ L(w, b, \xi, \mu, a) =\sum_{i=1}^n a_i - \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n a_ia_jy_iy_j<x_i, x_j=""> $$</x_i,></p>
+<p>代入易得：<br>$$ L(w, b, \xi, \mu, a) =\sum_{i=1}^n a_i - \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n a_ia_jy_iy_j \langle x_i, x_j\rangle $$</p>
 <p>对拉格朗日乘子有以下约束：<br>$$ \sum_{i=1}^n a_iy_i = 0 $$$$ C ≥ a_i ≥ 0 $$</p>
 <h3 id="求解对偶问题"><a href="#求解对偶问题" class="headerlink" title="求解对偶问题"></a>求解对偶问题</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138724404036.jpg" alt=""></p>
 <p>据此学习到的分类函数为</p>
@@ -423,7 +423,7 @@
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15138750317473.jpg" alt=""></p>
 <p><strong>变边距 SVM-Struct</strong></p>
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15138750990256.jpg" alt=""></p>
-<p>参考文献：<br>[1] 徐君,《网络数据挖掘》,中国科学院大学2017年秋季研究生课程<br>[2] 卜东波,《计算机算法设计与分析》,中国科学院大学2017年秋季研究生课程<br>[3] 李航,《统计学习方法》,</p>
+<p>参考文献：<br>[1] 徐君,《网络数据挖掘》,中国科学院大学2017年秋季研究生课程<br>[2] 卜东波,《计算机算法设计与分析》,中国科学院大学2017年秋季研究生课程<br>[3] 李航,《统计学习方法》,清华大学出版社</p>
 
       
     </div>
