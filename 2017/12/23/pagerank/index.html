@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据挖掘,机器学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="图中心度表示方法介数中心度">
+<meta name="keywords" content="数据挖掘,机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从谱中心度到PageRank算法">
+<meta property="og:url" content="http://zzysay.github.io/2017/12/23/pagerank/index.html">
+<meta property="og:site_name" content="ZZY SAY">
+<meta property="og:description" content="图中心度表示方法介数中心度">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139236208420.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139236812069.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139237590023.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139247399933.png">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139248147180.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139303791533.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139310216873.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139315201124.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139344005333.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139368919082.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139378343772.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139421689841.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139422064680.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139422233455.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139423316613.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139427534439.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139427750722.jpg">
+<meta property="og:updated_time" content="2017-12-22T17:02:18.045Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从谱中心度到PageRank算法">
+<meta name="twitter:description" content="图中心度表示方法介数中心度">
+<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15139236208420.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzysay.github.io/2017/12/23/pagerank/"/>
+
+
+
+
+
+  <title>从谱中心度到PageRank算法 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZZY SAY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I AM WHO I AM.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/12/23/pagerank/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHANG ZH.Y.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZY SAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从谱中心度到PageRank算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:29:53+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课堂笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">课堂笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课堂笔记/网络数据挖掘/" itemprop="url" rel="index">
+                    <span itemprop="name">网络数据挖掘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="图中心度表示方法"><a href="#图中心度表示方法" class="headerlink" title="图中心度表示方法"></a>图中心度表示方法</h2><h3 id="介数中心度"><a href="#介数中心度" class="headerlink" title="介数中心度"></a>介数中心度</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139236208420.jpg" alt=""></p>
+<a id="more"></a>
+<h3 id="距离中心度"><a href="#距离中心度" class="headerlink" title="距离中心度"></a>距离中心度</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139236812069.jpg" alt=""></p>
+<h3 id="谱中心度"><a href="#谱中心度" class="headerlink" title="谱中心度"></a>谱中心度</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139237590023.jpg" alt=""></p>
+<p>其中，主特征值对应特征向量的所有元素均非负</p>
+<h2 id="PageRank算法"><a href="#PageRank算法" class="headerlink" title="PageRank算法"></a>PageRank算法</h2><h3 id="PageRank的直观解释"><a href="#PageRank的直观解释" class="headerlink" title="PageRank的直观解释"></a>PageRank的直观解释</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139247399933.png" alt=""></p>
+<p>$PageRank$ 的直观解释，被<strong>很多重要</strong>页面<strong>指向</strong>的页面是<strong>重要</strong>的页面。</p>
+<p>即如果一个网页被很多其他网页链接到的话，说明这个网页比较重要，如果一个 $PageRank$ 值很高的网页链接到一个其他的网页，那么被链接到的网页的 $PageRank$ 值会相应地因此而提高。</p>
+<p>$PageRank$ 的物理意义，对一个网页来说，当浏览者沿着网页中的超链接进行浏览时，访问到该网页的概率。</p>
+<h3 id="谱中心度与PageRank"><a href="#谱中心度与PageRank" class="headerlink" title="谱中心度与PageRank"></a>谱中心度与PageRank</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139248147180.jpg" alt=""></p>
+<p><strong>证明：</strong></p>
+<p>转移概率矩阵是一个行和为 $1$ 的矩阵，所以也被称作行随机矩阵，如下图所示：</p>
+<p>$$ P=\begin{bmatrix} 0 &amp; 1/3 &amp; 1/3 &amp; 1/3\\ 1/2 &amp; 0 &amp; 1/2 &amp; 0\\ 0 &amp; 0 &amp; 0 &amp; 1\\ 1/2 &amp; 1/2 &amp; 0 &amp; 0 \end{bmatrix} $$</p>
+<p>主特征值是 $P$ 的所有特征值最大的那个，所以转移概率矩阵的主特征值为 $1$ 的证明可以转化为证明转移概率矩阵 $P$ 的特征值都小于等于 $1$，且最大特征值为 $1$ 的问题。</p>
+<p>由于 $P$ 的每个行和都为 $1$，于是有：</p>
+<p>$$ P[\frac{1}{n},\frac{1}{n},\cdots,\frac{1}{n}]^T=[\frac{1}{n},\frac{1}{n},\cdots,\frac{1}{n}]^T $$</p>
+<p>因为 $P$ 的第 $i$ 行的元素和为 $1$， 所以 $P_{i·}[\frac{1}{n},\frac{1}{n},\cdots,\frac{1}{n}]^T =\sum_{j=1}^{n}\frac{1}{n}P_{ij}=\frac{1}{n}\sum_{j=1}^{n}P_{ij}=\frac{1}{n}$。于是上式得证，即 $[\frac{1}{n},\frac{1}{n},\cdots,\frac{1}{n}]^T$ 是转移概率矩阵 $P$ 特征值为 $1$ 对应的特征向量。</p>
+<p>令 $x_k$ 为 $x$ 中最大的元素，又因为 $P$ 中的元素非负，且行和为 $1$，所以 $\lambda x$ 中的每个元素都是 $x$ 中元素的凸组合，所以 $\lambda x$ 中的每个元素都小于等于 $x_k$ 。对 $P$ 的第 $k$ 列元素 $P_{·k}$，根据 $Px = \lambda x$ 有：<br>$$P_{1k}x_1 + P_{2k}x_2 + \cdots +P_{3k}x_3 = \lambda x_k \le x_k $$</p>
+<p>所以 $\lambda \le 1$，问题得证。</p>
+<h3 id="PageRank的算法原理"><a href="#PageRank的算法原理" class="headerlink" title="PageRank的算法原理"></a>PageRank的算法原理</h3><h4 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h4><p>$PageRank$ 算法总的来说就是预先给每个网页一个 $PR$ 值，由于 $PR$ 值物理意义上为一个网页被访问概率，所以一般情况下，所有网页的 $PR$ 值的总和为 $1$ 。如果不为 $1$ 的话最后算出来的不同网页之间 $PR$ 值的大小关系仍然是正确的，只是不能直接地反映概率。预先初始化给定 $PR$ 值后，通过不断迭代，直至达到平稳分布收敛为止。</p>
+<p>互联网中的众多网页可以看作一个有向图。下图是一个简单的例子：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15139303791533.jpg" alt=""></p>
+<p>$PageRank$ 计算的是网页的静态权威度，也就是如果给定了一个网络结构，则每个网页的 $PR$ 值就可以通过算法计算出。记网页 $j$ 的 $PR$ 值为 $x_j$，则：$$ x_ j = \sum_{i \in IN(j)} \frac {A_{ij}} {d_j} x_i $$其中，$IN(j)$ 是指向网页 $j$ 的集合，$d_i$ 是网页 $i$ 的出度，$d_i = \sum_j A_{ij}$ , $ A_{ij}$ 表示的是邻接矩阵，有边为 $1$，否则为 $0$ 。所以对上图，$PR(A) =\frac {PR(B)} 2 + \frac {PR(C)} 1$。</p>
+<h4 id="迭代算法"><a href="#迭代算法" class="headerlink" title="迭代算法"></a>迭代算法</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139310216873.jpg" alt=""></p>
+<p>在算法收敛后，有 $x_{t+1} = x_t$，根据 $x_{t+1}^T = x_t^TP$，可以得到 $x_t^T = x_t^TP$，也就是说 $x_t^T$ 是 $P$ 特征值为 $1$ 对应的特征向量，即转移概率矩阵的主特征向量。 </p>
+<h4 id="收敛情况"><a href="#收敛情况" class="headerlink" title="收敛情况"></a>收敛情况</h4><p>使用最原始的 $PageRank$ 算法，则对于以下两种特殊网络，则会面临着算法不可收敛的问题<br><img src="http://p1auo1a1h.bkt.clouddn.com/15139315201124.jpg" alt=""></p>
+<p>对于悬挂点来说，节点只有入度没有出度，此时 $P$ 中属于 $C$ 的那一行都是 $0$，假设权重向量初始化为 $[5,5,5]^T$，状态转移矩阵是$\begin{bmatrix} 0 &amp; \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 0 &amp; 0 \\ \end{bmatrix}$，则迭代过程如下所示：<br>$$[5,5,5]\begin{bmatrix} 0 &amp; \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 0 &amp; 0 \\ \end{bmatrix}^2=[\frac{5}{2},\frac{5}{2},5]\begin{bmatrix} 0 &amp; \frac{1}{2} &amp; \frac{1}{2} \\ \frac{1}{2} &amp; 0 &amp; \frac{1}{2} \\ 0 &amp; 0 &amp; 0 \\ \end{bmatrix}=[\frac{5}{4},\frac{5}{4},\frac{5}{2}]$$</p>
+<p>对于循环指代，两个节点互相指向且不与其他节点相连，假设权重向量初始化为 $[5, 10]^T$ ，状态转移矩阵是每轮迭代都会交换 $PR$ 值 $[5,10]\to[10,5]\to[5,10]$，不会收敛。 </p>
+<h4 id="保证收敛"><a href="#保证收敛" class="headerlink" title="保证收敛"></a>保证收敛</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139344005333.jpg" alt=""></p>
+<p>对于悬挂点，将转移概率矩阵 $P$ 中悬挂点所在的行替换为 $ \frac{e^T}{n} $，其中 ${e}^T$ 是全 $1$ 的行向量，$n$ 是当前网络中网页的总数，即矩阵的维度。<br>对于循环指代，我们假定用户不会完全受当前网页所限，死板地只访问当前网页提供的链接。假定用户在每一步都有一个概率 $c$ 去访问当前网页所提供的链接，同时也有 $1-c$ 的概率随机访问互联网上的任何一个节点。这样就得到了如图所示的新矩阵 $G$ ，其中 $c$ 一般取 $0.85$ 。</p>
+<h3 id="PageRank的收敛证明"><a href="#PageRank的收敛证明" class="headerlink" title="PageRank的收敛证明"></a>PageRank的收敛证明</h3><h4 id="收敛证明"><a href="#收敛证明" class="headerlink" title="收敛证明"></a>收敛证明</h4><p>通过对悬挂点和循环指代点的处理，我们得到新的转移概率矩阵 $G$：<br>$$G=cS+(1-c)\frac{1}{n}ee^T\tag{1}$$</p>
+<p>在 $PageRank$ 的迭代过程中，有：<br>$$ x_{t+1}^T = x_t^T G \tag{2}$$</p>
+<p>于是计算 $PR$ 值的过程就变成了一个 $Markov$ 过程，那么 $PageRank$ 算法的证明也就转为证明 $Markov$ 过程的收敛性证明：如果这个 $Markov$ 过程收敛，那么$lim_{t\rightarrow \infty}x_t$存在，且与 $x_0$ 的选取无关。</p>
+<p>若一个 $Markov$ 过程收敛，那么它的状态转移矩阵 $G$ 需要满足：</p>
+<ol>
+<li>$G$ 为随机矩阵</li>
+<li>$G$ 是不可约的</li>
+<li>$G$ 是非周期的</li>
+</ol>
+<p>对于第一点，矩阵 $G$ 所有元素都大于等于 $0$，并且每一行的元素和都为 $1$，显然为一个随机矩阵。<br>对于第二点，方阵 $G$ 是不可约的当且仅当与 $G$ 对应的有向图是强联通的，有向图 $G=(V,E)$ 是强联通的当且仅当对每一对节点对 $u,v\in V$，存在从 $u$ 到 $v$ 的路径，因为我们在之前增加了随机跳转，所以矩阵 $G$ 同样满足不可约的要求。<br>对于第三点，所谓周期性，体现在 $Markov$ 链的周期性上。即若 $G$ 是周期性的，那么这个 $Markov$ 链的状态就是周期性变化的。因为 $G$ 是素矩阵（素矩阵指自身的某个次幂为正矩阵的矩阵），所以 $G$ 是非周期的。</p>
+<h4 id="收敛速度"><a href="#收敛速度" class="headerlink" title="收敛速度"></a>收敛速度</h4><p>通过对悬挂点和循环指代点的处理，我们得到了新的概率转移矩阵 $G$，所以有：<br>$${x_{t+1}^T}={x_t^T}G=cx_t^TS+(1-c)\frac{1}{n}x_t^Tee^T \tag{3}$$</p>
+<p>因为 $x_i$ 代表节点 $i$ 的 $PR$ 值，所有 $PR$ 值的和为 $1$，于是就有 $x_t^Te=1$，所以可以得到：</p>
+<p>$${x_{t+1}^T}=c{x_t^T}S+(1-c)*\frac{1}{n}e^T$$</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15139368919082.jpg" alt=""></p>
+<p><strong>证明：</strong></p>
+<p>因为 $G$ 是一个满秩矩阵，所以 $G$ 有 $n$ 个线性无关的特征向量，记为 $v_0, v_1, \cdots, v_n$，所以 $x_0$ 必然可以用这些特征向量表示：<br>$$ x_0=\beta_1v_1+\beta_2v_2+\cdots+\beta_nv_n$$$$ x_1^T=x_0G =\beta_1Gv_1+\cdots+\beta_nGv_n=\beta_1\lambda_1v_1+\cdots+\beta_n\lambda_nv_n$$$$\vdots$$$$x_t^T=x_0G^t =\beta_1\lambda_1^tv_1+\beta_1\lambda_2^tv_2+\cdots+\beta_n\lambda_n^tv_n$$</p>
+<p>其中 $\lambda_i$ 是 $v_i$ 对应的特征值，上文已经证明了 $\lambda_i$ 是小于等于 $1$ 的正数，所以当 $t\rightarrow \infty$时，$\lambda_i^t \rightarrow 0$，此时有 $|{x_{t+1}}-{x_{t}}|&lt;\epsilon$，所以 $PageRank$ 终会收敛，收敛速度取决于次主特征值的大小。</p>
+<p>此外， $0.85^{100}=0.87\times10^{-7}$，所以通常意义上说 $PageRank$ 算法在 $100$ 就会收敛。</p>
+<h4 id="收敛顺序"><a href="#收敛顺序" class="headerlink" title="收敛顺序"></a>收敛顺序</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139378343772.jpg" alt=""></p>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><h3 id="PageRank的缺点"><a href="#PageRank的缺点" class="headerlink" title="PageRank的缺点"></a>PageRank的缺点</h3><ol>
+<li>没有区分站内导航链接。很多网站的首页都有很多对站内其他页面的链接，称为站内导航链接。这些链接与不同网站之间的链接相比，肯定是后者更能体现 $PageRank$ 值的传递关系。</li>
+<li>没有过滤广告链接和功能链接。这些链接通常没有什么实际价值，前者链接到广告页面，后者常常链接到某个社交网站首页。</li>
+<li>对新网页不友好。一个新网页的一般入链相对较少，即使它的内容的质量很高，要成为一个高 $PR$ 值的页面仍需要很长时间的推广。</li>
+</ol>
+<h3 id="LeaderRank"><a href="#LeaderRank" class="headerlink" title="LeaderRank"></a>LeaderRank</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139421689841.jpg" alt=""></p>
+<h3 id="个性化PageRank"><a href="#个性化PageRank" class="headerlink" title="个性化PageRank"></a>个性化PageRank</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139422064680.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15139422233455.jpg" alt=""></p>
+<h3 id="HITS"><a href="#HITS" class="headerlink" title="HITS"></a>HITS</h3><p>$HITS$ 算法的目的是：当用户查询时，返回给用户高质量的 $Authority$ 页面。其中一个页面扮演两种角色，$Hub$（枢纽节点）表示导出链接，$Authority$（权威节点）表示导入链接</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15139423316613.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15139427534439.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15139427750722.jpg" alt=""></p>
+<p>参考文献：<br>[1] 沈华伟,《网络数据挖掘》,中国科学院大学2017年秋季研究生课程</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据挖掘/" rel="tag"># 数据挖掘</a>
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/23/adaboost/" rel="next" title="从决策树到Adaboost">
+                <i class="fa fa-chevron-left"></i> 从决策树到Adaboost
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="ZHANG ZH.Y." />
+          <p class="site-author-name" itemprop="name">ZHANG ZH.Y.</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个<br>为了不做程序员而努力搬砖的<br>代码狗</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图中心度表示方法"><span class="nav-number">1.</span> <span class="nav-text">图中心度表示方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介数中心度"><span class="nav-number">1.1.</span> <span class="nav-text">介数中心度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#距离中心度"><span class="nav-number">1.2.</span> <span class="nav-text">距离中心度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谱中心度"><span class="nav-number">1.3.</span> <span class="nav-text">谱中心度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PageRank算法"><span class="nav-number">2.</span> <span class="nav-text">PageRank算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PageRank的直观解释"><span class="nav-number">2.1.</span> <span class="nav-text">PageRank的直观解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#谱中心度与PageRank"><span class="nav-number">2.2.</span> <span class="nav-text">谱中心度与PageRank</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PageRank的算法原理"><span class="nav-number">2.3.</span> <span class="nav-text">PageRank的算法原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#相关概念"><span class="nav-number">2.3.1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#迭代算法"><span class="nav-number">2.3.2.</span> <span class="nav-text">迭代算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#收敛情况"><span class="nav-number">2.3.3.</span> <span class="nav-text">收敛情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#保证收敛"><span class="nav-number">2.3.4.</span> <span class="nav-text">保证收敛</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PageRank的收敛证明"><span class="nav-number">2.4.</span> <span class="nav-text">PageRank的收敛证明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#收敛证明"><span class="nav-number">2.4.1.</span> <span class="nav-text">收敛证明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#收敛速度"><span class="nav-number">2.4.2.</span> <span class="nav-text">收敛速度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#收敛顺序"><span class="nav-number">2.4.3.</span> <span class="nav-text">收敛顺序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拓展"><span class="nav-number">3.</span> <span class="nav-text">拓展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PageRank的缺点"><span class="nav-number">3.1.</span> <span class="nav-text">PageRank的缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LeaderRank"><span class="nav-number">3.2.</span> <span class="nav-text">LeaderRank</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个性化PageRank"><span class="nav-number">3.3.</span> <span class="nav-text">个性化PageRank</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HITS"><span class="nav-number">3.4.</span> <span class="nav-text">HITS</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHANG ZH.Y.</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

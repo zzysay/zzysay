@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="回忆向," />
+  <meta name="keywords" content="数据挖掘,机器学习," />
 
 
 
@@ -93,18 +93,34 @@
 
 
 
-<meta name="description" content="今天是2017年7月22日，是我从中南毕业的第30天。   今晚将要再一次踏上火车，不过再也不是熟悉的K1073，而是一路北上。 换掉了长沙的手机卡，像是断掉了和长沙最后的联系，但是张口闭口还是习惯说，我的中南。 本以为毕业会有大段的话要说，成篇的文字要写，但现如今才却觉得一切语言都显得如此乏力。 初到长沙的时候只有本部门口在施工，四年后我们走的时候长沙到处都是施工的围墙和天窗。 临行之前，又去">
-<meta name="keywords" content="回忆向">
+<meta name="description" content="决策树算法决策函数选择">
+<meta name="keywords" content="数据挖掘,机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="不畏将来，不念过往">
-<meta property="og:url" content="http://zzysay.github.io/2017/07/22/bu-wei-jiang-lai-bu-nian-guo-wang/index.html">
+<meta property="og:title" content="从决策树到Adaboost">
+<meta property="og:url" content="http://zzysay.github.io/2017/12/23/adaboost/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="今天是2017年7月22日，是我从中南毕业的第30天。   今晚将要再一次踏上火车，不过再也不是熟悉的K1073，而是一路北上。 换掉了长沙的手机卡，像是断掉了和长沙最后的联系，但是张口闭口还是习惯说，我的中南。 本以为毕业会有大段的话要说，成篇的文字要写，但现如今才却觉得一切语言都显得如此乏力。 初到长沙的时候只有本部门口在施工，四年后我们走的时候长沙到处都是施工的围墙和天窗。 临行之前，又去">
+<meta property="og:description" content="决策树算法决策函数选择">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-02T09:25:30.000Z">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139451881633.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139452205527.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139455587727.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139458190265.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139459077884.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139459578502.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139470285630.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139471706007.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139473349247.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139474055374.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139588445030.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139574782853.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139574882428.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139574990301.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139595250826.jpg">
+<meta property="og:updated_time" content="2017-12-22T16:42:51.677Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="不畏将来，不念过往">
-<meta name="twitter:description" content="今天是2017年7月22日，是我从中南毕业的第30天。   今晚将要再一次踏上火车，不过再也不是熟悉的K1073，而是一路北上。 换掉了长沙的手机卡，像是断掉了和长沙最后的联系，但是张口闭口还是习惯说，我的中南。 本以为毕业会有大段的话要说，成篇的文字要写，但现如今才却觉得一切语言都显得如此乏力。 初到长沙的时候只有本部门口在施工，四年后我们走的时候长沙到处都是施工的围墙和天窗。 临行之前，又去">
+<meta name="twitter:title" content="从决策树到Adaboost">
+<meta name="twitter:description" content="决策树算法决策函数选择">
+<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15139451881633.jpg">
 
 
 
@@ -132,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://zzysay.github.io/2017/07/22/bu-wei-jiang-lai-bu-nian-guo-wang/"/>
+  <link rel="canonical" href="http://zzysay.github.io/2017/12/23/adaboost/"/>
 
 
 
 
 
-  <title>不畏将来，不念过往 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>从决策树到Adaboost | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -267,7 +283,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/07/22/bu-wei-jiang-lai-bu-nian-guo-wang/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/12/23/adaboost/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZHANG ZH.Y.">
@@ -284,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">不畏将来，不念过往</h1>
+          <h1 class="post-title" itemprop="name headline">从决策树到Adaboost</h1>
         
 
         <div class="post-meta">
@@ -296,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-22T10:00:00+08:00">
-                2017-07-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:28:52+08:00">
+                2017-12-23
               </time>
             
 
@@ -319,8 +335,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/星辰大海/" itemprop="url" rel="index">
-                    <span itemprop="name">星辰大海</span>
+                  <a href="/categories/课堂笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">课堂笔记</span>
                   </a>
                 </span>
 
@@ -330,8 +346,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/星辰大海/我说/" itemprop="url" rel="index">
-                    <span itemprop="name">我说</span>
+                  <a href="/categories/课堂笔记/网络数据挖掘/" itemprop="url" rel="index">
+                    <span itemprop="name">网络数据挖掘</span>
                   </a>
                 </span>
 
@@ -364,25 +380,24 @@
       
 
       
-        <blockquote>
-<p>今天是2017年7月22日，是我从中南毕业的第30天。</p>
-</blockquote>
-<ul>
-<li>今晚将要再一次踏上火车，不过再也不是熟悉的K1073，而是一路北上。</li>
-<li>换掉了长沙的手机卡，像是断掉了和长沙最后的联系，但是张口闭口还是习惯说，我的中南。</li>
-<li>本以为毕业会有大段的话要说，成篇的文字要写，但现如今才却觉得一切语言都显得如此乏力。</li>
-<li>初到长沙的时候只有本部门口在施工，四年后我们走的时候长沙到处都是施工的围墙和天窗。</li>
-<li>临行之前，又去了新校铁道湘雅，被中南大学四个字围绕的感觉，真好。</li>
-<li>朝着马路对面的同学挥挥手，我们就这样毕业了，无比平淡也无比真实。</li>
-<li>最后一次踏上立珊的时候，总想再多看一样这个城市，这里有着太多太多的地方承载着我们四年的记忆。</li>
-<li>在长沙最喜欢的一个公交站名是，锦绣潇湘，甚至就连公交车上的槟榔味也是独特的长沙味道。</li>
-<li>四年前阴差阳错来到的中南，却成了如今心心念念的地方，怀念在这里度过的无辣不欢的青春。</li>
-<li>嘿，左家垅男子职业技术学校。</li>
-</ul>
-<blockquote>
-<p>北京，你好。</p>
-</blockquote>
+        <h2 id="决策树算法"><a href="#决策树算法" class="headerlink" title="决策树算法"></a>决策树算法</h2><h3 id="决策函数选择"><a href="#决策函数选择" class="headerlink" title="决策函数选择"></a>决策函数选择</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139451881633.jpg" alt=""></p>
 <a id="more"></a>
+<h3 id="决策树训练算法"><a href="#决策树训练算法" class="headerlink" title="决策树训练算法"></a>决策树训练算法</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139452205527.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15139455587727.jpg" alt=""></p>
+<h3 id="信息熵和信息增益"><a href="#信息熵和信息增益" class="headerlink" title="信息熵和信息增益"></a>信息熵和信息增益</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139458190265.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15139459077884.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15139459578502.jpg" alt=""></p>
+<h3 id="决策树算法的改进"><a href="#决策树算法的改进" class="headerlink" title="决策树算法的改进"></a>决策树算法的改进</h3><p><strong>数值型特征</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15139470285630.jpg" alt=""></p>
+<p><strong>剪枝</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15139471706007.jpg" alt=""></p>
+<h2 id="Adaboost算法"><a href="#Adaboost算法" class="headerlink" title="Adaboost算法"></a>Adaboost算法</h2><h3 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139473349247.jpg" alt=""></p>
+<h3 id="Adaptive-Boosting"><a href="#Adaptive-Boosting" class="headerlink" title="Adaptive Boosting"></a>Adaptive Boosting</h3><h4 id="基本训练过程"><a href="#基本训练过程" class="headerlink" title="基本训练过程"></a>基本训练过程</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139474055374.jpg" alt=""></p>
+<h4 id="算法流程描述"><a href="#算法流程描述" class="headerlink" title="算法流程描述"></a>算法流程描述</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139588445030.jpg" alt=""></p>
+<p>其中，$z_t = \sum_{i=1}^N p^{t-1}(i)exp(-a_ty_ih_t(x_i))$ 。<br>关于分类器权重的更新，对于正确样本，$y_ih_t(x_i) \gt 0$，所以 $exp(-a_ty_ih_t(x_i)) \lt 1$，权重变小，错误样本相反则变大。</p>
+<h4 id="AdaBoost在训练集上错误率"><a href="#AdaBoost在训练集上错误率" class="headerlink" title="AdaBoost在训练集上错误率"></a>AdaBoost在训练集上错误率</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139574782853.jpg" alt=""></p>
+<p>对方框中的证明如下：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15139574882428.jpg" alt=""></p>
+<p>对于红色部分的说明：当 $f_T(x_i) \neq y_i$ 时，$y_if_T(x_i) \gt 0$，于是有 $exp(-y_if_T(x_i)) \ge 1$，据此易得上式。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15139574990301.jpg" alt=""><br>注：$4,5$ 行中的 $\epsilon_t$ 和 $ 1- \epsilon_t$ 出现笔误，应该交换位置，但不影响最终结果。</p>
+<h4 id="AdaBoost的损失函数"><a href="#AdaBoost的损失函数" class="headerlink" title="AdaBoost的损失函数"></a>AdaBoost的损失函数</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139595250826.jpg" alt=""></p>
+<p>参考文献：<br>[1] 徐君,《网络数据挖掘》,中国科学院大学2017年秋季研究生课程</p>
+
       
     </div>
 
@@ -411,7 +426,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/回忆向/" rel="tag"># 回忆向</a>
+            <a href="/tags/数据挖掘/" rel="tag"># 数据挖掘</a>
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
           
         </div>
       
@@ -424,14 +441,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/12/22/svm-struct/" rel="next" title="从支持向量机到结构化输出预测">
+                <i class="fa fa-chevron-left"></i> 从支持向量机到结构化输出预测
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/25/cs229-1/" rel="prev" title="第一集 机器学习的动机与应用">
-                第一集 机器学习的动机与应用 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/23/pagerank/" rel="prev" title="从谱中心度到PageRank算法">
+                从谱中心度到PageRank算法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -480,8 +501,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -543,6 +573,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#决策树算法"><span class="nav-number">1.</span> <span class="nav-text">决策树算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#决策函数选择"><span class="nav-number">1.1.</span> <span class="nav-text">决策函数选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#决策树训练算法"><span class="nav-number">1.2.</span> <span class="nav-text">决策树训练算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息熵和信息增益"><span class="nav-number">1.3.</span> <span class="nav-text">信息熵和信息增益</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#决策树算法的改进"><span class="nav-number">1.4.</span> <span class="nav-text">决策树算法的改进</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adaboost算法"><span class="nav-number">2.</span> <span class="nav-text">Adaboost算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Boosting"><span class="nav-number">2.1.</span> <span class="nav-text">Boosting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adaptive-Boosting"><span class="nav-number">2.2.</span> <span class="nav-text">Adaptive Boosting</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本训练过程"><span class="nav-number">2.2.1.</span> <span class="nav-text">基本训练过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法流程描述"><span class="nav-number">2.2.2.</span> <span class="nav-text">算法流程描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AdaBoost在训练集上错误率"><span class="nav-number">2.2.3.</span> <span class="nav-text">AdaBoost在训练集上错误率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AdaBoost的损失函数"><span class="nav-number">2.2.4.</span> <span class="nav-text">AdaBoost的损失函数</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -664,7 +710,7 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
 
 
 
@@ -708,6 +754,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

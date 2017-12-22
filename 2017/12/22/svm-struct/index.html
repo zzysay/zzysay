@@ -120,7 +120,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138743582891.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138750317473.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138750990256.jpg">
-<meta property="og:updated_time" content="2017-12-21T17:21:35.599Z">
+<meta property="og:updated_time" content="2017-12-22T02:50:52.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从支持向量机到结构化输出预测">
 <meta name="twitter:description" content="支持向量机边距的表示">
@@ -388,11 +388,11 @@
 <a id="more"></a>
 <p>即 $SVM$ 的学习过程归结为寻找合适的 $w$ 和 $b$ 使边距 $M$ 最大化</p>
 <ul>
-<li>若所有的训练数据都在正确的分类区域，则有 $y_i(\langle 𝐰,𝐱_i \rangle+b)≥1 $，其中 $y_i \in \lbrace +1,−1 \rbrace $</li>
+<li>若所有的训练数据都在正确的分类区域，则有 $y_i(\langle w,x_i \rangle+b)≥1 $，其中 $y_i \in \lbrace +1,−1 \rbrace $</li>
 <li>$ max \frac 2 {\sqrt{\langle w,w \rangle}} \Leftrightarrow min ||w||^2 $</li>
 </ul>
 <p>即 $SVM$ 的优化问题可以表示为：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15138582978767.jpg" alt=""></p>
-<p>$(\langle 𝐰,𝐱_i \rangle+b)$ 应当是一个绝对值大于等于 $1$ 的值，约束条件就意味着所有点均位于正边距和负边距之上或之外</p>
+<p>$(\langle w,x_i \rangle+b)$ 应当是一个绝对值大于等于 $1$ 的值，约束条件就意味着所有点均位于正边距和负边距之上或之外</p>
 <h3 id="软边距SVM"><a href="#软边距SVM" class="headerlink" title="软边距SVM"></a>软边距SVM</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138585285953.jpg" alt=""></p>
 <h3 id="原问题的对偶问题"><a href="#原问题的对偶问题" class="headerlink" title="原问题的对偶问题"></a>原问题的对偶问题</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138588065447.jpg" alt=""></p>
 <p><strong>推导：</strong></p>
@@ -478,6 +478,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2017/12/23/adaboost/" rel="prev" title="从决策树到Adaboost">
+                从决策树到Adaboost <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -549,7 +553,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
