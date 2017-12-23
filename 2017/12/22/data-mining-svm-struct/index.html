@@ -120,7 +120,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138743582891.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138750317473.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138750990256.jpg">
-<meta property="og:updated_time" content="2017-12-22T02:50:52.702Z">
+<meta property="og:updated_time" content="2017-12-23T16:13:38.090Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从支持向量机到结构化输出预测">
 <meta name="twitter:description" content="支持向量机边距的表示">
@@ -398,7 +398,7 @@
 <p><strong>推导：</strong></p>
 <p>原问题的拉格朗日函数：<br>$$ L(w, b, \xi, \mu, a) = \frac 1 2 ||w||^2 + C \sum_{i=1}^n \xi_i - \sum_{i=1}^n a_i(y_i(w·x_i+b)-1+\xi_i)-\sum_{i=1}^n\mu_i \xi_i$$</p>
 <p>显然：<br>$$ \frac 1 2 ||w||^2 ≥ L(w, b, \xi, \mu, a) ≥ \mathop{inf} \limits_{w,b} L(w, b, \xi, \mu, a)$$</p>
-<p>对偶问题是拉格朗日函数的极大极小问题，首先求 $L(w, b, \xi, \mu, a)$ 对 $w, b, \xi$ 的极小值，由：<br>$$ \nabla_w L(w, b, \xi, \mu, a) = w - \sum_{i=1}^n a_iy_ix_i = 0 $$$$ \nabla_b L(w, b, \xi, \mu, a) = - \sum_{i=1}^n a_iy_i = 0 $$$$\nabla_{\xi_i} L(w, b, \xi, \mu, a) = C - a_i - \mu_i = 0 $$<br>得：<br>$$ w = \sum_{i=1}^n a_iy_ix_i $$$$ \sum_{i=1}^n a_iy_i = 0 $$$$ C - a_i - \mu_i = 0 $$</p>
+<p>对偶问题是拉格朗日函数的极大极小问题，首先求 $L(w, b, \xi, \mu, a)$ 对 $w, b, \xi$ 的极小值，由：<br>$$ \nabla_w L(w, b, \xi, \mu, a) = w - \sum_{i=1}^n a_iy_ix_i = 0 $$$$ \nabla_b L(w, b, \xi, \mu, a) = - \sum_{i=1}^n a_iy_i = 0 $$$$\nabla_{\xi} L(w, b, \xi, \mu, a) = C - a_i - \mu_i = 0 $$<br>得：<br>$$ w = \sum_{i=1}^n a_iy_ix_i $$$$ \sum_{i=1}^n a_iy_i = 0 $$$$ C - a_i - \mu_i = 0 $$</p>
 <p>原式可化为：<br>$$ L(w, b, \xi, \mu, a) =  \frac 1 2 ||w||^2 + \sum_{i=1}^n \xi_i  (C - a_i - \mu_i) - \sum_{i=1}^n a_iy_i(w·x_i+b) + \sum_{i=1}^n a_i $$</p>
 <p>代入易得：<br>$$ L(w, b, \xi, \mu, a) =\sum_{i=1}^n a_i - \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n a_ia_jy_iy_j \langle x_i, x_j\rangle $$</p>
 <p>对拉格朗日乘子有以下约束：<br>$$ \sum_{i=1}^n a_iy_i = 0 $$$$ C ≥ a_i ≥ 0 $$</p>
@@ -553,7 +553,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
