@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据挖掘,图数据挖掘," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="从图划分到社区发现图划分问题图划分问题形式化最小划分Min-Cut">
+<meta name="keywords" content="数据挖掘,图数据挖掘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="data_mining_min_cut">
+<meta property="og:url" content="http://zzysay.github.io/2017/12/23/data-mining-min-cut/index.html">
+<meta property="og:site_name" content="ZZY SAY">
+<meta property="og:description" content="从图划分到社区发现图划分问题图划分问题形式化最小划分Min-Cut">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139914844107.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139952084180.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139954686952.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139952850113.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139953615313.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139955724770.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139967462159.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15140275331274.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15140276294190.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15140277303029.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15140277936461.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15140279047139.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15140319433809.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15140323887057.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15140324017152.jpg">
+<meta property="og:updated_time" content="2017-12-23T12:43:38.846Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="data_mining_min_cut">
+<meta name="twitter:description" content="从图划分到社区发现图划分问题图划分问题形式化最小划分Min-Cut">
+<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15139914844107.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzysay.github.io/2017/12/23/data-mining-min-cut/"/>
+
+
+
+
+
+  <title>data_mining_min_cut | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZZY SAY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I AM WHO I AM.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/12/23/data-mining-min-cut/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHANG ZH.Y.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZY SAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">data_mining_min_cut</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T20:41:39+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课堂笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">课堂笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课堂笔记/网络数据挖掘/" itemprop="url" rel="index">
+                    <span itemprop="name">网络数据挖掘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="从图划分到社区发现"><a href="#从图划分到社区发现" class="headerlink" title="从图划分到社区发现"></a>从图划分到社区发现</h1><h2 id="图划分问题"><a href="#图划分问题" class="headerlink" title="图划分问题"></a>图划分问题</h2><h3 id="图划分问题形式化"><a href="#图划分问题形式化" class="headerlink" title="图划分问题形式化"></a>图划分问题形式化</h3><p><strong>最小划分Min-Cut</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15139914844107.jpg" alt=""></p>
+<a id="more"></a>
+<p><strong>Min-Cut存在的问题</strong></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15139952084180.jpg" alt=""></p>
+<p><strong>Min-Cut的扩展</strong></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15139954686952.jpg" alt=""></p>
+<h3 id="图划分求解算法"><a href="#图划分求解算法" class="headerlink" title="图划分求解算法"></a>图划分求解算法</h3><h4 id="局部方法：KL算法"><a href="#局部方法：KL算法" class="headerlink" title="局部方法：KL算法"></a>局部方法：KL算法</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139952850113.jpg" alt=""></p>
+<h4 id="全局方法：谱划分"><a href="#全局方法：谱划分" class="headerlink" title="全局方法：谱划分"></a>全局方法：谱划分</h4><p><strong>拉普拉斯矩阵</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15139953615313.jpg" alt=""></p>
+<p><strong>谱划分方法</strong></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15139955724770.jpg" alt=""></p>
+<p>其中，$s$ 表示划分向量，取值为 ${+1, -1}$，$k_i$ 表示节点 $i$ 的度，$\delta$ 为一个指示函数，当 $i=j$ 时， $\delta_{ij}=1$，否则为 $0$。$v$ 和 $\lambda$ 分别是拉普拉斯矩阵 $L$ 的特征向量和特征值，$a$ 表示 $s$ 在该向量下的权重系数。</p>
+<p><strong>推导：</strong></p>
+<p>$$cut = \frac 1 2 \sum_{i=1}^KW(C_i,\bar C_i) = \frac 1 2 \sum_{i=1}^K \sum_{u \in C_i, v \in \bar C_i}A_{uv} = \frac 1 4 \sum_{ij}(1-s_is_j)A_{ij}$$</p>
+<p>注：当 $i,j$ 同类时，$1-s_is_j$ 为 $0$，不同类时，$1-s_is_j$ 为 $2$。</p>
+<p>$$\sum_{ij} A_{ij} = \sum_{i} k_i = \sum_{ij} s_is_jk_i\delta_{ij}$$</p>
+<p>注：当 $i=j$ 时，$\delta_{ij}=1$，$s_is_j=1$，$s_is_jk_i\delta_{ij} = k_i$，当 $i \neq j$ 时，$s_is_jk_i\delta_{ij} = 0$。</p>
+<p>$$\begin{align}\frac 1 4 \sum_{ij}(1-s_is_j)A_{ij} \nonumber &amp; = \frac 1 8 \sum_{ij}(2-2s_is_j)A_{ij} \\&amp; = \frac 1 8 \sum_{ij}(s_i^2-2s_is_j+s_j^2)A_{ij} \nonumber \\&amp; = \frac 1 8 \sum_{ij}(s_i-s_j)^2A_{ij} \nonumber \\&amp; = \frac 1 4 s^,Ls \nonumber \end{align}$$</p>
+<p>$$\begin{align} cut &amp; = \frac 1 4 \left(\sum_{i=1}^na_iv_i^T \right)L\left(\sum_{j=1}^na_jv_j \right) \nonumber \\&amp; = \frac 1 4 \left(\sum_{i=1}^na_iv_i^T L\right)\left(\sum_{j=1}^na_jv_j \right) \nonumber \\&amp; = \frac 1 4 \left(\sum_{i=1}^na_i(L^Tv_i)^T\right)\left(\sum_{j=1}^na_jv_j \right) \nonumber \\&amp; = \frac 1 4 \left(\sum_{i=1}^na_i \lambda_i v_i^T\right)\left(\sum_{j=1}^na_jv_j \right) \nonumber \\&amp; = \frac 1 4 \sum_{i,j=1}^n a_ia_j\lambda_iv_i^Tv_j \nonumber \\&amp; = \frac 1 4 \sum_{i,j=1}^n a_ia_j\lambda_i\delta_{ij} \nonumber\end{align} $$</p>
+<p>注：$L$ 是对称阵，所以 $L$ 的不同特征值对应的特征向量正交，即 $v_i^Tv_i=1$，$v_i^Tv_j=0$，并且有$L^T=L$。</p>
+<p>对启示的理解：当 $s$ 和 $L$ 给定后，$a_i$ 的值是恒定的，所以最小化 $cut$ 实际上就是最小化 $\lambda_i$，也就是让 $s$ 尽可能用最小的 $\lambda_i$ 对应的 $v_i$ 去表示。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15139967462159.jpg" alt=""></p>
+<h2 id="社区发现问题"><a href="#社区发现问题" class="headerlink" title="社区发现问题"></a>社区发现问题</h2><h3 id="社区发现与图划分"><a href="#社区发现与图划分" class="headerlink" title="社区发现与图划分"></a>社区发现与图划分</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15140275331274.jpg" alt=""></p>
+<p><strong>社区发现与图划分的区别</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15140276294190.jpg" alt=""></p>
+<h3 id="模块度优化问题"><a href="#模块度优化问题" class="headerlink" title="模块度优化问题"></a>模块度优化问题</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15140277303029.jpg" alt=""></p>
+<h4 id="模块度的定义"><a href="#模块度的定义" class="headerlink" title="模块度的定义"></a>模块度的定义</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15140277936461.jpg" alt=""></p>
+<p>$e_ss$ 即为社区 $C_s$ 内部的边占所有边的比例，$a_s$ 为社区 $C_s$ 连接到所有社区的边占所有边的比例，$a_s$ 为所有社区连接到社区 $C_s$ 的边占所有边的比例。</p>
+<h4 id="模块度的性质"><a href="#模块度的性质" class="headerlink" title="模块度的性质"></a>模块度的性质</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15140279047139.jpg" alt=""></p>
+<p>模块度可以理解为：社区内部的总边数与网络中总边数的比例<strong>减去一个期望值</strong>，这个期望值就是当网络为随机网络时该比例（内部边数/总边数）的大小。</p>
+<p><strong>直观理解：</strong><br>其中 $k_i$ 代表节点 $i$ 的度，$\delta$ 为一个指示函数，当 $i,j$ 位于一个社区时， $\delta_{ij}=1$，否则为 $0$，确保公式只对 $i,j$ 位于同一个社区时求和。其中 $2m$ 表示网络中的总边数， $2m=\sum_{i,j}A_{ij}$。对于 $\frac {k_j} {2m}$ 可以理解为节点 $j$ 占总边数的比例，所以 $\frac {k_ik_j} {2m} = k_i \frac {k_j} {2m}$ 就代表着节点 $i$ 连接到节点 $j$ 的期望边数。<br><strong>公式推导：</strong><br>$$ \sum_s e_{ss} = \frac {\sum_{i,j}A_{ij}\delta(c_i, c_j)} {\sum_{i,j}A_{ij}} = \frac {\sum_{i,j}A_{ij}\delta(c_i, c_j)} {2m} \tag{1}$$</p>
+<p>$$ \sum_s a_s = \frac {\sum_ik_i\delta(c_i, s)} {2m}  \tag{2}$$</p>
+<p>$$ \sum_s b_s = \frac {\sum_jk_j\delta(c_j, s)} {2m}  \tag{3}$$</p>
+<p>由 $1,2,3$ 式可得：</p>
+<p>$$\begin{align} Q = \sum_s(e_{ss}-a_sb_s) &amp; = \frac {\sum_{i,j}A_{ij}\delta(c_i, c_j)} {2m} - \frac {\sum_ik_i\delta(c_i, s)} {2m} \frac {\sum_jk_j\delta(c_j, s)} {2m} \nonumber \\&amp;= \frac 1 {2m} \sum_{ij} \left(A_{ij}-\frac {k_ik_j} {2m} \right) \delta(c_i, c_j) \nonumber \end{align}$$</p>
+<p><strong>进一步解释：</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15140319433809.jpg" alt=""></p>
+<h4 id="模块度的缺陷"><a href="#模块度的缺陷" class="headerlink" title="模块度的缺陷"></a>模块度的缺陷</h4><ol>
+<li>社区发现问题变成了一个模块度优化问题，而此问题是一个 $NP$ 难问题，求解方法只能用模拟退火、爬山算法等寻找尽可能大的局部最优解</li>
+<li>网络存在一个固有的尺度，小于该尺度的社区无法通过模块度优化识别出来。添加可调节的参数可以识别多尺度的网络：$Q = \frac 1 {2m} \sum_{ij} \left(A_{ij}- \gamma \frac {k_ik_j} {2m} \right) \delta(c_i, c_j)$</li>
+<li>不支持社区重叠。把指示函数修改为一个概率函数，可以解决不支持社区重叠的问题：$Q = \frac 1 {2m} \sum_{ij} \left(A_{ij}- \gamma \frac {k_ik_j} {2m} \right) s(i, j)$，其中 $s(i,j)$ 表示节点 $i,j$ 位于同一个社区的可能性 </li>
+</ol>
+<h2 id="随机块模型"><a href="#随机块模型" class="headerlink" title="随机块模型"></a>随机块模型</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15140323887057.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15140324017152.jpg" alt=""></p>
+<ol>
+<li>同配结构：同一社区之间的节点相连的概率较大</li>
+<li>异配结构：不同社区之间的节点相连的概率较大</li>
+<li>核心外围：约靠近社区总中心，社区之间的节点相连的概率较大</li>
+</ol>
+<p>参考文献：<br>[1] 沈华伟,《网络数据挖掘》,中国科学院大学2017年秋季研究生课程</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据挖掘/" rel="tag"># 数据挖掘</a>
+          
+            <a href="/tags/图数据挖掘/" rel="tag"># 图数据挖掘</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/23/data-mining-pagerank/" rel="next" title="从谱中心度到PageRank算法">
+                <i class="fa fa-chevron-left"></i> 从谱中心度到PageRank算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="ZHANG ZH.Y." />
+          <p class="site-author-name" itemprop="name">ZHANG ZH.Y.</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个<br>为了不做程序员而努力搬砖的<br>代码狗</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#从图划分到社区发现"><span class="nav-number">1.</span> <span class="nav-text">从图划分到社区发现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#图划分问题"><span class="nav-number">1.1.</span> <span class="nav-text">图划分问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图划分问题形式化"><span class="nav-number">1.1.1.</span> <span class="nav-text">图划分问题形式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图划分求解算法"><span class="nav-number">1.1.2.</span> <span class="nav-text">图划分求解算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#局部方法：KL算法"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">局部方法：KL算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局方法：谱划分"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">全局方法：谱划分</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#社区发现问题"><span class="nav-number">1.2.</span> <span class="nav-text">社区发现问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#社区发现与图划分"><span class="nav-number">1.2.1.</span> <span class="nav-text">社区发现与图划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块度优化问题"><span class="nav-number">1.2.2.</span> <span class="nav-text">模块度优化问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模块度的定义"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">模块度的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块度的性质"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">模块度的性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模块度的缺陷"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">模块度的缺陷</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机块模型"><span class="nav-number">1.3.</span> <span class="nav-text">随机块模型</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHANG ZH.Y.</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
