@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据挖掘,推荐系统," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="推荐系统评估">
+<meta name="keywords" content="数据挖掘,推荐系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐系统：总结与算法优缺点分析">
+<meta property="og:url" content="http://zzysay.github.io/2017/12/25/data-mining-rs-summary/index.html">
+<meta property="og:site_name" content="ZZY SAY">
+<meta property="og:description" content="推荐系统评估">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141654248333.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141657493305.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141659798981.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141660084628.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141661404095.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141661678517.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141674056056.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141663395221.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141663818672.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141664503093.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141666538082.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141666125994.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141667877949.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141669417759.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141672661037.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141680256465.png">
+<meta property="og:updated_time" content="2017-12-25T06:36:22.244Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="推荐系统：总结与算法优缺点分析">
+<meta name="twitter:description" content="推荐系统评估">
+<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15141654248333.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzysay.github.io/2017/12/25/data-mining-rs-summary/"/>
+
+
+
+
+
+  <title>推荐系统：总结与算法优缺点分析 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZZY SAY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I AM WHO I AM.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/12/25/data-mining-rs-summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHANG ZH.Y.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZY SAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">推荐系统：总结与算法优缺点分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T14:34:55+08:00">
+                2017-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课堂笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">课堂笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课堂笔记/网络数据挖掘/" itemprop="url" rel="index">
+                    <span itemprop="name">网络数据挖掘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="推荐系统评估"><a href="#推荐系统评估" class="headerlink" title="推荐系统评估"></a>推荐系统评估</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141654248333.jpg" alt=""></p>
+<a id="more"></a>
+<p>推荐系统的评估方法主要有两种：<br><strong>offline：</strong> 是用传统的机器学习方法在已知数据集上进行预测和评估，主要流程为：Data-&gt; Train/Test -&gt; Evaluation<br><strong>online：</strong> 根据数据设计算法，部署到线上根据用户反馈情况评估算法性能：Data-&gt; Algorithm -&gt; User’s Click/Rating</p>
+<p><strong>推荐系统本质上是一个商业系统，必须考虑其商业价值</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15141657493305.jpg" alt=""></p>
+<h3 id="回顾性评估方法"><a href="#回顾性评估方法" class="headerlink" title="回顾性评估方法"></a>回顾性评估方法</h3><p>回顾性评估方法是有确定的训练集和数据集，离线地进行模型的设计和评估，最常用的就是机器学习的相关方法。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15141659798981.jpg" alt=""></p>
+<h4 id="交叉验证"><a href="#交叉验证" class="headerlink" title="交叉验证"></a>交叉验证</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141660084628.jpg" alt=""></p>
+<h4 id="划分数据"><a href="#划分数据" class="headerlink" title="划分数据"></a>划分数据</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141661404095.jpg" alt=""></p>
+<h4 id="缺点分析"><a href="#缺点分析" class="headerlink" title="缺点分析"></a>缺点分析</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141661678517.jpg" alt=""></p>
+<p>离线的评估方法无法预测该方法是否实际可行，并且与商业层面上关注的指标能力联系较弱</p>
+<h3 id="预测性评估方法"><a href="#预测性评估方法" class="headerlink" title="预测性评估方法"></a>预测性评估方法</h3><p>预测性评估方法部署在线上，利用实际的用户数据来反应算法的性能和收益，更为关注其商业价值，常用的方法就是 $A/B\;TEST$。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15141674056056.jpg" alt=""></p>
+<p><strong>A/B TEST</strong><br>把各种变量随机分配到特定的用户组中，分析各个用户组的结果进而得到变量选择的最优方案。</p>
+<h2 id="常见评价指标"><a href="#常见评价指标" class="headerlink" title="常见评价指标"></a>常见评价指标</h2><p>在数值数据的评价时，首先要进行归一化操作，解决多用户或者多物品之间评分刻度不同的问题。</p>
+<h3 id="MAE：Mean-Absolute-Error"><a href="#MAE：Mean-Absolute-Error" class="headerlink" title="MAE：Mean Absolute Error"></a>MAE：Mean Absolute Error</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141663395221.jpg" alt=""></p>
+<h3 id="MSE：Mean-Squared-Error"><a href="#MSE：Mean-Squared-Error" class="headerlink" title="MSE：Mean Squared Error"></a>MSE：Mean Squared Error</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141663818672.jpg" alt=""></p>
+<p>均方误差在数值上没有对数据的直观反映</p>
+<h3 id="RMSE：Root-Mean-Squared-Error"><a href="#RMSE：Root-Mean-Squared-Error" class="headerlink" title="RMSE：Root Mean Squared Error"></a>RMSE：Root Mean Squared Error</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141664503093.jpg" alt=""></p>
+<h3 id="一元数据评价"><a href="#一元数据评价" class="headerlink" title="一元数据评价"></a>一元数据评价</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141666538082.jpg" alt=""></p>
+<p><strong>缺点：</strong>只能基于用户打过分的 $item$ 做评估，对于用户没有打过分的认为用户不喜欢，实际上可能并非如此。</p>
+<h4 id="Precision-and-Recall"><a href="#Precision-and-Recall" class="headerlink" title="Precision and Recall"></a>Precision and Recall</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141666125994.jpg" alt=""></p>
+<h4 id="MRR：Mean-Reciprocal-Rank"><a href="#MRR：Mean-Reciprocal-Rank" class="headerlink" title="MRR：Mean Reciprocal Rank"></a>MRR：Mean Reciprocal Rank</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141667877949.jpg" alt=""></p>
+<p>$$MRR = \frac 1 {|Q|} \sum_{i=1}^{|Q|} \frac 1 {rank_i}$$</p>
+<h4 id="nDCG：Normalized-Discounted-Cumulative-Gain"><a href="#nDCG：Normalized-Discounted-Cumulative-Gain" class="headerlink" title="nDCG：Normalized Discounted Cumulative Gain"></a>nDCG：Normalized Discounted Cumulative Gain</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141669417759.jpg" alt=""></p>
+<p>$$DCG(r) = \sum disc(r(i))u(i) $$$$nDCG(r) = \frac {DCG(r)} {DCG(r_{perfect})} $$</p>
+<h3 id="评价指标总结"><a href="#评价指标总结" class="headerlink" title="评价指标总结"></a>评价指标总结</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141672661037.jpg" alt=""></p>
+<h2 id="常用推荐系统算法的优缺点分析"><a href="#常用推荐系统算法的优缺点分析" class="headerlink" title="常用推荐系统算法的优缺点分析"></a>常用推荐系统算法的优缺点分析</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141680256465.png" alt=""></p>
+<h3 id="基于内容的推荐"><a href="#基于内容的推荐" class="headerlink" title="基于内容的推荐"></a>基于内容的推荐</h3><p>基于内容的推荐需要有用户的历史数据，考察用户资料与待预测物品的相匹配程度，用户资料模型可能随着用户的偏好改变而发生变化。</p>
+<p><strong>优点：</strong></p>
+<ol>
+<li>不需要其它用户的数据，能为具有特殊兴趣爱好的用户进行推荐</li>
+<li>能推荐新的或不是很流行的项目，没有物品冷启动问题</li>
+<li>通过列出推荐项目的内容特征，可以直观地解释为什么推荐那些项目</li>
+<li>技术灵活且已经相对成熟</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>要求内容能容易抽取成有意义的特征，要求特征内容有良好的结构性</li>
+<li>用户偏好必须能够用内容特征形式来表达，不能显式地得到其它用户的判断情况</li>
+</ol>
+<h3 id="基于协同过滤的推荐"><a href="#基于协同过滤的推荐" class="headerlink" title="基于协同过滤的推荐"></a>基于协同过滤的推荐</h3><p>协同过滤推荐一般采用最近邻技术，利用用户的历史喜好信息计算用户之间的距离，然后利用目标用户的最近邻居用户对商品评价的加权评价值来预测目标用户对特定商品的喜好程度，</p>
+<p><strong>优点：</strong></p>
+<ol>
+<li>能够过滤难以进行机器自动内容分析的信息，如艺术品，音乐等</li>
+<li>共享其他人的经验，避免了内容分析的不完全和不精确，并且能够基于一些复杂的，难以表述的概念（如信息质量、个人品味）进行过滤</li>
+<li>有推荐新信息的能力。可以发现内容上完全不相似的信息，可以发现用户潜在的但自己尚未发现的兴趣偏好</li>
+<li>能够有效的使用其他相似用户的反馈信息，加快个性化学习的速度</li>
+</ol>
+<p><strong>缺点：</strong><br>虽然协同过滤作为一种典型的推荐技术有其相当的应用，但协同过滤仍有许多的问题需要解决。最典型的问题有冷启动问题（Cold Start）和稀疏问题（Sparsity）。</p>
+<h3 id="组合推荐方法"><a href="#组合推荐方法" class="headerlink" title="组合推荐方法"></a>组合推荐方法</h3><p>由于各种推荐方法都有优缺点，所以在实际中，组合推荐（Hybrid Recommendation）经常被采用。研究和应用最多的是内容推荐和协同过滤推荐的组合。最简单的做法就是分别用基于内容的方法和协同过滤推荐方法 去产生一个推荐预测结果，然后用某方法组合其结果。组合推荐一个最重要原则就是通过组合后要能避免或弥补各自推荐技术的弱点。</p>
+<p>在组合方式上，有研究人员提出了七种组合思路：</p>
+<ol>
+<li>加权（Weight）：加权多种推荐技术结果</li>
+<li>变换（Switch）：根据问题背景和实际情况或要求决定变换采用不同的推荐技术</li>
+<li>混合（Mixed）：同时采用多种推荐技术给出多种推荐结果为用户提供参考</li>
+<li>特征组合（Feature combination）：组合来自不同推荐数据源的特征被另一种推荐算法所采用</li>
+<li>层叠（Cascade）：先用一种推荐技术产生一种粗糙的推荐结果，第二种推荐技术在此推荐结果的基础上进一步作出更精确的推荐</li>
+<li>特征扩充（Feature augmentation）：一种技术产生附加的特征信息嵌入到另一种推荐技术的特征输入中</li>
+<li>元级别（Meta-level）：用一种推荐方法产生的模型作为另一种推荐方法的输入。</li>
+</ol>
+<p>参考文献：<br>[1] 罗平,《网络数据挖掘》,中国科学院大学2017年秋季研究生课程<br>[2] <a href="http://www.36dsj.com/archives/9519" target="_blank" rel="external">http://www.36dsj.com/archives/9519</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据挖掘/" rel="tag"># 数据挖掘</a>
+          
+            <a href="/tags/推荐系统/" rel="tag"># 推荐系统</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/25/data-mining_rs_collaborative_filtering/" rel="next" title="推荐系统：协同过滤方法">
+                <i class="fa fa-chevron-left"></i> 推荐系统：协同过滤方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="ZHANG ZH.Y." />
+          <p class="site-author-name" itemprop="name">ZHANG ZH.Y.</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个<br>为了不做程序员而努力搬砖的<br>代码狗</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐系统评估"><span class="nav-number">1.</span> <span class="nav-text">推荐系统评估</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#回顾性评估方法"><span class="nav-number">1.1.</span> <span class="nav-text">回顾性评估方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#交叉验证"><span class="nav-number">1.1.1.</span> <span class="nav-text">交叉验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#划分数据"><span class="nav-number">1.1.2.</span> <span class="nav-text">划分数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点分析"><span class="nav-number">1.1.3.</span> <span class="nav-text">缺点分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测性评估方法"><span class="nav-number">1.2.</span> <span class="nav-text">预测性评估方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见评价指标"><span class="nav-number">2.</span> <span class="nav-text">常见评价指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MAE：Mean-Absolute-Error"><span class="nav-number">2.1.</span> <span class="nav-text">MAE：Mean Absolute Error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MSE：Mean-Squared-Error"><span class="nav-number">2.2.</span> <span class="nav-text">MSE：Mean Squared Error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RMSE：Root-Mean-Squared-Error"><span class="nav-number">2.3.</span> <span class="nav-text">RMSE：Root Mean Squared Error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一元数据评价"><span class="nav-number">2.4.</span> <span class="nav-text">一元数据评价</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Precision-and-Recall"><span class="nav-number">2.4.1.</span> <span class="nav-text">Precision and Recall</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MRR：Mean-Reciprocal-Rank"><span class="nav-number">2.4.2.</span> <span class="nav-text">MRR：Mean Reciprocal Rank</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nDCG：Normalized-Discounted-Cumulative-Gain"><span class="nav-number">2.4.3.</span> <span class="nav-text">nDCG：Normalized Discounted Cumulative Gain</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#评价指标总结"><span class="nav-number">2.5.</span> <span class="nav-text">评价指标总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用推荐系统算法的优缺点分析"><span class="nav-number">3.</span> <span class="nav-text">常用推荐系统算法的优缺点分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于内容的推荐"><span class="nav-number">3.1.</span> <span class="nav-text">基于内容的推荐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于协同过滤的推荐"><span class="nav-number">3.2.</span> <span class="nav-text">基于协同过滤的推荐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合推荐方法"><span class="nav-number">3.3.</span> <span class="nav-text">组合推荐方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHANG ZH.Y.</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
