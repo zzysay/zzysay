@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据挖掘,互联网搜索," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="keywords" content="数据挖掘,互联网搜索">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从检索模型到搜索结果多样化">
+<meta property="og:url" content="http://zzysay.github.io/2017/12/25/data-mining-search-ranking/index.html">
+<meta property="og:site_name" content="ZZY SAY">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141717709718.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141721604257.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141724626749.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141725386090.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141733930525.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141726387879.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141728699698.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141768080820.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141769600746.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141771896749.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141775777301.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141776541813.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141777896923.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141777111189.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141781414502.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141782128202.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15141782592179.jpg">
+<meta property="og:updated_time" content="2017-12-25T06:50:15.696Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从检索模型到搜索结果多样化">
+<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15141717709718.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzysay.github.io/2017/12/25/data-mining-search-ranking/"/>
+
+
+
+
+
+  <title>从检索模型到搜索结果多样化 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZZY SAY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I AM WHO I AM.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/12/25/data-mining-search-ranking/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHANG ZH.Y.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZY SAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从检索模型到搜索结果多样化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-25T14:48:28+08:00">
+                2017-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课堂笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">课堂笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课堂笔记/网络数据挖掘/" itemprop="url" rel="index">
+                    <span itemprop="name">网络数据挖掘</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://p1auo1a1h.bkt.clouddn.com/15141717709718.jpg" alt=""></p>
+<a id="more"></a>
+<h2 id="文档处理"><a href="#文档处理" class="headerlink" title="文档处理"></a>文档处理</h2><p>目的：将文本处理为词-文档矩阵，步骤如下：</p>
+<ol>
+<li>拼写错误纠正、时态还原</li>
+<li>$pdf$、$html$、$doc$ 转 $txt$（图片信息将会丢失）</li>
+<li>中文分词，精度已经达到可用的标准；英文分词，直接去标点按空格分开</li>
+<li>去停用词（停用词表或目前最频繁的 $k$ 个词），提高系统效率，但是现在倾向于尽量少去除，造成信息丢失，例如：To be or not to be 整个句子都是停用词</li>
+<li>词干还原，英文的可以使用 $porter$ 工具，不同意义相近的词也有可能被映射到一个词干，$households-&gt;household, alike-&gt;alik$</li>
+<li>最终建立词项文档矩阵和倒排索引如下：</li>
+</ol>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15141721604257.jpg" alt=""></p>
+<h2 id="传统信息检索模型"><a href="#传统信息检索模型" class="headerlink" title="传统信息检索模型"></a>传统信息检索模型</h2><h3 id="布尔模型"><a href="#布尔模型" class="headerlink" title="布尔模型"></a>布尔模型</h3><p>通过布尔运算符 $AND、OR、NOT$ 的组合进行检索，返回倒排索引中索引符合查询条件的所有文档，不进行排序，布尔模型的词项-文档矩阵不存储词在文档中存储的次数，只存储出现或不出现。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15141724626749.jpg" alt=""></p>
+<p>行代表文档中出现过哪些单词，列代表单词出现在哪些文档中，查询时首先选择行（过滤掉绝大部分无关文档），然后将布尔查询应用于每一个相关的列（文档）。</p>
+<p>布尔模型的优点是简单可控易理解，现在仍然应用于图书馆的图书检索系统中，缺点是检索结果为无序的文档集合，若条件过严则可能返回空集，条件过松则会返回过多结果。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15141725386090.jpg" alt=""></p>
+<h3 id="向量空间模型：Vector-Space-Model"><a href="#向量空间模型：Vector-Space-Model" class="headerlink" title="向量空间模型：Vector Space Model"></a>向量空间模型：Vector Space Model</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141733930525.jpg" alt=""></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15141726387879.jpg" alt=""></p>
+<p><strong>TFIDF：</strong></p>
+<p>$$tfidf(w,d)=tf(w,d)\times idf(w)\;\;\;$$$$tf(w,d)=词w在文档d中出现的次数$$$$idf(w)=log\frac{N}{df(w)}=log\frac{文档集上的文档数目}{文档集中包含词w的文档数目}$$</p>
+<p>$tfidf(w,d)$ 衡量了词 $w$ 在文档 $d$ 上的重要性，实际上是文档 $d$ 的文档向量的第 $i_w$ 维，$i_w$ 指词 $w$ 在词典中的索引 $id$，文档向量和查询向量维度相同，都是词典大小。</p>
+<p>$VSM$ 本质上基于词袋模型，没有考虑到词序对检索结果的影响.</p>
+<h3 id="BM25模型：Best-Match-25"><a href="#BM25模型：Best-Match-25" class="headerlink" title="BM25模型：Best Match 25"></a>BM25模型：Best Match 25</h3><p>$$BM25(q,d)=\sum_{w\in q}log\frac{N}{df(w)}\cdot\frac{(k_1+1)tf(w,d)}{k_1((1-b)+b\frac{dl(d)}{avdl})+tf(w,d)}\tag{1}$$</p>
+<ul>
+<li>$avdl$  是文档集中文档的平均长度</li>
+<li>$b$ 控制均值化后的文档长度对打分的影响，$b=1$ 全文档长度归一化，$b=0$ 时不进行文档长度归一化</li>
+<li>$k_1$ 控制 $BM25$ 分值随 $tf(w,d)$ 值增长而饱和的速度，也控制词频对 $BM25$ 打分的影响力</li>
+</ul>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15141728699698.jpg" alt=""></p>
+<p>当 $k_1=0$ 时，饱和函数$=1 或 0$，此时 $式1$ 第二项度量的是词 $w$ 是否在文档 $d$ 中出现；当$k_1$取无穷时，$式1$ 第二项退化为 $tf(w,d)\cdot\frac{\infty}{\infty}=tf(w,d)$ 。所以可以把 $k_1$ 看作是对$tf$ 的打折因子</p>
+<h3 id="语言模型：Language-models-for-IR"><a href="#语言模型：Language-models-for-IR" class="headerlink" title="语言模型：Language models for IR"></a>语言模型：Language models for IR</h3><ul>
+<li>一元模型：$p(w_1,w_2\cdots,w_n)=p(w_1)\cdots p(w_n)$，词袋假设</li>
+<li>$N$元模型：$p(w_1,w_2\cdots,w_n)=p(w_1)p(w_2|w_1)\cdots p(w_n|w_{n-1},w_{n-2},w_{1})$</li>
+<li>二元模型：$p(w_1,w_2\cdots,w_n)=p(w_1)p(w_2|w_1)\cdots p(w_n|w_{n-1})$，马尔可夫假设</li>
+</ul>
+<p><strong>用于信息检索的语言模型处理流程</strong><br>利用每一个待排序的文档 $d$ 训练一个语言模型，去生成用户输入的查询 $q$</p>
+<ul>
+<li>选择语言模型</li>
+<li>估计模型参数，如选择一元模型就计算 $p(w|d)=\frac{tf(w,d)}{|d|}$</li>
+<li>模型平滑化，防止零概率</li>
+<li>对所有文档分别计算文档 $d$ 的模型生成查询 $q$ 的概率$p(q|d)$，计算文档 $d$ 的打分$p(d|q)$<br>$$p(d|q)=\frac{p(d)p(q|d)}{p(q)}$$<br>在同一个查询中 $p(q)$ 一致可忽略，$p(d)$ 可以视为文档 $d$ 的静态打分，$p(q|d)$ 就是语言模型的生成概率，表示文档与查询的匹配程度，用语言模型进行估计，如在一元模型中 $p(q|d)=\prod_{w\in q}p(w|d)$</li>
+<li>根据文档打分进行排序，返回结果</li>
+</ul>
+<h3 id="参数平滑：Smoothing"><a href="#参数平滑：Smoothing" class="headerlink" title="参数平滑：Smoothing"></a>参数平滑：Smoothing</h3><p>生成概率是累乘模型，所以如果文档中有一个查询词没有出现（对应的 $p(w|d)=0$ ）那么文档打分就会是 $0$，不符合实际情况。平滑化方法的目标就是使每个在词典中出现过的词，即使其没有在文档 $d$ 中出现，其对应的$p(w|d)$ 都有一定正概率，避免零概率问题的出现。</p>
+<h4 id="混合平滑模型"><a href="#混合平滑模型" class="headerlink" title="混合平滑模型"></a>混合平滑模型</h4><ul>
+<li>基于文档集估计 $p(w|C)=\frac{tf(w,C)}{|C|}$</li>
+<li>基于文档 $d$ 估计 $p(w|d)=\frac{tf(w,d)}{|d|}$</li>
+<li>线性插值：$p_{mix}(w|d)=\lambda p(w|d)+(1-\lambda)p(w|C)$</li>
+</ul>
+<h4 id="狄里克莱平滑"><a href="#狄里克莱平滑" class="headerlink" title="狄里克莱平滑"></a>狄里克莱平滑</h4><ul>
+<li>基于文档集估计 $p(w|C)=\frac{tf(w,C)}{|C|}$</li>
+<li>基于文档 $d$ 估计 $p(w|d)=\frac{tf(w,d)}{|d|}$</li>
+<li>$p_{mix}(w|d)=\frac{tf(w,d)+\mu p(w|C)}{|d|+\mu}$</li>
+<li>直观解释：一般设置 $\mu = 100~200$ 表示文档 $d$ 还有 $\mu$ 个位置没有被观测到，实际文档长度应为 $|d|+\mu$，这 $\mu$ 个位置被词典中所有的词瓜分，瓜分的比例为其在文档集合中出现的比例。</li>
+</ul>
+<h3 id="传统信息检索排序模型的总结"><a href="#传统信息检索排序模型的总结" class="headerlink" title="传统信息检索排序模型的总结"></a>传统信息检索排序模型的总结</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141768080820.jpg" alt=""></p>
+<p>此外：</p>
+<ul>
+<li>$BM25$ 是使用最多的传统排序模型，简单、易于计算，表现稳定、对参数不敏感，常作为 $IR$ 实验的 $baseline$</li>
+<li>$LMIR$ 的平滑方法多选择狄里克莱平滑</li>
+</ul>
+<h2 id="排序评价指标"><a href="#排序评价指标" class="headerlink" title="排序评价指标"></a>排序评价指标</h2><p>标注的数据 $(q,d,r)$ ，$r$ 是人工打分的相关度指标，分二值和多值两类：</p>
+<ul>
+<li>二值相关度：$0$ (不相关）或 $1$（相关）</li>
+<li>多值相关度：<ul>
+<li>$2$（相关）或 $1$（部分相关）或 $0$（不相关）</li>
+<li>5级：Bad, Fair, Good, Perfect, Excellent</li>
+</ul>
+</li>
+</ul>
+<h3 id="二值相关度评价指标"><a href="#二值相关度评价指标" class="headerlink" title="二值相关度评价指标"></a>二值相关度评价指标</h3><h4 id="P-K：Precision-K"><a href="#P-K：Precision-K" class="headerlink" title="P@K：Precision@K"></a>P@K：Precision@K</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141769600746.jpg" alt=""></p>
+<h4 id="MAP：Mean-Average-Precision"><a href="#MAP：Mean-Average-Precision" class="headerlink" title="MAP：Mean Average Precision"></a>MAP：Mean Average Precision</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141771896749.jpg" alt=""></p>
+<p>$MAP$ 的假设是所有查询的重要性相同且用户想看到多个相关文档 $P@K$</p>
+<h3 id="多值相关度评价指标"><a href="#多值相关度评价指标" class="headerlink" title="多值相关度评价指标"></a>多值相关度评价指标</h3><h4 id="DCG：Discounted-Cumulative-Gain"><a href="#DCG：Discounted-Cumulative-Gain" class="headerlink" title="DCG：Discounted Cumulative Gain"></a>DCG：Discounted Cumulative Gain</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141775777301.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15141776541813.jpg" alt=""></p>
+<p>$DCG@N$ 是只考虑前 $N$ 个位置文档的$DCG$</p>
+<p>$$DCG@N=\frac{Gain(d_{r1})}{log_2(2)}+\frac{Gain(d_{r2})}{log_2(3)}+\cdots+\frac{Gain(d_{rN})}{log_2(N+1)}$$</p>
+<h4 id="NDCG：Normalized-Discounted-Cumulative-Gain"><a href="#NDCG：Normalized-Discounted-Cumulative-Gain" class="headerlink" title="NDCG：Normalized Discounted Cumulative Gain"></a>NDCG：Normalized Discounted Cumulative Gain</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15141777896923.jpg" alt=""></p>
+<p><strong>计算实例：</strong></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15141777111189.jpg" alt=""></p>
+<h2 id="搜索结果多样化"><a href="#搜索结果多样化" class="headerlink" title="搜索结果多样化"></a>搜索结果多样化</h2><p>基于相关性的打分对每个网页进行独立打分，没有考虑到网页之间的关系（网页内容相似、网页间的链接和上下级关系）。所以搜索结果多样化的目标是<strong>用尽可能少的网页去覆盖更多的话题</strong>，比如查询 programming language：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15141781414502.jpg" alt=""></p>
+<p>所以在排序过程中要使用顺序文档选择，综合考虑已选择文档和待选择文档的相似度以及查询和待选择文档的相似度<br><img src="http://p1auo1a1h.bkt.clouddn.com/15141782128202.jpg" alt=""></p>
+<p><strong>最大化边缘相关度</strong>是搜索结果多样化中最常用的方法<br><img src="http://p1auo1a1h.bkt.clouddn.com/15141782592179.jpg" alt=""></p>
+<p>参考文献：<br>[1] 徐君,《网络数据挖掘》,中国科学院大学2017年秋季研究生课程 </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据挖掘/" rel="tag"># 数据挖掘</a>
+          
+            <a href="/tags/互联网搜索/" rel="tag"># 互联网搜索</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/25/data-mining-rs-summary/" rel="next" title="推荐系统：总结与算法优缺点分析">
+                <i class="fa fa-chevron-left"></i> 推荐系统：总结与算法优缺点分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="ZHANG ZH.Y." />
+          <p class="site-author-name" itemprop="name">ZHANG ZH.Y.</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个<br>为了不做程序员而努力搬砖的<br>代码狗</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文档处理"><span class="nav-number">1.</span> <span class="nav-text">文档处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传统信息检索模型"><span class="nav-number">2.</span> <span class="nav-text">传统信息检索模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔模型"><span class="nav-number">2.1.</span> <span class="nav-text">布尔模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向量空间模型：Vector-Space-Model"><span class="nav-number">2.2.</span> <span class="nav-text">向量空间模型：Vector Space Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BM25模型：Best-Match-25"><span class="nav-number">2.3.</span> <span class="nav-text">BM25模型：Best Match 25</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语言模型：Language-models-for-IR"><span class="nav-number">2.4.</span> <span class="nav-text">语言模型：Language models for IR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数平滑：Smoothing"><span class="nav-number">2.5.</span> <span class="nav-text">参数平滑：Smoothing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#混合平滑模型"><span class="nav-number">2.5.1.</span> <span class="nav-text">混合平滑模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#狄里克莱平滑"><span class="nav-number">2.5.2.</span> <span class="nav-text">狄里克莱平滑</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传统信息检索排序模型的总结"><span class="nav-number">2.6.</span> <span class="nav-text">传统信息检索排序模型的总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序评价指标"><span class="nav-number">3.</span> <span class="nav-text">排序评价指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二值相关度评价指标"><span class="nav-number">3.1.</span> <span class="nav-text">二值相关度评价指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P-K：Precision-K"><span class="nav-number">3.1.1.</span> <span class="nav-text">P@K：Precision@K</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MAP：Mean-Average-Precision"><span class="nav-number">3.1.2.</span> <span class="nav-text">MAP：Mean Average Precision</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多值相关度评价指标"><span class="nav-number">3.2.</span> <span class="nav-text">多值相关度评价指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DCG：Discounted-Cumulative-Gain"><span class="nav-number">3.2.1.</span> <span class="nav-text">DCG：Discounted Cumulative Gain</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NDCG：Normalized-Discounted-Cumulative-Gain"><span class="nav-number">3.2.2.</span> <span class="nav-text">NDCG：Normalized Discounted Cumulative Gain</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索结果多样化"><span class="nav-number">4.</span> <span class="nav-text">搜索结果多样化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHANG ZH.Y.</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
