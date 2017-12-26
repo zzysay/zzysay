@@ -118,7 +118,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139423316613.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139427534439.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15139427750722.jpg">
-<meta property="og:updated_time" content="2017-12-23T02:03:18.581Z">
+<meta property="og:updated_time" content="2017-12-26T01:31:44.381Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从谱中心度到PageRank算法">
 <meta name="twitter:description" content="图中心度表示方法介数中心度">
@@ -431,7 +431,7 @@
 <p><strong>证明：</strong></p>
 <p>因为 $G$ 是一个满秩矩阵，所以 $G$ 有 $n$ 个线性无关的特征向量，记为 $v_0, v_1, \cdots, v_n$，所以 $x_0$ 必然可以用这些特征向量表示：<br>$$ x_0=\beta_1v_1+\beta_2v_2+\cdots+\beta_nv_n$$$$ x_1^T=x_0G =\beta_1Gv_1+\cdots+\beta_nGv_n=\beta_1\lambda_1v_1+\cdots+\beta_n\lambda_nv_n$$$$\vdots$$$$x_t^T=x_0G^t =\beta_1\lambda_1^tv_1+\beta_1\lambda_2^tv_2+\cdots+\beta_n\lambda_n^tv_n$$</p>
 <p>其中 $\lambda_i$ 是 $v_i$ 对应的特征值，上文已经证明了 $\lambda_i$ 是小于等于 $1$ 的正数，所以当 $t\rightarrow \infty$时，$\lambda_i^t \rightarrow 0$，此时有 $|{x_{t+1}}-{x_{t}}|&lt;\epsilon$，所以 $PageRank$ 终会收敛，收敛速度取决于次主特征值的大小。</p>
-<p>此外， $0.85^{100}=0.87\times10^{-7}$，所以通常意义上说 $PageRank$ 算法在 $100$ 就会收敛。</p>
+<p>此外， $0.85^{100}=0.87\times10^{-7}$，所以通常意义上说 $PageRank$ 算法在迭代 $100$ 次后就会收敛。</p>
 <h4 id="收敛顺序"><a href="#收敛顺序" class="headerlink" title="收敛顺序"></a>收敛顺序</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15139378343772.jpg" alt=""></p>
 <h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><h3 id="PageRank的缺点"><a href="#PageRank的缺点" class="headerlink" title="PageRank的缺点"></a>PageRank的缺点</h3><ol>
 <li>没有区分站内导航链接。很多网站的首页都有很多对站内其他页面的链接，称为站内导航链接。这些链接与不同网站之间的链接相比，肯定是后者更能体现 $PageRank$ 值的传递关系。</li>
