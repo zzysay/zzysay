@@ -124,7 +124,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152328498774.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152329459510.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152330098013.jpg">
-<meta property="og:updated_time" content="2018-01-06T11:43:23.506Z">
+<meta property="og:updated_time" content="2018-01-06T14:53:53.078Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="贝叶斯学习">
 <meta name="twitter:description" content="从天气预报说起某地全天 $365$ 天，晴朗 $265$ 天，非晴朗 $100$ 天，我们用 $A$ 表示晴朗，用 $ \neg A $ 表示非晴朗，于是我们可以得到 $P(A) = 265/365=0.726$，$P(\neg A) = 100/365=0.274$。所以在预测天气的时候，我们更倾向于预测明天是一个晴朗的天气。 对于上述问题，如果增加一个信息：晴朗天气的前一天特征（是否有晚霞），">
@@ -428,10 +428,27 @@
 <h3 id="正态分布贝叶斯分类器"><a href="#正态分布贝叶斯分类器" class="headerlink" title="正态分布贝叶斯分类器"></a>正态分布贝叶斯分类器</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15152318929128.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152319047549.jpg" alt=""></p>
 <p><strong>贝叶斯分类：</strong></p>
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15152319284489.jpg" alt=""></p>
-<p><strong>不同高斯参数情况讨论：</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152319770205.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152319930871.jpg" alt=""></p>
+<p><strong>不同高斯参数情况讨论：</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152319770205.jpg" alt=""></p>
+<p>在这种情况下，有：<br>$$ \Sigma_i=\begin{pmatrix}<br> \sigma^2 &amp;  \cdots &amp;  0 \\<br> \<br> \vdots &amp;  \ddots &amp; \vdots \\<br> 0 &amp;  \cdots &amp;  \sigma^2 \\<br> \end{pmatrix}\;\;\;\;|\Sigma_i|=\sigma^{2d}\;\;\;\;\;\Sigma_i^{-1}=\begin{pmatrix}<br> 1/\sigma^2 &amp;  \cdots &amp;  0 \\<br> \<br> \vdots &amp;  \ddots &amp; \vdots \\<br> 0 &amp;  \cdots &amp;  1/\sigma^2 \\<br> \end{pmatrix} $$</p>
+<p>代入式 $1$ 得：</p>
+<p>$$ g_i({\bf x})=\frac{d}{2}{\rm ln}\;2\pi-\frac{1}{2}{\rm In}\;\sigma^{2d}-\frac{\bf x^Tx}{2\sigma^2}-\frac{(-2{\bf \mu_i}^T{\bf x}+{\bf \mu_i}^T{\bf \mu_i})}{2\sigma^2}+{\rm In}\;p(\omega_i)$$</p>
+<p>上式的第一项、第二项和第三项与类别无关，可以忽略。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152319930871.jpg" alt=""></p>
+<p>决策面方程：<br>$$({\bf \mu_i}-{\bf \mu_j})^T[{\bf x}+\frac{1}{2}({\bf \mu_i}+{\bf \mu_j})-\frac{\sigma^2}{({\bf \mu_i}-{\bf \mu_j})^T}{\rm In}\;\frac{p(\omega_i)}{p(\omega_j)}]=0$$</p>
 <p>注：由于 $g_i(x)=w_i^tx+ \omega_{i0}$ 为线性函数，其决策面由线性方程 $g_i(x)-g_j(x)=0$ 决定，决策面为一个超平面。在该情况下，决策界方差可以写成 $w^t(x-x_0)=0$ 的形式，其中 $x_0$ 只是一个符号，和变量 $x$ 并没有关系。</p>
 <p>满足 $w^t(x-x_0)=0$ 的 $x$ 的轨迹是 $\omega_i$ 和 $\omega_j$ 类间的决策面，当 $ p(\omega_i) = p(\omega_j)$ 时，超平面通过 $\mu_i$ 和 $\mu_j$ 连线中点并与连线正交。</p>
-<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152320138209.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152328274300.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152328498774.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152329459510.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152330098013.jpg" alt=""></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152320138209.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152328274300.jpg" alt=""></p>
+<p>第二种情况和第一种情况相比缺少了各维属性相互独立的条件，代入式 $1$ 得到：</p>
+<p>$$ g_i({\bf x})=-\frac{d}{2}{\rm In}\;2\pi-\frac{1}{2}{\rm In}\;|\Sigma|-\frac{1}{2}({\bf x}-{\bf \mu_i})^T\Sigma^{-1}({\bf x}-{\bf \mu_i})+{\rm In}\;p(\omega_j)$$</p>
+<p>其中，第一项和第二项与类别无关，可以忽略。</p>
+<p>展开后忽略无关项得到：</p>
+<p>$$ \begin{align} g_i({\bf x}) &amp;=-\frac{1}{2}(-{\bf x}^T\Sigma^{-1}{\bf \mu_i}-{\bf \mu_i}^T\Sigma^{-1}{\bf x}+{\bf \mu_i}^T\Sigma^{-1}{\bf \mu_i})+{\rm In}\;p(\omega_j) \nonumber \\&amp;<br>=-\frac{1}{2}(-2{\bf \mu_i}^T\Sigma^{-1}{\bf x}+{\bf \mu_i}^T\Sigma^{-1}{\bf \mu_i})+{\rm In}\;p(\omega_j) \nonumber \\&amp;<br>={\bf \mu_i}^T\Sigma^{-1}{\bf x}-\frac{1}{2}{\bf \mu_i}^T\Sigma^{-1}{\bf \mu_i}+{\rm In}\;p(\omega_j)\nonumber \end{align}$$</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152328498774.jpg" alt=""></p>
+<p>决策面方程：</p>
+<p>$$({\bf \mu_i}^T-{\bf \mu_j}^T)\Sigma^{-1}{\bf x}-\frac{1}{2}({\bf \mu_i}^T\Sigma^{-1}{\bf \mu_i}-{\bf \mu_j}^T\Sigma^{-1}{\bf \mu_j})+{\rm In}\;\frac{p(\omega_i)}{p(\omega_j)}=0$$</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152329459510.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152330098013.jpg" alt=""></p>
+<p>决策面方程：<br>$${\bf x}^T(W_i-W_j){\bf x}+({\bf w_i}^T-{\bf w_j}^T){\bf x}+w_{i0}-w_{j0}=0$$</p>
+<p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] 李航,《统计学习方法》,清华大学出版社</p>
 
       
     </div>

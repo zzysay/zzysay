@@ -93,18 +93,22 @@
 
 
 
-<meta name="description" content="一个为了不做程序员而努力搬砖的代码狗">
+<meta name="description" content="参数估计问题">
 <meta name="keywords" content="机器学习,参数估计">
 <meta property="og:type" content="article">
 <meta property="og:title" content="参数估计问题">
 <meta property="og:url" content="http://zzysay.github.io/2018/01/06/sml-parameter-estimation/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="一个为了不做程序员而努力搬砖的代码狗">
+<meta property="og:description" content="参数估计问题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-06T11:44:01.898Z">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152385911816.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152458817716.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152458680454.png">
+<meta property="og:updated_time" content="2018-01-06T14:44:30.917Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="参数估计问题">
-<meta name="twitter:description" content="一个为了不做程序员而努力搬砖的代码狗">
+<meta name="twitter:description" content="参数估计问题">
+<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15152385911816.jpg">
 
 
 
@@ -364,7 +368,52 @@
       
 
       
-        
+        <h1 id="参数估计问题"><a href="#参数估计问题" class="headerlink" title="参数估计问题"></a>参数估计问题</h1><p><img src="http://p1auo1a1h.bkt.clouddn.com/15152385911816.jpg" alt=""></p>
+<a id="more"></a>
+<p>典型的离散型随机变量分布有二项式分布，多项式分布，泊松分布；典型的连续型随机变量分布有正态分布，拉普拉斯分布，$Student\;t$ 分布。它们都可以看成是参数分布，因为它们的函数形式被一小部分参数所控制。因此，给定一堆数据，我们希望用一个给定的分布去拟合实际数据分布的时候，就要估计出这些参数的值，以便能够利用分布模型来做密度估计。</p>
+<p>对于参数估计，一直存在两个学派的不同解决方案：</p>
+<ul>
+<li><strong>频率学派：</strong>通过某些优化准则（比如似然函数）来选择特定参数值</li>
+<li><strong>贝叶斯学派：</strong>首先假定参数服从一个先验分布，通过观测到的数据，使用贝叶斯理论计算对应的后验分布且选择的先验与后验都满足共轭性质</li>
+</ul>
+<h2 id="最大似然估计"><a href="#最大似然估计" class="headerlink" title="最大似然估计"></a>最大似然估计</h2><p>最大似然估计（Maximum Likelihood Estimation）描述的是当给定一堆数据 $ \mathcal{D} $ 且假定我们已经知道数据的分布，这个分布的参数 $\theta$ 是固定的，目标就是找出这样一个固定的参数 $\theta$ ，使得模型产生出观测数据的概率最大：</p>
+<p>$$\hat{\theta}= \mathop{argmax}_\theta p(\mathcal{D}|\theta)$$</p>
+<p>举个例子，对于抛硬币的问题，正面朝上的次数满足二项分布，正面朝上的概率是$\mu$ 。现在我们抛 $10$ 次硬币，正面朝上的次数是 $2$ 次，显然 $\mu=0.2$，下面我们用最大似然估计来求解这个参数，写出似然函数：</p>
+<p>$$p(\mathcal{D};\mu)=\prod_{i=1}^n \mu^{x_i} (1-\mu)^{1-x_i}$$</p>
+<p>其中 $x=1$ 表示正面朝上，$x=0$ 表示反面朝上，$n$ 是抛硬币的次数。对数似然函数为： </p>
+<p>$$\begin{align} \mathcal{L} = \log p(\mathcal{D}|\mu) &amp; = \log[\prod_{i=1}^n \mu^{x_i} (1-\mu)^{1-x_i}] \nonumber \\<br>&amp;=\sum_{i=1}^n \log  [\mu^{x_i} (1-\mu)^{1-x_i}] \nonumber \\<br>&amp;=\sum_{i=1}^n [\log \mu^{x_i}+ \log (1-\mu)^{1-x_i}] \nonumber \\<br>&amp;=\sum_{i=1}^n [x_i \log \mu+ (1-x_i)\log (1-\mu)]  \nonumber \end{align}$$</p>
+<p>对参数 $\mu$ 求导：</p>
+<p>$$\begin{align} \frac{\partial \mathcal{L}}{\partial \mu} &amp; =\sum_{i=1}^n \frac{\partial }{\partial \mu}[x_i \log  \mu+ (1-x_i)\log (1-\mu)] \nonumber\\<br>&amp;=\sum_{i=1}^n [x_i \frac{\partial }{\partial \mu}\log  \mu+ (1-x_i) \frac{\partial }{\partial \mu} \log (1-\mu)]\nonumber\\<br>&amp;=\frac{1}{\mu}\sum_{i=1}^n x_i - \frac{1}{1-\mu}\sum_{i=1}^n (1-x_i) \nonumber \end{align}$$</p>
+<p>令导数等于 $0$，可以得到：</p>
+<p>$$\hat{\mu}_{ML}=\frac{1}{n}\sum_{i=1}^n x_i=0.2$$</p>
+<h2 id="最大后验估计"><a href="#最大后验估计" class="headerlink" title="最大后验估计"></a>最大后验估计</h2><p>最大后验估计 (Maximum a Posteriori) 是最大似然估计的扩展并与其类似，都是假设在给定数据的情况下，分布的参数都是固定的数值。但是不同的是，最大后验估计假设这个参数服从一个分布，既参数取到每个值的可能性不是相等的，而是服从一个分布的。而最大似然估计的参数是不服从分布的，或者说服从均匀分布，因此取到每一值是等可能的。</p>
+<p>比如说，在上面抛硬币的例子，假如我们的经验告诉我们，硬币一般都是匀称的，也就是 $\mu=0.5$ 的可能性最大，$\mu=0.2$ 的可能性比较小，那么参数该怎么估计呢？这就是最大后验估计要考虑的问题。最大后验估计优化的是一个后验概率，即给定了观测值后使概率最大，这个概率是由贝叶斯定理推导过来的：</p>
+<p>$$\begin{align} \hat{\theta} &amp;= \mathop{argmax}_\theta p(\theta|\mathcal{D})\nonumber \\<br>&amp;= \mathop{argmax}_\theta \frac{p(\mathcal{D}|\theta) p(\theta|\eta)}{p(\mathcal{D})}\nonumber \\<br>&amp;= \mathop{argmax}_\theta p(\mathcal{D}|\theta) p(\theta|\eta) \nonumber \end{align}$$</p>
+<p>上式中第一项 $p(\mathcal{D}|\theta)$ 即为似然函数，而第二项 $p(\theta|\eta)$ 则是一个先验分布，其中 $ \eta $ 是超参数。</p>
+<p>在抛硬币的例子中，我们假设参数 $\mu$ 的先验分布是 $Beta$ 分布：</p>
+<p>$$p(\theta|\eta)=p(\mu|a,b)=Beta(\mu|a,b)=\frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)}\mu^{a-1}(1-\mu)^{(b-1)}$$</p>
+<p>对后验估计 $p(\mathcal{D}|\mu) Beta(\mu|a,b)$ 取对数：</p>
+<p>$$ \mathcal{L}=\log p(\mathcal{D}|\mu) Beta(\mu|a,b) = \log p(\mathcal{D}|\mu)  + \log Beta(\mu|a,b) $$</p>
+<p>对参数 $\mu$ 求导：</p>
+<p>$$ \frac{\partial \mathcal{L}}{\partial \mu}= \frac{\partial \log p(\mathcal{D}|\mu)}{\partial \mu} + \frac{\partial \log Beta(\mu|a,b)}{\partial \mu} $$</p>
+<p>其中第一项的导数已经在最大似然估计中求出，现在只需要求出第二项的导数：</p>
+<p>$$\begin{align} \frac{\partial \log Beta(\mu|a,b)}{\partial \mu} &amp;=\frac{\partial }{\partial \mu} \log [\frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)}\mu^{a-1}(1-\mu)^{(b-1)}]\nonumber\\<br>&amp;=\frac{\partial }{\partial \mu} \log \frac{\Gamma(a + b)}{\Gamma(a)\Gamma(b)} + \frac{\partial }{\partial \mu} \log \mu^{a-1}(1-\mu)^{(b-1)}\nonumber \\<br>&amp;=0+(a-1) \frac{\partial }{\partial \mu}\log{\mu}+(b-1) \frac{\partial }{\partial \mu}\log{(1-\mu)}\nonumber \\<br>&amp;=\frac{a-1}{\mu}-\frac{b-1}{1-\mu} \nonumber \end{align}$$</p>
+<p>即：</p>
+<p>$$ \frac{\partial \mathcal{L}}{\partial \mu}=\frac{1}{\mu}\sum_{i=1}^n x_i - \frac{1}{1-\mu}\sum_{i=1}^n (1-x_i) + \frac{a-1}{\mu}-\frac{b-1}{1-\mu} $$</p>
+<p>令导数等于 $0$，可以得到：</p>
+<p>$$\hat{\mu}_{MAP}=\frac{\sum_{i=1}^n x_i+a-1}{n+a+b-2} $$</p>
+<p>其中 $a$ 与 $b$ 是先验概率分布的参数，往往根据人的经验给定，比如我们认为一枚均匀硬币正反两面朝上的概率都是相等的，那么我们就可以假设 $a=b$，这样在一定程度上可以防止因为数据不足导致训练出的模型参数太差，通常情况下，这两个越大，偏离匀称的可能性就越小。</p>
+<p>例如，取 $a=b=2$，有 $\hat{\mu}_{MAP}=0.25$，取 $a=b=4$，有 $\hat{\mu}_{MAP}=0.3125$，</p>
+<h2 id="贝叶斯估计"><a href="#贝叶斯估计" class="headerlink" title="贝叶斯估计"></a>贝叶斯估计</h2><p>贝叶斯估计是最大后验估计的进一步扩展，和最大后验估计一样，也认为参数不是固定的，都假设参数服从一个先验分布。但是最大后验估计是直接<strong>估计出参数的值</strong>，而贝叶斯估计是<strong>估计出参数的分布</strong>，这就是贝叶斯与最大似然估计和最大后验估计最大的不同。</p>
+<p>$$ p(\theta|\mathcal{D}) =\frac{p( \mathcal{D}|\theta)p(\theta|\eta)}{p(\mathcal{D})}=\frac{p( \mathcal{D}|\theta)p(\theta|\eta)}{\int_\theta p( \mathcal{D}|\theta)p(\theta|\eta) d \theta} $$</p>
+<p>贝叶斯定理给出了最小化误差的最优解决方法，可用于分类和预测。理论上，它看起来很完美，但在实际中，它并不能直接利用，它需要知道证据的确切分布概率，而实际上我们并不能这个信息，因此我们在很多分类方法中都会作出某种假设以逼近贝叶斯定理的要求。</p>
+<h2 id="附：Beta分布"><a href="#附：Beta分布" class="headerlink" title="附：Beta分布"></a>附：Beta分布</h2><p>在概率论中，$B$ 分布也称 $Beta$ 分布，是指一组定义在 $(0,1)$ 区间的连续概率分布，有两个参数  $\alpha ,\beta &gt;0$ 。</p>
+<p><strong>概率密度函数</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152458817716.jpg" alt=""></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152458680454.png" alt=""></p>
+<p><strong>概率分布性质</strong></p>
+<p>众数：$$ \frac {\alpha -1}{\alpha + \beta -2} $$<br>期望：$$ \frac {\alpha}{\alpha + \beta} $$<br>方差：$$ \frac {\alpha \beta}{(\alpha + \beta)^2(\alpha + \beta+1)} $$</p>
+<p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] <a href="http://blog.csdn.net/lin360580306/article/details/51289543" target="_blank" rel="external">http://blog.csdn.net/lin360580306/article/details/51289543</a><br>[3] <a href="https://zh.wikipedia.org/wiki/%CE%92%E5%88%86%E5%B8%83" target="_blank" rel="external">https://zh.wikipedia.org/wiki/B分布</a></p>
+
       
     </div>
 
@@ -464,8 +513,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -527,6 +585,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参数估计问题"><span class="nav-number">1.</span> <span class="nav-text">参数估计问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最大似然估计"><span class="nav-number">1.1.</span> <span class="nav-text">最大似然估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大后验估计"><span class="nav-number">1.2.</span> <span class="nav-text">最大后验估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贝叶斯估计"><span class="nav-number">1.3.</span> <span class="nav-text">贝叶斯估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附：Beta分布"><span class="nav-number">1.4.</span> <span class="nav-text">附：Beta分布</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
