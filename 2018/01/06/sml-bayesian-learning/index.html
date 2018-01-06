@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习,贝叶斯," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="从天气预报说起某地全天 $365$ 天，晴朗 $265$ 天，非晴朗 $100$ 天，我们用 $A$ 表示晴朗，用 $ \neg A $ 表示非晴朗，于是我们可以得到 $P(A) = 265/365=0.726$，$P(\neg A) = 100/365=0.274$。所以在预测天气的时候，我们更倾向于预测明天是一个晴朗的天气。 对于上述问题，如果增加一个信息：晴朗天气的前一天特征（是否有晚霞），">
+<meta name="keywords" content="机器学习,贝叶斯">
+<meta property="og:type" content="article">
+<meta property="og:title" content="贝叶斯学习">
+<meta property="og:url" content="http://zzysay.github.io/2018/01/06/sml-bayesian-learning/index.html">
+<meta property="og:site_name" content="ZZY SAY">
+<meta property="og:description" content="从天气预报说起某地全天 $365$ 天，晴朗 $265$ 天，非晴朗 $100$ 天，我们用 $A$ 表示晴朗，用 $ \neg A $ 表示非晴朗，于是我们可以得到 $P(A) = 265/365=0.726$，$P(\neg A) = 100/365=0.274$。所以在预测天气的时候，我们更倾向于预测明天是一个晴朗的天气。 对于上述问题，如果增加一个信息：晴朗天气的前一天特征（是否有晚霞），">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152258425098.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152258926544.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152259153139.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152264363891.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152264902987.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152270434232.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152282033705.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152284355051.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152284816892.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152289080988.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152289603879.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152285510563.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152290062059.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152318929128.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152319047549.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152319284489.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152319770205.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152319930871.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152320138209.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152328274300.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152328498774.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152329459510.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152330098013.jpg">
+<meta property="og:updated_time" content="2018-01-06T11:43:23.506Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="贝叶斯学习">
+<meta name="twitter:description" content="从天气预报说起某地全天 $365$ 天，晴朗 $265$ 天，非晴朗 $100$ 天，我们用 $A$ 表示晴朗，用 $ \neg A $ 表示非晴朗，于是我们可以得到 $P(A) = 265/365=0.726$，$P(\neg A) = 100/365=0.274$。所以在预测天气的时候，我们更倾向于预测明天是一个晴朗的天气。 对于上述问题，如果增加一个信息：晴朗天气的前一天特征（是否有晚霞），">
+<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15152258425098.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzysay.github.io/2018/01/06/sml-bayesian-learning/"/>
+
+
+
+
+
+  <title>贝叶斯学习 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZZY SAY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I AM WHO I AM.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/06/sml-bayesian-learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHANG ZH.Y.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZY SAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">贝叶斯学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-06T19:39:41+08:00">
+                2018-01-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课堂笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">课堂笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课堂笔记/统计机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">统计机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="从天气预报说起"><a href="#从天气预报说起" class="headerlink" title="从天气预报说起"></a>从天气预报说起</h2><p>某地全天 $365$ 天，晴朗 $265$ 天，非晴朗 $100$ 天，我们用 $A$ 表示晴朗，用 $ \neg A $ 表示非晴朗，于是我们可以得到 $P(A) = 265/365=0.726$，$P(\neg A) = 100/365=0.274$。所以在预测天气的时候，我们更倾向于预测明天是一个晴朗的天气。</p>
+<p>对于上述问题，如果增加一个信息：晴朗天气的前一天特征（是否有晚霞），我们用 $B$ 表示有晚霞，用 $ \neg B $ 表示没有晚霞，并且已知晴朗天气前一天有晚霞的比例是 $0.7$，非晴朗天气前一天有晚霞的比例是 $0.1$。那么，如果已知今天有晚霞，我们如何预测明天的天气呢？</p>
+<a id="more"></a>
+<p>根据以上条件我们可以写出 $P(B|A) = 0.7$，$P(\neg B|A) = 0.3$，$P(B|\neg A) = 0.1$，$P(\neg B|\neg A) = 0.9$，我们需要计算的是条件概率 $P(A|B)$。</p>
+<p>按照贝叶斯决策理论，我们可以计算出：</p>
+<p>$P(A,B) = P(B|A)P(A) = 0.5082$；$P(\neg A,B) = P(B|\neg A)P(\neg A) = 0.0274$；$P(B) = P(B|A)P(A) + P(B|\neg A)P(\neg A) = 0.5356$</p>
+<p>于是有：</p>
+<p>$$P(A|B) = \frac {P(A,B)} {P(B)} = 0.9488$$$$P(\neg A|B) = \frac {P(\neg A,B)} {P(B)} = 0.0512$$</p>
+<p>所以，我们认为，如果前一天有晚霞，第二天将会是一个晴朗的天气。</p>
+<h2 id="贝叶斯决策理论"><a href="#贝叶斯决策理论" class="headerlink" title="贝叶斯决策理论"></a>贝叶斯决策理论</h2><h3 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h3><p><strong>事件概率：</strong> $0\lt P(A) \lt 1$<br><strong>条件概率：</strong> $P(A|B) = \frac {P(A,B)} {P(B)} $<br><strong>全概率公式：</strong> $P(A) = \sum_{i=1}^n P(A|B_i) P(B_i)$<br><strong>贝叶斯公式：</strong> $P(B_i|A) = \frac {P(A|B_i)P(B_i)} {\sum_{j=1}^n P(A|B_j) P(B_j)}$，即 $P(B|A) = \frac {P(A|B)P(B)} {P(A)}$。</p>
+<h3 id="贝叶斯决策"><a href="#贝叶斯决策" class="headerlink" title="贝叶斯决策"></a>贝叶斯决策</h3><p><strong>基于观察特征和类别的贝叶斯公式：</strong></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152258425098.jpg" alt=""></p>
+<p><strong>贝叶斯决策：</strong></p>
+<p>$$ Decide = \begin{cases} \omega_1, &amp; \text{if $p(\omega_1|x)p(x) \gt p(\omega_2|x)p(x)$} \\ \omega_2, &amp; \text{otherwise} \end{cases}  $$</p>
+<p>通常来讲，贝叶斯决策使用的是 $0-1$ 损失：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152258926544.jpg" alt=""></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152259153139.jpg" alt=""></p>
+<p>后验概率最大化完全等价于期望风险最小化，这也是朴素贝叶斯采用的原理。</p>
+<h3 id="最小风险的贝叶斯决策"><a href="#最小风险的贝叶斯决策" class="headerlink" title="最小风险的贝叶斯决策"></a>最小风险的贝叶斯决策</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15152264363891.jpg" alt=""></p>
+<p><strong>完整的风险损失函数：</strong></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152264902987.jpg" alt=""></p>
+<p><strong>决策规则：</strong></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152270434232.jpg" alt=""></p>
+<p>即当损失函数为 $0-1$ 损失时，损失系数</p>
+<p>$$ \lambda_{ij} = \begin{cases} 0, &amp; \text{if $i=j$} \\ 1, &amp; \text{otherwise} \end{cases} $$</p>
+<p>最小风险贝叶斯决策等价于最小错误率贝叶斯决策。 </p>
+<h2 id="贝叶斯分类器"><a href="#贝叶斯分类器" class="headerlink" title="贝叶斯分类器"></a>贝叶斯分类器</h2><p>所谓贝叶斯分类器就是基于贝叶斯决策的分类器，我们用 $C$ 来表示类别，用 $\theta$ 表示类别变量 $C$ 中的参数，用 $x$ 表示样本，用 $D$ 表示数据集。</p>
+<p><strong>朴素贝叶斯分类器：</strong> 假设 $P(x|c)$ 中 $x$ 的各维属性独立<br><strong>半朴素贝叶斯分类器：</strong> 假设 $P(x|c)$ 中 $x$ 的各维属性存在依赖<br><strong>正态分布贝叶斯分类器：</strong> 假设 $P(x|c(\theta))$ 服从正态分布</p>
+<h3 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h3><p>所谓朴素贝叶斯分类器，关键点在于采用了“属性条件独立性假设”，即</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152282033705.jpg" alt=""></p>
+<p>于是关键问题就变为由训练样本学习类别条件概率 $P(x|c)$ 和类别先验概率 $P(c)$。</p>
+<p><strong>学习过程：</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152284355051.jpg" alt=""></p>
+<p>对于类别条件概率估计，<strong>分两种情况</strong>：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15152284816892.jpg" alt=""></p>
+<p><strong>算法举例：</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152289080988.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152289603879.jpg" alt=""></p>
+<h3 id="拉普拉斯平滑"><a href="#拉普拉斯平滑" class="headerlink" title="拉普拉斯平滑"></a>拉普拉斯平滑</h3><p>在朴素贝叶斯分类过程中，用极大似然估计可能会出现所要估计的概率值为零的情况，这是会影响到后验概率的计算结果，是分类产生错误，此时往往会采用拉普拉斯平滑来解决这一问题。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152285510563.jpg" alt=""></p>
+<p><strong>算法举例：</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152290062059.jpg" alt=""></p>
+<h3 id="正态分布贝叶斯分类器"><a href="#正态分布贝叶斯分类器" class="headerlink" title="正态分布贝叶斯分类器"></a>正态分布贝叶斯分类器</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15152318929128.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152319047549.jpg" alt=""></p>
+<p><strong>贝叶斯分类：</strong></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152319284489.jpg" alt=""></p>
+<p><strong>不同高斯参数情况讨论：</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152319770205.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152319930871.jpg" alt=""></p>
+<p>注：由于 $g_i(x)=w_i^tx+ \omega_{i0}$ 为线性函数，其决策面由线性方程 $g_i(x)-g_j(x)=0$ 决定，决策面为一个超平面。在该情况下，决策界方差可以写成 $w^t(x-x_0)=0$ 的形式，其中 $x_0$ 只是一个符号，和变量 $x$ 并没有关系。</p>
+<p>满足 $w^t(x-x_0)=0$ 的 $x$ 的轨迹是 $\omega_i$ 和 $\omega_j$ 类间的决策面，当 $ p(\omega_i) = p(\omega_j)$ 时，超平面通过 $\mu_i$ 和 $\mu_j$ 连线中点并与连线正交。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15152320138209.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152328274300.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152328498774.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152329459510.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15152330098013.jpg" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/贝叶斯/" rel="tag"># 贝叶斯</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/25/data-mining-leaning-to-rank/" rel="next" title="从搜索排序到Learning to Rank算法">
+                <i class="fa fa-chevron-left"></i> 从搜索排序到Learning to Rank算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/06/sml-parameter-estimation/" rel="prev" title="参数估计问题">
+                参数估计问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="ZHANG ZH.Y." />
+          <p class="site-author-name" itemprop="name">ZHANG ZH.Y.</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个<br>为了不做程序员而努力搬砖的<br>代码狗</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从天气预报说起"><span class="nav-number">1.</span> <span class="nav-text">从天气预报说起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贝叶斯决策理论"><span class="nav-number">2.</span> <span class="nav-text">贝叶斯决策理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概率论基础"><span class="nav-number">2.1.</span> <span class="nav-text">概率论基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贝叶斯决策"><span class="nav-number">2.2.</span> <span class="nav-text">贝叶斯决策</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最小风险的贝叶斯决策"><span class="nav-number">2.3.</span> <span class="nav-text">最小风险的贝叶斯决策</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贝叶斯分类器"><span class="nav-number">3.</span> <span class="nav-text">贝叶斯分类器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#朴素贝叶斯分类器"><span class="nav-number">3.1.</span> <span class="nav-text">朴素贝叶斯分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拉普拉斯平滑"><span class="nav-number">3.2.</span> <span class="nav-text">拉普拉斯平滑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正态分布贝叶斯分类器"><span class="nav-number">3.3.</span> <span class="nav-text">正态分布贝叶斯分类器</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHANG ZH.Y.</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
