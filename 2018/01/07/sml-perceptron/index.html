@@ -93,23 +93,23 @@
 
 
 
-<meta name="description" content="感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下: $$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$  这里 $ f(\cdot)$ 叫做激活函数，有时也被称为单位阶跃函数： $$f(a)= \begin{c">
+<meta name="description" content="感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下: $$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$">
 <meta name="keywords" content="机器学习,感知机">
 <meta property="og:type" content="article">
 <meta property="og:title" content="感知机算法">
 <meta property="og:url" content="http://zzysay.github.io/2018/01/07/sml-perceptron/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下: $$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$  这里 $ f(\cdot)$ 叫做激活函数，有时也被称为单位阶跃函数： $$f(a)= \begin{c">
+<meta property="og:description" content="感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下: $$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153007333583.png">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030794778.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030920850.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030311370.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030442037.jpg">
-<meta property="og:updated_time" content="2018-01-07T05:33:59.420Z">
+<meta property="og:updated_time" content="2018-01-07T05:36:58.973Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="感知机算法">
-<meta name="twitter:description" content="感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下: $$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$  这里 $ f(\cdot)$ 叫做激活函数，有时也被称为单位阶跃函数： $$f(a)= \begin{c">
+<meta name="twitter:description" content="感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下: $$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$">
 <meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15153007333583.png">
 
 
@@ -373,9 +373,9 @@
         <p>感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下:</p>
 <p>$$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$</p>
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15153007333583.png" alt=""></p>
+<a id="more"></a>
 <p>这里 $ f(\cdot)$ 叫做激活函数，有时也被称为单位阶跃函数：</p>
 <p>$$f(a)= \begin{cases} +1&amp; a \ge 0 \\ -1&amp; a \lt 0 \end{cases}$$</p>
-<a id="more"></a>
 <h2 id="感知机学习策略"><a href="#感知机学习策略" class="headerlink" title="感知机学习策略"></a>感知机学习策略</h2><p>决策函数：<br>$$ g(x) = \sum_{i=1}^m w_i x_i + w_0 = {\bf w^T x} + bw_0$$</p>
 <p>增广表示：<br>$$ g(x) = \sum_{i=1}^m w_i x_i  = {\bf \hat w^T \hat x} $$<br>其中，${\bf \hat w} = ({\bf w}, b)^T$ ，${\bf \hat x} = ({\bf x}, 1)^T$。</p>
 <p>所以其学习准则为：最小化<strong>错分样本</strong>的误差代价.如果训练集是可分的，感知机的学习目的是求得一个能将训练集正实例点和负实例点完全分开的分离超平面。对于损失函数的选择，我们采用的是误分类点到超平面的距离：</p>
@@ -471,6 +471,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/01/07/sml-fisher-discriminant/" rel="prev" title="线性鉴别分析">
+                线性鉴别分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -542,7 +546,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -564,7 +568,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
