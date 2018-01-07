@@ -93,13 +93,13 @@
 
 
 
-<meta name="description" content="logistic分布">
+<meta name="description" content="Logistic分布">
 <meta name="keywords" content="机器学习,Logistic Regression">
 <meta property="og:type" content="article">
-<meta property="og:title" content="logistic模型">
+<meta property="og:title" content="Logistic模型">
 <meta property="og:url" content="http://zzysay.github.io/2018/01/07/sml-logistic-model/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="logistic分布">
+<meta property="og:description" content="Logistic分布">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153138596418.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153142414584.jpg">
@@ -107,10 +107,10 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153148419813.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153150538259.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153176904048.jpg">
-<meta property="og:updated_time" content="2018-01-07T09:54:36.416Z">
+<meta property="og:updated_time" content="2018-01-07T09:56:39.729Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="logistic模型">
-<meta name="twitter:description" content="logistic分布">
+<meta name="twitter:title" content="Logistic模型">
+<meta name="twitter:description" content="Logistic分布">
 <meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15153138596418.jpg">
 
 
@@ -145,7 +145,7 @@
 
 
 
-  <title>logistic模型 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Logistic模型 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -291,7 +291,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">logistic模型</h1>
+          <h1 class="post-title" itemprop="name headline">Logistic模型</h1>
         
 
         <div class="post-meta">
@@ -371,12 +371,12 @@
       
 
       
-        <h2 id="logistic分布"><a href="#logistic分布" class="headerlink" title="logistic分布"></a>logistic分布</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15153138596418.jpg" alt=""></p>
+        <h2 id="Logistic分布"><a href="#Logistic分布" class="headerlink" title="Logistic分布"></a>Logistic分布</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15153138596418.jpg" alt=""></p>
 <a id="more"></a>
 <p>设 $X$ 为连续随机变量，$X$ 服从 $logistic$ 分布指的是 $X$ 具有下列分布函数：</p>
 <p>$$ F(x) = P(X\le x) = \frac {1} {1+e^{-(x-\mu)/\gamma}}$$</p>
 <p>其中 $\mu$ 为位置参数，$\gamma \gt 0$ 是形状参数。</p>
-<h2 id="logistic回归模型"><a href="#logistic回归模型" class="headerlink" title="logistic回归模型"></a>logistic回归模型</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15153142414584.jpg" alt=""></p>
+<h2 id="Logistic回归模型"><a href="#Logistic回归模型" class="headerlink" title="Logistic回归模型"></a>Logistic回归模型</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15153142414584.jpg" alt=""></p>
 <h3 id="二项回归模型"><a href="#二项回归模型" class="headerlink" title="二项回归模型"></a>二项回归模型</h3><p>对于二项 $logistic$ 回归模型，满足如下的条件概率分布<br><img src="http://p1auo1a1h.bkt.clouddn.com/15153143389183.jpg" alt=""></p>
 <h4 id="模型理解"><a href="#模型理解" class="headerlink" title="模型理解"></a>模型理解</h4><p>从概率论的角度来讲，一个事件的<strong>几率</strong>指的是该事件发生概率与不发生概率的比值，如果事件发生的概率是 $p$，那么时间的几率就是 $\frac {p} {1-p}$，该时间的对数几率（logit 函数）是：</p>
 <p>$$logit(p) =\log \frac {p} {1-p}$$</p>
@@ -593,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#logistic分布"><span class="nav-number">1.</span> <span class="nav-text">logistic分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logistic回归模型"><span class="nav-number">2.</span> <span class="nav-text">logistic回归模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二项回归模型"><span class="nav-number">2.1.</span> <span class="nav-text">二项回归模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型理解"><span class="nav-number">2.1.1.</span> <span class="nav-text">模型理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数求解"><span class="nav-number">2.1.2.</span> <span class="nav-text">参数求解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多项回归模型"><span class="nav-number">2.2.</span> <span class="nav-text">多项回归模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判别模型和生成模型"><span class="nav-number">3.</span> <span class="nav-text">判别模型和生成模型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic分布"><span class="nav-number">1.</span> <span class="nav-text">Logistic分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic回归模型"><span class="nav-number">2.</span> <span class="nav-text">Logistic回归模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二项回归模型"><span class="nav-number">2.1.</span> <span class="nav-text">二项回归模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型理解"><span class="nav-number">2.1.1.</span> <span class="nav-text">模型理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数求解"><span class="nav-number">2.1.2.</span> <span class="nav-text">参数求解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多项回归模型"><span class="nav-number">2.2.</span> <span class="nav-text">多项回归模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判别模型和生成模型"><span class="nav-number">3.</span> <span class="nav-text">判别模型和生成模型</span></a></li></ol></div>
             
 
           </div>
