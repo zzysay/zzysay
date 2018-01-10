@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155688052169.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152458817716.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15152458680454.png">
-<meta property="og:updated_time" content="2018-01-10T07:21:11.092Z">
+<meta property="og:updated_time" content="2018-01-10T07:24:35.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="参数估计问题">
 <meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15152385911816.jpg">
@@ -374,7 +374,8 @@
 <li><strong>频率学派：</strong>通过某些优化准则（比如似然函数）来选择特定参数值</li>
 <li><strong>贝叶斯学派：</strong>首先假定参数服从一个先验分布，通过观测到的数据，使用贝叶斯理论计算对应的后验分布且选择的先验与后验都满足共轭性质</li>
 </ul>
-<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="似然和概率"><a href="#似然和概率" class="headerlink" title="似然和概率"></a>似然和概率</h3><p>在开始之前，我们需要明确<strong>似然</strong>和<strong>概率</strong>的区别，大多数人倾向于混用似然和概率这两个名词，但统计学家和概率理论家都会区分这两个概念。通过观察下面这个等式，我们可以更好地明确这种混淆的原因。<br>$$ L(\mu,\sigma; data) = P(data; \mu,\sigma) $$<br>这两个表达式是相等的，所以这是什么意思？我们先来定义 $P(data; \mu,\sigma)$， 它的意思是<strong>在模型参数</strong> $\mu,\sigma$ <strong>条件下，观察到数据</strong> $data$ <strong>的概率</strong>，我们可以将其推广到任意数量的参数和任何分布。</p>
+<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="似然和概率"><a href="#似然和概率" class="headerlink" title="似然和概率"></a>似然和概率</h3><p>在开始之前，我们需要明确<strong>似然</strong>和<strong>概率</strong>的区别，大多数人倾向于混用似然和概率这两个名词，但统计学家和概率理论家都会区分这两个概念。通过观察下面这个等式，我们可以更好地明确这种混淆的原因。<br>$$ L(\mu,\sigma; data) = P(data; \mu,\sigma) $$</p>
+<p>这两个表达式是相等的，所以这是什么意思？我们先来定义 $P(data; \mu,\sigma)$， 它的意思是<strong>在模型参数</strong> $\mu,\sigma$ <strong>条件下，观察到数据</strong> $data$ <strong>的概率</strong>，我们可以将其推广到任意数量的参数和任何分布。</p>
 <p>另一方面，$L(\mu,\sigma; data)$ 的意思是我们<strong>在观察到一组数据</strong>$data$ <strong>之后，参数</strong> $\mu,\sigma$ <strong>取特定的值的似然度</strong>。</p>
 <p>上面的公式表示，给定参数后数据的概率等于给定数据后参数的似然度。但是，尽管这两个值是相等的，但是似然度和概率从根本上是提出了两个不同的问题：一个是关于数据的，另一个是关于参数值的。这就是为什么这种方法被称为最大似然法（极大可能性），而不是最大概率。</p>
 <h3 id="最小二乘和最大似然"><a href="#最小二乘和最大似然" class="headerlink" title="最小二乘和最大似然"></a>最小二乘和最大似然</h3><p>最小二乘法是另一种常用的机器学习模型参数估计方法。结果表明，当模型向上述例子中一样被假设为<strong>高斯分布</strong>时，最大似然估计等价于最小二乘法。</p>
@@ -545,7 +546,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -567,7 +568,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

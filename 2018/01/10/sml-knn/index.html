@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习,线性鉴别," />
+  <meta name="keywords" content="机器学习,KNN," />
 
 
 
@@ -93,21 +93,34 @@
 
 
 
-<meta name="description" content="基本思想">
-<meta name="keywords" content="机器学习,线性鉴别">
+<meta name="description" content="距离度量方法">
+<meta name="keywords" content="机器学习,KNN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="线性鉴别分析">
-<meta property="og:url" content="http://zzysay.github.io/2018/01/07/sml-fisher-discriminant/index.html">
+<meta property="og:title" content="KNN模型">
+<meta property="og:url" content="http://zzysay.github.io/2018/01/10/sml-knn/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="基本思想">
+<meta property="og:description" content="距离度量方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153038272195.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153041398825.jpg">
-<meta property="og:updated_time" content="2018-01-07T06:48:51.655Z">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155703517327.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155692406834.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155693316386.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155693900306.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155732297402.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155732537820.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155751969907.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155752290225.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155739872470.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155741422651.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155752525194.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155756446505.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155757021276.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155757383958.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155758835533.jpg">
+<meta property="og:updated_time" content="2018-01-10T09:29:26.028Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="线性鉴别分析">
-<meta name="twitter:description" content="基本思想">
-<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15153038272195.jpg">
+<meta name="twitter:title" content="KNN模型">
+<meta name="twitter:description" content="距离度量方法">
+<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15155703517327.jpg">
 
 
 
@@ -135,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://zzysay.github.io/2018/01/07/sml-fisher-discriminant/"/>
+  <link rel="canonical" href="http://zzysay.github.io/2018/01/10/sml-knn/"/>
 
 
 
 
 
-  <title>线性鉴别分析 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>KNN模型 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -270,7 +283,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/07/sml-fisher-discriminant/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/10/sml-knn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZHANG ZH.Y.">
@@ -287,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">线性鉴别分析</h1>
+          <h1 class="post-title" itemprop="name headline">KNN模型</h1>
         
 
         <div class="post-meta">
@@ -299,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-07T14:47:06+08:00">
-                2018-01-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T17:26:45+08:00">
+                2018-01-10
               </time>
             
 
@@ -367,38 +380,42 @@
       
 
       
-        <h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15153038272195.jpg" alt=""></p>
+        <h2 id="距离度量方法"><a href="#距离度量方法" class="headerlink" title="距离度量方法"></a>距离度量方法</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15155703517327.jpg" alt=""></p>
 <a id="more"></a>
-<p>线性鉴别分析又被称为 Fisher 鉴别，其目标就是寻找一个 $\vec w$，使得 样本集 $D$ 投影后，类内距离最小，类间间距最大。</p>
-<p><img src="http://p1auo1a1h.bkt.clouddn.com/15153041398825.jpg" alt=""></p>
-<p>从上图可以直观地看出，右图方向上的 $\vec w$ 比左图方向上的 $\vec w$ 更能使 ${\vec x_i}$ 的投影值 ${\vec \lambda_i}$ 分隔开，所以我们说右图中的 $\vec w$ 明显有着更好的划分效果。</p>
-<h2 id="Fisher准则"><a href="#Fisher准则" class="headerlink" title="Fisher准则"></a>Fisher准则</h2><p>按照上文中提到的基本思想，Fisher 鉴别的目标函数又被称为 Fisher 准则：</p>
-<p>$$ \max J = \frac {类间平均距离}{类内平均距离} $$</p>
-<h3 id="类间距离"><a href="#类间距离" class="headerlink" title="类间距离"></a>类间距离</h3><p>我们使用 $\vec \mu_i$ 来代表类别 $i$ 的样本平均值，于是有：</p>
-<p>$$ \vec \mu_1 = \frac {1} {|C_1|} \sum_{i \in C_1} \vec x_i \\ \vec \mu_2 = \frac {1} {|C_2|} \sum_{i \in C_2} \vec x_i $$</p>
-<p>记样本均值点 $\vec \mu_1$，$\vec \mu_2$ 在方向 $\vec w$ 上的投影为 $m_1$，$m_2$，所以：</p>
-<p>$$ m_1 = \vec w^T \vec \mu_1<br>\\ m_2 = \vec w^T \vec \mu_2 $$</p>
-<p>则类间距离为 $(m_1-m_2)^2$，于是有：</p>
-<p>$$\begin{align} (m_1-m_2)^2 &amp; = (m_2 - m_1)(m_2 - m_1)^T \nonumber<br>\\&amp; = [\vec w^T(\vec \mu_1-\vec \mu_2)][\vec w^T(\vec \mu_1-\vec \mu_2)]^T \nonumber<br>\\&amp; = \vec w^T(\vec \mu_1-\vec \mu_2)(\vec \mu_1-\vec \mu_2)^T\vec w \nonumber<br>\\&amp; = \vec w^T S_b\vec w \nonumber<br>\end{align}$$</p>
-<p>其中， $S_b=(\vec \mu_1-\vec \mu_2)(\vec \mu_1-\vec \mu_2)^T$ 为类间散度矩阵。</p>
-<h3 id="类内距离"><a href="#类内距离" class="headerlink" title="类内距离"></a>类内距离</h3><p>我们用均方差来表示映射后类别内部的松散程度，作为类内距离：</p>
-<p>$$\begin{align}<br>S_c^2 &amp;= \sum_{i\in C} ||\vec w^T \vec x_i - m_C || \nonumber<br>\\&amp;= \sum_{i\in C} ||\vec w^T (\vec x_i - \mu_C) || \nonumber<br>\\&amp;= \sum_{i\in C} [\vec w^T(\vec x_i-\vec \mu_C)][\vec w^T(\vec x_i-\vec \mu_C)]^T  \nonumber<br>\\&amp;= \sum_{i\in C} \vec w^T(\vec x_i-\vec \mu_C)(\vec x_i-\vec \mu_C)^T \vec w \nonumber<br>\\&amp;= \vec w^T [\sum_{i\in C} (\vec x_i-\vec \mu_C)(\vec x_i-\vec \mu_C)^T ]\vec w \nonumber<br>\end{align}$$</p>
-<p>两类问题的类内平均距离：<br>$$\begin{align}<br>S_1^2 +S_2^2 &amp;= \vec w^T [\sum_{i\in C_1} (\vec x_i-\vec \mu_1)(\vec x_i-\vec \mu_1)^T ]\vec w + \vec w^T [\sum_{i\in C_2} (\vec x_i-\vec \mu_2)(\vec x_i-\vec \mu_2)^T ]\vec w \nonumber<br>\\&amp;= \vec w^T [\sum_{j=1,2}\sum_{i\in C_j} (\vec x_i-\vec \mu_j)(\vec x_i-\vec \mu_j)^T]\vec w \nonumber<br>\\&amp;= \vec w^T S_w \vec w \nonumber<br>\end{align}$$</p>
-<p>其中， $S_w=\sum_{j=1,2}\sum_{i\in C_j} (\vec x_i-\vec \mu_j)(\vec x_i-\vec \mu_j)^T$ 为类内平均散度矩阵。</p>
-<h2 id="求解过程"><a href="#求解过程" class="headerlink" title="求解过程"></a>求解过程</h2><p>有了类间距离和类内平均距离，目标函数可以写成：<br>$$\max_w\;J(w) = \frac{(m_2 - m_1)^2}{S_1^2 + S_2^2} = \frac {\vec w^T S_b \vec w}{\vec w^T S_w \vec w}$$</p>
-<p>写成目标函数的拉格朗日函数：</p>
-<p>$$ L(w,\lambda) = \vec w^T S_b \vec w - \lambda(\vec w^T S_w \vec w -c) $$</p>
-<p>对 $\vec w$ 求导：</p>
-<p>$$\frac {\partial L(w,\lambda)} {\partial \vec w} = S_b \vec w - \lambda S_w \vec w = 0<br>\\ \Rightarrow S_b \vec w = \lambda S_w \vec w<br>\\ \Rightarrow S_w^{-1} S_b \vec w = \lambda \vec w $$</p>
-<p>所以，最优解即为 $S_w^{-1} S_b$ 的特征向量。</p>
-<p>但是在实际过程中，并不需要求出其特征值，因为 $S_b \vec w$ 在 $\mu_1-\mu_2$ 的方向上，把 $S_b$ 代入可以得到：</p>
-<p>$$S_b \vec w = (\vec \mu_1-\vec \mu_2)(\vec \mu_1-\vec \mu_2)^T \vec w = (\vec \mu_1-\vec \mu_2)[(\vec \mu_1-\vec \mu_2)^T \vec w]$$</p>
-<p>其中，$(\vec \mu_1-\vec \mu_2)^T \vec w$ 是一个标量值，所以上式等价于：</p>
-<p>$$S_b \vec w = \beta(\vec \mu_1-\vec \mu_2)$$</p>
-<p>代入到 $S_w^{-1} S_b \vec w = \lambda \vec w $ 中得到：</p>
-<p>$$ S_w^{-1} \beta(\vec \mu_1-\vec \mu_2) = \lambda \vec w<br>\\ \Rightarrow \vec w = \frac {\beta} {\lambda} S_w^{-1}(\vec \mu_1-\vec \mu_2)<br> $$</p>
-<p>其中标量值可以忽略，所以$\vec w = S_w^{-1}(\vec \mu_1-\vec \mu_2)$ ，即只需要求出原始样本的均值和方差就可以求出最佳的方向 $w$。</p>
-<p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] 周晓飞,<a href="http://p1auo1a1h.bkt.clouddn.com/Linear_Discriminant_Analysis.pdf" target="_blank" rel="external">《Fisher鉴别推导过程》</a></p>
+<p>设特征空间 $X$ 是 $n$ 维实数向量空间 $\bf{R}^n$，$x_i, x_j \in \bf{R}^n$，$x_i = (x_i^{(1)},x_i^{(2)},\dots,x_i^{(n)})^T$，$x_j = (x_j^{(1)},x_j^{(2)},\dots,x_j^{(n)})^T$，$x_i$ 和 $x_j$ 的 $L_p$ 距离定义为：<br>$$ L_p(x_i, x_j) = \left( \sum_{l=1}^{n}| x_i^{(l)} - x_j^{(l)} |^p \right)^{\frac{1}{p}} $$</p>
+<p>当 $p=1$ 时，称为曼哈顿距离，即：<br>$$ L_1(x_i, x_j) =  \sum_{l=1}^{n}| x_i^{(l)} - x_j^{(l)} | $$</p>
+<p>当 $p=2$ 时，称为欧式距离，即：<br>$$ L_2(x_i, x_j) = \left( \sum_{l=1}^{n}| x_i^{(l)} - x_j^{(l)} |^2\right)^{\frac{1}{2}} $$</p>
+<p>当 $p=\infty $ 时，它是各个坐标距离的最大值<br>$$L_\infty(x_i, x_j) = \max_l|x_i^{(l)} - x_j^{(l)}|$$</p>
+<p>显然，不同的距离度量方法最确定的最近邻点是不同的。</p>
+<h2 id="最近邻算法"><a href="#最近邻算法" class="headerlink" title="最近邻算法"></a>最近邻算法</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15155692406834.jpg" alt=""></p>
+<p>显然，最近邻算法隐含的决策边界是非线性的。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15155693316386.jpg" alt=""></p>
+<h2 id="K-近邻算法"><a href="#K-近邻算法" class="headerlink" title="K 近邻算法"></a>K 近邻算法</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15155693900306.jpg" alt=""></p>
+<p>对 $k$ 近邻算法的一个简单改进是对 $k$ 个近邻的贡献加权，根据它们相对查询点 $x$ 的距离，将较大的权值赋给较近的近邻。</p>
+<p>因为 $k$ 近邻最简单的实现方法是线性扫描，所以算法缺点十分明显：</p>
+<ul>
+<li><strong>存储量大：</strong>所有样本需要存到内存</li>
+<li><strong>计算量大：</strong>每次决策都要计算所有样本的相似性</li>
+</ul>
+<h2 id="快速算法"><a href="#快速算法" class="headerlink" title="快速算法"></a>快速算法</h2><h2 id="快速搜索近邻法"><a href="#快速搜索近邻法" class="headerlink" title="快速搜索近邻法"></a>快速搜索近邻法</h2><p><strong>算法原理：</strong>将样本分成不相交的子集，基于子集的搜索 </p>
+<ol>
+<li>样本<strong>分级分层</strong>为多个子集</li>
+<li><strong>逐层</strong>搜出一个最优子集</li>
+<li>在最后的子集中<strong>局部找最近样本点</strong> </li>
+</ol>
+<p>典型的快速搜索近邻法就是 $kd$ 树方法：$kd$ 树是一种对 $k$ 维空间内的实例点进行存储以便对其进行快速检索的树形数据结构，$kd$ 树是二叉树，表示对 $k$ 维空间的一个划分。</p>
+<h3 id="构造-kd-树"><a href="#构造-kd-树" class="headerlink" title="构造 kd 树"></a>构造 kd 树</h3><p><strong>算法过程</strong></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15155732297402.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15155732537820.jpg" alt=""></p>
+<p><strong>算法实例</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15155751969907.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15155752290225.jpg" alt=""></p>
+<h3 id="搜索-kd-树"><a href="#搜索-kd-树" class="headerlink" title="搜索 kd 树"></a>搜索 kd 树</h3><p><strong>算法过程</strong></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15155739872470.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15155741422651.jpg" alt=""></p>
+<p><strong>算法实例</strong></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15155752525194.jpg" alt=""></p>
+<p><a href="https://www.joinquant.com/post/2843" target="_blank" rel="external">这里</a> 是一个关于 $kd$ 树构建和搜索的详细示例，在搜索时不单单是寻找最近邻。</p>
+<h3 id="剪辑近邻法"><a href="#剪辑近邻法" class="headerlink" title="剪辑近邻法"></a>剪辑近邻法</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15155756446505.jpg" alt=""></p>
+<h3 id="压缩近邻法"><a href="#压缩近邻法" class="headerlink" title="压缩近邻法"></a>压缩近邻法</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15155757021276.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15155757383958.jpg" alt=""></p>
+<h3 id="拒绝决策近邻法"><a href="#拒绝决策近邻法" class="headerlink" title="拒绝决策近邻法"></a>拒绝决策近邻法</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15155758835533.jpg" alt=""></p>
+<p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] <a href="https://www.joinquant.com/post/2843" target="_blank" rel="external">https://www.joinquant.com/post/2843</a></p>
 
       
     </div>
@@ -430,7 +447,7 @@
           
             <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
           
-            <a href="/tags/线性鉴别/" rel="tag"># 线性鉴别</a>
+            <a href="/tags/KNN/" rel="tag"># KNN</a>
           
         </div>
       
@@ -443,8 +460,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/07/sml-perceptron/" rel="next" title="感知机模型">
-                <i class="fa fa-chevron-left"></i> 感知机模型
+              <a href="/2018/01/10/sml-boosting/" rel="next" title="集成学习">
+                <i class="fa fa-chevron-left"></i> 集成学习
               </a>
             
           </div>
@@ -452,10 +469,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/07/sml-logistic-model/" rel="prev" title="Logistic模型">
-                Logistic模型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -585,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本思想"><span class="nav-number">1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fisher准则"><span class="nav-number">2.</span> <span class="nav-text">Fisher准则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类间距离"><span class="nav-number">2.1.</span> <span class="nav-text">类间距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类内距离"><span class="nav-number">2.2.</span> <span class="nav-text">类内距离</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解过程"><span class="nav-number">3.</span> <span class="nav-text">求解过程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#距离度量方法"><span class="nav-number">1.</span> <span class="nav-text">距离度量方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最近邻算法"><span class="nav-number">2.</span> <span class="nav-text">最近邻算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#K-近邻算法"><span class="nav-number">3.</span> <span class="nav-text">K 近邻算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速算法"><span class="nav-number">4.</span> <span class="nav-text">快速算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速搜索近邻法"><span class="nav-number">5.</span> <span class="nav-text">快速搜索近邻法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造-kd-树"><span class="nav-number">5.1.</span> <span class="nav-text">构造 kd 树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索-kd-树"><span class="nav-number">5.2.</span> <span class="nav-text">搜索 kd 树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剪辑近邻法"><span class="nav-number">5.3.</span> <span class="nav-text">剪辑近邻法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩近邻法"><span class="nav-number">5.4.</span> <span class="nav-text">压缩近邻法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拒绝决策近邻法"><span class="nav-number">5.5.</span> <span class="nav-text">拒绝决策近邻法</span></a></li></ol></li></ol></div>
             
 
           </div>
