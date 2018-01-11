@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="数据挖掘,机器学习," />
+  <meta name="keywords" content="机器学习,参数估计," />
 
 
 
@@ -93,38 +93,35 @@
 
 
 
-<meta name="description" content="支持向量机边距的表示">
-<meta name="keywords" content="数据挖掘,机器学习">
+<meta name="description" content="概述 问题定义根据给定的训练集 $T={(x_1, y_1),\dots,(x_l, y_l)}$，其中 $x_i \in C = R^n$，$y_i \in Y = R$，预测的结果 $y$ 为连续函数值，要求寻找 $R^n$ 上的决策函数 $f(x): C \rightarrow Y$。 性能评价 线性回归 对于所谓的一元、二元、多元回归，$N$ 元对应的就是变量 $x$ 的维度。  最小二乘">
+<meta name="keywords" content="机器学习,参数估计">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从支持向量机到结构化输出预测">
-<meta property="og:url" content="http://zzysay.github.io/2017/12/22/data-mining-svm-struct/index.html">
+<meta property="og:title" content="回归分析">
+<meta property="og:url" content="http://zzysay.github.io/2018/01/11/sml-regression/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="支持向量机边距的表示">
+<meta property="og:description" content="概述 问题定义根据给定的训练集 $T={(x_1, y_1),\dots,(x_l, y_l)}$，其中 $x_i \in C = R^n$，$y_i \in Y = R$，预测的结果 $y$ 为连续函数值，要求寻找 $R^n$ 上的决策函数 $f(x): C \rightarrow Y$。 性能评价 线性回归 对于所谓的一元、二元、多元回归，$N$ 元对应的就是变量 $x$ 的维度。  最小二乘">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138577662127.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138582978767.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138585285953.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138588065447.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138724404036.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138725261565.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138726585077.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138726966927.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138734373295.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138735806254.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138737252919.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138737710424.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138739353341.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138740698079.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138741427163.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138741766034.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138743582891.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138750317473.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15138750990256.jpg">
-<meta property="og:updated_time" content="2017-12-23T16:13:38.090Z">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156763006592.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156764491048.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156766017162.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156769005581.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156774780393.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156784474169.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156785443854.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156853000823.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156881427369.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156882032355.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156882315930.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156882425237.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156766017162.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156883745030.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156885581392.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15156886905596.jpg">
+<meta property="og:updated_time" content="2018-01-11T16:42:07.816Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从支持向量机到结构化输出预测">
-<meta name="twitter:description" content="支持向量机边距的表示">
-<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15138577662127.jpg">
+<meta name="twitter:title" content="回归分析">
+<meta name="twitter:description" content="概述 问题定义根据给定的训练集 $T={(x_1, y_1),\dots,(x_l, y_l)}$，其中 $x_i \in C = R^n$，$y_i \in Y = R$，预测的结果 $y$ 为连续函数值，要求寻找 $R^n$ 上的决策函数 $f(x): C \rightarrow Y$。 性能评价 线性回归 对于所谓的一元、二元、多元回归，$N$ 元对应的就是变量 $x$ 的维度。  最小二乘">
+<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15156763006592.jpg">
 
 
 
@@ -152,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://zzysay.github.io/2017/12/22/data-mining-svm-struct/"/>
+  <link rel="canonical" href="http://zzysay.github.io/2018/01/11/sml-regression/"/>
 
 
 
 
 
-  <title>从支持向量机到结构化输出预测 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>回归分析 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -287,7 +284,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/12/22/data-mining-svm-struct/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/11/sml-regression/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ZHANG ZH.Y.">
@@ -304,7 +301,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">从支持向量机到结构化输出预测</h1>
+          <h1 class="post-title" itemprop="name headline">回归分析</h1>
         
 
         <div class="post-meta">
@@ -316,8 +313,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-22T00:54:15+08:00">
-                2017-12-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T23:41:24+08:00">
+                2018-01-11
               </time>
             
 
@@ -350,8 +347,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/课堂笔记/网络数据挖掘/" itemprop="url" rel="index">
-                    <span itemprop="name">网络数据挖掘</span>
+                  <a href="/categories/课堂笔记/统计机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">统计机器学习</span>
                   </a>
                 </span>
 
@@ -384,46 +381,43 @@
       
 
       
-        <h2 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h2><h3 id="边距的表示"><a href="#边距的表示" class="headerlink" title="边距的表示"></a>边距的表示</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138577662127.jpg" alt=""></p>
-<a id="more"></a>
-<p>即 $SVM$ 的学习过程归结为寻找合适的 $w$ 和 $b$ 使边距 $M$ 最大化</p>
-<ul>
-<li>若所有的训练数据都在正确的分类区域，则有 $y_i(\langle w,x_i \rangle+b)≥1 $，其中 $y_i \in \lbrace +1,−1 \rbrace $</li>
-<li>$ max \frac 2 {\sqrt{\langle w,w \rangle}} \Leftrightarrow min ||w||^2 $</li>
-</ul>
-<p>即 $SVM$ 的优化问题可以表示为：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15138582978767.jpg" alt=""></p>
-<p>$(\langle w,x_i \rangle+b)$ 应当是一个绝对值大于等于 $1$ 的值，约束条件就意味着所有点均位于正边距和负边距之上或之外</p>
-<h3 id="软边距SVM"><a href="#软边距SVM" class="headerlink" title="软边距SVM"></a>软边距SVM</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138585285953.jpg" alt=""></p>
-<h3 id="原问题的对偶问题"><a href="#原问题的对偶问题" class="headerlink" title="原问题的对偶问题"></a>原问题的对偶问题</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138588065447.jpg" alt=""></p>
-<p><strong>推导：</strong></p>
-<p>原问题的拉格朗日函数：<br>$$ L(w, b, \xi, \mu, a) = \frac 1 2 ||w||^2 + C \sum_{i=1}^n \xi_i - \sum_{i=1}^n a_i(y_i(w·x_i+b)-1+\xi_i)-\sum_{i=1}^n\mu_i \xi_i$$</p>
-<p>显然：<br>$$ \frac 1 2 ||w||^2 ≥ L(w, b, \xi, \mu, a) ≥ \mathop{inf} \limits_{w,b} L(w, b, \xi, \mu, a)$$</p>
-<p>对偶问题是拉格朗日函数的极大极小问题，首先求 $L(w, b, \xi, \mu, a)$ 对 $w, b, \xi$ 的极小值，由：<br>$$ \nabla_w L(w, b, \xi, \mu, a) = w - \sum_{i=1}^n a_iy_ix_i = 0 $$$$ \nabla_b L(w, b, \xi, \mu, a) = - \sum_{i=1}^n a_iy_i = 0 $$$$\nabla_{\xi} L(w, b, \xi, \mu, a) = C - a_i - \mu_i = 0 $$<br>得：<br>$$ w = \sum_{i=1}^n a_iy_ix_i $$$$ \sum_{i=1}^n a_iy_i = 0 $$$$ C - a_i - \mu_i = 0 $$</p>
-<p>原式可化为：<br>$$ L(w, b, \xi, \mu, a) =  \frac 1 2 ||w||^2 + \sum_{i=1}^n \xi_i  (C - a_i - \mu_i) - \sum_{i=1}^n a_iy_i(w·x_i+b) + \sum_{i=1}^n a_i $$</p>
-<p>代入易得：<br>$$ L(w, b, \xi, \mu, a) =\sum_{i=1}^n a_i - \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n a_ia_jy_iy_j \langle x_i, x_j\rangle $$</p>
-<p>对拉格朗日乘子有以下约束：<br>$$ \sum_{i=1}^n a_iy_i = 0 $$$$ C ≥ a_i ≥ 0 $$</p>
-<h3 id="求解对偶问题"><a href="#求解对偶问题" class="headerlink" title="求解对偶问题"></a>求解对偶问题</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138724404036.jpg" alt=""></p>
-<p>据此学习到的分类函数为</p>
-<p><img src="http://p1auo1a1h.bkt.clouddn.com/15138725261565.jpg" alt=""></p>
-<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><h4 id="损失函数的定义"><a href="#损失函数的定义" class="headerlink" title="损失函数的定义"></a>损失函数的定义</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138726585077.jpg" alt=""></p>
-<h4 id="SVM的损失函数"><a href="#SVM的损失函数" class="headerlink" title="SVM的损失函数"></a>SVM的损失函数</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138726966927.jpg" alt=""></p>
-<h2 id="结构化输出预测"><a href="#结构化输出预测" class="headerlink" title="结构化输出预测"></a>结构化输出预测</h2><h3 id="结构化输出问题描述"><a href="#结构化输出问题描述" class="headerlink" title="结构化输出问题描述"></a>结构化输出问题描述</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138734373295.jpg" alt=""></p>
-<p>其简单做法就是将简化为更加细粒度的分类问题，即多个分类问题：</p>
-<p><img src="http://p1auo1a1h.bkt.clouddn.com/15138735806254.jpg" alt=""></p>
-<h3 id="结构化输出预测模型"><a href="#结构化输出预测模型" class="headerlink" title="结构化输出预测模型"></a>结构化输出预测模型</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138737252919.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15138737710424.jpg" alt=""></p>
-<h4 id="结构化感知机"><a href="#结构化感知机" class="headerlink" title="结构化感知机"></a>结构化感知机</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15138739353341.jpg" alt=""></p>
-<h4 id="结构化SVM"><a href="#结构化SVM" class="headerlink" title="结构化SVM"></a>结构化SVM</h4><p><strong>基本思路</strong></p>
-<p><img src="http://p1auo1a1h.bkt.clouddn.com/15138740698079.jpg" alt=""></p>
-<p><strong>具体实现</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15138741427163.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15138741766034.jpg" alt=""></p>
-<p>注：负例并不会出现在正边距及其方向上，因为要保证正确样本的得分值比错误样本的得分值高。</p>
-<p>转化成差值后的形式，类似于 $RankingSVM$<br><img src="http://p1auo1a1h.bkt.clouddn.com/15138743582891.jpg" alt=""></p>
-<p>对于上图，正确样本的误差为 $0$，其位置应该位于分类面上，即垂直于 $w$ 的过原点的直线，这也就是与原图相比转换成差值后增加了坐标轴的原因。</p>
-<h4 id="软边距及变边距SVM-Struct"><a href="#软边距及变边距SVM-Struct" class="headerlink" title="软边距及变边距SVM-Struct"></a>软边距及变边距SVM-Struct</h4><p>和软边距$SVM$、变边距$SVM$和 $SVM$ 的区别一样，只是对边距表示的调整。</p>
-<p><strong>软边距 SVM-Struct</strong></p>
-<p><img src="http://p1auo1a1h.bkt.clouddn.com/15138750317473.jpg" alt=""></p>
-<p><strong>变边距 SVM-Struct</strong></p>
-<p><img src="http://p1auo1a1h.bkt.clouddn.com/15138750990256.jpg" alt=""></p>
-<p>参考文献：<br>[1] 徐君,《网络数据挖掘》,中国科学院大学2017年秋季研究生课程<br>[2] 卜东波,《计算机算法设计与分析》,中国科学院大学2017年秋季研究生课程<br>[3] 李航,《统计学习方法》,清华大学出版社</p>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15156763006592.jpg" alt=""></p>
+<h3 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h3><p>根据给定的训练集 $T={(x_1, y_1),\dots,(x_l, y_l)}$，其中 $x_i \in C = R^n$，$y_i \in Y = R$，预测的结果 $y$ 为连续函数值，要求寻找 $R^n$ 上的决策函数 $f(x): C \rightarrow Y$。</p>
+<h3 id="性能评价"><a href="#性能评价" class="headerlink" title="性能评价"></a>性能评价</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15156764491048.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15156766017162.jpg" alt=""></p>
+<h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15156769005581.jpg" alt=""></p>
+<p>对于所谓的一元、二元、多元回归，$N$ 元对应的就是变量 $x$ 的维度。 </p>
+<h2 id="最小二乘估计"><a href="#最小二乘估计" class="headerlink" title="最小二乘估计"></a>最小二乘估计</h2><p>“二乘”的意思就是“平方”，其目标函数也就是最小化平方误差的和：</p>
+<p>$$ \min_{\theta} \sum_{t=1}^n (y_t - \theta^Tx_t - \theta_0)^2 $$</p>
+<p>矩阵求解过程：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15156774780393.jpg" alt=""></p>
+<h2 id="最大似然估计"><a href="#最大似然估计" class="headerlink" title="最大似然估计"></a>最大似然估计</h2><p>最大似然估计中最重要的是“似然”的概念，即模型已知，参数未定。关于概率和似然的相关概念，<a href="http://zzysay.github.io/2018/01/06/sml-parameter-estimation/">这里</a>有更为详细的解释。本章节讨论的是似然函数服从正态分布假设的最大似然估计。</p>
+<p>这里我们所说的正态分布指的是误差服从正态分布：<br>$$ y_t = \theta^Tx + \theta_0 + \epsilon_t \; t=1,2,\dots, n $$</p>
+<p>其中，$\epsilon_t \sim N(0, \sigma^2)$ 并且 $\epsilon$ 之间相互独立。</p>
+<p>正态分布概率密度函数：<br>$$f(x) = \frac 1 {\sqrt[]{2\pi \sigma^2}} exp (-\frac {(x-\mu)^2} {2\sigma^2}) $$</p>
+<p>写出似然函数：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15156784474169.jpg" alt=""></p>
+<p>对数似然：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15156785443854.jpg" alt=""></p>
+<p>显然，此时最大化对数似然估计等价于最小化二乘估计，这种情况出现在正态分布的情况下是完全可解释的。</p>
+<h3 id="优化学习方法"><a href="#优化学习方法" class="headerlink" title="优化学习方法"></a>优化学习方法</h3><p>对于最大似然估计的优化学习方法，第一种方法就是在最小二乘估计中介绍的矩阵求解方法，另外一种就是梯度下降方法：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15156853000823.jpg" alt=""></p>
+<h2 id="最大后验估计"><a href="#最大后验估计" class="headerlink" title="最大后验估计"></a>最大后验估计</h2><p>在本部分的最大化后验估计中，我们依旧使用正态分布的误差数据，写出正态分布的先验概率：</p>
+<p>$$ p(y|x, \theta, \theta_0) = L(\theta, \theta_0, \sigma^2) = \prod_{t=1}^n \frac 1 {\sqrt[]{2\pi \sigma^2}} exp \left(-\frac 1 {2\sigma^2} (y_t-\theta^Tx_t-\theta_0)^2 \right)$$</p>
+<p>参数先验：</p>
+<p>$$ \begin{align} \pi(\theta, \theta_0) &amp;= \frac 1 {(\sqrt[]{2\pi \sigma_{\theta}^2})^m} \prod_{k=0}^M \left(-\frac {\theta_k^2} {2\sigma_{\theta}^2}\right) \nonumber<br>\\&amp; = = \frac 1 {(\sqrt[]{2\pi \sigma_{\theta}^2})^m} exp \left(-\frac 1 {2\sigma_{\theta}^2} \sum_{k=0}^M \theta_k^2 \right) \nonumber<br>\\&amp; = = \frac 1 {(\sqrt[]{2\pi \sigma_{\theta}^2})^m} exp \left(-\frac 1 {2\sigma_{\theta}^2} ||\theta||^2 \right) \nonumber<br>\end{align}  $$</p>
+<p>参数后验：<br>$$ p(\theta, \theta_0 |x, y) \propto \pi(\theta, \theta_0)p(y|x, \theta, \theta_0 )$$</p>
+<p>对数参数后验：<br>$$ log \pi(\theta, \theta_0)p(y|x, \theta, \theta_0 ) = -\frac 1 {2\sigma^2} \sum_{t=1}^n (y_t-\theta^Tx_t-\theta_0)^2 -\frac 1 {2\sigma^2}||\theta||^2 + const $$</p>
+<p>目标函数：<br>$$ \min_{\theta} -\frac 1 2 \sum_{t=1}^n (y_t-\theta^Tx_t-\theta_0)^2 -\frac \lambda 2||\theta||^2 $$<br>其中，$\lambda = \frac {\sigma^2} {\sigma^2_{\theta}}$</p>
+<p>于是，最大后验估计可以看做是正则化的最小二乘估计。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15156881427369.jpg" alt=""></p>
+<h2 id="非线性回归模型"><a href="#非线性回归模型" class="headerlink" title="非线性回归模型"></a>非线性回归模型</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15156882032355.jpg" alt=""></p>
+<p>常见的基函数形式：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15156882315930.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15156882425237.jpg" alt=""></p>
+<h2 id="误差分析"><a href="#误差分析" class="headerlink" title="误差分析"></a>误差分析</h2><p>对于文章开篇提到的泛化误差：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15156766017162.jpg" alt=""></p>
+<p>我们可以将其展开：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15156883745030.jpg" alt=""></p>
+<p>正则项对偏差和方差的影响：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15156885581392.jpg" alt=""></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15156886905596.jpg" alt=""></p>
+<p>而正则化的最小二乘估计是有偏估计，增加正则项相当于增加白噪声，使得参数估计更加稳定。</p>
+<p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程</p>
 
       
     </div>
@@ -453,9 +447,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据挖掘/" rel="tag"># 数据挖掘</a>
-          
             <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/参数估计/" rel="tag"># 参数估计</a>
           
         </div>
       
@@ -468,8 +462,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/21/data-mining-apriori/" rel="next" title="从关联规则到Apriori算法">
-                <i class="fa fa-chevron-left"></i> 从关联规则到Apriori算法
+              <a href="/2018/01/10/sml-knn/" rel="next" title="KNN模型">
+                <i class="fa fa-chevron-left"></i> KNN模型
               </a>
             
           </div>
@@ -477,10 +471,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/12/23/data-mining-adaboost/" rel="prev" title="从决策树到Adaboost算法">
-                从决策树到Adaboost算法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -610,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量机"><span class="nav-number">1.</span> <span class="nav-text">支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#边距的表示"><span class="nav-number">1.1.</span> <span class="nav-text">边距的表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软边距SVM"><span class="nav-number">1.2.</span> <span class="nav-text">软边距SVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原问题的对偶问题"><span class="nav-number">1.3.</span> <span class="nav-text">原问题的对偶问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求解对偶问题"><span class="nav-number">1.4.</span> <span class="nav-text">求解对偶问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#损失函数"><span class="nav-number">1.5.</span> <span class="nav-text">损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数的定义"><span class="nav-number">1.5.1.</span> <span class="nav-text">损失函数的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SVM的损失函数"><span class="nav-number">1.5.2.</span> <span class="nav-text">SVM的损失函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构化输出预测"><span class="nav-number">2.</span> <span class="nav-text">结构化输出预测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构化输出问题描述"><span class="nav-number">2.1.</span> <span class="nav-text">结构化输出问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结构化输出预测模型"><span class="nav-number">2.2.</span> <span class="nav-text">结构化输出预测模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构化感知机"><span class="nav-number">2.2.1.</span> <span class="nav-text">结构化感知机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结构化SVM"><span class="nav-number">2.2.2.</span> <span class="nav-text">结构化SVM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软边距及变边距SVM-Struct"><span class="nav-number">2.2.3.</span> <span class="nav-text">软边距及变边距SVM-Struct</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题定义"><span class="nav-number">1.1.</span> <span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#性能评价"><span class="nav-number">1.2.</span> <span class="nav-text">性能评价</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性回归"><span class="nav-number">1.3.</span> <span class="nav-text">线性回归</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小二乘估计"><span class="nav-number">2.</span> <span class="nav-text">最小二乘估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大似然估计"><span class="nav-number">3.</span> <span class="nav-text">最大似然估计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化学习方法"><span class="nav-number">3.1.</span> <span class="nav-text">优化学习方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大后验估计"><span class="nav-number">4.</span> <span class="nav-text">最大后验估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性回归模型"><span class="nav-number">5.</span> <span class="nav-text">非线性回归模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#误差分析"><span class="nav-number">6.</span> <span class="nav-text">误差分析</span></a></li></ol></div>
             
 
           </div>
