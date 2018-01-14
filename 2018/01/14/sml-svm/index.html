@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习,SVM," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。">
+<meta name="keywords" content="机器学习,SVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="支持向量机">
+<meta property="og:url" content="http://zzysay.github.io/2018/01/14/sml-svm/index.html">
+<meta property="og:site_name" content="ZZY SAY">
+<meta property="og:description" content="支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159152846032.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159147939414.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159180756448.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159326131822.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159326412603.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159339249517.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159401779594.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/1364952814_3505.gif">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159419758530.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159417163475.jpg">
+<meta property="og:updated_time" content="2018-01-14T15:16:26.524Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="支持向量机">
+<meta name="twitter:description" content="支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。">
+<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15159152846032.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzysay.github.io/2018/01/14/sml-svm/"/>
+
+
+
+
+
+  <title>支持向量机 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZZY SAY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I AM WHO I AM.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/14/sml-svm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHANG ZH.Y.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZY SAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">支持向量机</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-14T23:13:59+08:00">
+                2018-01-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课堂笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">课堂笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课堂笔记/统计机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">统计机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://p1auo1a1h.bkt.clouddn.com/15159152846032.jpg" alt=""></p>
+<p>支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。</p>
+<a id="more"></a>
+<h2 id="硬边距支持向量机"><a href="#硬边距支持向量机" class="headerlink" title="硬边距支持向量机"></a>硬边距支持向量机</h2><h3 id="函数间隔与几何间隔"><a href="#函数间隔与几何间隔" class="headerlink" title="函数间隔与几何间隔"></a>函数间隔与几何间隔</h3><p>一般来说，一个点距离分类超平面的远近可以表示分类预测的确信程度，在超平面 $w·x+b=0$ 确定的情况下，$|w·x + b|$ 能够<strong>相对</strong>的表示点 $x$ 距离超平面的远近，而 $w·x + b$ 的符号与类别标记 $y$ 的符号一致就表示分类正确。</p>
+<h4 id="函数间隔"><a href="#函数间隔" class="headerlink" title="函数间隔"></a>函数间隔</h4><p>对于给定的训练数据集 $T$ 和超平面 $(w,b)$，定义超平面 $(w,b)$ 关于样本点 $x_i,y_i$ 的函数间隔为：</p>
+<p>$$ \hat \gamma_i = y_i(w·x_i+b) $$</p>
+<p>为了使函数间隔最大（更大的信心确定该例是正例还是反例），当 $y_i\gt0$ 时，$(w·x_i+b)$ 应该是个大正数，反之是个大负数。因此<strong>函数间隔代表了我们认为特征是正例还是反例的确信度</strong>。</p>
+<p>定义超平面 $(w,b)$ 关于训练集 $T$ 的函数间隔为超平面 $(w,b)$ 关于 $T$ 中所有样本点的函数间隔最小值：</p>
+<p>$$\hat \gamma = \min_{i=1,…,N} \hat \gamma_i$$</p>
+<p>继续考虑 $(w,b)$ ，如果同时加大 $w$ 和 $b$，比如在 $(w·x_i+b)$ 前面乘个系数比如 $2$，那么所有点的函数间隔都会增大二倍，这个对求解问题来说不应该有影响，因为我们要求解的超平面是 $(w·x_i+b)=0$。这样，我们为了限制 $w$ 和 $b$，可能需要加入归一化条件，因为求解的目标是确定唯一的 $w$ 和 $b$，而不是多组线性相关的向量。</p>
+<h4 id="几何间隔"><a href="#几何间隔" class="headerlink" title="几何间隔"></a>几何间隔</h4><center><img src="http://p1auo1a1h.bkt.clouddn.com/15159147939414.jpg" alt=""></center>
+
+
+<p>假设我们有了 $B$ 点所在的 $(wx_i+b)=0$ 的分割面，$A$ 到该面的距离可以用 $\gamma_i$ 表示，假设 $B$ 就是 $A$ 在分割面上的投影，我们知道 $BA$ 的方向为 $w$，单位向量为 $\frac w {||w||}$，记 $\gamma_i = |AB|$，根据点到直线的距离公式：</p>
+<p>$$ \gamma_i = \frac {w· x_i+b} {||w||} = \frac w {||w||}·x_i + \frac b {||w||} $$</p>
+<p>换一种更一般的写法：</p>
+<p>$$ \gamma_i = y_i \left(\frac w {||w||}·x_i + \frac b {||w||}\right) $$</p>
+<p>上式就是几何间隔的形式，显然，函数间隔和集合间隔满足：</p>
+<p>$$ \gamma = \frac {\hat \gamma} {||w||} $$</p>
+<p>当 $||w||=1$ 时，几何间隔和函数间隔相等，所以当 $w$ 和 $b$ 成比例变化时，超平面外的点函数函数间隔也会成比例变化，而几何间隔不变。</p>
+<h3 id="支持向量机间隔最大化"><a href="#支持向量机间隔最大化" class="headerlink" title="支持向量机间隔最大化"></a>支持向量机间隔最大化</h3><p>间隔最大化的直观解释就是：对训练数据集找到<strong>几何间隔</strong>最大的超平面意味着以充分大的确信度意味着对训练数据进行分类，考虑求一个几何间隔最大的分类超平面：</p>
+<p>$$ \max_{w, b} \gamma<br>\\ s.t. \;\; y_i \left(\frac w {||w||}·x_i + \frac b {||w||}\right) \ge \gamma，i=1,2,…N $$</p>
+<p>其中 $\gamma$ 训练集中几何间隔的最小值，即支持向量对应的几何间隔。</p>
+<p>考虑几何间隔和函数间隔的关系，可以改写为：</p>
+<p>$$ \max_{w, b} \frac {\hat \gamma} {||w||}<br>\\ s.t. \;\; y_i(w·x_i+b) \ge \hat \gamma，i=1,2,…N $$</p>
+<p>函数间隔 $\hat \gamma$ 对目标函数的优化没有任何影响，所以我们可以令 $\hat \gamma =1$，而最大化 $\frac 1 {||w||}$ 和最小化 $\frac 1 2 ||w||^2$ 也是等价的，于是就有：<br>$$ \min_{w, b} \frac 1 2 ||w||^2<br>\\ s.t. \;\; y_i(w·x_i+b) -1 \ge 0，i=1,2,…N $$</p>
+<p>这就产生了支持向量机的最优化问题：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15159180756448.jpg" alt=""></p>
+<h3 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h3><p>硬边距支持向量机又被称作线性可分支持向量机，其原始优化问题：<br>$$ \begin{align} \min_{w, b} &amp;\;\; \frac 1 2 ||w||^2 \nonumber<br>\\ s.t. &amp; \;\; y_i(w·x_i+b) -1 \ge 0，i=1,2,…N  \nonumber \end{align}$$</p>
+<p>对偶优化问题：<br>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; \alpha_i \ge 0,\;i=1,2,…N \nonumber \end{align}$$</p>
+<p>求得最优解 $\alpha^<em>$ 后，最优参数：<br>$$ w^</em> = \sum_{i=1}^n \alpha^<em>_i y_i x_i \\ b^</em> = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$</p>
+<p><strong>推导：</strong></p>
+<p>原问题的拉格朗日函数：<br>$$ L(w, b, \alpha) = \frac 1 2 ||w||^2 - \sum_{i=1}^n \alpha_iy_i(w·x_i+b) + \sum_{i=1}^n \alpha_i $$</p>
+<p>显然：<br>$$ \frac 1 2 ||w||^2 ≥ L(w, b, \alpha) ≥ \mathop{inf} \limits_{w, b} L(w, b,\alpha)$$</p>
+<p>对偶问题是拉格朗日函数的极大极小问题，首先求 $L(w, b, \alpha)$ 对 $w, b,$ 的极小，再求对 $\alpha$ 的极大。</p>
+<ol>
+<li><p>求 $\min_{w, b}L(w, b,\alpha) $<br>由：<br>$$ \nabla_w L(w, b, \alpha) = w - \sum_{i=1}^n \alpha_iy_ix_i = 0 \\ \nabla_b L(w, b, \alpha) = - \sum_{i=1}^n \alpha_iy_i = 0 $$<br>得：<br>$$ w = \sum_{i=1}^n \alpha_iy_ix_i \\ \sum_{i=1}^n \alpha_iy_i = 0 $$<br>代入易得：<br>$$ L(w, b, a) = \sum_{i=1}^n \alpha_i - \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_j y_iy_j \langle x_i, x_j\rangle $$</p>
+</li>
+<li><p>求 $\min_{w, b}L(w, b,\alpha)$ 对 $\alpha$ 的极大值，即求解对偶问题<br>$$ \begin{align} \max_{\alpha} &amp;\;\; - \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle + \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; \alpha_i \ge 0,\;i=1,2,…N \nonumber \end{align}$$<br>将上式的极大转换成极小问题，就得到最终的对偶最优化问题<br>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; \alpha_i \ge 0,\;i=1,2,…N \nonumber \end{align}$$</p>
+</li>
+<li><p>参数最优化<br>由 $\nabla_w L(w, b, \alpha)$ 得：<br>$$ w = \sum_{i=1}^n \alpha^<em>_iy_ix_i $$<br>根据 $y_j(w^</em>·x+b^<em>)-1=0$ 得：<br>$$ b^</em> = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$<br>其中，$y_j^2=1$。</p>
+</li>
+</ol>
+<h2 id="软边距支持向量机"><a href="#软边距支持向量机" class="headerlink" title="软边距支持向量机"></a>软边距支持向量机</h2><h3 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h3><p>硬边距支持向量机并不适合线性不可分的情况，对于其改进产生了软边距支持向量机，也就是线性支持向量机。对每个样本点 $(x_i,y_i)$ 引入一个松弛变量 $\xi_i \ge 0$，是函数间隔加上松弛变量后大于等于 $1$，这样，就得到软边距支持向量机的原始问题：</p>
+<p>$$ \begin{align} \min_{w, b} &amp;\;\; \frac 1 2 ||w||^2 + C\sum_{i=1}^n\xi_i \nonumber<br>\\ s.t. &amp; \;\; y_i(w·x_i+b) \ge 1-\xi_i,\; i=1,2,…N  \nonumber<br>\\ &amp; \;\;\xi_i \ge 0,\;i=1,2,…Ni \nonumber \end{align}$$</p>
+<p>其中，$C\gt0 $ 是惩罚参数，一般来讲，$C$ 值越大，对误分类的惩罚越大，分类器越严格，边距越窄，$C$ 值越小，对误分类的惩罚越小，分类器越宽松，边距越大。目标函数最优化包含两层含义，使 $1/2 ||w||^2$ 尽可能小，也就是说使边距尽可能大，$\xi_i$ 又使误分类点的个数尽可能少，$C$ 就是调和二者的系数。</p>
+<p>原问题是一个凸二次规划问题，我们可以通过优化其对偶函数求解：</p>
+<p>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; 0 \le \alpha_i \le C,\;i=1,2,…N \nonumber \end{align}$$</p>
+<p>求得最优解 $\alpha^<em>$ 后，最优参数：<br>$$ w^</em> = \sum_{i=1}^n \alpha^<em>_i y_i x_i \\ b^</em> = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$</p>
+<p>对任一适合条件的 $0\le \alpha^<em>_j \le C$，都有不同的 $b^</em>$，但是由于原始问题对 $b$ 的解并不唯一，所以在实际计算过程中可以取在所有符合条件的样本点上的平均值。</p>
+<p><strong>推导：</strong></p>
+<p>原问题的拉格朗日函数：<br>$$ L(w, b, \xi, \mu, \alpha) = \frac 1 2 ||w||^2 + C \sum_{i=1}^n \xi_i - \sum_{i=1}^n \alpha_i(y_i(w·x_i+b)-1+\xi_i)-\sum_{i=1}^n\mu_i \xi_i$$</p>
+<p>显然：<br>$$ \frac 1 2 ||w||^2 ≥ L(w, b, \xi, \mu, \alpha) ≥ \mathop{inf} \limits_{w,b} L(w, b, \xi, \mu, \alpha)$$</p>
+<p>对偶问题是拉格朗日函数的极大极小问题，首先求 $L(w, b, \xi, \mu, \alpha)$ 对 $w, b, \xi$ 的极小值，再求对 $\alpha$ 的最大，由：<br>$$ \nabla_w L(w, b, \xi, \mu, \alpha) = w - \sum_{i=1}^n \alpha_iy_ix_i = 0 \\ \nabla_b L(w, b, \xi, \mu, \alpha) = - \sum_{i=1}^n \alpha_iy_i = 0 \\ \nabla_{\xi} L(w, b, \xi, \mu, \alpha) = C - \alpha_i - \mu_i = 0 $$<br>得：<br>$$ w = \sum_{i=1}^n \alpha_iy_ix_i \\ \sum_{i=1}^n \alpha_iy_i = 0 \\ C - \alpha_i - \mu_i = 0 $$</p>
+<p>原式可化为：<br>$$ L(w, b, \xi, \mu, \alpha) =  \frac 1 2 ||w||^2 + \sum_{i=1}^n \xi_i  (C - \alpha_i - \mu_i) - \sum_{i=1}^n \alpha_iy_i(w·x_i+b) + \sum_{i=1}^n \alpha_i $$</p>
+<p>代入易得：<br>$$ L(w, b, \xi, \mu, \alpha) = \sum_{i=1}^n \alpha_i - \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle $$</p>
+<p>对拉格朗日乘子有以下约束：<br>$$ \sum_{i=1}^n \alpha_iy_i = 0 \\ C -\alpha_i - \mu_i = 0 \\ \alpha_i \ge 0 \\ \mu_i \ge 0 \\i=1,2,…N $$</p>
+<p>对上式整理，消去变量 $\mu_i$ 得到约束：<br>$$ \sum_{i=1}^n \alpha_iy_i = 0 \\ 0 \le \alpha_i \le C \\ i=1,2,…N $$</p>
+<h3 id="线性支持向量机的支持向量"><a href="#线性支持向量机的支持向量" class="headerlink" title="线性支持向量机的支持向量"></a>线性支持向量机的支持向量</h3><p>对于线性支持向量机，支持向量 $x_i$ 可能在间隔边界上，或者在间隔边界与分类超平面之间，或者在分类超平面的误分类一侧。</p>
+<ul>
+<li>若 $\alpha_i^* \lt C$ 则 $ \xi_i=0$，支持向量恰好落在间隔边界上</li>
+<li>若 $\alpha_i^* = C, \; 0\lt \xi_i \lt 1$，支持向量落在间隔边界与分类超平面之间</li>
+<li>若 $\alpha_i^* = C, \; \xi_i = 1$，支持向量落在分类超平面上</li>
+<li>若 $\alpha_i^* = C, \; \xi_i \gt 1$，支持向量落在分类超平面误分类一侧</li>
+</ul>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15159326131822.jpg" alt="(w400"></p>
+<h3 id="线性支持向量机的损失函数"><a href="#线性支持向量机的损失函数" class="headerlink" title="线性支持向量机的损失函数"></a>线性支持向量机的损失函数</h3><p>对于线性支持向量机来说，原始优化问题：<br>$$ \begin{align} \min_{w, b} &amp;\;\; \frac 1 2 ||w||^2 + C\sum_{i=1}^n\xi_i \nonumber<br>\\ s.t. &amp; \;\; y_i(w·x_i+b) \ge 1-\xi_i,\; i=1,2,…N  \nonumber<br>\\ &amp; \;\;\xi_i \ge 0,\;i=1,2,…Ni \nonumber \end{align}$$</p>
+<p>等价于最优化问题：<br>$$\min_{w,b} \;\; \sum_{i=1}^N [1-y_i(w·x_i+b)]_+ +\lambda ||w||^2 $$</p>
+<p>目标函数的第一项是经验损失，第二项是正则项，形如 $[1-y_i(w·x_i+b)]_+$ 的损失函数被称为合页损失函数，即 $hinge\;loss$，下标的 $+$ 表示 $[·]$ 取正值的函数，直观上的理解就是，当被正确分类时，$y_i(w·x_i+b) \gt 1 $，$1 - y_i(w·x_i+b) \lt 0$，在合页损失函数下无损失，当被错误分类时，$y_i(w·x_i+b) \lt 1 $，$1 - y_i(w·x_i+b) \gt 0$，损失等于 $1 - y_i(w·x_i+b)$。</p>
+<p>单个样本的损失如下图所示：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15159326412603.jpg" alt="w400"></p>
+<p>在二分类问题中，通常使用的是 $0-1$ 损失，因为 $0-1$ 损失不可导，通常使用可导的合页损失函数作为其上界。相比之下，合页损失函数不仅要求分类正确，而却确信度足够高时损失才为 $0$，也就是说，合页损失函数对学习有更高的要求。</p>
+<h2 id="非线性支持向量机与核函数"><a href="#非线性支持向量机与核函数" class="headerlink" title="非线性支持向量机与核函数"></a>非线性支持向量机与核函数</h2><h3 id="核函数方法"><a href="#核函数方法" class="headerlink" title="核函数方法"></a>核函数方法</h3><p>如下图所示，在线性不可分的情况下，支持向量机通过某种事先选择的非线性映射（核函数）将输入变量映射到一个高维特征空间，在这个空间中构造最优分类超平面，通过将数据映射到高维空间，来解决在原始空间中线性不可分的问题，核函数的价值在于它虽然也是把特征进行从低维映射到高维，但它事先<strong>在低维上进行计算</strong>，而将实质上的<strong>分类效果表现在了高维</strong>上，也就避免了直接在高维空间中的复杂计算。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15159339249517.jpg" alt=""></p>
+<p><strong>核函数的定义：</strong> 设 $X$ 是输入空间（欧式空间 $R^n$ 的子集或离散集合），有设 $H$ 为特征空间（希尔伯特空间），如果存在一个从 $X$ 到 $H$ 的映射：<br>$$ \phi(x): X \rightarrow H $$<br>使得对所有的 $x,z\in X$，函数 $K(x,z)$ 满足条件：<br>$$ K(x,z) = \phi(x)·\phi(z) $$<br>则称 $K(x,z)$ 为核函数，$\phi(x)$ 为映射函数，其中 $\phi(x)·\phi(z)$ 为 $\phi(x)$ 和 $\phi(z)$ 的内积。</p>
+<p>核技巧的想法是，在学习和预测中只定义核函数 $K(x,z)$，而不显式地定义应设函数 $\phi$，对于给定的核，特征空间和映射函数的取法并不唯一，可以取不同的特征空间，即使是在同一个特征空间内也可以有不同的映射。</p>
+<p>在线性支持向量机的对偶问题中，无论是目标函数还是决策函数都值设计输入实例与实例之间的内积，在对偶问题的目标函数中的内积 $\langle x_i, x_j\rangle$ 可以用核函数 $K(x_i,x_j) = \phi(x_i)·\phi(x_j)$ 来代替，这样就等价于把映射函数将原来的输入空间变换到一个新的特征空间，在新的特征空间里从训练样本学习线性支持向量机。</p>
+<h3 id="处理非线性数据"><a href="#处理非线性数据" class="headerlink" title="处理非线性数据"></a>处理非线性数据</h3><p>有如下图所示的一个数据集，分别分布为两个圆圈的形状，这样的数据本身就是线性不可分的，此时我们该如何把这两类数据分开呢？</p>
+<center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15159401779594.jpg" alt=""><br></center><br>事实上，上图所述的这个数据集，是用两个半径不同的圆圈加上了少量的噪音生成得到的，所以，一个理想的分界应该是一个“圆圈”而不是一条线。如果用 $X_1$ 和 $X_2$ 来表示这个二维平面的两个坐标的话，我们知道一条二次曲线的方程可以写作这样的形式:<br>$$ a_1X_1 + a_2X_1^2 + a_3X_2 + a_4X_2^2 + a_5X_1X_2 + a_6 = 0 $$<br><br>针对上式，如果我们构造另外一个五维的空间，其中五个坐标的值分别为 $Z_1=X_1, X_2=X_1^2, Z_3 = X_2, Z_4 = X_2^2, Z_5 = X_1X_2$，显然可以把上式改写为：<br>$$ \sum_{i=1}^5 \alpha_iZ_i +\alpha_6 = 0 $$<br><br>这正是一个超平面的方程，也就是说，我们做了这样一个映射将 $X_1,X_2$ 映射成了 $Z_1,Z_2,Z_3,Z_4,Z_5$，即把特征空间从二维映射到五维，那么在新的空间中原来的数据将变成线性可分的，从而使用之前我们推导的线性分类算法就可以进行处理了。<br><br>特别地，我们把它映射到 $Z_1 = X^2_1, Z_2 = X_2, Z_3 = X_2$ 这样一个三维空间中，将坐标轴经过适当的旋转，就可以很明显地看出，数据是可以通过一个平面来分开的。<br><br><center><br><img src="http://p1auo1a1h.bkt.clouddn.com/1364952814_3505.gif" alt="1364952814_3505"><br></center>
+
+<p>一般地，核函数能简化映射空间中的内积运算，向量的内积可以直接在原来的低维空间中进行计算，而不需要显式地写出映射后的结果，我们可以把决策函数可以写成：<br>$$f(x) = \sum_{i=1}^n \alpha^*_i y_i K(x_i · x_j) $$</p>
+<p>对偶问题可以写成：<br>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_j y_i y_j K(x_i · x_j) - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; 0 \le \alpha_i \le C,\;i=1,2,…N \nonumber \end{align}$$</p>
+<h3 id="常用核函数"><a href="#常用核函数" class="headerlink" title="常用核函数"></a>常用核函数</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15159419758530.jpg" alt=""></p>
+<p><strong>高斯核</strong>会将原始空间映射为无穷维空间。不过，如果 $\sigma$ 选得很大的话，高次特征上的权重衰减得非常快，所以实际上相当于一个低维的子空间，反过来，如果 $\sigma$ 选得很小，则可以将任意的数据映射为线性可分，随之而来的可能是非常严重的过拟合问题。不过，总的来说，通过调控参数 $\sigma$ ，高斯核实际上具有相当高的灵活性，也是使用最广泛的核函数之一。</p>
+<center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15159417163475.jpg" alt=""><br></center>
+
+<h2 id="序列最小最优化算法（待补充）"><a href="#序列最小最优化算法（待补充）" class="headerlink" title="序列最小最优化算法（待补充）"></a>序列最小最优化算法（待补充）</h2><p>序列最小最优化算法即为 $SMO$ 算法，采用启发式的方法认为如果所有变量的解都满足此最优化问题的 $KKT$ 条件，那么这个最优化问题的解就得到了。否则选择两个变量，固定其他变量，针对这两个变量构建一个二次规划问题。其中，子问题的两个变量中只有一个是自由变量，假设 $\alpha_1,\alpha_2$ 为两个变量，$\alpha_3,…\alpha_N$ 固定，那么：<br>$$ \alpha_1 = -y_1 \sum_{i=1}^N a_iy_i$$</p>
+<p>也就是如果 $\alpha_1$ 确定，那么 $\alpha_1$ 也随之确定，所以子问题同时更新两个变量。</p>
+<p>$SMO$ 算法包括两个部分：</p>
+<ul>
+<li>求解两个变量二次规划的解析方法</li>
+<li>选择变量的启发式方法</li>
+</ul>
+<h2 id="支持向量回归（待补充）"><a href="#支持向量回归（待补充）" class="headerlink" title="支持向量回归（待补充）"></a>支持向量回归（待补充）</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/SVM/" rel="tag"># SVM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/12/sml-clustering/" rel="next" title="聚类分析">
+                <i class="fa fa-chevron-left"></i> 聚类分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="ZHANG ZH.Y." />
+          <p class="site-author-name" itemprop="name">ZHANG ZH.Y.</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个<br>为了不做程序员而努力搬砖的<br>代码狗</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#硬边距支持向量机"><span class="nav-number">1.</span> <span class="nav-text">硬边距支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数间隔与几何间隔"><span class="nav-number">1.1.</span> <span class="nav-text">函数间隔与几何间隔</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数间隔"><span class="nav-number">1.1.1.</span> <span class="nav-text">函数间隔</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#几何间隔"><span class="nav-number">1.1.2.</span> <span class="nav-text">几何间隔</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机间隔最大化"><span class="nav-number">1.2.</span> <span class="nav-text">支持向量机间隔最大化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性可分支持向量机"><span class="nav-number">1.3.</span> <span class="nav-text">线性可分支持向量机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软边距支持向量机"><span class="nav-number">2.</span> <span class="nav-text">软边距支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性支持向量机"><span class="nav-number">2.1.</span> <span class="nav-text">线性支持向量机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性支持向量机的支持向量"><span class="nav-number">2.2.</span> <span class="nav-text">线性支持向量机的支持向量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性支持向量机的损失函数"><span class="nav-number">2.3.</span> <span class="nav-text">线性支持向量机的损失函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性支持向量机与核函数"><span class="nav-number">3.</span> <span class="nav-text">非线性支持向量机与核函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核函数方法"><span class="nav-number">3.1.</span> <span class="nav-text">核函数方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理非线性数据"><span class="nav-number">3.2.</span> <span class="nav-text">处理非线性数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用核函数"><span class="nav-number">3.3.</span> <span class="nav-text">常用核函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#序列最小最优化算法（待补充）"><span class="nav-number">4.</span> <span class="nav-text">序列最小最优化算法（待补充）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量回归（待补充）"><span class="nav-number">5.</span> <span class="nav-text">支持向量回归（待补充）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHANG ZH.Y.</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
