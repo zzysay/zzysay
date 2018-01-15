@@ -113,7 +113,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160023047820.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160024979985.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160026577111.jpg">
-<meta property="og:updated_time" content="2018-01-15T08:45:29.980Z">
+<meta property="og:updated_time" content="2018-01-15T08:58:41.058Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="信息论模型">
 <meta name="twitter:description" content="信息论从另外一个角度解释了许多机器学习的问题  熵是不确定性的度量，类别不均匀程度的度量 最大熵是一种状态的平衡分布，可看作一种自然法则  互信息是随机变量相关性的度量  信息熵与最大熵信息量是信息多少的度量： $$ I(x_k) = \log \frac 1 {p_k} = - \log p_k $$ 其中，$X = {x_k,| k = 0, \pm1,…,\pm N},\;p_k=P(X=x">
@@ -445,7 +445,7 @@
 <p>假设我们需要来判断 <strong>打</strong> 字是量词还是动词，目前有下面的训练数据集: </p>
 <p>$$ (x_1,y_1) = (\text{一打火柴},\text{量词}) \\<br>(x_2,y_2) = (\text{三打啤酒},\text{量词}) \\<br>(x_3,y_3) = (\text{五打袋子},\text{量词}) \\<br>(x_4,y_4) = (\text{打电话},\text{动词}) \\<br>(x_5,y_5) = (\text{打篮球},\text{动词}) $$ </p>
 <p>通过观察我们可以发现打前面为数字时，打为量词，如果打后面跟着的是名词 ,则打为动词，我们用特征函数来表示为: </p>
-<p>$$ f_1(x,y)=\left{<br>\begin{aligned}<br>1 &amp; \quad \text{“打”的前面为数字} \\<br>0 &amp; \quad \text{否则} \\<br>\end{aligned}<br>\right.$$<br>$$ f_2(x,y)=\left{<br>\begin{aligned}<br>1 &amp; \quad \text{“打”的后面为名词} \\<br>0 &amp; \quad \text{否则} \\<br>\end{aligned}<br>\right.$$ </p>
+<p>$$ f_1(x,y)=<br>\begin{cases}<br>1 &amp; \quad \text{“打”的前面为数字} \\<br>0 &amp; \quad \text{否则} \\<br>\end{cases}<br>\\f_2(x,y)=<br>\begin{cases}<br>1 &amp; \quad \text{“打”的后面为名词} \\<br>0 &amp; \quad \text{否则} \\<br>\end{cases}<br>$$</p>
 <p>有了特征函数之后，我们将现有的数据代入这两个特征函数即有: </p>
 <p>$$f_1(x_1,y_1) = f_1(x_2,y_2) = f_1(x_3,y_3) = 1,f_1(x_4,y_4) = f_1(x_5,y_5) = 0 \\<br>f_2(x_1,y_1) = f_2(x_2,y_2) = f_2(x_3,y_3) = 0,f_2(x_4,y_4) = f_2(x_5,y_5) = 1<br>$$</p>
 <hr>
