@@ -111,7 +111,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/1364952814_3505.gif">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159419758530.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159417163475.jpg">
-<meta property="og:updated_time" content="2018-01-14T15:16:26.524Z">
+<meta property="og:updated_time" content="2018-01-14T15:34:48.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="支持向量机">
 <meta name="twitter:description" content="支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。">
@@ -451,10 +451,12 @@
 <p>核技巧的想法是，在学习和预测中只定义核函数 $K(x,z)$，而不显式地定义应设函数 $\phi$，对于给定的核，特征空间和映射函数的取法并不唯一，可以取不同的特征空间，即使是在同一个特征空间内也可以有不同的映射。</p>
 <p>在线性支持向量机的对偶问题中，无论是目标函数还是决策函数都值设计输入实例与实例之间的内积，在对偶问题的目标函数中的内积 $\langle x_i, x_j\rangle$ 可以用核函数 $K(x_i,x_j) = \phi(x_i)·\phi(x_j)$ 来代替，这样就等价于把映射函数将原来的输入空间变换到一个新的特征空间，在新的特征空间里从训练样本学习线性支持向量机。</p>
 <h3 id="处理非线性数据"><a href="#处理非线性数据" class="headerlink" title="处理非线性数据"></a>处理非线性数据</h3><p>有如下图所示的一个数据集，分别分布为两个圆圈的形状，这样的数据本身就是线性不可分的，此时我们该如何把这两类数据分开呢？</p>
-<center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15159401779594.jpg" alt=""><br></center><br>事实上，上图所述的这个数据集，是用两个半径不同的圆圈加上了少量的噪音生成得到的，所以，一个理想的分界应该是一个“圆圈”而不是一条线。如果用 $X_1$ 和 $X_2$ 来表示这个二维平面的两个坐标的话，我们知道一条二次曲线的方程可以写作这样的形式:<br>$$ a_1X_1 + a_2X_1^2 + a_3X_2 + a_4X_2^2 + a_5X_1X_2 + a_6 = 0 $$<br><br>针对上式，如果我们构造另外一个五维的空间，其中五个坐标的值分别为 $Z_1=X_1, X_2=X_1^2, Z_3 = X_2, Z_4 = X_2^2, Z_5 = X_1X_2$，显然可以把上式改写为：<br>$$ \sum_{i=1}^5 \alpha_iZ_i +\alpha_6 = 0 $$<br><br>这正是一个超平面的方程，也就是说，我们做了这样一个映射将 $X_1,X_2$ 映射成了 $Z_1,Z_2,Z_3,Z_4,Z_5$，即把特征空间从二维映射到五维，那么在新的空间中原来的数据将变成线性可分的，从而使用之前我们推导的线性分类算法就可以进行处理了。<br><br>特别地，我们把它映射到 $Z_1 = X^2_1, Z_2 = X_2, Z_3 = X_2$ 这样一个三维空间中，将坐标轴经过适当的旋转，就可以很明显地看出，数据是可以通过一个平面来分开的。<br><br><center><br><img src="http://p1auo1a1h.bkt.clouddn.com/1364952814_3505.gif" alt="1364952814_3505"><br></center>
+<center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15159401779594.jpg" alt=""><br></center><br>事实上，上图所述的这个数据集，是用两个半径不同的圆圈加上了少量的噪音生成得到的，所以，一个理想的分界应该是一个“圆圈”而不是一条线。如果用 $X_1$ 和 $X_2$ 来表示这个二维平面的两个坐标的话，我们知道一条二次曲线的方程可以写作这样的形式:<br><br>$$ a_1X_1 + a_2X_1^2 + a_3X_2 + a_4X_2^2 + a_5X_1X_2 + a_6 = 0 $$<br><br>针对上式，如果我们构造另外一个五维的空间，其中五个坐标的值分别为 $Z_1=X_1, X_2=X_1^2, Z_3 = X_2, Z_4 = X_2^2, Z_5 = X_1X_2$，显然可以把上式改写为：<br><br>$$ \sum_{i=1}^5 \alpha_iZ_i +\alpha_6 = 0 $$<br><br>这正是一个超平面的方程，也就是说，我们做了这样一个映射将 $X_1,X_2$ 映射成了 $Z_1,Z_2,Z_3,Z_4,Z_5$，即把特征空间从二维映射到五维，那么在新的空间中原来的数据将变成线性可分的，从而使用之前我们推导的线性分类算法就可以进行处理了。<br><br>特别地，我们把它映射到 $Z_1 = X^2_1, Z_2 = X_2, Z_3 = X_2$ 这样一个三维空间中，将坐标轴经过适当的旋转，就可以很明显地看出，数据是可以通过一个平面来分开的。<br><br><center><br><img src="http://p1auo1a1h.bkt.clouddn.com/1364952814_3505.gif" alt="1364952814_3505"><br></center>
 
-<p>一般地，核函数能简化映射空间中的内积运算，向量的内积可以直接在原来的低维空间中进行计算，而不需要显式地写出映射后的结果，我们可以把决策函数可以写成：<br>$$f(x) = \sum_{i=1}^n \alpha^*_i y_i K(x_i · x_j) $$</p>
-<p>对偶问题可以写成：<br>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_j y_i y_j K(x_i · x_j) - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; 0 \le \alpha_i \le C,\;i=1,2,…N \nonumber \end{align}$$</p>
+<p>一般地，核函数能简化映射空间中的内积运算，向量的内积可以直接在原来的低维空间中进行计算，而不需要显式地写出映射后的结果，我们可以把决策函数可以写成：</p>
+<p>$$f(x) = \sum_{i=1}^n \alpha^*_i y_i K(x_i · x_j) $$</p>
+<p>对偶问题可以写成：</p>
+<p>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_j y_i y_j K(x_i · x_j) - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; 0 \le \alpha_i \le C,\;i=1,2,…N \nonumber \end{align}$$</p>
 <h3 id="常用核函数"><a href="#常用核函数" class="headerlink" title="常用核函数"></a>常用核函数</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15159419758530.jpg" alt=""></p>
 <p><strong>高斯核</strong>会将原始空间映射为无穷维空间。不过，如果 $\sigma$ 选得很大的话，高次特征上的权重衰减得非常快，所以实际上相当于一个低维的子空间，反过来，如果 $\sigma$ 选得很小，则可以将任意的数据映射为线性可分，随之而来的可能是非常严重的过拟合问题。不过，总的来说，通过调控参数 $\sigma$ ，高斯核实际上具有相当高的灵活性，也是使用最广泛的核函数之一。</p>
 <center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15159417163475.jpg" alt=""><br></center>
@@ -466,7 +468,8 @@
 <li>求解两个变量二次规划的解析方法</li>
 <li>选择变量的启发式方法</li>
 </ul>
-<h2 id="支持向量回归（待补充）"><a href="#支持向量回归（待补充）" class="headerlink" title="支持向量回归（待补充）"></a>支持向量回归（待补充）</h2>
+<h2 id="支持向量回归（待补充）"><a href="#支持向量回归（待补充）" class="headerlink" title="支持向量回归（待补充）"></a>支持向量回归（待补充）</h2><p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] 李航,《统计学习方法》,清华大学出版社<br>[3] 周志华,《机器学习》,清华大学出版社<br>[4] <a href="http://blog.csdn.net/v_july_v/article/details/7624837" target="_blank" rel="external">http://blog.csdn.net/v_july_v/article/details/7624837</a></p>
+
       
     </div>
 
@@ -519,6 +522,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/15/sml-information-theory/" rel="prev" title="信息论模型">
+                信息论模型 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -591,7 +598,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">41</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -613,7 +620,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
