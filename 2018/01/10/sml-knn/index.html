@@ -116,7 +116,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155757021276.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155757383958.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155758835533.jpg">
-<meta property="og:updated_time" content="2018-01-10T09:29:26.028Z">
+<meta property="og:updated_time" content="2018-01-16T11:07:53.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KNN模型">
 <meta name="twitter:description" content="距离度量方法">
@@ -397,17 +397,17 @@
 <li><strong>存储量大：</strong>所有样本需要存到内存</li>
 <li><strong>计算量大：</strong>每次决策都要计算所有样本的相似性</li>
 </ul>
-<h2 id="快速算法"><a href="#快速算法" class="headerlink" title="快速算法"></a>快速算法</h2><h2 id="快速搜索近邻法"><a href="#快速搜索近邻法" class="headerlink" title="快速搜索近邻法"></a>快速搜索近邻法</h2><p><strong>算法原理：</strong>将样本分成不相交的子集，基于子集的搜索 </p>
+<h2 id="快速算法"><a href="#快速算法" class="headerlink" title="快速算法"></a>快速算法</h2><h3 id="快速搜索近邻法"><a href="#快速搜索近邻法" class="headerlink" title="快速搜索近邻法"></a>快速搜索近邻法</h3><p><strong>算法原理：</strong>将样本分成不相交的子集，基于子集的搜索 </p>
 <ol>
 <li>样本<strong>分级分层</strong>为多个子集</li>
 <li><strong>逐层</strong>搜出一个最优子集</li>
 <li>在最后的子集中<strong>局部找最近样本点</strong> </li>
 </ol>
 <p>典型的快速搜索近邻法就是 $kd$ 树方法：$kd$ 树是一种对 $k$ 维空间内的实例点进行存储以便对其进行快速检索的树形数据结构，$kd$ 树是二叉树，表示对 $k$ 维空间的一个划分。</p>
-<h3 id="构造-kd-树"><a href="#构造-kd-树" class="headerlink" title="构造 kd 树"></a>构造 kd 树</h3><p><strong>算法过程</strong></p>
+<h4 id="构造-kd-树"><a href="#构造-kd-树" class="headerlink" title="构造 kd 树"></a>构造 kd 树</h4><p><strong>算法过程</strong></p>
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15155732297402.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15155732537820.jpg" alt=""></p>
 <p><strong>算法实例</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15155751969907.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15155752290225.jpg" alt=""></p>
-<h3 id="搜索-kd-树"><a href="#搜索-kd-树" class="headerlink" title="搜索 kd 树"></a>搜索 kd 树</h3><p><strong>算法过程</strong></p>
+<h4 id="搜索-kd-树"><a href="#搜索-kd-树" class="headerlink" title="搜索 kd 树"></a>搜索 kd 树</h4><p><strong>算法过程</strong></p>
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15155739872470.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15155741422651.jpg" alt=""></p>
 <p><strong>算法实例</strong></p>
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15155752525194.jpg" alt=""></p>
@@ -602,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#距离度量方法"><span class="nav-number">1.</span> <span class="nav-text">距离度量方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最近邻算法"><span class="nav-number">2.</span> <span class="nav-text">最近邻算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#K-近邻算法"><span class="nav-number">3.</span> <span class="nav-text">K 近邻算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速算法"><span class="nav-number">4.</span> <span class="nav-text">快速算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速搜索近邻法"><span class="nav-number">5.</span> <span class="nav-text">快速搜索近邻法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造-kd-树"><span class="nav-number">5.1.</span> <span class="nav-text">构造 kd 树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搜索-kd-树"><span class="nav-number">5.2.</span> <span class="nav-text">搜索 kd 树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剪辑近邻法"><span class="nav-number">5.3.</span> <span class="nav-text">剪辑近邻法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩近邻法"><span class="nav-number">5.4.</span> <span class="nav-text">压缩近邻法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拒绝决策近邻法"><span class="nav-number">5.5.</span> <span class="nav-text">拒绝决策近邻法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#距离度量方法"><span class="nav-number">1.</span> <span class="nav-text">距离度量方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最近邻算法"><span class="nav-number">2.</span> <span class="nav-text">最近邻算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#K-近邻算法"><span class="nav-number">3.</span> <span class="nav-text">K 近邻算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速算法"><span class="nav-number">4.</span> <span class="nav-text">快速算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快速搜索近邻法"><span class="nav-number">4.1.</span> <span class="nav-text">快速搜索近邻法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构造-kd-树"><span class="nav-number">4.1.1.</span> <span class="nav-text">构造 kd 树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#搜索-kd-树"><span class="nav-number">4.1.2.</span> <span class="nav-text">搜索 kd 树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剪辑近邻法"><span class="nav-number">4.2.</span> <span class="nav-text">剪辑近邻法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩近邻法"><span class="nav-number">4.3.</span> <span class="nav-text">压缩近邻法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拒绝决策近邻法"><span class="nav-number">4.4.</span> <span class="nav-text">拒绝决策近邻法</span></a></li></ol></li></ol></div>
             
 
           </div>
