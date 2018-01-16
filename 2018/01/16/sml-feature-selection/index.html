@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习,PCA," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="机器学习算法的有效性和计算复杂度是敏感于数据的特征表达和维度，数据的降维表示方法，主要包括特征选择和特征提取两种方法。  特征抽取：在已有的特征上，采用特征变换的方法，生成新的特征集合。 特征选择：使用某些方法，从当前特征集合中选择出特征子集。  特征选择特征选择的处理过程：">
+<meta name="keywords" content="机器学习,PCA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="降维与特征选择">
+<meta property="og:url" content="http://zzysay.github.io/2018/01/16/sml-feature-selection/index.html">
+<meta property="og:site_name" content="ZZY SAY">
+<meta property="og:description" content="机器学习算法的有效性和计算复杂度是敏感于数据的特征表达和维度，数据的降维表示方法，主要包括特征选择和特征提取两种方法。  特征抽取：在已有的特征上，采用特征变换的方法，生成新的特征集合。 特征选择：使用某些方法，从当前特征集合中选择出特征子集。  特征选择特征选择的处理过程：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160676378272.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160700486302.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160702757225.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160703993138.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160713284615.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160714540137.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160719595593.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160720570730.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160727684400.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160729064919.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160733958967.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160739424672.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160741336965.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160756446183.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160802016680.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160802696230.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160803645642.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160805974960.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160804971944.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160805120309.jpg">
+<meta property="og:updated_time" content="2018-01-16T06:06:30.251Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="降维与特征选择">
+<meta name="twitter:description" content="机器学习算法的有效性和计算复杂度是敏感于数据的特征表达和维度，数据的降维表示方法，主要包括特征选择和特征提取两种方法。  特征抽取：在已有的特征上，采用特征变换的方法，生成新的特征集合。 特征选择：使用某些方法，从当前特征集合中选择出特征子集。  特征选择特征选择的处理过程：">
+<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15160676378272.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzysay.github.io/2018/01/16/sml-feature-selection/"/>
+
+
+
+
+
+  <title>降维与特征选择 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZZY SAY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I AM WHO I AM.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/16/sml-feature-selection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZHANG ZH.Y.">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZY SAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">降维与特征选择</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-16T14:04:05+08:00">
+                2018-01-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课堂笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">课堂笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/课堂笔记/统计机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">统计机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>机器学习算法的有效性和计算复杂度是敏感于数据的特征表达和维度，数据的降维表示方法，主要包括特征选择和特征提取两种方法。</p>
+<ul>
+<li>特征抽取：在已有的特征上，采用特征变换的方法，生成新的特征集合。</li>
+<li>特征选择：使用某些方法，从当前特征集合中选择出特征子集。</li>
+</ul>
+<h2 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h2><p>特征选择的处理过程：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15160676378272.jpg" alt=""></p>
+<a id="more"></a>
+<h3 id="特征子集生成"><a href="#特征子集生成" class="headerlink" title="特征子集生成"></a>特征子集生成</h3><ul>
+<li><p><strong>穷举法：</strong>计算特征的所有可能组合，并逐一评价，选择的特征数为 $d$, 可能的组合数为 $C_D^d$，只适用于 $D$ 比较小的场景。</p>
+</li>
+<li><p><strong>贪心法（单独最优特征组合）：</strong>对每个特征分别评估，找前 $d$ 个单独最优特征，算法简单但没有考虑特征之间的关系，存在特征冗余。</p>
+</li>
+<li><p><strong>SFS（前向序贯）：</strong>每次加入 $1$ 个特征，该特征使得新的特征组合最优，其特点是一旦增加，无法删除。</p>
+</li>
+<li><p><strong>GSFS（广义前向序贯）：</strong>每次加入 $k$ 个特征，使加入特征后的组合最优，显然该算法的计算量比 $SFS$ 要大。</p>
+</li>
+<li><p><strong>SBS（后向序贯）：</strong>每次减掉 $1$ 个特征，使剩余特征组合最优，其特点是一旦删除，无法增加。</p>
+</li>
+<li><p><strong>GSBS（广义后向序贯）：</strong>每次减掉 $k$ 个特征，使剩余特征组合最优，显然该算法的计算量比 $SBS$ 要大。</p>
+</li>
+<li><p><strong>L-R法：</strong>：每次先增加 $L$ 个再减 $R$ 个，或者每次先减少 $R$ 个再增加 $L$ 个。</p>
+</li>
+<li><p><strong>广义L-R法：</strong>增 $L$ 和减 $R$ 分 $Z$ 步进行。</p>
+</li>
+</ul>
+<h3 id="特征评价准侧"><a href="#特征评价准侧" class="headerlink" title="特征评价准侧"></a>特征评价准侧</h3><ul>
+<li><p>可分性度量：在选择的特征集下，采用类别可分性的程度，评价特征选择的好与坏。常用于 $Filter$ 框架下，评价准则为距离准则、概率可分、熵可分准则。</p>
+</li>
+<li><p>学习算法精度的度量：在选择的特征集下，通过学习算法的精确度，评价特征选择的好与坏。 常用于 $wrapper$ 框架下。</p>
+</li>
+</ul>
+<h4 id="可分性度量"><a href="#可分性度量" class="headerlink" title="可分性度量"></a>可分性度量</h4><p><strong>基于距离的可分性判据</strong></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15160700486302.jpg" alt=""></p>
+<p>常用的数据统计量包括类内散度矩阵，总类内散度矩阵以及类间散度矩阵等。</p>
+<p><strong>基于概率分布的可分性判据</strong></p>
+<p>从类别概率密度的角度，讨论两个类别的交叠程度。<br><img src="http://p1auo1a1h.bkt.clouddn.com/15160702757225.jpg" alt=""></p>
+<p><strong>基于熵的可分性判据</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15160703993138.jpg" alt=""></p>
+<h3 id="特征选择方法"><a href="#特征选择方法" class="headerlink" title="特征选择方法"></a>特征选择方法</h3><h4 id="Filter-方法"><a href="#Filter-方法" class="headerlink" title="Filter 方法"></a>Filter 方法</h4><p>不依赖于分类器，只是用数据来确定分类好坏。这里的数据要求是带标签数据，不然需要依赖分类器。</p>
+<ol>
+<li>基本方法：$Filter$ 框架 + 特征子集生成 + 距离评价。</li>
+</ol>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15160713284615.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15160714540137.jpg" alt=""></p>
+<ol>
+<li>$Relief$ 算法</li>
+</ol>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15160719595593.jpg" alt=""></p>
+<h4 id="Wrapper-方法"><a href="#Wrapper-方法" class="headerlink" title="Wrapper 方法"></a>Wrapper 方法</h4><p>选择特征后，通过<strong>分类器分类</strong>来进行评估。<br>$LVM$ 方法：随机产生一个特征子集，计算错误率，若错误率小于之前选好的特征集合的最小错误率，则合并到选好的特征集中。</p>
+<center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15160720570730.jpg" alt=""><br></center>
+
+<h4 id="Embedded-方法"><a href="#Embedded-方法" class="headerlink" title="Embedded 方法"></a>Embedded 方法</h4><p>特征选择过程在学习算法中完成，目标是完成学习过程。<br>特点：不是专门的特征选择过程（岭回归）<br>缺点：计算复杂度高</p>
+<h2 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h2><h3 id="线性变换"><a href="#线性变换" class="headerlink" title="线性变换"></a>线性变换</h3><p>特征提取的目标：学习变换矩阵</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15160727684400.jpg" alt=""></p>
+<p>左边的 $L$ 代表样例的低维表示，中间 $X$ 代表样例，右边的 $W$ 代表新的特征空间。其实质是求一个 $W$ ，使得样本映射到 $W$ 上，使得各个特征长度变化最小。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15160729064919.jpg" alt=""></p>
+<p>$$ \bf X \approx \hat X = L · R $$ </p>
+<p>$\hat X$ 表示近似矩阵，$L$ 和 $R$ 分别为左右子矩阵，无损压缩时为等号，通常会有有损压缩。</p>
+<h4 id="主成分分析"><a href="#主成分分析" class="headerlink" title="主成分分析"></a>主成分分析</h4><p>$PCA$ 的作用就是分析选出最重要的特征，本质上是<strong>将方差最大的方向作为主要特征</strong>，并且在各个正交方向上将数据“去相关”，也就是让它们在不同正交方向上没有相关性。通常我们认为信息具有较大的方差，而噪声有较小的方差，信噪比就是信号与噪声的方差比，所以我们希望投影后的数据方差越大越好。因此我们认为，最好的 $k$ 维特征是将 $n$ 维样本点转换为 $k$ 维后，每一维上的样本方差都很大。</p>
+<p>$$ Pattern \approx low-dimensional\;representation * eigen \; pattern $$</p>
+<p>其目标就是学习 $eigen \; pattern$，目标函数为<strong>均方误差最小</strong>（求最优重构子空间）。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15160733958967.jpg" alt=""></p>
+<p>所以目标函数可以重写为：</p>
+<p>$$ \min_{L,W} ||X-LW^T||^2<br>\\ s.t. W^TW = I$$ </p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15160739424672.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15160741336965.jpg" alt=""></p>
+<p>求解目标函数：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15160756446183.jpg" alt=""></p>
+<p><strong>样本标准化</strong></p>
+<p>主成分分析事先对所有样本进行标准化。因为其用于高维数据的降维，它可以将原来高维的数据投影到某个低维的空间上并使得其方差尽量大。如果数据其中某一特征（矩阵的某一列）的数值特别大，那么它在整个误差计算的比重上就很大，那么可以想象在投影到低维空间之后，为了使低秩分解逼近原数据，整个投影会去努力逼近最大的那一个特征，而忽略数值比较小的特征。<br><img src="http://p1auo1a1h.bkt.clouddn.com/15160802016680.jpg" alt=""></p>
+<p><strong>算法过程</strong></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15160802696230.jpg" alt=""></p>
+<ul>
+<li>输入数据</li>
+<li>归一化数据</li>
+<li>求协方差矩阵</li>
+<li>求协方差矩阵的特征值</li>
+<li>将特征值降序排列</li>
+<li>选择得到最大的 $k$ 个特征值</li>
+<li>转化得到降维后的数据</li>
+</ul>
+<p><strong>需要注意的问题</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15160803645642.jpg" alt=""></p>
+<p>协方差矩阵中，主对角线上的元素代表这一维度上数据的<strong>方差</strong>，而副对角线上的元素代表元素之间的<strong>协方差</strong>。</p>
+<h4 id="线性鉴别分析"><a href="#线性鉴别分析" class="headerlink" title="线性鉴别分析"></a>线性鉴别分析</h4><p>$PCA$ 不能保证类别区分的有效性。<br>$LDA$ 特征的优点：类内最小、类间最大。 </p>
+<h3 id="非线性变换"><a href="#非线性变换" class="headerlink" title="非线性变换"></a>非线性变换</h3><h4 id="核方法的特征提取"><a href="#核方法的特征提取" class="headerlink" title="核方法的特征提取"></a>核方法的特征提取</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15160805974960.jpg" alt=""></p>
+<h4 id="流形学习"><a href="#流形学习" class="headerlink" title="流形学习"></a>流形学习</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15160804971944.jpg" alt=""></p>
+<p>局部线性变换 $LLE$ 算法流程：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15160805120309.jpg" alt=""></p>
+<h4 id="非负矩阵分解"><a href="#非负矩阵分解" class="headerlink" title="非负矩阵分解"></a>非负矩阵分解</h4><p>基本思想：通过矩阵分解，进行数据降维；分解后的矩阵为非负矩阵<br>目标函数可以是范数误差最下，也可以是 $K-L$ 误差最小</p>
+<p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/PCA/" rel="tag"># PCA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/15/sml-information-theory/" rel="next" title="信息论模型">
+                <i class="fa fa-chevron-left"></i> 信息论模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="ZHANG ZH.Y." />
+          <p class="site-author-name" itemprop="name">ZHANG ZH.Y.</p>
+           
+              <p class="site-description motion-element" itemprop="description">一个<br>为了不做程序员而努力搬砖的<br>代码狗</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#特征选择"><span class="nav-number">1.</span> <span class="nav-text">特征选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特征子集生成"><span class="nav-number">1.1.</span> <span class="nav-text">特征子集生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征评价准侧"><span class="nav-number">1.2.</span> <span class="nav-text">特征评价准侧</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可分性度量"><span class="nav-number">1.2.1.</span> <span class="nav-text">可分性度量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征选择方法"><span class="nav-number">1.3.</span> <span class="nav-text">特征选择方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Filter-方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">Filter 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Wrapper-方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">Wrapper 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Embedded-方法"><span class="nav-number">1.3.3.</span> <span class="nav-text">Embedded 方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征提取"><span class="nav-number">2.</span> <span class="nav-text">特征提取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性变换"><span class="nav-number">2.1.</span> <span class="nav-text">线性变换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主成分分析"><span class="nav-number">2.1.1.</span> <span class="nav-text">主成分分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线性鉴别分析"><span class="nav-number">2.1.2.</span> <span class="nav-text">线性鉴别分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非线性变换"><span class="nav-number">2.2.</span> <span class="nav-text">非线性变换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核方法的特征提取"><span class="nav-number">2.2.1.</span> <span class="nav-text">核方法的特征提取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流形学习"><span class="nav-number">2.2.2.</span> <span class="nav-text">流形学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非负矩阵分解"><span class="nav-number">2.2.3.</span> <span class="nav-text">非负矩阵分解</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZHANG ZH.Y.</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
