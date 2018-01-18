@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153148419813.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153150538259.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153176904048.jpg">
-<meta property="og:updated_time" content="2018-01-07T09:56:39.729Z">
+<meta property="og:updated_time" content="2018-01-18T02:26:31.899Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Logistic模型">
 <meta name="twitter:description" content="Logistic分布">
@@ -401,7 +401,7 @@
 <h3 id="多项回归模型"><a href="#多项回归模型" class="headerlink" title="多项回归模型"></a>多项回归模型</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15153176904048.jpg" alt=""></p>
 <p>对多分类问题，$softmax$ 回归是逻辑回归在多分类的直接推广，具体形式为：<br>$$ P(y=i|x, \theta) = \frac{e^{\theta_i^T x}}{\sum_j^K{e^{\theta_j^T x}}} $$</p>
 <p>决策函数为：<br>$$ y^* = \arg\max_i P(y=i|x,\theta) $$</p>
-<h2 id="判别模型和生成模型"><a href="#判别模型和生成模型" class="headerlink" title="判别模型和生成模型"></a>判别模型和生成模型</h2><p>$logistic$ 回归是一种判别模型，表现为<strong>直接对条件概率</strong> $P(y|x)$ <strong>建模</strong>，而不关心背后的数据分布 $P(y|x)$ 。而高斯贝叶斯模型是一种生成模型，先对数据的联合分布建模，再通过贝叶斯公式来计算样本属于各个类别的后验概率，即：</p>
+<h2 id="判别模型和生成模型"><a href="#判别模型和生成模型" class="headerlink" title="判别模型和生成模型"></a>判别模型和生成模型</h2><p>$logistic$ 回归是一种判别模型，表现为<strong>直接对条件概率</strong> $P(y|x)$ <strong>建模</strong>，而不关心背后的数据分布 $P(x,y)$ 。而高斯贝叶斯模型是一种生成模型，先对数据的联合分布建模，再通过贝叶斯公式来计算样本属于各个类别的后验概率，即：</p>
 <p>$$p(y|x) = \frac{P(x|y)P(y)}{\sum{P(x|y)P(y)}}$$</p>
 <p>通常假设 $P(y|x)$ 是高斯分布， $P(y)$ 是多项式分布，相应的参数都可以通过最大似然估计得到。如果我们考虑二分类问题，通过简单的变化可以得到：</p>
 <p>$$\log\frac{P(y=1|x)}{P(y=0|x)} = \log\frac{P(x|y=1)}{P(x|y=0)} + \log\frac{P(y=1)}{P(y=0)}  \ = -\frac{(x-\mu_1)^2}{2\sigma_1^2} + \frac{(x-\mu_0)^2}{2\sigma_0^2}\ + \theta_0$$</p>
@@ -410,6 +410,7 @@
 <p>由上式进一步可以得到：</p>
 <p>$$P(y=1|x) = \frac{e^{\theta^T x}}{1+e^{\theta^T x}} = \frac{1}{1+e^{-\theta^T x}}$$</p>
 <p>可以看到，这个概率和 $logistic$ 回归中的形式是一样的，这种情况下 $GNB$ 和 $LR$ 会学习到同一个模型。</p>
+<p>典型的<strong>生成式模型</strong>：朴素贝叶斯、隐马尔科夫模型、混合高斯模型<br>联合分布<br>典型的<strong>判别式模型</strong>：感知机、决策树、支持向量机、$logistic$ 回归、条件随机场、神经网络、$KNN$</p>
 <p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] <a href="https://tech.meituan.com/intro_to_logistic_regression.html" target="_blank" rel="external">https://tech.meituan.com/intro_to_logistic_regression.html</a></p>
 
       

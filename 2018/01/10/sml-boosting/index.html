@@ -115,7 +115,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155528779998.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155529673782.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155590545871.jpg">
-<meta property="og:updated_time" content="2018-01-10T05:34:42.937Z">
+<meta property="og:updated_time" content="2018-01-16T12:46:14.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="集成学习">
 <meta name="twitter:description" content="集成学习概述">
@@ -425,7 +425,7 @@
 </li>
 <li><p>弱学习器权重计算<br>第 $k$ 个弱分类器 $g_k(x)$ 的权重系数为：<br>$$ \alpha_k = \frac 1 2 \log \frac {1-e_k} {e_k}$$<br>从上式可以看出，如果分类误差率 $e_k$ 越大，则对应的弱分类器权重系数越小，$e_k$ 误差率越小的弱分类器权重系数越大，也就是说误差率大的弱学习器对最后的强学习器影响小。</p>
 </li>
-<li><p>样本权重更新<br>已知第 $k$ 个弱分类器的训练集样本权重 $w_{ki}$ 和分类器权重 $\alpha_k$，则第 $k+1$ 个弱分类器对应的训练集样本权重为:<br>$$ w_{k+1，i} = \frac {w_{ki}} {Z_k} exp (-\alpha_k y_i g_k(x_i)) $$<br>其中，规范化因子：<br>$$ Z_k =\sum_{i=1}^m w_{ki} exp (-\alpha_k y_i g_k(x_i)) $$<br>从权重更新公式可以看出，如果第 $i$ 个样本被分错，$y_i g_k(x_i))\lt 0$，该样本的权重在第 $k+1$ 个分类器中就会增大，如果分类正确，该样本的权重在第 $k+1$ 个分类器中就会减小。</p>
+<li><p>样本权重更新<br>已知第 $k$ 个弱分类器的训练集样本权重 $w_{ki}$ 和分类器权重 $\alpha_k$，则第 $k+1$ 个弱分类器对应的训练集样本权重为:<br>$$ w_{k+1，i} = \frac {w_{ki}} {Z_k} exp (-\alpha_k y_i g_k(x_i)) $$<br>其中，规范化因子：<br>$$ Z_k =\sum_{i=1}^m w_{ki} exp (-\alpha_k y_i g_k(x_i)) $$<br>从权重更新公式可以看出，如果第 $i$ 个样本被分错，$y_i g_k(x_i)\lt 0$，该样本的权重在第 $k+1$ 个分类器中就会增大，如果分类正确，该样本的权重在第 $k+1$ 个分类器中就会减小。</p>
 </li>
 <li><p>结合策略<br>$Adaboost$ 分类采用的是加权平均法，最终的强分类器为：<br>$$f(x) = sign(\sum_{k=1}^K\alpha_k g_k(x)) $$</p>
 </li>

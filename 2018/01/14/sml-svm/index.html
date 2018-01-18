@@ -111,7 +111,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/1364952814_3505.gif">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159419758530.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159417163475.jpg">
-<meta property="og:updated_time" content="2018-01-14T15:34:48.379Z">
+<meta property="og:updated_time" content="2018-01-18T17:10:25.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="支持向量机">
 <meta name="twitter:description" content="支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。">
@@ -404,7 +404,7 @@
 <p>这就产生了支持向量机的最优化问题：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15159180756448.jpg" alt=""></p>
 <h3 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h3><p>硬边距支持向量机又被称作线性可分支持向量机，其原始优化问题：<br>$$ \begin{align} \min_{w, b} &amp;\;\; \frac 1 2 ||w||^2 \nonumber<br>\\ s.t. &amp; \;\; y_i(w·x_i+b) -1 \ge 0，i=1,2,…N  \nonumber \end{align}$$</p>
 <p>对偶优化问题：<br>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; \alpha_i \ge 0,\;i=1,2,…N \nonumber \end{align}$$</p>
-<p>求得最优解 $\alpha^<em>$ 后，最优参数：<br>$$ w^</em> = \sum_{i=1}^n \alpha^<em>_i y_i x_i \\ b^</em> = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$</p>
+<p>求得最优解 $\alpha^*$ 后，最优参数：<br>$$ w^* = \sum_{i=1}^n \alpha^*_i y_i x_i \\ b^* = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$</p>
 <p><strong>推导：</strong></p>
 <p>原问题的拉格朗日函数：<br>$$ L(w, b, \alpha) = \frac 1 2 ||w||^2 - \sum_{i=1}^n \alpha_iy_i(w·x_i+b) + \sum_{i=1}^n \alpha_i $$</p>
 <p>显然：<br>$$ \frac 1 2 ||w||^2 ≥ L(w, b, \alpha) ≥ \mathop{inf} \limits_{w, b} L(w, b,\alpha)$$</p>
@@ -414,7 +414,7 @@
 </li>
 <li><p>求 $\min_{w, b}L(w, b,\alpha)$ 对 $\alpha$ 的极大值，即求解对偶问题<br>$$ \begin{align} \max_{\alpha} &amp;\;\; - \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle + \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; \alpha_i \ge 0,\;i=1,2,…N \nonumber \end{align}$$<br>将上式的极大转换成极小问题，就得到最终的对偶最优化问题<br>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; \alpha_i \ge 0,\;i=1,2,…N \nonumber \end{align}$$</p>
 </li>
-<li><p>参数最优化<br>由 $\nabla_w L(w, b, \alpha)$ 得：<br>$$ w = \sum_{i=1}^n \alpha^<em>_iy_ix_i $$<br>根据 $y_j(w^</em>·x+b^<em>)-1=0$ 得：<br>$$ b^</em> = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$<br>其中，$y_j^2=1$。</p>
+<li><p>参数最优化<br>由 $\nabla_w L(w, b, \alpha)$ 得：<br>$$ w = \sum_{i=1}^n \alpha^*_iy_ix_i $$<br>根据 $y_j(w^*·x+b^*)-1=0$ 得：<br>$$ b^* = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$<br>其中，$y_j^2=1$。</p>
 </li>
 </ol>
 <h2 id="软边距支持向量机"><a href="#软边距支持向量机" class="headerlink" title="软边距支持向量机"></a>软边距支持向量机</h2><h3 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h3><p>硬边距支持向量机并不适合线性不可分的情况，对于其改进产生了软边距支持向量机，也就是线性支持向量机。对每个样本点 $(x_i,y_i)$ 引入一个松弛变量 $\xi_i \ge 0$，是函数间隔加上松弛变量后大于等于 $1$，这样，就得到软边距支持向量机的原始问题：</p>
@@ -422,8 +422,8 @@
 <p>其中，$C\gt0 $ 是惩罚参数，一般来讲，$C$ 值越大，对误分类的惩罚越大，分类器越严格，边距越窄，$C$ 值越小，对误分类的惩罚越小，分类器越宽松，边距越大。目标函数最优化包含两层含义，使 $1/2 ||w||^2$ 尽可能小，也就是说使边距尽可能大，$\xi_i$ 又使误分类点的个数尽可能少，$C$ 就是调和二者的系数。</p>
 <p>原问题是一个凸二次规划问题，我们可以通过优化其对偶函数求解：</p>
 <p>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; 0 \le \alpha_i \le C,\;i=1,2,…N \nonumber \end{align}$$</p>
-<p>求得最优解 $\alpha^<em>$ 后，最优参数：<br>$$ w^</em> = \sum_{i=1}^n \alpha^<em>_i y_i x_i \\ b^</em> = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$</p>
-<p>对任一适合条件的 $0\le \alpha^<em>_j \le C$，都有不同的 $b^</em>$，但是由于原始问题对 $b$ 的解并不唯一，所以在实际计算过程中可以取在所有符合条件的样本点上的平均值。</p>
+<p>求得最优解 $\alpha^*$ 后，最优参数：<br>$$ w^* = \sum_{i=1}^n \alpha^*_i y_i x_i \\ b^* = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$</p>
+<p>对任一适合条件的 $0\le \alpha^*_j \le C$，都有不同的 $b^*$，但是由于原始问题对 $b$ 的解并不唯一，所以在实际计算过程中可以取在所有符合条件的样本点上的平均值。</p>
 <p><strong>推导：</strong></p>
 <p>原问题的拉格朗日函数：<br>$$ L(w, b, \xi, \mu, \alpha) = \frac 1 2 ||w||^2 + C \sum_{i=1}^n \xi_i - \sum_{i=1}^n \alpha_i(y_i(w·x_i+b)-1+\xi_i)-\sum_{i=1}^n\mu_i \xi_i$$</p>
 <p>显然：<br>$$ \frac 1 2 ||w||^2 ≥ L(w, b, \xi, \mu, \alpha) ≥ \mathop{inf} \limits_{w,b} L(w, b, \xi, \mu, \alpha)$$</p>
