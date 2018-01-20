@@ -147,7 +147,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15164449061274.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15164449625402.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15164450146119.jpg">
-<meta property="og:updated_time" content="2018-01-20T10:58:41.030Z">
+<meta property="og:updated_time" content="2018-01-20T11:14:07.840Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="概率图模型">
 <meta name="twitter:description" content="概率图模型是用图结构来表达随机变量依赖关系的概率模型，用结点表示一个或一组随机变量，用边来表示随机变量之间的概率依赖关系。 信封问题 桌上有两个信封，其中一个信封装有一个红球（价值 $100$ 美元）和一个黑球，另外一个信封装有两个黑球。    你随机选了一个信封并从中随机取出一个球，发现是黑球。这时你被告知可以有一次换信封重新取球的机会，你会选择换还是不换？">
@@ -586,10 +586,10 @@
 <li>近似算法</li>
 <li>维特比算法</li>
 </ul>
-<h4 id="近似算法"><a href="#近似算法" class="headerlink" title="近似算法"></a>近似算法</h4><p>在每个时刻 $t$ 选择在该时间最有可能出现的状态 $y_t^<em>$，得到一个状态序列 $y^</em>={y_1^<em>,y_2^</em>,\dots,y_n^*}$，将它作为预测结果</p>
+<h4 id="近似算法"><a href="#近似算法" class="headerlink" title="近似算法"></a>近似算法</h4><p>在每个时刻 $t$ 选择在该时间最有可能出现的状态 $y_t^*$，得到一个状态序列 $y^*={y_1^*,y_2^*,\dots,y_n^*}$，将它作为预测结果</p>
 <p>$$ y_t^* = \arg\max_{1\le i\le N} Pr(y_t=s_i|x,\lambda) = \arg\max_{1\le i\le N}\gamma_t(i) = \arg\max_{1\le i\le N}  \frac {\alpha_t(i)\beta_t(i)} {\sum_{j=1}^N \alpha_t(j)\beta_t(j)}\quad t=1,2,\dots, n$$</p>
 <p>近似算法的优点是计算简单，缺点是不能保证预测的状态序列整体是合法的，即可能会出现 $a_{ij}=0$ 的情况，尽管如此，近似算法仍然是有用的。</p>
-<h4 id="维特比算法"><a href="#维特比算法" class="headerlink" title="维特比算法"></a>维特比算法</h4><p>维特比算法实际上是利用动态规划来解隐马尔科夫模型的预测问题，根据动态规划的原理，如果最优路径在时刻 $t$ 通过节点 $i_t^<em>$，那么这一路径从节点  $i_t^</em>$ 到终点 $i_T^<em>$ 的部分路径，对于从 $i_t^</em>$ 到 $i_T^*$ 的所有可能路径来说，必然是最优的。<br>为了实现维特比算法，我们引入两个变量：</p>
+<h4 id="维特比算法"><a href="#维特比算法" class="headerlink" title="维特比算法"></a>维特比算法</h4><p>维特比算法实际上是利用动态规划来解隐马尔科夫模型的预测问题，根据动态规划的原理，如果最优路径在时刻 $t$ 通过节点 $i_t^*$，那么这一路径从节点  $i_t^*$ 到终点 $i_T^*$ 的部分路径，对于从 $i_t^*$ 到 $i_T^*$ 的所有可能路径来说，必然是最优的。<br>为了实现维特比算法，我们引入两个变量：</p>
 <ul>
 <li><strong>维特比向量</strong>：在时刻 $t$，隐马尔科夫模型沿着一条路径到达状态 $s_i$，并输出观测序列 $x_1,x_2,\dots,_t$ 的最大概率<br>$$ \begin{align} \delta_t(i) &amp;= \max_{y_1,y_2,\dots,y_{n-1}}Pr(y_t=s_i, y_{t-1},\dots , y_1,x_t,x_{t-1},\dots,x_1|\lambda) \nonumber \\&amp;=\max_{1\le j \le N}  \delta_{t-1}(j)a_{ji}b_i(x_t)\quad t=2,3,\dots, n  \nonumber \end{align}  $$<br>其中，$\delta_1(i) = \pi_1b_i(x_1) $</li>
 <li><strong>路径变量</strong>：记录该路径上状态 $s_i$ 的前一个状态，即概率最大路径上的前一个节点<br>$$ \phi_t(i) = \arg\max_{1\le j \le N}  \delta_{t-1}(j)a_{ji}b_i(x_t)\quad t=2,3,\dots,n  $$</li>
