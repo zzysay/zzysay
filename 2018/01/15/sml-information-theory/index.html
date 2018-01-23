@@ -113,7 +113,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160023047820.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160024979985.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160026577111.jpg">
-<meta property="og:updated_time" content="2018-01-20T11:12:50.943Z">
+<meta property="og:updated_time" content="2018-01-23T02:56:18.590Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="信息论模型">
 <meta name="twitter:description" content="信息论从另外一个角度解释了许多机器学习的问题  熵是不确定性的度量，类别不均匀程度的度量 最大熵是一种状态的平衡分布，可看作一种自然法则  互信息是随机变量相关性的度量  信息熵与最大熵信息量是信息多少的度量： $$ I(x_k) = \log \frac 1 {p_k} = - \log p_k $$ 其中，$X = {x_k,| k = 0, \pm1,…,\pm N},\;p_k=P(X=x">
@@ -437,7 +437,7 @@
 <p>互信息其实也是一种相对熵： $I(X;Y) = D_{p_{x,y}||p_xp_y}$</p>
 <p>$$ I(X;Y) =  \iint_{-\infty}^{\infty} p(x,y)\log \left(\frac {p_{x,y}(x,y)} {p_x(x)p_y(y)} \right) dxdy $$</p>
 <h2 id="最大熵模型"><a href="#最大熵模型" class="headerlink" title="最大熵模型"></a>最大熵模型</h2><p>根据条件熵：</p>
-<p>$$ H(Y|X) = \sum_{x, y} P(x) P(y|x) \log P(y|x) = \sum_{x, y} \tilde P(x) P(y|x) \log P(y|x)$$</p>
+<p>$$ H(Y|X) = -\sum_{x, y} P(x) P(y|x) \log P(y|x) = -\sum_{x, y} \tilde P(x) P(y|x) \log P(y|x)$$</p>
 <p>其中 $\tilde P(x) = \frac {number\; of\; x} {number\;of\;all}$ 表示的是经验概率。</p>
 <p>我们用特征函数 $f(x,y)$ 描述输入 $x$ 与输出 $y$ 之间的某一个事实，只有 $0$ 和 $1$ 两种值，最大熵模型根据最大熵原理在这样的特征限制下选择最优的概率分布。</p>
 <hr>
@@ -606,7 +606,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -628,7 +628,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
