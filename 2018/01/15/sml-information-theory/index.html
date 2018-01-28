@@ -113,7 +113,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160023047820.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160024979985.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15160026577111.jpg">
-<meta property="og:updated_time" content="2018-01-23T02:56:18.590Z">
+<meta property="og:updated_time" content="2018-01-28T15:39:10.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="信息论模型">
 <meta name="twitter:description" content="信息论从另外一个角度解释了许多机器学习的问题  熵是不确定性的度量，类别不均匀程度的度量 最大熵是一种状态的平衡分布，可看作一种自然法则  互信息是随机变量相关性的度量  信息熵与最大熵信息量是信息多少的度量： $$ I(x_k) = \log \frac 1 {p_k} = - \log p_k $$ 其中，$X = {x_k,| k = 0, \pm1,…,\pm N},\;p_k=P(X=x">
@@ -427,7 +427,7 @@
 <p><strong>互信息与熵的关系</strong></p>
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15159877369014.jpg" alt=""></p>
 <h3 id="熵的意义"><a href="#熵的意义" class="headerlink" title="熵的意义"></a>熵的意义</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15159878194026.jpg" alt=""></p>
-<h3 id="相对熵"><a href="#相对熵" class="headerlink" title="相对熵"></a>相对熵</h3><p>相对熵是衡量两个分布的平均信息差异，对于两个完全相同的分布，它们的相对熵为 $0$，相对熵越大，两个f分布的差异越大。</p>
+<h3 id="相对熵"><a href="#相对熵" class="headerlink" title="相对熵"></a>相对熵</h3><p>相对熵是衡量两个分布的平均信息差异，对于两个完全相同的分布，它们的相对熵为 $0$，相对熵越大，两个分布的差异越大。</p>
 <p>$$ D_{p_x||q_x} = \int_{-\infty}^{+\infty} p_x(x) \log \left(\frac {p_x(x)} {q_x(x)} \right) = E \left[\log \left(\frac {p_x(x)} {q_x(x)} \right) \right] $$</p>
 <p><strong>相对熵性质</strong></p>
 <ul>
@@ -468,8 +468,8 @@
 <p>最大熵模型的直观理解：</p>
 <ul>
 <li>最大熵原理是统计学习的一般原理，将它应用到分类就得到了最大熵模型</li>
-<li>假设分类模型是一个条件概率分布 $P(Y|X)$，$X$ 表示输入，$Y$ 表示输出。这个模型表示的是对于给定的输入 $X$，以条件概率 $P(Y|X)$ 输出 $Y$。</li>
-<li>给定一个训练数据集 $T$，我们的目标就是利用最大熵原理选择最好的分类模型。</li>
+<li>假设分类模型是一个条件概率分布 $P(Y|X)$，$X$ 表示输入，$Y$ 表示输出。这个模型表示的是对于给定的输入 $X$，以条件概率 $P(Y|X)$ 输出 $Y$</li>
+<li>给定一个训练数据集 $T$，我们的目标就是利用最大熵原理选择最好的分类模型</li>
 </ul>
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15160023047820.jpg" alt=""></p>
 <p>这个模型表示的是对于给定的输入 $X$，以条件概率 $P(Y|X)$ 输出 $Y$。</p>

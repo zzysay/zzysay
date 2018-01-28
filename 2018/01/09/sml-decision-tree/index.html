@@ -123,7 +123,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15154877338124.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15154877849795.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15154878291741.jpg">
-<meta property="og:updated_time" content="2018-01-16T11:46:06.017Z">
+<meta property="og:updated_time" content="2018-01-28T11:50:40.718Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="决策树模型">
 <meta name="twitter:description" content="决策树模型概述">
@@ -479,7 +479,7 @@
 <p>为此，对 $T_0$ 中每一个内部节点 $t$，计算</p>
 <p>$$ g(t)=\frac{C(t)-C_(T_t)}{|T_t|-1} $$</p>
 <p>它表示<strong>剪枝后</strong>整体损失函数减少的程度（抛开正则项），在 $T_0$ 中减去 $g(t)$ 最小的 $T_t$，得到子树 $T_1$，同时将最小的 $g(t)$ 设为 $\alpha_1$， $T_1$ 即为区间 $[\alpha_1, \alpha_2)$ 之间的最优子树，不断迭代，增加 $\alpha$ 的值，直至根节点。</p>
-<p>对于同一棵树的结点， $\alpha$ 都是一样的，当 $\alpha$ 从 $0$ 开始缓慢增大，总会有某棵子树该剪，其他子树不该剪的情况，即 $\alpha$ 超过了某个结点的 $g(t)$，但还没有超过其他结点的 $g(t)$。这样随着 $\alpha$ 不断增大，不断地剪枝，就得到了 $n+1$ 棵子树。</p>
+<p>对于同一棵树的结点， $\alpha$ 都是一样的，当 $\alpha$ 从 $0$ 开始缓慢增大，总会有某棵子树该剪，其他子树不该剪的情况，即 $\alpha$ 超过了某个结点的 $g(t)$，但还没有超过其他结点的 $g(t)$。这样随着 $\alpha$ 不断增大，不断地剪枝，就得到了 $n+1$ 棵嵌套的子树。</p>
 <p><strong>算法描述</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15154899883921.jpg" alt=""></p>
 <p>对于子树 $T_k$ 来说，节点 $t$ 是当前 $\alpha$ 下最优的切分点，其它节点的 $g(t)$ 都比该节点的 $g(t)$ 大。</p>
 <p>总的来说，就是 $ID3$ 和 $C4.5$ 剪枝时 $\alpha$ 是人为给定的，而 $CART$ 剪枝时的 $\alpha$ 是根据特征值在 $[0, +\infty)$ 找到一系列的值，从而得到一系列剪枝后的树，从中选取最优的。从最宏观的角度去考虑的话，就是利用 $\alpha$ 生成 $T_{\alpha}$。抽象一下，即从无限的实数中找寻有限个数的 $T_{\alpha}$。</p>

@@ -147,7 +147,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15164449061274.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15164449625402.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15164450146119.jpg">
-<meta property="og:updated_time" content="2018-01-20T11:17:43.736Z">
+<meta property="og:updated_time" content="2018-01-24T09:39:10.023Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="概率图模型">
 <meta name="twitter:description" content="概率图模型是用图结构来表达随机变量依赖关系的概率模型，用结点表示一个或一组随机变量，用边来表示随机变量之间的概率依赖关系。 信封问题 桌上有两个信封，其中一个信封装有一个红球（价值 $100$ 美元）和一个黑球，另外一个信封装有两个黑球。    你随机选了一个信封并从中随机取出一个球，发现是黑球。这时你被告知可以有一次换信封重新取球的机会，你会选择换还是不换？">
@@ -433,7 +433,7 @@
 
 <ul>
 <li>同时观测到下雨、给草坪浇水、草坪湿的概率有多大？<br>$$ P(G=1,S=1,R=1) = P(G=1|S=1,R=1)P(S=1|R=1)P(R=1) = 0.99 \times 0.01  \times 0.2 = 0.00198 $$</li>
-<li>当已知不下雨时，观测到草坪湿的概率有多大？<br>$$ P(G=1|R=0) = \frac {P(G=1,R=0)} {P(R=0)} =  \frac {\sum_{S \in {0,1}} P(G=1,S,R=1)} {P(R=0)} \frac {0.288+0} {0.8} = 0.36 $$</li>
+<li>当已知不下雨时，观测到草坪湿的概率有多大？<br>$$ P(G=1|R=0) = \frac {P(G=1,R=0)} {P(R=0)} =  \frac {\sum_{S \in {0,1}} P(G=1,S,R=0)} {P(R=0)} = \frac {0.288+0} {0.8} = 0.36 $$</li>
 <li>当已知草坪湿了后，推测下雨的概率有多大？<br>$$ P(R=1|G=1) = \frac {P(G=1,R=1)} {P(G=1)} = \frac {\sum_{S \in {0,1}} P(G=1,S,R=1)} {\sum_{S,R \in {0,1}}P(G=1,S,R)} = \frac {0.00198+0.1584} {0.00198+0.288+0.1584+0} \approx 0.3577 $$</li>
 <li>当已知草坪湿了后，推测给草坪浇过水的概率有多大？<br>$$ P(S=1|G=1) = \frac {P(G=1,S=1)} {P(G=1)} = \frac {\sum_{R \in {0,1}} P(G=1,S=1,R)} {\sum_{S,R \in {0,1}}P(G=1,S,R)} = \frac {0.00198+0.288} {0.00198+0.288+0.1584+0} \approx 0.6467$$</li>
 </ul>

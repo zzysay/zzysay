@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030920850.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030311370.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030442037.jpg">
-<meta property="og:updated_time" content="2018-01-09T01:43:40.937Z">
+<meta property="og:updated_time" content="2018-01-28T06:41:52.548Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="感知机模型">
 <meta name="twitter:description" content="感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下: $$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$">
@@ -380,7 +380,7 @@
 <p>增广表示：<br>$$ g(x) = \sum_{i=1}^m w_i x_i  = {\bf \hat w^T \hat x} $$<br>其中，${\bf \hat w} = ({\bf w}, b)^T$ ，${\bf \hat x} = ({\bf x}, 1)^T$。</p>
 <p>所以其学习准则为：最小化<strong>错分样本</strong>的误差代价.如果训练集是可分的，感知机的学习目的是求得一个能将训练集正实例点和负实例点完全分开的分离超平面。对于损失函数的选择，我们采用的是误分类点到超平面的距离：</p>
 <p>$$\dfrac{1}{\parallel w\parallel}|w*x_{0}+b|$$</p>
-<p>对于误分类点 $(x_i,yi_)$ 来说：</p>
+<p>对于误分类点 $(x_i,y_i)$ 来说：</p>
 <p>$$- y_i(w * x_{i}+b)&gt;0$$</p>
 <p>误分类点到超平面的距离为：</p>
 <p>$$ -\dfrac{1}{\parallel w\parallel}y_i(w*x_{0}+b) $$</p>

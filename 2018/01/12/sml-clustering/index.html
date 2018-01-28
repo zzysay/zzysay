@@ -132,7 +132,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15157551401354.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15157552461531.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15157556882224.jpg">
-<meta property="og:updated_time" content="2018-01-12T11:31:47.479Z">
+<meta property="og:updated_time" content="2018-01-28T15:07:37.948Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聚类分析">
 <meta name="twitter:description" content="概述 聚类是无监督机器学习问题，目标是感知样本间的相似度，进行类别归纳，聚类既可以作为一个单独过程，用于寻找数据内在的分布结构，也可以作为分类、稀疏表示等其他学习任务的前驱过程。">
@@ -420,7 +420,7 @@
 <h3 id="双阈值序贯方法"><a href="#双阈值序贯方法" class="headerlink" title="双阈值序贯方法"></a>双阈值序贯方法</h3><p>双阈值序贯方法是对以上两种方法的又一个改进，该方法采用两个阈值，弱化阈值作用，形成灰色带。</p>
 <ul>
 <li>$if \;\; d(x, C) \lt \Theta_1,\; x \in C$</li>
-<li>$if \;\; d(x, C) \gt \Theta_1,\; x \in new \; C$</li>
+<li>$if \;\; d(x, C) \gt \Theta_2,\; x \in new \; C$</li>
 <li>$if \;\; \Theta_1 \lt d(x, C) \lt \Theta_2 ,\; take\;place\;at\;later\;stage. $</li>
 </ul>
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15157461148194.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15157460989918.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15157484478764.jpg" alt=""></p>
@@ -450,15 +450,15 @@
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15157522898928.jpg" alt=""></p>
 <h3 id="优缺点及改进"><a href="#优缺点及改进" class="headerlink" title="优缺点及改进"></a>优缺点及改进</h3><p><strong>优点</strong></p>
 <ol>
-<li>该算法时间复杂度为 $O(TKMN)$，其中，$T$ 为迭代次数，$K$ 为簇的数目，$M$ 为样本数，$N$ 为维数。所以，对于处理大数据集合，该算法非常高效，且伸缩性较</li>
-<li>原理简单，实现容易。</li>
+<li>该算法时间复杂度为 $O(TKMN)$，其中，$T$ 为迭代次数，$K$ 为簇的数目，$M$ 为样本数，$N$ 为维数。所以，对于处理大数据集合，该算法非常高效，且伸缩性较好</li>
+<li>原理简单，实现容易</li>
 </ol>
 <p><strong>缺点</strong></p>
 <ol>
 <li>聚类中心的个数 $K$ 需要事先给定，但在实际中这个 $K$ 值的选定是非常难以估计的</li>
 <li>聚类效果受初始聚类中心的影响，不同的初始聚类中心可能导致完全不同的聚类结果，改进有 $K-Means++$</li>
 <li>结果不一定是全局最优，只能保证局部最优</li>
-<li>对噪声和离群点敏感；</li>
+<li>对噪声和离群点敏感</li>
 </ol>
 <p>$\bf K-Means++$</p>
 <ol>
