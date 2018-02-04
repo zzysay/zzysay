@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="蛮力法," />
+  <meta name="keywords" content="蛮力法,数组," />
 
 
 
@@ -94,14 +94,14 @@
 
 
 <meta name="description" content="题目描述Given an array of integers, return indices of the two numbers such that they add up to a specific target.You may assume that each input would have exactly one solution, and you may not use the sam">
-<meta name="keywords" content="蛮力法">
+<meta name="keywords" content="蛮力法,数组">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【LeetCode】1. Two Sum">
 <meta property="og:url" content="http://zzysay.github.io/2018/02/04/leetcode-1-Two-Sum/index.html">
 <meta property="og:site_name" content="ZZY SAY">
 <meta property="og:description" content="题目描述Given an array of integers, return indices of the two numbers such that they add up to a specific target.You may assume that each input would have exactly one solution, and you may not use the sam">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-04T10:18:16.320Z">
+<meta property="og:updated_time" content="2018-02-04T14:03:11.607Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【LeetCode】1. Two Sum">
 <meta name="twitter:description" content="题目描述Given an array of integers, return indices of the two numbers such that they add up to a specific target.You may assume that each input would have exactly one solution, and you may not use the sam">
@@ -358,8 +358,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Given nums = [2, 7, 11, 15], target = 9,</div><div class="line">Because nums[0] + nums[1] = 2 + 7 = 9,</div><div class="line">return [0, 1].</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个整数数组，从中找出两个数的下标，使得它们的和等于一个特定的数字，假设题目有唯一解。</p>
-<p><strong>解题思路</strong></p>
-<p>遍历数组，对每个数字判断其胡部署是否在数组中，若在数组中就返回下标。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>遍历数组，对每个数字判断其胡部署是否在数组中，若在数组中就返回下标。</p>
 <h3 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twoSum</span><span class="params">(self, nums, target)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :type target: int</div><div class="line">        :rtype: List[int]</div><div class="line">        """</div><div class="line">        l = len(nums)</div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, l):</div><div class="line">            n = target - nums[i]</div><div class="line">            <span class="keyword">if</span> n <span class="keyword">in</span> nums:</div><div class="line">                j = nums.index(n)</div><div class="line">                <span class="keyword">if</span> i != j:</div><div class="line">                    <span class="keyword">return</span> [i, j]</div></pre></td></tr></table></figure>
 
       
@@ -392,6 +391,8 @@
           
             <a href="/tags/蛮力法/" rel="tag"># 蛮力法</a>
           
+            <a href="/tags/数组/" rel="tag"># 数组</a>
+          
         </div>
       
 
@@ -412,6 +413,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/04/leetcode-2-Add-Two-Numbers/" rel="prev" title="【LeetCode】 2. Add Two Numbers">
+                【LeetCode】 2. Add Two Numbers <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -484,7 +489,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -506,7 +511,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -541,7 +546,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-number">2.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考代码"><span class="nav-number">3.</span> <span class="nav-text">参考代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-number">2.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">3.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考代码"><span class="nav-number">4.</span> <span class="nav-text">参考代码</span></a></li></ol></div>
             
 
           </div>
