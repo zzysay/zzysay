@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习,感知机," />
+  <meta name="keywords" content="字符串操作,模拟法," />
 
 
 
@@ -93,24 +93,18 @@
 
 
 
-<meta name="description" content="感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下: $$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$">
-<meta name="keywords" content="机器学习,感知机">
+<meta name="description" content="题目描述The string is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)12 P   A   H   NA P L S I I GY   I   R12A">
+<meta name="keywords" content="字符串操作,模拟法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="感知机模型">
-<meta property="og:url" content="http://zzysay.github.io/2018/01/07/sml-perceptron/index.html">
+<meta property="og:title" content="【LeetCode】6. ZigZag Conversion">
+<meta property="og:url" content="http://zzysay.github.io/2018/02/05/leetcode-6-ZigZag-Conversion/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下: $$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$">
+<meta property="og:description" content="题目描述The string is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)12 P   A   H   NA P L S I I GY   I   R12A">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153007333583.png">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030794778.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030920850.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030311370.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030442037.jpg">
-<meta property="og:updated_time" content="2018-01-28T06:41:52.548Z">
+<meta property="og:updated_time" content="2018-02-05T13:18:24.460Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="感知机模型">
-<meta name="twitter:description" content="感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下: $$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$">
-<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15153007333583.png">
+<meta name="twitter:title" content="【LeetCode】6. ZigZag Conversion">
+<meta name="twitter:description" content="题目描述The string is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)12 P   A   H   NA P L S I I GY   I   R12A">
 
 
 
@@ -138,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://zzysay.github.io/2018/01/07/sml-perceptron/"/>
+  <link rel="canonical" href="http://zzysay.github.io/2018/02/05/leetcode-6-ZigZag-Conversion/"/>
 
 
 
 
 
-  <title>感知机模型 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【LeetCode】6. ZigZag Conversion | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -273,7 +267,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/07/sml-perceptron/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/05/leetcode-6-ZigZag-Conversion/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
@@ -290,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">感知机模型</h1>
+          <h1 class="post-title" itemprop="name headline">【LeetCode】6. ZigZag Conversion</h1>
         
 
         <div class="post-meta">
@@ -302,8 +296,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-07T13:33:04+08:00">
-                2018-01-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-05T20:08:22+08:00">
+                2018-02-05
               </time>
             
 
@@ -325,19 +319,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/课堂笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">课堂笔记</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/课堂笔记/统计机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">统计机器学习</span>
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
                   </a>
                 </span>
 
@@ -370,53 +353,9 @@
       
 
       
-        <p>感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下:</p>
-<p>$$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$</p>
-<p><img src="http://p1auo1a1h.bkt.clouddn.com/15153007333583.png" alt=""></p>
-<a id="more"></a>
-<p>这里 $ f(\cdot)$ 叫做激活函数，有时也被称为单位阶跃函数：</p>
-<p>$$f(a)= \begin{cases} +1&amp; a \ge 0 \\ -1&amp; a \lt 0 \end{cases}$$</p>
-<h2 id="感知机学习策略"><a href="#感知机学习策略" class="headerlink" title="感知机学习策略"></a>感知机学习策略</h2><p>决策函数：<br>$$ g(x) = \sum_{i=1}^m w_i x_i + w_0 = {\bf w^T x} + bw_0$$</p>
-<p>增广表示：<br>$$ g(x) = \sum_{i=1}^m w_i x_i  = {\bf \hat w^T \hat x} $$<br>其中，${\bf \hat w} = ({\bf w}, b)^T$ ，${\bf \hat x} = ({\bf x}, 1)^T$。</p>
-<p>所以其学习准则为：最小化<strong>错分样本</strong>的误差代价.如果训练集是可分的，感知机的学习目的是求得一个能将训练集正实例点和负实例点完全分开的分离超平面。对于损失函数的选择，我们采用的是误分类点到超平面的距离：</p>
-<p>$$\dfrac{1}{\parallel w\parallel}|w*x_{0}+b|$$</p>
-<p>对于误分类点 $(x_i,y_i)$ 来说：</p>
-<p>$$- y_i(w * x_{i}+b)&gt;0$$</p>
-<p>误分类点到超平面的距离为：</p>
-<p>$$ -\dfrac{1}{\parallel w\parallel}y_i(w*x_{0}+b) $$</p>
-<p>记误分类点的集合为 $M$，那么所有误分类点点到超平面的总距离为：</p>
-<p>$$-\dfrac{1}{\parallel w\parallel} \sum_{x_i\epsilon M} y_i|w*x_{0}+b|$$</p>
-<p>不考虑权重，得到感知机的损失函数：</p>
-<p>$$ L(w,b) = - \sum_{x_i\epsilon M} y_i(w*x_{0}+b) $$</p>
-<p>可以看出，损失函数是非负的。如果没有误分类点，则损失函数的值为 $0$，而且误分类点越少，误分类点距离超平面就越近，损失函数值就越小。同时，损失函数 $L(w,b)$ 是连续可导函数。</p>
-<h2 id="感知机原始形式"><a href="#感知机原始形式" class="headerlink" title="感知机原始形式"></a>感知机原始形式</h2><p>感知机学习算法本身是误分类驱动的，因此我们采用<strong>随机梯度下降</strong>法。首先，任选一个超平面 $w_0$ 和 $b_0$，然后使用梯度下降法不断地极小化目标函数：</p>
-<p>$$ min_{w,b}  L(w,b) = - \sum_{x_i\epsilon M} y_i(w*x_{0}+b) $$</p>
-<p>极小化过程不是一次使 $M$ 中所有误分类点的梯度下降，而是一次随机的选取一个误分类点使其梯度下降，损失函数的梯度为：<br>$$ \frac{\partial L(w,b)}{\partial w} = - \sum_{x_i\epsilon M}y_ix_i \\\frac{\partial L(w,b)}{\partial b} = - \sum_{x_i\epsilon M}y_i $$</p>
-<p>随机选取一个误分类点 $(x_i, y_i)$，对参数进行更新：<br>$$w_{t+1}=w_t + \eta {x_iy_i}\\<br>  b_{t+1}=b_t + \eta {y_i}$$</p>
-<p><strong>感知机随机梯度下降法的直观解释：</strong>对于感知机而言，当一个样本点被误分类之后，被误分类的样本点会位于决策超平面的错误的一侧，这时感知机会调整 $w,b$ 的值，使决策超平面向该误分类点的一侧移动，移动的尺度由 $\eta$ 决定，每一次移动，都可以减少误分类点和决策超平面之间的距离，直到决策超平面越过该误分类点，使其被正确分类为止。</p>
-<p><strong>算法举例</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15153030794778.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15153030920850.jpg" alt=""></p>
-<h2 id="感知机对偶形式"><a href="#感知机对偶形式" class="headerlink" title="感知机对偶形式"></a>感知机对偶形式</h2><p>感知机算法的对偶形式，是针对感知机随机梯度下降法来设计的。其基本思想是：感知机的原始形式中，$x$ 是自变量，$y$ 是因变量， $w,b$ 是模型的参数，通俗点说，在感知机的原始算法中，是用参数 $w,b$ 来表示 $x$ 和 $y$ 的。对偶式就是要把这这个关系反过来，用样本 $x$ 和 $y$ 的线性组合来表示参数 $w$ 和 $b$。</p>
-<p>感知机随机梯度下降法的参数更新方式为：</p>
-<p>$$ w_{t+1}=w_t + \eta {x_iy_i}\\<br>  b_{t+1}=b_t + \eta {y_i}$$</p>
-<p>对于第 $i$ 个样本，每次其被分类错误，都会有一次基于 $x_i, y_i$的 权值更新，那么假设到最后，整个感知机算法更新结束时，第 $i$ 个样本点总共更新了 $n_i$ 次。这样就不难得到最后学习到的参数为：</p>
-<p>$$ w=\sum_{i=1}^N{n_i \eta y_i x_i} = \sum_{i=1}^N{\alpha_i y_i x_i} \\<br>  b=\sum_{i=1}^N{n_i \eta y_i} = \sum_{i=1}^N{\alpha_i y_i}  $$</p>
-<p>感知机模型的对偶形式为：</p>
-<p>$$ y(x)=f(w^Tx+b)=f({\sum_{j=1}^N{\alpha_j y_j x_j}}*x + \sum_{j=1}^N{\alpha_j y_j}) $$</p>
-<p>上式中，为了和样本点的下标 $(x_i, y_i)$ 区别开来，这里选用的下标是 $j$。</p>
-<p>其训练过程为：在训练集中选取一个样本点 $(x_i, y_i)$ ，如果该点分类错误，那么该点的权值更新次数加一次：</p>
-<p>$$n_i=n_i+1$$</p>
-<p>于是，参数更新规则为：</p>
-<p>$$ \alpha_i = \eta(n_i+1) = \alpha_i + \eta \\ b = b + \eta y_i $$</p>
-<p><strong>感知机模型对偶形式的直观解释：</strong>在所有训练样本依次循环的输入到算法中，如果对于某个样本分类错误，那么算法就根据该样本点做一次更新。循环上面这个过程，直到所有的样本点都能够分类正确。</p>
-<p>在感知机对偶式的训练过程中，对错误分类点有：</p>
-<p>$$y_i({\sum_{j=1}^N{\alpha_j y_j x_j}}*x_i + \sum_{j=1}^N{\alpha_j y_j}) \le 0$$</p>
-<p>上式可以重写为：</p>
-<p>$$ y_i(\sum_{j=1}^N{\alpha_j y_j  (x_j*x_i)} + \sum_{j=1}^N{\alpha_j y_j}) \le 0 $$</p>
-<p>这就表明：样本点的特征向量是以内积的形式存在于感知机对偶形式的训练算法中。为了简化计算过程，可以将训练集合之间的内积提前求出来，然后在训练过程中直接调用，样本点间的内积矩阵也就是所谓的 $Gram$ 矩阵：</p>
-<p>$$G=[x_i,x_j]_{N*N}$$</p>
-<p>这里的内积，也就是 <em>SVM</em> 算法中核方法的原型。</p>
-<p><strong>算法举例</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15153030311370.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15153030442037.jpg" alt=""></p>
-<p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] 李航,《统计学习方法》,清华大学出版社</p>
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The string <figure class="highlight plain"><figcaption><span>is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>P   A   H   N<br>A P L S I I G<br>Y   I   R<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">And then read line by line: ```&quot;PAHNAPLSIIGYIR&quot;</div></pre></td></tr></table></figure></p>
+<p>Write the code that will take a string and make this conversion given a number of rows:<br><figure class="highlight plain"><figcaption><span>convert(string text, int nRows);```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">```convert(&quot;PAYPALISHIRING&quot;, 3)``` should return ```&quot;PAHNAPLSIIGYIR&quot;```.</div><div class="line"></div><div class="line">&lt;!--more--&gt;</div><div class="line"></div><div class="line">### 题目大意</div><div class="line"></div><div class="line">在行数给定时，将字符串按照 $Z$ 字排列，最后按行输出。</div><div class="line"></div><div class="line">### 解题思路</div><div class="line"></div><div class="line">模拟法，模拟 $Z$ 字从上到下再从下到上填充字符。</div><div class="line"></div><div class="line">### 参考代码</div><div class="line"></div><div class="line">```python</div><div class="line">class Solution:</div><div class="line">    def convert(self, s, numRows):</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        :type s: str</div><div class="line">        :type numRows: int</div><div class="line">        :rtype: str</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        if numRows == 1 or numRows &gt;= len(s):</div><div class="line">            return s</div><div class="line">        res_list = [[] for _ in range(numRows)]</div><div class="line"></div><div class="line">        res, i, j = &apos;&apos;, 0, 1</div><div class="line">        for c in s:</div><div class="line">            res_list[i] += c</div><div class="line">            if i == 0:</div><div class="line">                j = 1</div><div class="line">            elif i == numRows-1:</div><div class="line">                j = -1</div><div class="line">            i += j</div><div class="line"></div><div class="line">        for i in range(0, numRows):</div><div class="line">            res += &apos;&apos;.join(res_list[i])</div><div class="line">        return res</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -446,9 +385,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+            <a href="/tags/字符串操作/" rel="tag"># 字符串操作</a>
           
-            <a href="/tags/感知机/" rel="tag"># 感知机</a>
+            <a href="/tags/模拟法/" rel="tag"># 模拟法</a>
           
         </div>
       
@@ -461,8 +400,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/06/sml-parameter-estimation/" rel="next" title="参数估计问题">
-                <i class="fa fa-chevron-left"></i> 参数估计问题
+              <a href="/2018/02/05/leetcode-5-Longest-Palindromic-Substring/" rel="next" title="【LeetCode】5. Longest Palindromic Substring">
+                <i class="fa fa-chevron-left"></i> 【LeetCode】5. Longest Palindromic Substring
               </a>
             
           </div>
@@ -471,8 +410,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/07/sml-fisher-discriminant/" rel="prev" title="线性鉴别分析">
-                线性鉴别分析 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/05/leetcode-7-Reverse-Integer/" rel="prev" title="【LeetCode】7. Reverse Integer">
+                【LeetCode】7. Reverse Integer <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -603,7 +542,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#感知机学习策略"><span class="nav-number">1.</span> <span class="nav-text">感知机学习策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感知机原始形式"><span class="nav-number">2.</span> <span class="nav-text">感知机原始形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感知机对偶形式"><span class="nav-number">3.</span> <span class="nav-text">感知机对偶形式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li></ol></div>
             
 
           </div>
