@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习,Logistic Regression," />
+  <meta name="keywords" content="分治法,数组操作," />
 
 
 
@@ -93,25 +93,18 @@
 
 
 
-<meta name="description" content="Logistic分布">
-<meta name="keywords" content="机器学习,Logistic Regression">
+<meta name="description" content="题目描述There are two sorted arrays nums1 and nums2 of size $m$ and $n$ respectively.Find the median of the two sorted arrays. The overall run time complexity should be $O(\log (m+n))$. Example 1 123nums1">
+<meta name="keywords" content="分治法,数组操作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Logistic模型">
-<meta property="og:url" content="http://zzysay.github.io/2018/01/07/sml-logistic-model/index.html">
+<meta property="og:title" content="【LeetCode】4. Median of Two Sorted Arrays">
+<meta property="og:url" content="http://zzysay.github.io/2018/02/05/leetcode-4-Median-of-Two-Sorted-Arrays/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="Logistic分布">
+<meta property="og:description" content="题目描述There are two sorted arrays nums1 and nums2 of size $m$ and $n$ respectively.Find the median of the two sorted arrays. The overall run time complexity should be $O(\log (m+n))$. Example 1 123nums1">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153138596418.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153142414584.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153143389183.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153148419813.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153150538259.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153176904048.jpg">
-<meta property="og:updated_time" content="2018-01-28T07:28:07.206Z">
+<meta property="og:updated_time" content="2018-02-05T03:03:13.101Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Logistic模型">
-<meta name="twitter:description" content="Logistic分布">
-<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15153138596418.jpg">
+<meta name="twitter:title" content="【LeetCode】4. Median of Two Sorted Arrays">
+<meta name="twitter:description" content="题目描述There are two sorted arrays nums1 and nums2 of size $m$ and $n$ respectively.Find the median of the two sorted arrays. The overall run time complexity should be $O(\log (m+n))$. Example 1 123nums1">
 
 
 
@@ -139,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://zzysay.github.io/2018/01/07/sml-logistic-model/"/>
+  <link rel="canonical" href="http://zzysay.github.io/2018/02/05/leetcode-4-Median-of-Two-Sorted-Arrays/"/>
 
 
 
 
 
-  <title>Logistic模型 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【LeetCode】4. Median of Two Sorted Arrays | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -274,7 +267,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/07/sml-logistic-model/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/05/leetcode-4-Median-of-Two-Sorted-Arrays/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
@@ -291,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Logistic模型</h1>
+          <h1 class="post-title" itemprop="name headline">【LeetCode】4. Median of Two Sorted Arrays</h1>
         
 
         <div class="post-meta">
@@ -303,8 +296,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-07T17:52:48+08:00">
-                2018-01-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-05T11:00:23+08:00">
+                2018-02-05
               </time>
             
 
@@ -326,19 +319,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/课堂笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">课堂笔记</span>
-                  </a>
-                </span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/课堂笔记/统计机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">统计机器学习</span>
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
                   </a>
                 </span>
 
@@ -371,53 +353,15 @@
       
 
       
-        <h2 id="Logistic分布"><a href="#Logistic分布" class="headerlink" title="Logistic分布"></a>Logistic分布</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15153138596418.jpg" alt=""></p>
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>There are two sorted arrays <strong>nums1</strong> and <strong>nums2</strong> of size $m$ and $n$ respectively.<br>Find the median of the two sorted arrays. The overall run time complexity should be $O(\log (m+n))$.</p>
+<p><strong>Example 1</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nums1 = [1, 3]</div><div class="line">nums2 = [2]</div><div class="line">The median is 2.0</div></pre></td></tr></table></figure>
+<p><strong>Example 2</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nums1 = [1, 2]</div><div class="line">nums2 = [3, 4]</div><div class="line">The median is (2 + 3)/2 = 2.5</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>设 $X$ 为连续随机变量，$X$ 服从 $logistic$ 分布指的是 $X$ 具有下列分布函数：</p>
-<p>$$ F(x) = P(X\le x) = \frac {1} {1+e^{-(x-\mu)/\gamma}}$$</p>
-<p>其中 $\mu$ 为位置参数，$\gamma \gt 0$ 是形状参数。</p>
-<h2 id="Logistic回归模型"><a href="#Logistic回归模型" class="headerlink" title="Logistic回归模型"></a>Logistic回归模型</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15153142414584.jpg" alt=""></p>
-<h3 id="二项回归模型"><a href="#二项回归模型" class="headerlink" title="二项回归模型"></a>二项回归模型</h3><p>对于二项 $logistic$ 回归模型，满足如下的条件概率分布<br><img src="http://p1auo1a1h.bkt.clouddn.com/15153143389183.jpg" alt=""></p>
-<h4 id="模型理解"><a href="#模型理解" class="headerlink" title="模型理解"></a>模型理解</h4><p>从概率论的角度来讲，一个事件的<strong>几率</strong>指的是该事件发生概率与不发生概率的比值，如果事件发生的概率是 $p$，那么事件的几率就是 $\frac {p} {1-p}$，该事件的对数几率（$logit$ 函数）是：</p>
-<p>$$logit(p) =\log \frac {p} {1-p}$$</p>
-<p>对于二项 $logistic$ 回归而言，其事件的对数几率为：</p>
-<p>$$\log \frac {P(y=1|w,x)} {P(y=0|w,x)} $$</p>
-<p>我们用 $g_1(x)$ 表示事件发生的概率，用 $g_0(x)$ 表示事件不发生的概率，于是有：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15153148419813.jpg" alt=""></p>
-<p>所以可以得到线性决策面为：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15153150538259.jpg" alt=""></p>
-<p>这就是说，输出 $y=1$ 的对数几率是输入 $x$ 的线性函数，或者说，输出 $y=1$ 的对数几率是由输入 $x$ 的线性函数表示的模型，这就是 $logistic$ 回归模型，我们可以把 $logistic$ 看做是线性模型的一种概率解释。</p>
-<h4 id="参数求解"><a href="#参数求解" class="headerlink" title="参数求解"></a>参数求解</h4><p>为了更清晰地表达求解过程，我们定义：</p>
-<p>$$ P(y=1|x) = \frac {exp(w·x)} {1+exp(w·x)}<br>\\ P(y=0|x) = \frac 1 {1+exp(w·x)} $$</p>
-<p>模型的数学形式确定后，剩下就是如何去求解模型中的参数。统计学中常用的一种方法是最大似然估计，即找到一组参数，使得在这组参数下，我们的数据的似然度最大。在 $logistic$ 回归模型中，似然度可表示为：</p>
-<p>$$ L(w) = P(D|w) = \prod_i P(y_i|x_i;w) = \prod_i g(w · x_i)^{y_i} (1-g(w ·  x_i))^{1-y_i} $$</p>
-<p>取对数后得到：</p>
-<p>$$ \begin{align} l(w) &amp; = \sum_i y_i\log g(w·x_i) + (1-y_i)\log{(1-g(w·x_i))}\nonumber \\<br>&amp; = \sum_i y_i \log \frac {g(w·x_i)} {1-g(w·x_i)} + y_i \log{(1-g(w·x_i))}\nonumber \\<br>&amp; = \sum_i y_i \log (w·x_i) - y_i \log{(1+exp(w·x))}\nonumber<br>\end{align}$$</p>
-<p>求 $l(w)$ 的极大值，就可以得到最优的参数估计值。</p>
-<p>求得最优参数后：</p>
-<p>$$ P(y=1|x) = \frac {exp(\hat w·x+b)} {1+exp(\hat w·x+b)}<br>\\ P(y=0|x) = \frac 1 {1+exp(\hat w·x+b)} $$</p>
-<p>另一方面，在机器学习领域，我们更经常遇到的是损失函数的概念，其衡量的是模型预测错误的程度，其中 $log$ 损失在单个数据点上的定义为：</p>
-<p>$$ -y\log{p(y|x)}-(1-y)\log(1-p(y|x)) $$</p>
-<p>如果取整个数据集上的平均 $log$ 损失，我们可以得到：</p>
-<p>$$ J(w) = -\frac{1}{N} l(w) $$</p>
-<p>所以在 $logistic$ 回归模型中，我们最大化似然函数和最小化 $log$ 损失函数实际上是等价的，都可以使用梯度下降来进行求解：</p>
-<ul>
-<li>选择下降方向，即梯度方向，$\nabla J(w)$</li>
-<li>选择步长，更新参数 $w_i=w_{i−1}−\eta\nabla J(w_{i−1})$</li>
-<li>重复以上两步直到满足终止条件</li>
-</ul>
-<h3 id="多项回归模型"><a href="#多项回归模型" class="headerlink" title="多项回归模型"></a>多项回归模型</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15153176904048.jpg" alt=""></p>
-<p>对多分类问题，$softmax$ 回归是逻辑回归在多分类的直接推广，具体形式为：<br>$$ P(y=i|x, \theta) = \frac{e^{\theta_i^T x}}{\sum_j^K{e^{\theta_j^T x}}} $$</p>
-<p>决策函数为：<br>$$ y^* = \arg\max_i P(y=i|x,\theta) $$</p>
-<h2 id="判别模型和生成模型"><a href="#判别模型和生成模型" class="headerlink" title="判别模型和生成模型"></a>判别模型和生成模型</h2><p>$logistic$ 回归是一种判别模型，表现为<strong>直接对条件概率</strong> $P(y|x)$ <strong>建模</strong>，而不关心背后的数据分布 $P(x,y)$ 。而高斯贝叶斯模型是一种生成模型，先对数据的联合分布建模，再通过贝叶斯公式来计算样本属于各个类别的后验概率，即：</p>
-<p>$$p(y|x) = \frac{P(x|y)P(y)}{\sum{P(x|y)P(y)}}$$</p>
-<p>通常假设 $P(y|x)$ 是高斯分布， $P(y)$ 是多项式分布，相应的参数都可以通过最大似然估计得到。如果我们考虑二分类问题，通过简单的变化可以得到：</p>
-<p>$$\log\frac{P(y=1|x)}{P(y=0|x)} = \log\frac{P(x|y=1)}{P(x|y=0)} + \log\frac{P(y=1)}{P(y=0)}  \ = -\frac{(x-\mu_1)^2}{2\sigma_1^2} + \frac{(x-\mu_0)^2}{2\sigma_0^2}\ + \theta_0$$</p>
-<p>如果 $\sigma_1 = \sigma_0$，二次项会抵消，我们得到一个简单的线性关系：</p>
-<p>$$\log\frac{P(y=1|x)}{P(y=0|x)} = \theta^T x$$</p>
-<p>由上式进一步可以得到：</p>
-<p>$$P(y=1|x) = \frac{e^{\theta^T x}}{1+e^{\theta^T x}} = \frac{1}{1+e^{-\theta^T x}}$$</p>
-<p>可以看到，这个概率和 $logistic$ 回归中的形式是一样的，这种情况下 $GNB$ 和 $LR$ 会学习到同一个模型。</p>
-<p>典型的<strong>生成式模型</strong>：朴素贝叶斯、隐马尔科夫模型、混合高斯模型<br>典型的<strong>判别式模型</strong>：感知机、决策树、支持向量机、$logistic$ 回归、条件随机场、神经网络、$KNN$</p>
-<p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] <a href="https://tech.meituan.com/intro_to_logistic_regression.html" target="_blank" rel="external">Logistic Regression 模型简介-美团技术团队</a></p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有两个已经有序的数组，长度分别是 $m$ 和 $n$，在 $O(\log (m+n))$ 的复杂度里找到两个数组的中位数。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>因为时间复杂度是 $log$ 级别的, 所以我们很容易就想到采用二分，我们用 $rank$ 表示一个数在数列中的大小的排序序号. 对于一个已经排序的数组 $nums$, 我们可以说$nums[rank-1]$ 是数组 $nums$ 中第 $rank$ 小的数。<br>由此我们假设在有序数列 $nums1$ 中找到了 $rank1$ 的数, 在有序数列 $nums2$ 中找到了 $rank2$ 的数, 并且有 $nums1[k1 - 1] &lt; nums2[k2 - 1]$, 那么 $nums[k2 - 1]$ 的 $rank$ 至少为$rank1 + rank2$, $nums1[k1 - 1]$的 $rank$至多为 $rank1 + rank2 - 1$。</p>
+<h3 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMedianSortedArrays</span><span class="params">(self, nums1, nums2)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums1: List[int]</div><div class="line">        :type nums2: List[int]</div><div class="line">        :rtype: float</div><div class="line">        """</div><div class="line">        length = len(nums1) + len(nums2)</div><div class="line">        left_rank = (length + <span class="number">1</span>) // <span class="number">2</span></div><div class="line">        right_rank = (length + <span class="number">2</span>) // <span class="number">2</span></div><div class="line">        <span class="comment"># print(left_rank, right_rank)</span></div><div class="line">        <span class="keyword">return</span> self.getRank(nums1, <span class="number">0</span>, nums2, <span class="number">0</span>, left_rank) / <span class="number">2</span> + self.getRank(nums1, <span class="number">0</span>, nums2, <span class="number">0</span>, right_rank) / <span class="number">2</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getRank</span><span class="params">(self, nums1, start1, nums2, start2, rank)</span>:</span></div><div class="line">        <span class="comment"># print(nums1, start1, nums2, start2, rank)</span></div><div class="line">        <span class="keyword">if</span> len(nums1) - start1 &gt; len(nums2) - start2:</div><div class="line">            <span class="keyword">return</span> self.getRank(nums2, start2, nums1, start1, rank)</div><div class="line">        <span class="keyword">elif</span> len(nums1) - start1 &lt;= <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> nums2[start2 + rank - <span class="number">1</span>]</div><div class="line">        <span class="keyword">elif</span> rank == <span class="number">1</span>:</div><div class="line">            <span class="keyword">return</span> min(nums1[start1], nums2[start2])</div><div class="line"></div><div class="line">        rank1 = min(rank // <span class="number">2</span>, len(nums1) - start1)</div><div class="line">        rank2 = rank - rank1</div><div class="line">        <span class="comment"># print(rank1, rank2, 0, nums1[start1 + rank1 - 1], nums2[start2 + rank2 - 1])</span></div><div class="line">        <span class="keyword">if</span> nums1[start1 + rank1 - <span class="number">1</span>] &gt; nums2[start2 + rank2 - <span class="number">1</span>]:</div><div class="line">            <span class="keyword">return</span> self.getRank(nums1, start1, nums2, start2 + rank2, rank - rank2)</div><div class="line">        <span class="keyword">elif</span> nums1[start1 + rank1 - <span class="number">1</span>] &lt; nums2[start2 + rank2 - <span class="number">1</span>]:</div><div class="line">            <span class="keyword">return</span> self.getRank(nums1, start1 + rank1, nums2, start2, rank - rank1)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> nums1[start1 + rank1 - <span class="number">1</span>]</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -447,9 +391,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+            <a href="/tags/分治法/" rel="tag"># 分治法</a>
           
-            <a href="/tags/Logistic-Regression/" rel="tag"># Logistic Regression</a>
+            <a href="/tags/数组操作/" rel="tag"># 数组操作</a>
           
         </div>
       
@@ -462,8 +406,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/07/sml-fisher-discriminant/" rel="next" title="线性鉴别分析">
-                <i class="fa fa-chevron-left"></i> 线性鉴别分析
+              <a href="/2018/02/04/leetcode-3-Longest-Substring-Without-Repeating-Characters/" rel="next" title="【LeetCode】3. Longest Substring Without Repeating Characters">
+                <i class="fa fa-chevron-left"></i> 【LeetCode】3. Longest Substring Without Repeating Characters
               </a>
             
           </div>
@@ -471,10 +415,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/09/sml-decision-tree/" rel="prev" title="决策树模型">
-                决策树模型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -604,7 +544,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic分布"><span class="nav-number">1.</span> <span class="nav-text">Logistic分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic回归模型"><span class="nav-number">2.</span> <span class="nav-text">Logistic回归模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二项回归模型"><span class="nav-number">2.1.</span> <span class="nav-text">二项回归模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型理解"><span class="nav-number">2.1.1.</span> <span class="nav-text">模型理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数求解"><span class="nav-number">2.1.2.</span> <span class="nav-text">参数求解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多项回归模型"><span class="nav-number">2.2.</span> <span class="nav-text">多项回归模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判别模型和生成模型"><span class="nav-number">3.</span> <span class="nav-text">判别模型和生成模型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-number">2.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">3.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考代码"><span class="nav-number">4.</span> <span class="nav-text">参考代码</span></a></li></ol></div>
             
 
           </div>
