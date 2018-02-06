@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="数组操作," />
+  <meta name="keywords" content="字符串操作," />
 
 
 
@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="题目描述Given a $32-bit$ signed integer, reverse digits of an integer. Example1 12Input: 123Output:  321 Example2 12Input: -123Output: -321 Example3 12Input: 120Output: 21 Note:Assume we are dealing with">
-<meta name="keywords" content="数组操作">
+<meta name="description" content="题目描述Implement atoi to convert a string to an integer.Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input ca">
+<meta name="keywords" content="字符串操作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【LeetCode】7. Reverse Integer">
-<meta property="og:url" content="http://zzysay.github.io/2018/02/05/leetcode-7-Reverse-Integer/index.html">
+<meta property="og:title" content="【LeetCode】8. String to Integer (atoi)">
+<meta property="og:url" content="http://zzysay.github.io/2018/02/06/leetcode-8-String-to-Integer-atoi/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="题目描述Given a $32-bit$ signed integer, reverse digits of an integer. Example1 12Input: 123Output:  321 Example2 12Input: -123Output: -321 Example3 12Input: 120Output: 21 Note:Assume we are dealing with">
+<meta property="og:description" content="题目描述Implement atoi to convert a string to an integer.Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input ca">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-05T13:18:37.689Z">
+<meta property="og:updated_time" content="2018-02-06T15:20:43.549Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【LeetCode】7. Reverse Integer">
-<meta name="twitter:description" content="题目描述Given a $32-bit$ signed integer, reverse digits of an integer. Example1 12Input: 123Output:  321 Example2 12Input: -123Output: -321 Example3 12Input: 120Output: 21 Note:Assume we are dealing with">
+<meta name="twitter:title" content="【LeetCode】8. String to Integer (atoi)">
+<meta name="twitter:description" content="题目描述Implement atoi to convert a string to an integer.Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input ca">
 
 
 
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://zzysay.github.io/2018/02/05/leetcode-7-Reverse-Integer/"/>
+  <link rel="canonical" href="http://zzysay.github.io/2018/02/06/leetcode-8-String-to-Integer-atoi/"/>
 
 
 
 
 
-  <title>【LeetCode】7. Reverse Integer | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【LeetCode】8. String to Integer (atoi) | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -267,7 +267,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/05/leetcode-7-Reverse-Integer/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/06/leetcode-8-String-to-Integer-atoi/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
@@ -284,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【LeetCode】7. Reverse Integer</h1>
+          <h1 class="post-title" itemprop="name headline">【LeetCode】8. String to Integer (atoi)</h1>
         
 
         <div class="post-meta">
@@ -296,8 +296,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-05T23:06:25+08:00">
-                2018-02-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-06T23:19:29+08:00">
+                2018-02-06
               </time>
             
 
@@ -353,18 +353,19 @@
       
 
       
-        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a $32-bit$ signed integer, reverse digits of an integer.</p>
-<p><strong>Example1</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: 123</div><div class="line">Output:  321</div></pre></td></tr></table></figure>
-<p><strong>Example2</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: -123</div><div class="line">Output: -321</div></pre></td></tr></table></figure>
-<p><strong>Example3</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: 120</div><div class="line">Output: 21</div></pre></td></tr></table></figure>
-<p><strong>Note:</strong><br>Assume we are dealing with an environment which could only hold integers within the $32-bit$ signed integer range. For the purpose of this problem, assume that your function returns $0$ when the reversed integer overflows.</p>
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Implement atoi to convert a string to an integer.<br><strong>Hint</strong>: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.<br><strong>Notes</strong>: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.</p>
 <a id="more"></a>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个 $32$ 位的有符号整数，翻转这个整数。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>翻转数字问题需要注意的就是溢出问题，在翻转过程中，可以使用除法也可以使用字符串翻转操作。</p>
-<h3 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverse</span><span class="params">(self, x)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type x: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        res, flag = <span class="number">0</span>, <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> x &lt; <span class="number">0</span>:</div><div class="line">            x = -x</div><div class="line">            flag = <span class="number">1</span></div><div class="line">        <span class="keyword">while</span> x:</div><div class="line">            res = res * <span class="number">10</span> + x % <span class="number">10</span></div><div class="line">            x = x // <span class="number">10</span></div><div class="line">            print(res)</div><div class="line"></div><div class="line">        <span class="keyword">if</span> flag == <span class="number">1</span>:</div><div class="line">            res = -res</div><div class="line">        <span class="keyword">return</span> res <span class="keyword">if</span> <span class="number">-2147483648</span> &lt;= res &lt;= <span class="number">2147483647</span> <span class="keyword">else</span> <span class="number">0</span></div></pre></td></tr></table></figure>
+<p><strong>Requirements for atoi:</strong><br>The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.<br>The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.<br>If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.<br>If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>实现 $atoi$ 函数：将字符串转换为整数。<br>$atoi$ 的要求：</p>
+<ul>
+<li>尽可能多的丢弃空白字符，直到发现第一个非空字符位为止。 接着从这个字符开始，读入一个可选的正负号，然后尽可能多的读入数字，最后将它们解析成数值</li>
+<li>字符串中在合法数字后可以包含额外的非法字符，丢弃这些字符</li>
+<li>如果字符串的非空字符不是一个有效的整数，或者当字符串为空或者只包含空白字符时，不需要执行转换。</li>
+<li>如果不能够执行有效的转换则返回 $0$。如果得到的数值超出了整数范围，返回固定值</li>
+</ul>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>因为没有给样例 $IO$，所以很容易出现考虑不全面的情况，按照要求，需要着重考虑以下几种情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">input：“”        output：“0”</div><div class="line">input：“+”       output：“0”</div><div class="line">input：“+-2”     output：“0”</div></pre></td></tr></table></figure>
+<h3 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">myAtoi</span><span class="params">(self, str)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type str: str</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> len(str) == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span></div><div class="line">        str = str.strip()</div><div class="line">        sign = <span class="number">-1</span> <span class="keyword">if</span> str[<span class="number">0</span>] == <span class="string">'-'</span> <span class="keyword">else</span> <span class="number">1</span></div><div class="line">        ret, i = <span class="number">0</span>, <span class="number">0</span></div><div class="line">        <span class="keyword">if</span> str[<span class="number">0</span>] <span class="keyword">in</span> [<span class="string">'-'</span>, <span class="string">'+'</span>]:</div><div class="line">            str = str[<span class="number">1</span>:]</div><div class="line">        <span class="keyword">while</span> i &lt; len(str) <span class="keyword">and</span> str[i].isdigit():</div><div class="line">            ret = ret * <span class="number">10</span> + ord(str[i]) - ord(<span class="string">'0'</span>)</div><div class="line">            i += <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> min(<span class="number">2147483647</span>, max(ret * sign, <span class="number">-2147483648</span>))</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -394,7 +395,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数组操作/" rel="tag"># 数组操作</a>
+            <a href="/tags/字符串操作/" rel="tag"># 字符串操作</a>
           
         </div>
       
@@ -407,8 +408,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/05/leetcode-6-ZigZag-Conversion/" rel="next" title="【LeetCode】6. ZigZag Conversion">
-                <i class="fa fa-chevron-left"></i> 【LeetCode】6. ZigZag Conversion
+              <a href="/2018/02/05/leetcode-7-Reverse-Integer/" rel="next" title="【LeetCode】7. Reverse Integer">
+                <i class="fa fa-chevron-left"></i> 【LeetCode】7. Reverse Integer
               </a>
             
           </div>
@@ -416,10 +417,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/06/leetcode-8-String-to-Integer-atoi/" rel="prev" title="【LeetCode】8. String to Integer (atoi)">
-                【LeetCode】8. String to Integer (atoi) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
