@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15180061575302.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15180097247714.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15180096509020.jpg">
-<meta property="og:updated_time" content="2018-02-07T13:44:48.320Z">
+<meta property="og:updated_time" content="2018-02-07T13:49:57.445Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="期望最大算法">
 <meta name="twitter:description" content="EM算法的理解考虑这样一个场景，我们需要调查学校里男生和女生的身高分布，假设我们在校园中随机抽取了 $100$ 个男生和 $100$ 个女生，随后让男生和女生分开站，分别统计男生和女生的身高，假设身高的分布是服从高斯分布的，那么通过最大化似然函数，我们可以得到对应高斯分布的均值和方差。如果我们没有把男生和女生分开，那么这 $200$ 个人混在一起，从中随机抽取一个人，我们甚至不知道他是男生还是女生">
@@ -388,13 +388,13 @@
 <p>$$ \begin{align}\theta^* &amp;= \arg \max \limits_{\theta}\sum\limits_{i=1}^m logP(x_i|\theta)<br>\\ &amp; = \arg \max \limits_{\theta}\sum\limits_{i=1}^m log\sum\limits_{j=1}^nP(x_i,c_j|\theta)<br>\\ &amp; = \arg \max \limits_{\theta} \sum\limits_{i=1}^m log \left(\sum\limits_{j=1}^nP(x_i|c_j,\theta) P(c_j|\theta) \right)\end{align}$$</p>
 <p>事实上，$EM$ 算法是通过迭代增加 $L(\theta)$ 来逐步更新 $\theta$ 的，假设在第 $i$ 次更新后 $\theta$ 的估计值为 $\theta^{(i)}$，我们希望新产生的估计值 $\theta^{(i+1)}$ 能使  $L(\theta)$ 增大，也就是 $ L(\theta^{(i+1)}) \gt L(\theta^{(i)}) $，我们可以考虑二者的差值：</p>
 <p>$$\begin{align} L(\theta^{(i+1)}) - L(\theta^{(i)}) &amp;= \sum\limits_{i=1}^m \left[ log \left(\sum\limits_{j=1}^nP(x_i|c_j,\theta^{(i+1)}) P(c_j|\theta^{(i+1)}) \right) -log P(x_i|\theta^{(i)})\right] \\<br>&amp;= \sum\limits_{i=1}^m \left[ log \left(\sum\limits_{j=1}^n P(c_j|x_i,\theta^{(i)}) \frac {P(x_i|c_j,\theta^{(i+1)}) P(c_j|\theta^{(i+1)})} {P(c_j|x_i,\theta^{(i)})} \right) -log P(x_i|\theta^{(i)})\right] \\<br>&amp;\ge \sum\limits_{i=1}^m \left[\sum\limits_{j=1}^n P(c_j|x_i,\theta^{(i)}) log \frac {P(x_i|c_j,\theta^{(i+1)}) P(c_j|\theta^{(i+1)})} {P(c_j|x_i,\theta^{(i)})} - \sum\limits_{j=1}^n P(c_j|x_i,\theta^{(i)}) log P(x_i|\theta^{(i)})\right]  \\<br>&amp;= \sum\limits_{i=1}^m \sum\limits_{j=1}^n P(c_j|x_i,\theta^{(i)}) log \frac {P(x_i|c_j,\theta^{(i+1)}) P(c_j|\theta^{(i+1)})} {P(c_j|x_i,\theta^{(i)})P(x_i|\theta^{(i)})} \\<br>&amp;= \sum\limits_{i=1}^m \sum\limits_{j=1}^n P(c_j|x_i,\theta^{(i)}) log \frac {P(x_i, c_j|\theta^{(i+1)})} {P(x_i, c_j|\theta^{(i)})} \end{align}$$</p>
-<p>从式 $(5)$ 到 $(6)$ 用到了 <strong>$Jensen$ 不等式</strong>，$Jensen$ 不等式有两种形式，一种是有限形式，一种是概率论形式。<br><strong>有限形式</strong>的表述如下，如果 $f$ 是凸函数，则有：</p>
+<p>因为 $log P(x_i|\theta^{(i)})$ 在 $\theta^{(i)}$ 给定的情况下是定值，$\sum_{j=1}^n P(c_j|x_i, \theta^{(i)}) =1$。</p>
+<p>此外，上面的转换还用到了 <strong>$Jensen$ 不等式</strong>，$Jensen$ 不等式有两种形式，一种是有限形式，一种是概率论形式。<br><strong>有限形式</strong>的表述如下，如果 $f$ 是凸函数，则有：</p>
 <p>$$ f\left(\sum_{i=1}^n\lambda_ix_i\right) \le \sum_{i=1}^n \lambda_i f(x_i)\;;\quad \lambda_i \gt 0,\sum_{i=1}^n\lambda_i = 1 $$</p>
 <p>当且仅当 $x_1=x_2=\dots =x_n=c$，$c$ 为常数时，上式取等号。</p>
 <p><strong>概率论形式</strong>的表述如下，如果 $f$ 是凸函数，$X$ 是随机变量，那么：</p>
 <p>$$ E(f(X) \ge f(E(X) $$</p>
 <p>当且仅当 $X$ 为常量时，上式取等号。</p>
-<p>从式 $(5)$ 到 $(6)$ 的右半部分又因为 $log P(x_i|\theta^{(i)})$ 在 $\theta^{(i)}$ 给定的情况下是定值，$\sum_{j=1}^n P(c_j|x_i, \theta^{(i)}) =1$。</p>
 <p>第 $i$ 轮迭代得到的对数似然函数最大值为 $L(\theta^{(i)})$，如果第 $i+1$ 轮的 $\theta^{(i+1)}$ 能够最大化 $L(\theta^{(i+1)})-L(\theta^{(i)})$，那也就是相当于最大化了第 $i+1$ 轮的似然函数 $L(\theta^{(i+1)})$。所以有：</p>
 <p>$$\begin{align} \theta^{(i+1)} &amp;= \arg \min_{\theta^{(i+1)}} L(\theta^{(i+1)}) \\<br>&amp;=\arg \min_{\theta^{(i+1)}} (L(\theta^{(i+1)})-L(\theta^{(i)})) \\<br>&amp;=\arg \min_{\theta^{(i+1)}}\sum\limits_{i=1}^m \sum\limits_{j=1}^n P(c_j|x_i,\theta^{(i)}) log \frac {P(x_i, c_j|\theta^{(i+1)})} {P(x_i, c_j|\theta^{(i)})}\\<br>&amp;=\arg \min_{\theta^{(i+1)}}\sum\limits_{i=1}^m \sum\limits_{j=1}^n P(c_j|x_i,\theta^{(i)}) log P(x_i, c_j|\theta^{(i+1)}) \end{align} $$</p>
 <p>上式约去了对 $\theta^{(i+1)}$ 来说是常数的部分，此时 $\theta^{(i)}$ 是已知的常数，$P(c_j|x_i,\theta^{(i)})$ 同样也已知，根据期望定义 $E(f(X)) = \sum_i P(X=x_i)f(x_i)$，所以上式右半部分可以看做是 $log P(x_i, c_j|\theta^{(i+1)})$ 基于条件概率 $P(c_j|x_i,\theta^{(i)})$ 的期望，上式也就是使得 $m$ 个期望加和最大的 $\theta^{(i+1)}$ 的取值，这就是最大期望一词的由来。</p>
