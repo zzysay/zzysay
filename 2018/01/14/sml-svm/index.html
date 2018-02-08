@@ -93,13 +93,13 @@
 
 
 
-<meta name="description" content="支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。">
+<meta name="description" content="支持向量机 支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。">
 <meta name="keywords" content="机器学习,SVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="支持向量机">
 <meta property="og:url" content="http://zzysay.github.io/2018/01/14/sml-svm/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。">
+<meta property="og:description" content="支持向量机 支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159152846032.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159147939414.jpg">
@@ -111,10 +111,13 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/1364952814_3505.gif">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159419758530.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15159417163475.jpg">
-<meta property="og:updated_time" content="2018-02-07T13:43:00.925Z">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15180978860943.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15180991255468.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15181038093566.jpg">
+<meta property="og:updated_time" content="2018-02-08T15:55:06.976Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="支持向量机">
-<meta name="twitter:description" content="支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。">
+<meta name="twitter:description" content="支持向量机 支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。">
 <meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15159152846032.jpg">
 
 
@@ -375,7 +378,7 @@
       
 
       
-        <p><img src="http://p1auo1a1h.bkt.clouddn.com/15159152846032.jpg" alt=""></p>
+        <h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><p><img src="http://p1auo1a1h.bkt.clouddn.com/15159152846032.jpg" alt=""></p>
 <p>支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。</p>
 <a id="more"></a>
 <h2 id="硬边距支持向量机"><a href="#硬边距支持向量机" class="headerlink" title="硬边距支持向量机"></a>硬边距支持向量机</h2><h3 id="函数间隔与几何间隔"><a href="#函数间隔与几何间隔" class="headerlink" title="函数间隔与几何间隔"></a>函数间隔与几何间隔</h3><p>一般来说，一个点距离分类超平面的远近可以表示分类预测的确信程度，在超平面 $w·x+b=0$ 确定的情况下，$|w·x + b|$ 能够<strong>相对</strong>的表示点 $x$ 距离超平面的远近，而 $w·x + b$ 的符号与类别标记 $y$ 的符号一致就表示分类正确。</p>
@@ -404,7 +407,7 @@
 <p>这就产生了支持向量机的最优化问题：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15159180756448.jpg" alt=""></p>
 <h3 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h3><p>硬边距支持向量机又被称作线性可分支持向量机，其原始优化问题：<br>$$ \begin{align} \min_{w, b} &amp;\;\; \frac 1 2 ||w||^2 \nonumber<br>\\ s.t. &amp; \;\; y_i(w·x_i+b) -1 \ge 0，i=1,2,…N  \nonumber \end{align}$$</p>
 <p>对偶优化问题：<br>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; \alpha_i \ge 0,\;i=1,2,…N \nonumber \end{align}$$</p>
-<p>求得最优解 $\alpha^*$ 后，最优参数：<br>$$ w^* = \sum_{i=1}^n \alpha^*_i y_i x_i \\ b^* = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$</p>
+<p>求得最优解 $\alpha^<em>$ 后，最优参数：<br>$$ w^</em> = \sum_{i=1}^n \alpha^<em>_i y_i x_i \\ b^</em> = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$</p>
 <p><strong>推导：</strong></p>
 <p>原问题的拉格朗日函数：<br>$$ L(w, b, \alpha) = \frac 1 2 ||w||^2 - \sum_{i=1}^n \alpha_iy_i(w·x_i+b) + \sum_{i=1}^n \alpha_i $$</p>
 <p>显然：<br>$$ \frac 1 2 ||w||^2 ≥ L(w, b, \alpha) ≥ \mathop{inf} \limits_{w, b} L(w, b,\alpha)$$</p>
@@ -414,7 +417,7 @@
 </li>
 <li><p>求 $\min_{w, b}L(w, b,\alpha)$ 对 $\alpha$ 的极大值，即求解对偶问题<br>$$ \begin{align} \max_{\alpha} &amp;\;\; - \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle + \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; \alpha_i \ge 0,\;i=1,2,…N \nonumber \end{align}$$<br>将上式的极大转换成极小问题，就得到最终的对偶最优化问题<br>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; \alpha_i \ge 0,\;i=1,2,…N \nonumber \end{align}$$</p>
 </li>
-<li><p>参数最优化<br>由 $\nabla_w L(w, b, \alpha)$ 得：<br>$$ w = \sum_{i=1}^n \alpha^*_iy_ix_i $$<br>根据 $y_j(w^*·x+b^*)-1=0$ 得：<br>$$ b^* = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$<br>其中，$y_j^2=1$。</p>
+<li><p>参数最优化<br>由 $\nabla_w L(w, b, \alpha)$ 得：<br>$$ w = \sum_{i=1}^n \alpha^<em>_iy_ix_i $$<br>根据 $y_j(w^</em>·x+b^<em>)-1=0$ 得：<br>$$ b^</em> = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$<br>其中，$y_j^2=1$。</p>
 </li>
 </ol>
 <h2 id="软边距支持向量机"><a href="#软边距支持向量机" class="headerlink" title="软边距支持向量机"></a>软边距支持向量机</h2><h3 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h3><p>硬边距支持向量机并不适合线性不可分的情况，对于其改进产生了软边距支持向量机，也就是线性支持向量机。对每个样本点 $(x_i,y_i)$ 引入一个松弛变量 $\xi_i \ge 0$，是函数间隔加上松弛变量后大于等于 $1$，这样，就得到软边距支持向量机的原始问题：</p>
@@ -422,8 +425,8 @@
 <p>其中，$C\gt0 $ 是惩罚参数，一般来讲，$C$ 值越大，对误分类的惩罚越大，分类器越严格，边距越窄，$C$ 值越小，对误分类的惩罚越小，分类器越宽松，边距越大。目标函数最优化包含两层含义，使 $1/2 ||w||^2$ 尽可能小，也就是说使边距尽可能大，$\xi_i$ 又使误分类点的个数尽可能少，$C$ 就是调和二者的系数。</p>
 <p>原问题是一个凸二次规划问题，我们可以通过优化其对偶函数求解：</p>
 <p>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; 0 \le \alpha_i \le C,\;i=1,2,…N \nonumber \end{align}$$</p>
-<p>求得最优解 $\alpha^*$ 后，最优参数：<br>$$ w^* = \sum_{i=1}^n \alpha^*_i y_i x_i \\ b^* = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$</p>
-<p>对任一适合条件的 $0\le \alpha^*_j \le C$，都有不同的 $b^*$，但是由于原始问题对 $b$ 的解并不唯一，所以在实际计算过程中可以取在所有符合条件的样本点上的平均值。</p>
+<p>求得最优解 $\alpha^<em>$ 后，最优参数：<br>$$ w^</em> = \sum_{i=1}^n \alpha^<em>_i y_i x_i \\ b^</em> = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$</p>
+<p>对任一适合条件的 $0\le \alpha^<em>_j \le C$，都有不同的 $b^</em>$，但是由于原始问题对 $b$ 的解并不唯一，所以在实际计算过程中可以取在所有符合条件的样本点上的平均值。</p>
 <p><strong>推导：</strong></p>
 <p>原问题的拉格朗日函数：<br>$$ L(w, b, \xi, \mu, \alpha) = \frac 1 2 ||w||^2 + C \sum_{i=1}^n \xi_i - \sum_{i=1}^n \alpha_i(y_i(w·x_i+b)-1+\xi_i)-\sum_{i=1}^n\mu_i \xi_i$$</p>
 <p>显然：<br>$$ \frac 1 2 ||w||^2 ≥ L(w, b, \xi, \mu, \alpha) ≥ \mathop{inf} \limits_{w,b} L(w, b, \xi, \mu, \alpha)$$</p>
@@ -461,14 +464,102 @@
 <p><strong>高斯核</strong>会将原始空间映射为无穷维空间。不过，如果 $\sigma$ 选得很大的话，高次特征上的权重衰减得非常快，所以实际上相当于一个低维的子空间，反过来，如果 $\sigma$ 选得很小，则可以将任意的数据映射为线性可分，随之而来的可能是非常严重的过拟合问题。不过，总的来说，通过调控参数 $\sigma$ ，高斯核实际上具有相当高的灵活性，也是使用最广泛的核函数之一。</p>
 <center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15159417163475.jpg" alt=""><br></center>
 
-<h2 id="序列最小最优化算法（待补充）"><a href="#序列最小最优化算法（待补充）" class="headerlink" title="序列最小最优化算法（待补充）"></a>序列最小最优化算法（待补充）</h2><p>序列最小最优化算法即为 $SMO$ 算法，采用启发式的方法认为如果所有变量的解都满足此最优化问题的 $KKT$ 条件，那么这个最优化问题的解就得到了。否则选择两个变量，固定其他变量，针对这两个变量构建一个二次规划问题。其中，子问题的两个变量中只有一个是自由变量，假设 $\alpha_1,\alpha_2$ 为两个变量，$\alpha_3,…\alpha_N$ 固定，那么：<br>$$ \alpha_1 = -y_1 \sum_{i=1}^N a_iy_i$$</p>
+<h2 id="序列最小最优化算法"><a href="#序列最小最优化算法" class="headerlink" title="序列最小最优化算法"></a>序列最小最优化算法</h2><h3 id="拉格朗日乘子法与-KKT-条件"><a href="#拉格朗日乘子法与-KKT-条件" class="headerlink" title="拉格朗日乘子法与 KKT 条件"></a>拉格朗日乘子法与 KKT 条件</h3><h4 id="拉格朗日乘子法"><a href="#拉格朗日乘子法" class="headerlink" title="拉格朗日乘子法"></a>拉格朗日乘子法</h4><p><strong>引入</strong><br>拉格朗日说的是，我们要求 $\min f (x)$，我们可以通过令导数等于零来求解，如果给我们约束 $\min f (x)$，一定要满足等式 $g_i(x) = 0$ 的条件，再加入不等式条件 $h_i(x) \le 0$。</p>
+<p>即拉格朗日乘子法的引入是通过以下三步：</p>
+<ol>
+<li>没有约束条件：<br>$$ \min f(x)$$</li>
+<li>加入等式条件：<br>$$ \begin{align} \min &amp;\quad f(x) \\s.t. &amp;\quad g_i(x) = 0\;\; i=1,2,\dots, m\end{align}$$</li>
+<li>再加入不等式条件：<br>$$ \begin{align} \min &amp;\quad f(x) \\s.t. &amp;\quad g_i(x) = 0\;\; i=1,2,\dots, m \\&amp;\quad h_i(x) \le 0\;\; i=1,2,\dots, m\end{align}$$</li>
+</ol>
+<p><strong>求解</strong></p>
+<p>我们考虑以下问题：</p>
+<p>$$ \begin{align} \min &amp;\quad f(x,y) \\s.t. &amp;\quad g(x,y) = 0 \end{align}$$</p>
+<p>我们把 $g(x, y) = 0$ 这条曲线画在图上，给 $f (x, y)$ 画等高线，比如说图上等于 $1$ 和 $2$，我们的目标是要在 $g(x, y) = 0$ 这条曲线上找一个点使得 $f (x, y)$ 越小越好。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15180978860943.jpg" alt=""></p>
+<p>我们就把它想成气球，这个气球一开始比较大，这上面与 $g(x, y) = 0$ 交了两个点，这时候能找到两个点且 $f(x,y)$ 等于 $2$，然后我们尝试 $f(x,y)$ 变小，直到与 $g(x, y) = 0$ 有一个交点，最后变成没有交点，这个时候 $f(x, y)$ 达到最小，所以可以得到最后最小的点肯定是 $g(x, y)$ 与等高线若近若离的，这个若近若离的表示方法就是 $g(x, y) = 0$ 与等高线相切的，那个点就是最优点。</p>
+<p>所以得到以下式子：</p>
+<p>$$ \begin{align} &amp; \nabla f(x, y) = \lambda \nabla g(x, y) \\&amp; L(x, y, \lambda) = f(x, y) - \lambda g(x, y) \\&amp; L(x^<em>, y^</em>, \lambda) = 0 \end{align}$$</p>
+<p>我们直观上看，假如说 $(x^∗, y^∗)$ 是最优解的话，那么沿着这条线走的话 $f(x,y)$ 数值不变，也就是说 $f(x,y)$ 和 $g(x,y)$ 的梯度要在同一条直线上，有可能同向也有可能反向。可以表示为两个梯度成一定比例，我们把比例用 $\lambda$ 表示 $\nabla f (x, y) = \lambda \nabla g(x, y)$。对拉格朗日方程 $ L(x, y, \lambda) = f(x, y) - \lambda g(x, y) $ 求导，令导数等于零，可以得到 $\nabla f (x, y) = \lambda \nabla g(x, y)$，所以得到求有约束的最小值，可以转化成 $ L(x^<em>, y^</em>, \lambda) = 0 $。</p>
+<p>拉格朗日方程原始的优化目标减去了一个东西，这个东西可以看作是违反约束的阈值，因为我们要求约束的结果等于 $0$，如果 $g(x, y)$ 不等于 $0$ 那么我们就要减去后面这个式子，这个 $\lambda$ 就是拉格朗日乘子。</p>
+<h4 id="KKT-条件"><a href="#KKT-条件" class="headerlink" title="KKT 条件"></a>KKT 条件</h4><p>前面我们已经完成了约束为 $g(x) = 0$ 的求解方法，那如果是小于等于 $0$，那就不再是拉格朗日了，是拉格朗日的拓展，叫 $KKT$ 条件，所谓 $KKT$ 条件，是指在满足一些有规则的条件下，一个非线性规划问题能有最优化解法的一个必要和充分条件。</p>
+<p><strong>引入</strong></p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15180991255468.jpg" alt=""></p>
+<p>要求 $g(x, y) \le 0$，也就是说我们是要在阴影区或者边界上找一个点， 使得 $f (x, y)$ 最小，我们把他分成两种情况:</p>
+<ol>
+<li>如果最优解恰好在边界上，那么这个就可以通过拉格朗日来求解。</li>
+<li>如果最优解在阴影区内部，我们是要找最优解，这个最优解在内部，那这个解一定是单纯考虑 $f (x, y)$ 的最优解，也就是直接求 $\nabla f(x,y) = 0$ 的解。</li>
+</ol>
+<p><strong>满足条件</strong></p>
+<p>$KKT$ 条件可以这样来表示，首先先写一个拉格朗日 $L(x, y, \lambda) = f(x, y) - \lambda g(x, y)$， 这个最优解需要满足的条件就是：</p>
+<ol>
+<li>原式导数等于零</li>
+<li>原可行：$g(x, y) \le 0$</li>
+<li>对偶可行：$\lambda_i \le 0$</li>
+<li>互补松弛性：$\lambda_i g_i(x) = 0$</li>
+</ol>
+<h3 id="SMO-算法"><a href="#SMO-算法" class="headerlink" title="SMO 算法"></a>SMO 算法</h3><h4 id="SMO-的直观理解"><a href="#SMO-的直观理解" class="headerlink" title="SMO 的直观理解"></a>SMO 的直观理解</h4><p>序列最小最优化算法即 $SMO$ 算法，采用启发式的方法认为如果所有变量的解都满足此最优化问题的 $KKT$ 条件，那么这个最优化问题的解就得到了。否则选择两个变量，固定其他变量，针对这两个变量构建一个二次规划问题。其中，子问题的两个变量中只有一个是自由变量，假设 $\alpha_1,\alpha_2$ 为两个变量，$\alpha_3,…\alpha_N$ 固定，那么：<br>$$ \alpha_1 = -y_1 \sum_{i=1}^N a_i y_i$$</p>
 <p>也就是如果 $\alpha_1$ 确定，那么 $\alpha_1$ 也随之确定，所以子问题同时更新两个变量。</p>
 <p>$SMO$ 算法包括两个部分：</p>
 <ul>
 <li>求解两个变量二次规划的解析方法</li>
 <li>选择变量的启发式方法</li>
 </ul>
-<h2 id="支持向量回归（待补充）"><a href="#支持向量回归（待补充）" class="headerlink" title="支持向量回归（待补充）"></a>支持向量回归（待补充）</h2><p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] 李航,《统计学习方法》,清华大学出版社<br>[3] 周志华,《机器学习》,清华大学出版社<br>[4] <a href="http://blog.csdn.net/v_july_v/article/details/7624837" target="_blank" rel="external">支持向量机通俗导论-CSDN</a></p>
+<h4 id="SMO-的公式推导"><a href="#SMO-的公式推导" class="headerlink" title="SMO 的公式推导"></a>SMO 的公式推导</h4><p>我们首先定义一个输出函数：</p>
+<p>$$ u = w·x - b $$</p>
+<p>这里的这个 $u$ 与我们通常意义上所定义的 $f(x) = w·x + b$ 实质上是一样的，写出支持向量机的通用优化目标：</p>
+<p>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j K\langle x_i, x_j\rangle - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; 0 \le \alpha_i \le C,\;i=1,2,…n \nonumber \end{align}$$</p>
+<p>上式是带有松弛变量和核函数的支持向量机的对偶优化目标，根据 $KKT$ 条件可以得到其中 $\alpha_i$ 取值的意义：</p>
+<p>$$ \begin{align} \alpha_i = 0 &amp; \Leftrightarrow  y_iu_i \ge 1 \\ 0 \lt \alpha_i \lt C &amp; \Leftrightarrow  y_iu_i = 1 \\ \alpha_i = C &amp; \Leftrightarrow  y_iu_i \le 1<br> \end{align}$$</p>
+<ol>
+<li>第一个式子表明是正常分类，在边界内部，我们知道正确分类的点 $y_if(x_i) \ge 0$</li>
+<li>第二个式子表明了是支持向量，在边界上</li>
+<li>第三个式子表明了是在两条边界之间</li>
+</ol>
+<p>而最优解需要满足 $KKT$ 条件，即上述 $3$ 个条件都得满足，以下几种情况出现将会出现不满足：</p>
+<ol>
+<li>$y_iu_i \le 1$ 但是 $\alpha_i \lt C$，则是不满足的，而原本 $\alpha_i = C$</li>
+<li>$y_iu_i \le 1$ 但是 $\alpha_i \gt 0$，则是不满足的，而原本 $\alpha_i = 0$</li>
+<li>$y_iu_i =1$ 但是 $\alpha_i = 0$ 或者 $\alpha_i = C$，则表明不满足的，而原本应该是 $0 \lt \alpha_i \lt C$</li>
+</ol>
+<p>所以要找出不满足 $KKT$ 条件的这些 $\alpha_i$，并更新这些 $\alpha_i$，但这些 $\alpha_i$ 又受到另外一个约束：</p>
+<p>$$ \sum_{i=1}^n \alpha_i y_i = 0 $$</p>
+<p>因此，我们通过另一个方法，即同时更新 $\alpha_i$ 和 $\alpha_j$，要求满足下面这个式子，就能保证和为零的约束：</p>
+<p>$$ \alpha_i^{new}y_i + \alpha_j^{new}y_j = \alpha_i^{old}y_i + \alpha_j^{old}y_j = c $$</p>
+<p>其中 $c$ 代表一个常数，又以为 $y_i^2=1$，我们可以消去 $\alpha_i$，得到一个关于单变量 $\alpha_j$ 的凸二次规划问题，不考虑其约束 $0 \le \alpha_i \le C$，可以得到：</p>
+<p>$$ \alpha_j^{new} = \alpha_j^{old} + \frac {y_j(E_i-E_j)} {\eta} $$</p>
+<p>其中：<br>$$ \begin{align} &amp;E_i = u_i-y_i \\ &amp;E_j = u_j-y_j \\ &amp;\eta = K\langle x_i, x_i\rangle + K\langle x_j, x_j\rangle -2K\langle x_i, x_j\rangle \end{align}$$</p>
+<p>然后考虑约束 $0\le \alpha_j \le C$可以得到 $\alpha_i$ 的解析解为：</p>
+<p>$$ \alpha_i^{new,clipped} = \begin{cases} H, &amp; \alpha_i^{new} \ge H \\ \alpha_i^{new} , &amp; L \lt \alpha_i^{new} \lt H \\ L, &amp; \alpha_i^{new} \le L \end{cases} $$</p>
+<p>把 $SMO$ 中对于两个参数求解过程看成线性规划来理解来理解的话，根据 $y_i$ 和 $y_j$ 是否同号，可以得出两个上下界：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15181038093566.jpg" alt=""></p>
+<p>$$ y_i \neq y_j : \begin{cases} L=\max {0, \alpha_j-\alpha_i} \\ H = \min {C, C+\alpha_j-\alpha_i} \end{cases} \\ y_i = y_j : \begin{cases} L=\max {0, \alpha_j+\alpha_i-C} \\ H = \min {C, \alpha_j-\alpha_i} \end{cases} $$</p>
+<p>对于 $\alpha_i$，有：</p>
+<p>$$\alpha_i^{new} = \alpha_i + y_iy_j(\alpha_j-\alpha_j^{new,clipped})$$</p>
+<p>对于 $\alpha_i$，可以通过刚刚说的那 $3$ 种不满足 $KKT$ 的条件来找；而对于 $\alpha_j$，可以通过 $\max|E_i − E_j|$ 求得；而 $b$ 的更新则是：</p>
+<p>$$ b = \begin{cases} b_1, &amp;  0\lt \alpha_i \lt C \\ b_2, &amp;  0\lt \alpha_j \lt C \\ \frac 1 2(b_1+b_2), &amp; otherwise \end{cases} $$</p>
+<p>其中：</p>
+<p>$$ b_1 = b-E_i-y_i(\alpha_i-\alpha_i^{old})K\langle x_i, x_i\rangle - y_j(\alpha_j-\alpha_j^{old})K\langle x_i, x_j\rangle \\ b_2 = b-E_j-y_i(\alpha_i-\alpha_i^{old})K\langle x_i, x_j\rangle - y_j(\alpha_j-\alpha_j^{old})K\langle x_j, x_j\rangle $$</p>
+<p>每次更新完 $\alpha_i$ 和 $\alpha_j$ 后，都需要再重新计算 $b$，及对应的 $E_i$ 和 $E_j$。<br>最后更新所有 $\alpha_i, y, b$，这样模型就出来了，从而即可求出我们开始提出的分类函数。</p>
+<h4 id="SMO-的算法流程"><a href="#SMO-的算法流程" class="headerlink" title="SMO 的算法流程"></a>SMO 的算法流程</h4><ol>
+<li>选择接下来要更新的一对 $\alpha_i$ 和 $\alpha_j$：采用启发式的方法进行选择，以使目标函数最大程度地接近其全局最优值</li>
+<li>将目标函数对 $\alpha_i$ 和 $\alpha_j$ 进行优化，保持其它所有的 $\alpha_k(k\neq i,j)$ 不变</li>
+</ol>
+<p>假定在某一次迭代中，需要更新 $\alpha_1$ 和 $\alpha_2$，那么优化目标可以写成：</p>
+<p>$$ \max_{\alpha} \alpha_1 + \alpha_2 + \sum_{i=3}^n \alpha_i - \frac 1 2 ||\alpha_1 y_1 \phi (x_1) + \alpha_2 y_2 \phi (x_2) + \sum_{i=3}^n\alpha_i y_i \phi (x_i)||^2 $$</p>
+<p>更新 $\alpha_1$ 和 $\alpha_2$ 的步骤如下</p>
+<ol>
+<li>计算上下界 $L$ 和 $H$</li>
+<li>计算上式中目标函数的二阶导数</li>
+<li>更新 $\alpha_2$</li>
+<li>更新 $\alpha_1$</li>
+</ol>
+<p>对于每次迭代选择 $\alpha_i$ 和 $\alpha_j$ 的启发式方法，其包括以下两个步骤：</p>
+<ol>
+<li>先扫描所有乘子，把第一个违反 $KKT$ 条件的作为更新对象，令为 $\alpha_j$</li>
+<li>在所有不违反 $KKT$ 条件的乘子中，选择使 $|E_i − E_j|$ 最大的 $\alpha_i$。 需要注意的是，每次更新完所选的 $\alpha_i$ 和 $\alpha_j$ 后，都需要再重新计算 $b,E_i,E_j$。另外，$\alpha_i$ 和 $\alpha_j$ 的选择务必遵循两个原则：$a.$ 满足 $KKT$ 条件，$b.$ 更新应能最大限度地增大目标函数的值</li>
+</ol>
+<p>综上，$SMO$ 算法每次迭代只选出两个分量 $\alpha_i$ 和 $\alpha_j$ 进行调整，其它分量则保持固定不变，在得到解 $\alpha_i$ 和 $\alpha_j$ 之后，再用 $\alpha_i$ 和 $\alpha_j$ 改进其它分量。与通常的分解算法比较，尽管它可能需要更多的迭代次数，但每次迭代的计算量比较小，所以该算法表现出整体的快速收敛性，且不需要存储核矩阵，也没有矩阵运算。</p>
+<p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] 卜东波,《计算机算法设计与分析》,中国科学院大学2017年秋季研究生课程<br>[3] 李航,《统计学习方法》,清华大学出版社<br>[4] 周志华,《机器学习》,清华大学出版社<br>[5] <a href="http://blog.csdn.net/v_july_v/article/details/7624837" target="_blank" rel="external">支持向量机通俗导论-CSDN</a></p>
 
       
     </div>
@@ -655,7 +746,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#硬边距支持向量机"><span class="nav-number">1.</span> <span class="nav-text">硬边距支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数间隔与几何间隔"><span class="nav-number">1.1.</span> <span class="nav-text">函数间隔与几何间隔</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数间隔"><span class="nav-number">1.1.1.</span> <span class="nav-text">函数间隔</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#几何间隔"><span class="nav-number">1.1.2.</span> <span class="nav-text">几何间隔</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机间隔最大化"><span class="nav-number">1.2.</span> <span class="nav-text">支持向量机间隔最大化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性可分支持向量机"><span class="nav-number">1.3.</span> <span class="nav-text">线性可分支持向量机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软边距支持向量机"><span class="nav-number">2.</span> <span class="nav-text">软边距支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性支持向量机"><span class="nav-number">2.1.</span> <span class="nav-text">线性支持向量机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性支持向量机的支持向量"><span class="nav-number">2.2.</span> <span class="nav-text">线性支持向量机的支持向量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性支持向量机的损失函数"><span class="nav-number">2.3.</span> <span class="nav-text">线性支持向量机的损失函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性支持向量机与核函数"><span class="nav-number">3.</span> <span class="nav-text">非线性支持向量机与核函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核函数方法"><span class="nav-number">3.1.</span> <span class="nav-text">核函数方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理非线性数据"><span class="nav-number">3.2.</span> <span class="nav-text">处理非线性数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用核函数"><span class="nav-number">3.3.</span> <span class="nav-text">常用核函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#序列最小最优化算法（待补充）"><span class="nav-number">4.</span> <span class="nav-text">序列最小最优化算法（待补充）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持向量回归（待补充）"><span class="nav-number">5.</span> <span class="nav-text">支持向量回归（待补充）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#支持向量机"><span class="nav-number">1.</span> <span class="nav-text">支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#硬边距支持向量机"><span class="nav-number">1.1.</span> <span class="nav-text">硬边距支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数间隔与几何间隔"><span class="nav-number">1.1.1.</span> <span class="nav-text">函数间隔与几何间隔</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数间隔"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">函数间隔</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#几何间隔"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">几何间隔</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持向量机间隔最大化"><span class="nav-number">1.1.2.</span> <span class="nav-text">支持向量机间隔最大化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性可分支持向量机"><span class="nav-number">1.1.3.</span> <span class="nav-text">线性可分支持向量机</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软边距支持向量机"><span class="nav-number">1.2.</span> <span class="nav-text">软边距支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线性支持向量机"><span class="nav-number">1.2.1.</span> <span class="nav-text">线性支持向量机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性支持向量机的支持向量"><span class="nav-number">1.2.2.</span> <span class="nav-text">线性支持向量机的支持向量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性支持向量机的损失函数"><span class="nav-number">1.2.3.</span> <span class="nav-text">线性支持向量机的损失函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性支持向量机与核函数"><span class="nav-number">1.3.</span> <span class="nav-text">非线性支持向量机与核函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核函数方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">核函数方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理非线性数据"><span class="nav-number">1.3.2.</span> <span class="nav-text">处理非线性数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用核函数"><span class="nav-number">1.3.3.</span> <span class="nav-text">常用核函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#序列最小最优化算法"><span class="nav-number">1.4.</span> <span class="nav-text">序列最小最优化算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拉格朗日乘子法与-KKT-条件"><span class="nav-number">1.4.1.</span> <span class="nav-text">拉格朗日乘子法与 KKT 条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#拉格朗日乘子法"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">拉格朗日乘子法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KKT-条件"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">KKT 条件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SMO-算法"><span class="nav-number">1.4.2.</span> <span class="nav-text">SMO 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SMO-的直观理解"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">SMO 的直观理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SMO-的公式推导"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">SMO 的公式推导</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SMO-的算法流程"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">SMO 的算法流程</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
