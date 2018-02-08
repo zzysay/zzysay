@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="字符串操作,模拟法," />
+  <meta name="keywords" content="字符串操作,递归法,动态规划," />
 
 
 
@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="题目描述The string is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)12 P   A   H   NA P L S I I GY   I   R12A">
-<meta name="keywords" content="字符串操作,模拟法">
+<meta name="description" content="题目描述Implement regular expression matching with support for ‘.’ and ‘*’. 12345678910111213141516&amp;apos;.&amp;apos; Matches any single character.&amp;apos;*&amp;apos; Matches zero or more of the preceding element.Th">
+<meta name="keywords" content="字符串操作,递归法,动态规划">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【LeetCode】6. ZigZag Conversion">
-<meta property="og:url" content="http://zzysay.github.io/2018/02/05/leetcode-6-ZigZag-Conversion/index.html">
+<meta property="og:title" content="【LeetCode】10. Regular Expression Matching">
+<meta property="og:url" content="http://zzysay.github.io/2018/02/08/leetcode-10-Regular-Expression-Matching/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="题目描述The string is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)12 P   A   H   NA P L S I I GY   I   R12A">
+<meta property="og:description" content="题目描述Implement regular expression matching with support for ‘.’ and ‘*’. 12345678910111213141516&amp;apos;.&amp;apos; Matches any single character.&amp;apos;*&amp;apos; Matches zero or more of the preceding element.Th">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-05T13:18:24.460Z">
+<meta property="og:updated_time" content="2018-02-08T08:28:46.649Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【LeetCode】6. ZigZag Conversion">
-<meta name="twitter:description" content="题目描述The string is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)12 P   A   H   NA P L S I I GY   I   R12A">
+<meta name="twitter:title" content="【LeetCode】10. Regular Expression Matching">
+<meta name="twitter:description" content="题目描述Implement regular expression matching with support for ‘.’ and ‘*’. 12345678910111213141516&amp;apos;.&amp;apos; Matches any single character.&amp;apos;*&amp;apos; Matches zero or more of the preceding element.Th">
 
 
 
@@ -132,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://zzysay.github.io/2018/02/05/leetcode-6-ZigZag-Conversion/"/>
+  <link rel="canonical" href="http://zzysay.github.io/2018/02/08/leetcode-10-Regular-Expression-Matching/"/>
 
 
 
 
 
-  <title>【LeetCode】6. ZigZag Conversion | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【LeetCode】10. Regular Expression Matching | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -267,7 +267,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/05/leetcode-6-ZigZag-Conversion/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/08/leetcode-10-Regular-Expression-Matching/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
@@ -284,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【LeetCode】6. ZigZag Conversion</h1>
+          <h1 class="post-title" itemprop="name headline">【LeetCode】10. Regular Expression Matching</h1>
         
 
         <div class="post-meta">
@@ -296,8 +296,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-05T20:08:22+08:00">
-                2018-02-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-08T16:27:46+08:00">
+                2018-02-08
               </time>
             
 
@@ -353,9 +353,24 @@
       
 
       
-        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The string <figure class="highlight plain"><figcaption><span>is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
-<p>P   A   H   N<br>A P L S I I G<br>Y   I   R<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">And then read line by line: ```&quot;PAHNAPLSIIGYIR&quot;</div></pre></td></tr></table></figure></p>
-<p>Write the code that will take a string and make this conversion given a number of rows:<br><figure class="highlight plain"><figcaption><span>convert(string text, int nRows);```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">```convert(&quot;PAYPALISHIRING&quot;, 3)``` should return ```&quot;PAHNAPLSIIGYIR&quot;```.</div><div class="line"></div><div class="line">&lt;!--more--&gt;</div><div class="line"></div><div class="line">### 题目大意</div><div class="line"></div><div class="line">在行数给定时，将字符串按照 $Z$ 字排列，最后按行输出。</div><div class="line"></div><div class="line">### 解题思路</div><div class="line"></div><div class="line">模拟法，模拟 $Z$ 字从上到下再从下到上填充字符。</div><div class="line"></div><div class="line">### 参考代码</div><div class="line"></div><div class="line">```python</div><div class="line">class Solution:</div><div class="line">    def convert(self, s, numRows):</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        :type s: str</div><div class="line">        :type numRows: int</div><div class="line">        :rtype: str</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        if numRows == 1 or numRows &gt;= len(s):</div><div class="line">            return s</div><div class="line">        res_list = [[] for _ in range(numRows)]</div><div class="line"></div><div class="line">        res, i, j = &apos;&apos;, 0, 1</div><div class="line">        for c in s:</div><div class="line">            res_list[i] += c</div><div class="line">            if i == 0:</div><div class="line">                j = 1</div><div class="line">            elif i == numRows-1:</div><div class="line">                j = -1</div><div class="line">            i += j</div><div class="line"></div><div class="line">        for i in range(0, numRows):</div><div class="line">            res += &apos;&apos;.join(res_list[i])</div><div class="line">        return res</div></pre></td></tr></table></figure></p>
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Implement regular expression matching with support for ‘.’ and ‘*’.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&apos;.&apos; Matches any single character.</div><div class="line">&apos;*&apos; Matches zero or more of the preceding element.</div><div class="line"></div><div class="line">The matching should cover the entire input string (not partial).</div><div class="line"></div><div class="line">The function prototype should be:</div><div class="line">bool isMatch(const char *s, const char *p)</div><div class="line"></div><div class="line">Some examples:</div><div class="line">isMatch(&quot;aa&quot;,&quot;a&quot;) → false</div><div class="line">isMatch(&quot;aa&quot;,&quot;aa&quot;) → true</div><div class="line">isMatch(&quot;aaa&quot;,&quot;aa&quot;) → false</div><div class="line">isMatch(&quot;aa&quot;, &quot;a*&quot;) → true</div><div class="line">isMatch(&quot;aa&quot;, &quot;.*&quot;) → true</div><div class="line">isMatch(&quot;ab&quot;, &quot;.*&quot;) → true</div><div class="line">isMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → true</div></pre></td></tr></table></figure>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>实现一个正则表达式的检测函数，其中 <figure class="highlight plain"><figcaption><span>可以代表任意一个字符，```'*'```代表前面的字符出现了任意次（零次、一次或多次）。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 解题思路</div><div class="line"></div><div class="line">在对 ```isMatch(&quot;ab&quot;, &quot;.*&quot;) → true``` 的理解上，是 ```&apos;*&apos;``` 把 ```&apos;.&apos;``` 重复了 $N$ 次；</div><div class="line">在对 ```isMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → true``` 的理解上，是第一个 ```&apos;*&apos;``` 把 ```&apos;c&apos;``` 重复了 $0$ 次，第二个 ```&apos;*&apos;``` 把 ```&apos;a&apos;``` 重复了 $2$ 次；</div><div class="line"></div><div class="line">**递归**</div><div class="line"></div><div class="line">递归的重点在于对 ```&apos;*&apos;``` 的处理上，出现 ```&apos;*&apos;``` 表示它前置的字符可出现任意次，所以递归的过程就是不断切割的过程。</div><div class="line"></div><div class="line">**动态规划**</div><div class="line"></div><div class="line">递归算法会有很多的冗余计算，动态规划实际上就是把这些计算结果存到了状态矩阵里，我们用 $dp[i][j]$ 表示 $s[i:]$ 与 $p[j:]$ 是否匹配，显然，对字符串来说，求解是一个逆序的过程。</div><div class="line"></div><div class="line"></div><div class="line">### 参考代码</div></pre></td></tr></table></figure></p>
+<p>class Solution:<br>    def isMatch(self, s, p):<br>        “””<br>        :type s: str<br>        :type p: str<br>        :rtype: bool<br>        “””<br>        ls, lp = len(s), len(p)<br>        if lp == 0:<br>            return ls == 0<br>        if lp == 1:<br>            return ls == 1 and (s[0] == p[0] or p[0] == ‘.’)</p>
+<pre><code>if p[1] != &apos;*&apos;:
+    if ls == 0:
+        return False
+    else:
+        return (s[0] == p[0] or p[0] == &apos;.&apos;) and self.isMatch(s[1:], p[1:])
+else:
+    while ls &gt; 0 and (s[0] == p[0] or p[0] == &apos;.&apos;):
+        if self.isMatch(s, p[2:]):
+            return True
+        else:
+            s = s[1:]
+            ls = len(s)
+    return self.isMatch(s, p[2:])
+</code></pre><p>class Solution:<br>    def isMatch(self, s, p):<br>        “””<br>        :type s: str<br>        :type p: str<br>        :rtype: bool<br>        “””<br>        dp = [[False] <em> (len(p) + 1) for _ in range(len(s) + 1)]<br>        dp[-1][-1] = True<br>        for i in range(len(s), -1, -1):<br>            for j in range(len(p) - 1, -1, -1):<br>                first_match = i &lt; len(s) and p[j] in {s[i], ‘.’}<br>                if j+1 &lt; len(p) and p[j+1] == ‘</em>‘:<br>                    dp[i][j] = dp[i][j+2] or first_match and dp[i+1][j]<br>                else:<br>                    dp[i][j] = first_match and dp[i+1][j+1]<br>        return dp[0][0]<br>```</p>
 
       
     </div>
@@ -387,7 +402,9 @@
           
             <a href="/tags/字符串操作/" rel="tag"># 字符串操作</a>
           
-            <a href="/tags/模拟法/" rel="tag"># 模拟法</a>
+            <a href="/tags/递归法/" rel="tag"># 递归法</a>
+          
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
           
         </div>
       
@@ -400,8 +417,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/05/leetcode-5-Longest-Palindromic-Substring/" rel="next" title="【LeetCode】5. Longest Palindromic Substring">
-                <i class="fa fa-chevron-left"></i> 【LeetCode】5. Longest Palindromic Substring
+              <a href="/2018/02/07/ml-em/" rel="next" title="期望最大算法">
+                <i class="fa fa-chevron-left"></i> 期望最大算法
               </a>
             
           </div>
@@ -409,10 +426,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/05/leetcode-7-Reverse-Integer/" rel="prev" title="【LeetCode】7. Reverse Integer">
-                【LeetCode】7. Reverse Integer <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -542,7 +555,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-number">2.</span> <span class="nav-text">题目大意</span></a></li></ol></div>
             
 
           </div>
