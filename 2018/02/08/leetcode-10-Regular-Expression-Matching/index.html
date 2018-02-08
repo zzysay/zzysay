@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="题目描述Implement regular expression matching with support for ‘.’ and ‘*’. 12345678910111213141516&amp;apos;.&amp;apos; Matches any single character.&amp;apos;*&amp;apos; Matches zero or more of the preceding element.Th">
+<meta name="description" content="题目描述Implement regular expression matching with support for &amp;#39;.&amp;#39; and &amp;#39;*&amp;#39;. 12345678910111213141516&amp;apos;.&amp;apos; Matches any single character.&amp;apos;*&amp;apos; Matches zero or more of the prec">
 <meta name="keywords" content="字符串操作,递归法,动态规划">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【LeetCode】10. Regular Expression Matching">
 <meta property="og:url" content="http://zzysay.github.io/2018/02/08/leetcode-10-Regular-Expression-Matching/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="题目描述Implement regular expression matching with support for ‘.’ and ‘*’. 12345678910111213141516&amp;apos;.&amp;apos; Matches any single character.&amp;apos;*&amp;apos; Matches zero or more of the preceding element.Th">
+<meta property="og:description" content="题目描述Implement regular expression matching with support for &amp;#39;.&amp;#39; and &amp;#39;*&amp;#39;. 12345678910111213141516&amp;apos;.&amp;apos; Matches any single character.&amp;apos;*&amp;apos; Matches zero or more of the prec">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-08T08:30:59.614Z">
+<meta property="og:updated_time" content="2018-02-08T08:39:44.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【LeetCode】10. Regular Expression Matching">
-<meta name="twitter:description" content="题目描述Implement regular expression matching with support for ‘.’ and ‘*’. 12345678910111213141516&amp;apos;.&amp;apos; Matches any single character.&amp;apos;*&amp;apos; Matches zero or more of the preceding element.Th">
+<meta name="twitter:description" content="题目描述Implement regular expression matching with support for &amp;#39;.&amp;#39; and &amp;#39;*&amp;#39;. 12345678910111213141516&amp;apos;.&amp;apos; Matches any single character.&amp;apos;*&amp;apos; Matches zero or more of the prec">
 
 
 
@@ -353,25 +353,16 @@
       
 
       
-        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Implement regular expression matching with support for ‘.’ and ‘*’.</p>
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Implement regular expression matching with support for <code>&#39;.&#39;</code> and <code>&#39;*&#39;</code>.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&apos;.&apos; Matches any single character.</div><div class="line">&apos;*&apos; Matches zero or more of the preceding element.</div><div class="line"></div><div class="line">The matching should cover the entire input string (not partial).</div><div class="line"></div><div class="line">The function prototype should be:</div><div class="line">bool isMatch(const char *s, const char *p)</div><div class="line"></div><div class="line">Some examples:</div><div class="line">isMatch(&quot;aa&quot;,&quot;a&quot;) → false</div><div class="line">isMatch(&quot;aa&quot;,&quot;aa&quot;) → true</div><div class="line">isMatch(&quot;aaa&quot;,&quot;aa&quot;) → false</div><div class="line">isMatch(&quot;aa&quot;, &quot;a*&quot;) → true</div><div class="line">isMatch(&quot;aa&quot;, &quot;.*&quot;) → true</div><div class="line">isMatch(&quot;ab&quot;, &quot;.*&quot;) → true</div><div class="line">isMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → true</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>实现一个正则表达式的检测函数，其中 <figure class="highlight plain"><figcaption><span>可以代表任意一个字符，```'*'``` 代表前面的字符出现了任意次（零次、一次或多次）。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 解题思路</div><div class="line"></div><div class="line">在对 ```isMatch(&quot;ab&quot;, &quot;.*&quot;) → true``` 的理解上，是 ```&apos;*&apos;``` 把 ```&apos;.&apos;``` 重复了 $N$ 次；</div><div class="line">在对 ```isMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → true``` 的理解上，是第一个 ```&apos;*&apos;``` 把 ```&apos;c&apos;``` 重复了 $0$ 次，第二个 ```&apos;*&apos;``` 把 ```&apos;a&apos;``` 重复了 $2$ 次；</div><div class="line"></div><div class="line">**递归**</div><div class="line"></div><div class="line">递归的重点在于对 ```&apos;*&apos;``` 的处理上，出现 ```&apos;*&apos;``` 表示它前置的字符可出现任意次，所以递归的过程就是不断切割的过程。</div><div class="line"></div><div class="line">**动态规划**</div><div class="line"></div><div class="line">递归算法会有很多的冗余计算，动态规划实际上就是把这些计算结果存到了状态矩阵里，我们用 $dp[i][j]$ 表示 $s[i:]$ 与 $p[j:]$ 是否匹配，显然，对字符串来说，求解是一个逆序的过程。</div><div class="line"></div><div class="line"></div><div class="line">### 参考代码</div></pre></td></tr></table></figure></p>
-<p>class Solution:<br>    def isMatch(self, s, p):<br>        “””<br>        :type s: str<br>        :type p: str<br>        :rtype: bool<br>        “””<br>        ls, lp = len(s), len(p)<br>        if lp == 0:<br>            return ls == 0<br>        if lp == 1:<br>            return ls == 1 and (s[0] == p[0] or p[0] == ‘.’)</p>
-<pre><code>if p[1] != &apos;*&apos;:
-    if ls == 0:
-        return False
-    else:
-        return (s[0] == p[0] or p[0] == &apos;.&apos;) and self.isMatch(s[1:], p[1:])
-else:
-    while ls &gt; 0 and (s[0] == p[0] or p[0] == &apos;.&apos;):
-        if self.isMatch(s, p[2:]):
-            return True
-        else:
-            s = s[1:]
-            ls = len(s)
-    return self.isMatch(s, p[2:])
-</code></pre><p>class Solution:<br>    def isMatch(self, s, p):<br>        “””<br>        :type s: str<br>        :type p: str<br>        :rtype: bool<br>        “””<br>        dp = [[False] <em> (len(p) + 1) for _ in range(len(s) + 1)]<br>        dp[-1][-1] = True<br>        for i in range(len(s), -1, -1):<br>            for j in range(len(p) - 1, -1, -1):<br>                first_match = i &lt; len(s) and p[j] in {s[i], ‘.’}<br>                if j+1 &lt; len(p) and p[j+1] == ‘</em>‘:<br>                    dp[i][j] = dp[i][j+2] or first_match and dp[i+1][j]<br>                else:<br>                    dp[i][j] = first_match and dp[i+1][j+1]<br>        return dp[0][0]<br>```</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>实现一个正则表达式的检测函数，其中 <code>&#39;.&#39;</code> 可以代表任意一个字符，<code>&#39;*&#39;</code> 代表前面的字符出现了任意次（零次、一次或多次）。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>在对 <code>isMatch(&quot;ab&quot;, &quot;.*&quot;) → true</code> 的理解上，是 <code>&#39;*&#39;</code> 把 <code>&#39;.&#39;</code> 重复了 $N$ 次；<br>在对 <code>isMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → true</code> 的理解上，是第一个 <code>&#39;*&#39;</code> 把 <code>&#39;c&#39;</code> 重复了 $0$ 次，第二个 <code>&#39;*&#39;</code> 把 <code>&#39;a&#39;</code> 重复了 $2$ 次；</p>
+<p><strong>递归</strong></p>
+<p>递归的重点在于对 <code>&#39;*&#39;</code> 的处理上，出现 <code>&#39;*&#39;</code> 表示它前置的字符可出现任意次，所以递归的过程就是不断切割的过程。</p>
+<p><strong>动态规划</strong></p>
+<p>递归算法会有很多的冗余计算，动态规划实际上就是把这些计算结果存到了状态矩阵里，我们用 $dp[i][j]$ 表示 $s[i:]$ 与 $p[j:]$ 是否匹配，显然，对字符串来说，求解是一个逆序的过程。</p>
+<h3 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">class Solution:</div><div class="line">    def isMatch(self, s, p):</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        :type s: str</div><div class="line">        :type p: str</div><div class="line">        :rtype: bool</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        ls, lp = len(s), len(p)</div><div class="line">        if lp == 0:</div><div class="line">            return ls == 0</div><div class="line">        if lp == 1:</div><div class="line">            return ls == 1 and (s[0] == p[0] or p[0] == &apos;.&apos;)</div><div class="line"></div><div class="line">        if p[1] != &apos;*&apos;:</div><div class="line">            if ls == 0:</div><div class="line">                return False</div><div class="line">            else:</div><div class="line">                return (s[0] == p[0] or p[0] == &apos;.&apos;) and self.isMatch(s[1:], p[1:])</div><div class="line">        else:</div><div class="line">            while ls &gt; 0 and (s[0] == p[0] or p[0] == &apos;.&apos;):</div><div class="line">                if self.isMatch(s, p[2:]):</div><div class="line">                    return True</div><div class="line">                else:</div><div class="line">                    s = s[1:]</div><div class="line">                    ls = len(s)</div><div class="line">            return self.isMatch(s, p[2:])</div><div class="line"></div><div class="line">class Solution:</div><div class="line">    def isMatch(self, s, p):</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        :type s: str</div><div class="line">        :type p: str</div><div class="line">        :rtype: bool</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        dp = [[False] * (len(p) + 1) for _ in range(len(s) + 1)]</div><div class="line">        dp[-1][-1] = True</div><div class="line">        for i in range(len(s), -1, -1):</div><div class="line">            for j in range(len(p) - 1, -1, -1):</div><div class="line">                first_match = i &lt; len(s) and p[j] in &#123;s[i], &apos;.&apos;&#125;</div><div class="line">                if j+1 &lt; len(p) and p[j+1] == &apos;*&apos;:</div><div class="line">                    dp[i][j] = dp[i][j+2] or first_match and dp[i+1][j]</div><div class="line">                else:</div><div class="line">                    dp[i][j] = first_match and dp[i+1][j+1]</div><div class="line">        return dp[0][0]</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -556,7 +547,7 @@ else:
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-number">2.</span> <span class="nav-text">题目大意</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-number">2.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">3.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考代码"><span class="nav-number">4.</span> <span class="nav-text">参考代码</span></a></li></ol></div>
             
 
           </div>
