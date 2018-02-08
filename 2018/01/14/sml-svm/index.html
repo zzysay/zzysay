@@ -114,7 +114,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15180978860943.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15180991255468.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15181038093566.jpg">
-<meta property="og:updated_time" content="2018-02-08T15:55:06.976Z">
+<meta property="og:updated_time" content="2018-02-08T15:59:59.236Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="支持向量机">
 <meta name="twitter:description" content="支持向量机 支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。">
@@ -417,7 +417,7 @@
 </li>
 <li><p>求 $\min_{w, b}L(w, b,\alpha)$ 对 $\alpha$ 的极大值，即求解对偶问题<br>$$ \begin{align} \max_{\alpha} &amp;\;\; - \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle + \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; \alpha_i \ge 0,\;i=1,2,…N \nonumber \end{align}$$<br>将上式的极大转换成极小问题，就得到最终的对偶最优化问题<br>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; \alpha_i \ge 0,\;i=1,2,…N \nonumber \end{align}$$</p>
 </li>
-<li><p>参数最优化<br>由 $\nabla_w L(w, b, \alpha)$ 得：<br>$$ w = \sum_{i=1}^n \alpha^<em>_iy_ix_i $$<br>根据 $y_j(w^</em>·x+b^<em>)-1=0$ 得：<br>$$ b^</em> = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$<br>其中，$y_j^2=1$。</p>
+<li><p>参数最优化<br>由 $\nabla_w L(w, b, \alpha)$ 得：<br>$$ w = \sum_{i=1}^n \alpha^<em>_iy_ix_i $$<br>根据 $y_j(w^\</em>·x+b^*)-1=0$ 得：<br>$$ b^* = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$<br>其中，$y_j^2=1$。</p>
 </li>
 </ol>
 <h2 id="软边距支持向量机"><a href="#软边距支持向量机" class="headerlink" title="软边距支持向量机"></a>软边距支持向量机</h2><h3 id="线性支持向量机"><a href="#线性支持向量机" class="headerlink" title="线性支持向量机"></a>线性支持向量机</h3><p>硬边距支持向量机并不适合线性不可分的情况，对于其改进产生了软边距支持向量机，也就是线性支持向量机。对每个样本点 $(x_i,y_i)$ 引入一个松弛变量 $\xi_i \ge 0$，是函数间隔加上松弛变量后大于等于 $1$，这样，就得到软边距支持向量机的原始问题：</p>
@@ -478,8 +478,8 @@
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15180978860943.jpg" alt=""></p>
 <p>我们就把它想成气球，这个气球一开始比较大，这上面与 $g(x, y) = 0$ 交了两个点，这时候能找到两个点且 $f(x,y)$ 等于 $2$，然后我们尝试 $f(x,y)$ 变小，直到与 $g(x, y) = 0$ 有一个交点，最后变成没有交点，这个时候 $f(x, y)$ 达到最小，所以可以得到最后最小的点肯定是 $g(x, y)$ 与等高线若近若离的，这个若近若离的表示方法就是 $g(x, y) = 0$ 与等高线相切的，那个点就是最优点。</p>
 <p>所以得到以下式子：</p>
-<p>$$ \begin{align} &amp; \nabla f(x, y) = \lambda \nabla g(x, y) \\&amp; L(x, y, \lambda) = f(x, y) - \lambda g(x, y) \\&amp; L(x^<em>, y^</em>, \lambda) = 0 \end{align}$$</p>
-<p>我们直观上看，假如说 $(x^∗, y^∗)$ 是最优解的话，那么沿着这条线走的话 $f(x,y)$ 数值不变，也就是说 $f(x,y)$ 和 $g(x,y)$ 的梯度要在同一条直线上，有可能同向也有可能反向。可以表示为两个梯度成一定比例，我们把比例用 $\lambda$ 表示 $\nabla f (x, y) = \lambda \nabla g(x, y)$。对拉格朗日方程 $ L(x, y, \lambda) = f(x, y) - \lambda g(x, y) $ 求导，令导数等于零，可以得到 $\nabla f (x, y) = \lambda \nabla g(x, y)$，所以得到求有约束的最小值，可以转化成 $ L(x^<em>, y^</em>, \lambda) = 0 $。</p>
+<p>$$ \begin{align} &amp; \nabla f(x, y) = \lambda \nabla g(x, y) \\&amp; L(x, y, \lambda) = f(x, y) - \lambda g(x, y) \\&amp; L(x^*, y^*, \lambda) = 0 \end{align}$$</p>
+<p>我们直观上看，假如说 $(x^∗, y^∗)$ 是最优解的话，那么沿着这条线走的话 $f(x,y)$ 数值不变，也就是说 $f(x,y)$ 和 $g(x,y)$ 的梯度要在同一条直线上，有可能同向也有可能反向。可以表示为两个梯度成一定比例，我们把比例用 $\lambda$ 表示 $\nabla f (x, y) = \lambda \nabla g(x, y)$。对拉格朗日方程 $ L(x, y, \lambda) = f(x, y) - \lambda g(x, y) $ 求导，令导数等于零，可以得到 $\nabla f (x, y) = \lambda \nabla g(x, y)$，所以得到求有约束的最小值，可以转化成 $ L(x^*, y^*, \lambda) = 0 $。</p>
 <p>拉格朗日方程原始的优化目标减去了一个东西，这个东西可以看作是违反约束的阈值，因为我们要求约束的结果等于 $0$，如果 $g(x, y)$ 不等于 $0$ 那么我们就要减去后面这个式子，这个 $\lambda$ 就是拉格朗日乘子。</p>
 <h4 id="KKT-条件"><a href="#KKT-条件" class="headerlink" title="KKT 条件"></a>KKT 条件</h4><p>前面我们已经完成了约束为 $g(x) = 0$ 的求解方法，那如果是小于等于 $0$，那就不再是拉格朗日了，是拉格朗日的拓展，叫 $KKT$ 条件，所谓 $KKT$ 条件，是指在满足一些有规则的条件下，一个非线性规划问题能有最优化解法的一个必要和充分条件。</p>
 <p><strong>引入</strong></p>
