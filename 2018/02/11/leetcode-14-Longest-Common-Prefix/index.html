@@ -93,18 +93,18 @@
 
 
 
-<meta name="description" content="题目描述Write a function to find the longest common prefix string amongst an array of strings. 题目大意给定一个字符串数组，返回数组内所有字符串的最长公共前缀。 解题思路很简单的题目，模拟法可解，在实现时需注意数据下标和空数组的情况。 参考代码123456789101112class Solution:    d">
+<meta name="description" content="题目描述Write a function to find the longest common prefix string amongst an array of strings.">
 <meta name="keywords" content="数组操作,模拟法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【LeetCode】14. Longest Common Prefix">
 <meta property="og:url" content="http://zzysay.github.io/2018/02/11/leetcode-14-Longest-Common-Prefix/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="题目描述Write a function to find the longest common prefix string amongst an array of strings. 题目大意给定一个字符串数组，返回数组内所有字符串的最长公共前缀。 解题思路很简单的题目，模拟法可解，在实现时需注意数据下标和空数组的情况。 参考代码123456789101112class Solution:    d">
+<meta property="og:description" content="题目描述Write a function to find the longest common prefix string amongst an array of strings.">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-11T06:53:09.451Z">
+<meta property="og:updated_time" content="2018-02-12T13:28:47.260Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【LeetCode】14. Longest Common Prefix">
-<meta name="twitter:description" content="题目描述Write a function to find the longest common prefix string amongst an array of strings. 题目大意给定一个字符串数组，返回数组内所有字符串的最长公共前缀。 解题思路很简单的题目，模拟法可解，在实现时需注意数据下标和空数组的情况。 参考代码123456789101112class Solution:    d">
+<meta name="twitter:description" content="题目描述Write a function to find the longest common prefix string amongst an array of strings.">
 
 
 
@@ -354,6 +354,7 @@
 
       
         <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Write a function to find the longest common prefix string amongst an array of strings.</p>
+<a id="more"></a>
 <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个字符串数组，返回数组内所有字符串的最长公共前缀。</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>很简单的题目，模拟法可解，在实现时需注意数据下标和空数组的情况。</p>
 <h3 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">longestCommonPrefix</span><span class="params">(self, strs)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type strs: List[str]</div><div class="line">        :rtype: str</div><div class="line">        """</div><div class="line">        shortest = min(strs, key=len, default=<span class="string">''</span>)</div><div class="line">        <span class="keyword">for</span> i, ch <span class="keyword">in</span> enumerate(shortest):</div><div class="line">            <span class="keyword">for</span> other <span class="keyword">in</span> strs:</div><div class="line">                <span class="keyword">if</span> other[i] != ch:</div><div class="line">                    <span class="keyword">return</span> shortest[:i]</div><div class="line">        <span class="keyword">return</span> shortest</div></pre></td></tr></table></figure>
@@ -401,8 +402,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/11/ml-xgboost/" rel="next" title="XGBoost原理与理解">
-                <i class="fa fa-chevron-left"></i> XGBoost原理与理解
+              <a href="/2018/02/11/ml-xgboost/" rel="next" title="XGBoost原理">
+                <i class="fa fa-chevron-left"></i> XGBoost原理
               </a>
             
           </div>
@@ -410,6 +411,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/12/leetcode-15-3Sum/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -482,7 +487,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
