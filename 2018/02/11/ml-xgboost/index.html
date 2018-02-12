@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习,XGBoost," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="监督学习模型和参数定义： $x_i \in \Bbb R^d$ 来表示第 $i$ 个训练样本 模型： 如何根据给定的 $x_i$ 做出预测 $\hat y_i$，通常有线性模型：$\hat y_i = \sum_j w_j x_{ij} $，常见的有线性回归模型和 $logistic$ 回归，这里的预测 $\hat y_i$ 可以有不同的解释，我们可以用它来作为回归目标的输出，或者进行 $sigm">
+<meta name="keywords" content="机器学习,XGBoost">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XGBoost原理与理解">
+<meta property="og:url" content="http://zzysay.github.io/2018/02/11/ml-xgboost/index.html">
+<meta property="og:site_name" content="ZZY SAY">
+<meta property="og:description" content="监督学习模型和参数定义： $x_i \in \Bbb R^d$ 来表示第 $i$ 个训练样本 模型： 如何根据给定的 $x_i$ 做出预测 $\hat y_i$，通常有线性模型：$\hat y_i = \sum_j w_j x_{ij} $，常见的有线性回归模型和 $logistic$ 回归，这里的预测 $\hat y_i$ 可以有不同的解释，我们可以用它来作为回归目标的输出，或者进行 $sigm">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183111391189.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183120759955.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183123650568.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183133796144.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183135123932.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183137123293.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183138922166.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183140195028.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183148599727.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183153693329.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183186620231.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183206752321.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183207317033.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183220496470.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183221426854.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183221867566.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183230970054.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183232967154.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183235697258.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183287272152.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183291649394.jpg">
+<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15183296012686.jpg">
+<meta property="og:updated_time" content="2018-02-11T06:30:27.057Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XGBoost原理与理解">
+<meta name="twitter:description" content="监督学习模型和参数定义： $x_i \in \Bbb R^d$ 来表示第 $i$ 个训练样本 模型： 如何根据给定的 $x_i$ 做出预测 $\hat y_i$，通常有线性模型：$\hat y_i = \sum_j w_j x_{ij} $，常见的有线性回归模型和 $logistic$ 回归，这里的预测 $\hat y_i$ 可以有不同的解释，我们可以用它来作为回归目标的输出，或者进行 $sigm">
+<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15183111391189.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzysay.github.io/2018/02/11/ml-xgboost/"/>
+
+
+
+
+
+  <title>XGBoost原理与理解 | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZZY SAY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">All in the Game</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/11/ml-xgboost/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhenyu Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZY SAY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">XGBoost原理与理解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-11T14:29:21+08:00">
+                2018-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Study-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Study Notes</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Study-Notes/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h2><h3 id="模型和参数"><a href="#模型和参数" class="headerlink" title="模型和参数"></a>模型和参数</h3><p><strong>定义：</strong> $x_i \in \Bbb R^d$ 来表示第 $i$ 个训练样本</p>
+<p><strong>模型：</strong> 如何根据给定的 $x_i$ 做出预测 $\hat y_i$，通常有线性模型：$\hat y_i = \sum_j w_j x_{ij} $，常见的有线性回归模型和 $logistic$ 回归，这里的预测 $\hat y_i$ 可以有不同的解释，我们可以用它来作为回归目标的输出，或者进行 $sigmoid$ 变换得到概率，或者作为排序的指标等</p>
+<p><strong>参数：</strong>指我们需要学习的东西，在线性模型中，参数指我们的系数 $w$</p>
+<a id="more"></a>
+<h3 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15183111391189.jpg" alt=""></p>
+<p>$\bf{L}$ 表示的是<strong>误差函数</strong>，即模型对数据的拟合程度，$\bf{\Omega}$ 表示的是<strong>正则项</strong>，即对模型复杂程度的惩罚。这样目标函数的设计来自于统计学习里面的一个重要概念叫做 $Bias-Variance Tradeoff$，即偏差和方差的权衡。一个比较感性的理解是说，$Bias$ 假设我们有无限多数据，可以训练出最好的模型所得到的误差。而 $Variance$ 有限数据的随机性带来的误差。</p>
+<p>直观上讲，目标中误差函数鼓励我们的模型尽量去拟合训练数据，这样相对来说最后的模型会有比较少的 $Bias$。而正则化项则鼓励更加简单的模型，因为当模型简单之后，有限数据拟合出来结果的随机性比较小，不容易过拟合，使得最后模型的预测更加稳定。</p>
+<h2 id="回归树"><a href="#回归树" class="headerlink" title="回归树"></a>回归树</h2><h3 id="分类和回归树CART"><a href="#分类和回归树CART" class="headerlink" title="分类和回归树CART"></a>分类和回归树CART</h3><p>典型的回归树就是 $CART$，回归树其实是决策树的一个扩展，下面就是 $CART$ 的一个例子</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183120759955.jpg" alt=""></p>
+<p>$CART$ 会把输入根据输入的属性分配到各个叶子节点，而每个叶子节点上面都会对应一个实数分数。上面的例子是预测一个人是否会喜欢电脑游戏，我们可以把叶子的分数理解为有多可能这个人喜欢电脑游戏。</p>
+<h3 id="组合树"><a href="#组合树" class="headerlink" title="组合树"></a>组合树</h3><p>一个 $CART$ 往往过于简单无法有效地预测，因此出现了一个更加强力的模型 $Tree\;Ensemble$，即组合树，组合树和集成学习是工业界经常使用的一种方法，例如随机森林等算法就是利用的组合树的思想。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183123650568.jpg" alt=""></p>
+<p>在上面的例子中，我们用两棵树来进行预测，我们对于每个样本的预测结果就是每棵树预测分数的和。</p>
+<h3 id="模型和参数-1"><a href="#模型和参数-1" class="headerlink" title="模型和参数"></a>模型和参数</h3><p>组合树的学习是一种加性模型，假设我们有 $K$ 颗树：</p>
+<p>$$ \hat y_i = \sum_{k=1}^Kf_k(x_i)\quad f_k \in \mathcal{F}$$</p>
+<p>其中每个 $f$ 是函数空间 $\mathcal{F}$ 内的函数，$\mathcal{F}$ 是一个包含所有回归树的集合，其中每个回归树都可以直观地理解为将属性映射为分数的函数。</p>
+<p>参数方面，每颗回归树都有其树的结构和叶子的值，最后的输出值在逻辑上与结构和叶子值有关，在数学上只取决于叶子上值的大小，组合树学习的参数不是对特征空间内直接进行学习，而是通过学习每棵树内的参数来实现整体的预测。</p>
+<p>下面是只含有一个属性的回归树的学习过程：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183133796144.jpg" alt=""></p>
+<p>我们要学习的内容包括切分位置和切分后每个片段的值，参数的学习同样需要考虑误差函数和正则项的影响。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183135123932.jpg" alt=""></p>
+<p>遵循前面的设计理念，我们写出回归树的目标函数：</p>
+<p>$$ Obj(\Theta) = \sum_i^n l(y_i,\hat y_i) +\sum_{k=1}^K\Omega(f_k) $$</p>
+<p>对正则项的定义可以包括树的深度、节点个数、叶子值的各种范数等等，树形结构的学习很多都依赖于一些如下所示的启发式定义和映射：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183137123293.jpg" alt=""></p>
+<h2 id="梯度提升树"><a href="#梯度提升树" class="headerlink" title="梯度提升树"></a>梯度提升树</h2><h3 id="提升模型学习"><a href="#提升模型学习" class="headerlink" title="提升模型学习"></a>提升模型学习</h3><p>梯度提升的学习方法使用的不是传统的梯度下降或者梯度上升，而是利用加性模型的思想，使用 $Additive Training$ 的方法（也叫 $Boosting$），每一次保留原来的模型不变，加入一个新的函数 $f$ 到我们的模型中：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183138922166.jpg" alt=""></p>
+<p>那么现在的问题是我们如何选择每一轮加入的 $f$ 呢？很显然，我们应该选取能够使得我们的目标函数最大程度上降低的 $f$</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183140195028.jpg" alt=""></p>
+<p>如上图所示，目标函数按照加性模型展开后，前 $t-1$ 个正则项的累加 $\sum_{i=1}^{t-1} \Omega(f_i)$ 对本轮学习可以视为常数。同样，如果使用平方误差，下面的式子展开后不含有 $f_t(x_i)$ 的项在本轮学习中都可以视为常数，化简之后，得到的 $(\hat y_i^{t-1} - y_i)$ 就是 $t-1$ 轮迭代后的<strong>残差</strong>。</p>
+<p>更加一般地，我们直接可以直接使用二阶泰勒展开式得到一个目标函数的近似值：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183148599727.jpg" alt=""></p>
+<p>同样，$l(y_i, \hat y_i^{t-1})$ 对本轮迭代也是常数项，当我们把所有的常数项移除之后，我们得到了新的目标函数：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183153693329.jpg" alt=""></p>
+<p>这一个目标函数有一个非常明显的特点，它<strong>只依赖于每个数据点的在误差函数上的一阶导数和二阶导数</strong>。</p>
+<h3 id="定义正则项"><a href="#定义正则项" class="headerlink" title="定义正则项"></a>定义正则项</h3><p>在定义树的复杂度方面，我们把树拆分成结构部分 $q$ 和叶子权重部分 $w$。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183186620231.jpg" alt=""></p>
+<p>当我们给定了如上定义之后，我们可以定义一棵树的复杂度。这个复杂度包含了一棵树里面节点的个数，以及每个树叶子节点上面输出分数的 $L2$ 模平方。当然这不是唯一的一种定义方式，不过这一定义方式学习出的树效果一般都比较不错。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183206752321.jpg" alt=""></p>
+<h3 id="改写目标函数"><a href="#改写目标函数" class="headerlink" title="改写目标函数"></a>改写目标函数</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15183207317033.jpg" alt=""></p>
+<p>定义了一个新的变量 $I_j$ 来表示落在叶子节点 $j$ 上的样本集合，从第二行到第三行实际上就是进行了一个集合上的变换，因为 $\sum_{i=1}^n = \sum_{j=1}^T\sum_{i \in I_j}$，即每个数据点落入且仅落入一个叶子节点，所以可以把 $n$ 个数据点按叶子成组，类似于合并同类项，两个数据点同类指的是落入相同的叶子，即这里的指示变量集 $I_j$。</p>
+<p>我们定义 $ G_j = \sum_{i \in I_j} g_i \quad H_j = \sum_{i \in I_j} h_i$，那么这个目标函数可以进一步改写成如下的形式，</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183220496470.jpg" alt=""></p>
+<p>假设我们已经知道树的结构 $q$，我们可以通过这个目标函数来求解出最好的 $w$，以及最好的 $w$ 对应的目标函数最大的增益</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183221426854.jpg" alt=""></p>
+<p><strong>打分函数示例</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15183221867566.jpg" alt=""></p>
+<h2 id="寻找划分点"><a href="#寻找划分点" class="headerlink" title="寻找划分点"></a>寻找划分点</h2><h3 id="贪心法"><a href="#贪心法" class="headerlink" title="贪心法"></a>贪心法</h3><p>我们不断地枚举不同树的结构，利用这个打分函数来寻找出一个最优结构的树，加入到我们的模型中，再重复这样的操作。不过枚举所有树结构这个操作不太可行，所以常用的方法是<strong>贪心法</strong>，每一次尝试去对已有的叶子加入一个分割。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183230970054.jpg" alt=""></p>
+<p>上式中几个部分的意义分别是：左子树分数与右子树分数的和减去不分割情况下的分数以及加入新叶子节点引入的复杂度代价。</p>
+<p>对于每次扩展，我们还是要枚举所有可能的分割方案，如何高效地枚举所有的分割呢？假设我们要枚举所有 $x\lt a$ 这样的条件，对于某个特定的分割 $a$ 我们要计算 $a$ 左边和右边的导数和。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183232967154.jpg" alt=""></p>
+<p>我们可以发现对于所有的 $a$，我们只要做一遍从左到右的扫描就可以枚举出所有分割的梯度和 $G_L$ 和 $G_R$。然后用上面的公式计算每个分割方案的分数就可以了。</p>
+<p>于是我们就得到了梯度提升树的算法：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183235697258.jpg" alt=""></p>
+<p><strong>时间复杂度</strong>：$O(ndK\log n)$，排序的时间复杂度是 $O(n\log n)$，其中 $d$ 是特征数，$K$ 是树的深度。</p>
+<h3 id="近似算法"><a href="#近似算法" class="headerlink" title="近似算法"></a>近似算法</h3><p>在数据量非常大甚至不能直接读入内存的时候，上面方法就不能够处理，所以就出现了一种近似算法，对每一个特征进行“值”采样，原来需要对每一个特征的每一个可能分割点进行尝试，首先对特征值的分布采样确定候选划分点，然后只对候选划分点进行计算，这种方法很明显可以减少计算量，采样密度越小计算的越快，拟合程度也会越差，所以采样还可以防止过拟合。执行采样的方式有两个，一种是 $global$ 模式，一种是 $local$ 模式。$global$ 模式是在生成树之前采一次样，后面不再更新；$local$ 模式是每次 $split$ 之后都再次进行一次采样。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183287272152.jpg" alt=""></p>
+<h3 id="缺失值处理"><a href="#缺失值处理" class="headerlink" title="缺失值处理"></a>缺失值处理</h3><p>有很多种原因可能导致特征的稀疏（缺失），所以当遇到样本某个维度的特征缺失的时候，就不能知道这个样本会落在左孩子还是右孩子。简单的做法就是扔掉或者根据缺失原因设计具体的处理策略，本文的处理策略是落在哪个孩子得分高，就放到哪里（把默认值设置到哪里）。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183291649394.jpg" alt=""></p>
+<h3 id="并行计算"><a href="#并行计算" class="headerlink" title="并行计算"></a>并行计算</h3><p>注意到每一次寻找划分点的时候是需要对当前节点中的样本按照特征值进行排序的，其实这个排序可以在初始化的时候进行一次就够了，比如有 $n$ 个样本 $m$ 维特征，只需要预先生成一个 $n\times m$ 的矩阵，第$m$ 列表示的是按照第 $m$ 个特征从小到大对样本的排序索引。通过指针存储，一个指针也就是四个字节，耗费的空间有限，这个排序索引的过程可以并行进行，并且寻找划分点的时候，也可以同时多个维度并发地去寻找得分最高的切分点。</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15183296012686.jpg" alt=""></p>
+<p>[1] <a href="http://www.kdd.org/kdd2016/papers/files/rfp0697-chenAemb.pdf" target="_blank" rel="external">XGBoost: A Scalable Tree Boosting System - Paper in KDD2016</a><br>[2] <a href="https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf" target="_blank" rel="external">Introduction to Boosted Trees - Slides of Tianqi Chen</a><br>[3] <a href="http://www.52cs.org/?p=429" target="_blank" rel="external">XGBoost与Boosted Tree - 我爱计算机</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/XGBoost/" rel="tag"># XGBoost</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/10/leetcode-13-Roman-to-Integer/" rel="next" title="【LeetCode】13. Roman to Integer">
+                <i class="fa fa-chevron-left"></i> 【LeetCode】13. Roman to Integer
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/11/leetcode-14-Longest-Common-Prefix/" rel="prev" title="【LeetCode】14. Longest Common Prefix">
+                【LeetCode】14. Longest Common Prefix <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Zhenyu Zhang" />
+          <p class="site-author-name" itemprop="name">Zhenyu Zhang</p>
+           
+              <p class="site-description motion-element" itemprop="description">Survival with technology<br/>And living with art</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#监督学习"><span class="nav-number">1.</span> <span class="nav-text">监督学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型和参数"><span class="nav-number">1.1.</span> <span class="nav-text">模型和参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数"><span class="nav-number">1.2.</span> <span class="nav-text">目标函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回归树"><span class="nav-number">2.</span> <span class="nav-text">回归树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类和回归树CART"><span class="nav-number">2.1.</span> <span class="nav-text">分类和回归树CART</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合树"><span class="nav-number">2.2.</span> <span class="nav-text">组合树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型和参数-1"><span class="nav-number">2.3.</span> <span class="nav-text">模型和参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度提升树"><span class="nav-number">3.</span> <span class="nav-text">梯度提升树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#提升模型学习"><span class="nav-number">3.1.</span> <span class="nav-text">提升模型学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义正则项"><span class="nav-number">3.2.</span> <span class="nav-text">定义正则项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改写目标函数"><span class="nav-number">3.3.</span> <span class="nav-text">改写目标函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#寻找划分点"><span class="nav-number">4.</span> <span class="nav-text">寻找划分点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#贪心法"><span class="nav-number">4.1.</span> <span class="nav-text">贪心法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#近似算法"><span class="nav-number">4.2.</span> <span class="nav-text">近似算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺失值处理"><span class="nav-number">4.3.</span> <span class="nav-text">缺失值处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并行计算"><span class="nav-number">4.4.</span> <span class="nav-text">并行计算</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhenyu Zhang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
