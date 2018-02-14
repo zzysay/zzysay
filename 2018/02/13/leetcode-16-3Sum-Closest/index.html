@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="数组操作,分治法," />
 
 
 
@@ -93,17 +93,18 @@
 
 
 
-<meta name="description" content="title: 【LeetCode】16. 3Sum Closestdate: 2018-02-13 23:25:59categories:  LeetCodetags: 分治法 数组操作mathjax: true   题目描述Given an array $S$ of n integers, find three integers in $S$ such that the sum is clos">
+<meta name="description" content="题目描述Given an array $S$ of n integers, find three integers in $S$ such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have">
+<meta name="keywords" content="数组操作,分治法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ZZY SAY">
+<meta property="og:title" content="【LeetCode】16. 3Sum Closest">
 <meta property="og:url" content="http://zzysay.github.io/2018/02/13/leetcode-16-3Sum-Closest/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="title: 【LeetCode】16. 3Sum Closestdate: 2018-02-13 23:25:59categories:  LeetCodetags: 分治法 数组操作mathjax: true   题目描述Given an array $S$ of n integers, find three integers in $S$ such that the sum is clos">
+<meta property="og:description" content="题目描述Given an array $S$ of n integers, find three integers in $S$ such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-13T15:28:40.646Z">
+<meta property="og:updated_time" content="2018-02-14T05:02:00.645Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ZZY SAY">
-<meta name="twitter:description" content="title: 【LeetCode】16. 3Sum Closestdate: 2018-02-13 23:25:59categories:  LeetCodetags: 分治法 数组操作mathjax: true   题目描述Given an array $S$ of n integers, find three integers in $S$ such that the sum is clos">
+<meta name="twitter:title" content="【LeetCode】16. 3Sum Closest">
+<meta name="twitter:description" content="题目描述Given an array $S$ of n integers, find three integers in $S$ such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have">
 
 
 
@@ -137,7 +138,7 @@
 
 
 
-  <title> | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【LeetCode】16. 3Sum Closest | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -283,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">【LeetCode】16. 3Sum Closest</h1>
         
 
         <div class="post-meta">
@@ -305,6 +306,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -330,15 +353,7 @@
       
 
       
-        <hr>
-<p>title: 【LeetCode】16. 3Sum Closest<br>date: 2018-02-13 23:25:59<br>categories:</p>
-<ul>
-<li>LeetCode<br>tags:</li>
-<li>分治法</li>
-<li>数组操作<br>mathjax: true</li>
-</ul>
-<hr>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given an array $S$ of n integers, find three integers in $S$ such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution.</p>
+        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given an array $S$ of n integers, find three integers in $S$ such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution.</p>
 <p><strong>Example</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">For example, given array S = &#123;-1 2 1 -4&#125;, and target = 1.</div><div class="line">The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).</div></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -376,6 +391,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/数组操作/" rel="tag"># 数组操作</a>
+          
+            <a href="/tags/分治法/" rel="tag"># 分治法</a>
+          
+        </div>
+      
 
       
       
@@ -395,8 +418,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/14/leetcode-17-Letter-Combinations-of-a-Phone-Number/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/14/leetcode-17-Letter-Combinations-of-a-Phone-Number/" rel="prev" title="【LeetCode】17. Letter Combinations of a Phone Number">
+                【LeetCode】17. Letter Combinations of a Phone Number <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -661,7 +684,7 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
 
 
 
@@ -705,6 +728,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
