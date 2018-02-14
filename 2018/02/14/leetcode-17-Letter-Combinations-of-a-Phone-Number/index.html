@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="字符串操作,模拟法," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -93,18 +93,19 @@
 
 
 
-<meta name="description" content="题目描述The string is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)12 P   A   H   NA P L S I I GY   I   R12A">
-<meta name="keywords" content="字符串操作,模拟法">
+<meta name="description" content="title: 【LeetCode】17. Letter Combinations of a Phone Numberdate: 2018-02-14 12:53:59categories:  LeetCodetags: 模拟法 递归法 字符串操作mathjax: true   题目描述Given a digit string, return all possible letter combina">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【LeetCode】6. ZigZag Conversion">
-<meta property="og:url" content="http://zzysay.github.io/2018/02/05/leetcode-6-ZigZag-Conversion/index.html">
+<meta property="og:title" content="ZZY SAY">
+<meta property="og:url" content="http://zzysay.github.io/2018/02/14/leetcode-17-Letter-Combinations-of-a-Phone-Number/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="题目描述The string is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)12 P   A   H   NA P L S I I GY   I   R12A">
+<meta property="og:description" content="title: 【LeetCode】17. Letter Combinations of a Phone Numberdate: 2018-02-14 12:53:59categories:  LeetCodetags: 模拟法 递归法 字符串操作mathjax: true   题目描述Given a digit string, return all possible letter combina">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-05T13:18:24.460Z">
+<meta property="og:image" content="http://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Telephone-keypad2.svg/200px-Telephone-keypad2.svg.png">
+<meta property="og:updated_time" content="2018-02-14T04:55:33.154Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【LeetCode】6. ZigZag Conversion">
-<meta name="twitter:description" content="题目描述The string is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)12 P   A   H   NA P L S I I GY   I   R12A">
+<meta name="twitter:title" content="ZZY SAY">
+<meta name="twitter:description" content="title: 【LeetCode】17. Letter Combinations of a Phone Numberdate: 2018-02-14 12:53:59categories:  LeetCodetags: 模拟法 递归法 字符串操作mathjax: true   题目描述Given a digit string, return all possible letter combina">
+<meta name="twitter:image" content="http://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Telephone-keypad2.svg/200px-Telephone-keypad2.svg.png">
 
 
 
@@ -132,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://zzysay.github.io/2018/02/05/leetcode-6-ZigZag-Conversion/"/>
+  <link rel="canonical" href="http://zzysay.github.io/2018/02/14/leetcode-17-Letter-Combinations-of-a-Phone-Number/"/>
 
 
 
 
 
-  <title>【LeetCode】6. ZigZag Conversion | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -267,7 +268,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/05/leetcode-6-ZigZag-Conversion/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/14/leetcode-17-Letter-Combinations-of-a-Phone-Number/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
@@ -284,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【LeetCode】6. ZigZag Conversion</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -296,8 +297,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-05T20:08:22+08:00">
-                2018-02-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-14T12:53:59+08:00">
+                2018-02-14
               </time>
             
 
@@ -306,28 +307,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -353,9 +332,24 @@
       
 
       
-        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The string <figure class="highlight plain"><figcaption><span>is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
-<p>P   A   H   N<br>A P L S I I G<br>Y   I   R<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">And then read line by line: ```&quot;PAHNAPLSIIGYIR&quot;</div></pre></td></tr></table></figure></p>
-<p>Write the code that will take a string and make this conversion given a number of rows:<br><figure class="highlight plain"><figcaption><span>convert(string text, int nRows);```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">```convert(&quot;PAYPALISHIRING&quot;, 3)``` should return ```&quot;PAHNAPLSIIGYIR&quot;```.</div><div class="line"></div><div class="line">&lt;!--more--&gt;</div><div class="line"></div><div class="line">### 题目大意</div><div class="line"></div><div class="line">在行数给定时，将字符串按照 $Z$ 字排列，最后按行输出。</div><div class="line"></div><div class="line">### 解题思路</div><div class="line"></div><div class="line">模拟法，模拟 $Z$ 字从上到下再从下到上填充字符。</div><div class="line"></div><div class="line">### 参考代码</div><div class="line"></div><div class="line">```python</div><div class="line">class Solution:</div><div class="line">    def convert(self, s, numRows):</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        :type s: str</div><div class="line">        :type numRows: int</div><div class="line">        :rtype: str</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        if numRows == 1 or numRows &gt;= len(s):</div><div class="line">            return s</div><div class="line">        res_list = [[] for _ in range(numRows)]</div><div class="line"></div><div class="line">        res, i, j = &apos;&apos;, 0, 1</div><div class="line">        for c in s:</div><div class="line">            res_list[i] += c</div><div class="line">            if i == 0:</div><div class="line">                j = 1</div><div class="line">            elif i == numRows-1:</div><div class="line">                j = -1</div><div class="line">            i += j</div><div class="line"></div><div class="line">        for i in range(0, numRows):</div><div class="line">            res += &apos;&apos;.join(res_list[i])</div><div class="line">        return res</div></pre></td></tr></table></figure></p>
+        <hr>
+<p>title: 【LeetCode】17. Letter Combinations of a Phone Number<br>date: 2018-02-14 12:53:59<br>categories:</p>
+<ul>
+<li>LeetCode<br>tags:</li>
+<li>模拟法</li>
+<li>递归法</li>
+<li>字符串操作<br>mathjax: true</li>
+</ul>
+<hr>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a digit string, return all possible letter combinations that the number could represent.<br>A mapping of digit to letters (just like on the telephone buttons) is given below.</p>
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Telephone-keypad2.svg/200px-Telephone-keypad2.svg.png" alt=""></p>
+<p><strong>Example</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input:Digit string &quot;23&quot;</div><div class="line">Output: [&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;bd&quot;, &quot;be&quot;, &quot;bf&quot;, &quot;cd&quot;, &quot;ce&quot;, &quot;cf&quot;].</div></pre></td></tr></table></figure>
+<p><strong>Note:</strong><br>Although the above answer is in lexicographical order, your answer could be in any order you want.</p>
+<a id="more"></a>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>对于一个给出的数字串，输出其可能的在手机键盘上代表的字符串，如对于数字串 <code>23</code>，其可能代表的字符串便有 <code>ad, ae, af, bd, be, bf, cd, ce, cf</code></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>这个问题我们可以采用递归/模拟的思路来进行解决，首先看第一个数字，我们可以通过对应的表来知道第一个数字对应的字母可能有哪些，那么此时只需要知道剩下的 $n-1$ 个可能代表的字符串有哪些，然后将第一个数字对应的字母与这些字符串两两拼接起来，便可以得到所有可能的解。</p>
+<h3 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">letterCombinations</span><span class="params">(self, digits)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type digits: str</div><div class="line">        :rtype: List[str]</div><div class="line">        """</div><div class="line">        <span class="keyword">if</span> len(digits) == <span class="number">0</span>:</div><div class="line">            <span class="keyword">return</span> list()</div><div class="line">        num_to_str = &#123;<span class="string">'2'</span>: <span class="string">'abc'</span>, <span class="string">'3'</span>: <span class="string">'def'</span>, <span class="string">'4'</span>: <span class="string">'ghi'</span>, <span class="string">'5'</span>: <span class="string">'jkl'</span>,</div><div class="line">                      <span class="string">'6'</span>: <span class="string">'mno'</span>, <span class="string">'7'</span>: <span class="string">'pqrs'</span>, <span class="string">'8'</span>: <span class="string">'tuv'</span>, <span class="string">'9'</span>: <span class="string">'wxyz'</span>&#125;</div><div class="line"></div><div class="line">        <span class="function"><span class="keyword">def</span> <span class="title">helper</span><span class="params">(orl_list, map_str)</span>:</span></div><div class="line">            res_list = list()</div><div class="line">            <span class="keyword">for</span> orl <span class="keyword">in</span> orl_list:</div><div class="line">                <span class="keyword">for</span> ch <span class="keyword">in</span> map_str:</div><div class="line">                    res_list.append(orl + ch)</div><div class="line">            <span class="keyword">return</span> res_list</div><div class="line"></div><div class="line">        res = list()</div><div class="line">        <span class="keyword">for</span> ch <span class="keyword">in</span> num_to_str[digits[<span class="number">0</span>]]:</div><div class="line">            res.append(ch)</div><div class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> digits[<span class="number">1</span>:]:</div><div class="line">            res = helper(res, num_to_str[num])</div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -383,14 +377,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/字符串操作/" rel="tag"># 字符串操作</a>
-          
-            <a href="/tags/模拟法/" rel="tag"># 模拟法</a>
-          
-        </div>
-      
 
       
       
@@ -400,8 +386,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/05/leetcode-5-Longest-Palindromic-Substring/" rel="next" title="【LeetCode】5. Longest Palindromic Substring">
-                <i class="fa fa-chevron-left"></i> 【LeetCode】5. Longest Palindromic Substring
+              <a href="/2018/02/13/leetcode-16-3Sum-Closest/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -409,10 +395,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/05/leetcode-7-Reverse-Integer/" rel="prev" title="【LeetCode】7. Reverse Integer">
-                【LeetCode】7. Reverse Integer <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -542,7 +524,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-number">2.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">3.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考代码"><span class="nav-number">4.</span> <span class="nav-text">参考代码</span></a></li></ol></div>
             
 
           </div>
@@ -676,7 +658,7 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -720,26 +702,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 

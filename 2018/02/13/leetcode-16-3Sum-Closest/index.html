@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="字符串操作,模拟法," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -93,18 +93,17 @@
 
 
 
-<meta name="description" content="题目描述The string is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)12 P   A   H   NA P L S I I GY   I   R12A">
-<meta name="keywords" content="字符串操作,模拟法">
+<meta name="description" content="title: 【LeetCode】16. 3Sum Closestdate: 2018-02-13 23:25:59categories:  LeetCodetags: 分治法 数组操作mathjax: true   题目描述Given an array $S$ of n integers, find three integers in $S$ such that the sum is clos">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【LeetCode】6. ZigZag Conversion">
-<meta property="og:url" content="http://zzysay.github.io/2018/02/05/leetcode-6-ZigZag-Conversion/index.html">
+<meta property="og:title" content="ZZY SAY">
+<meta property="og:url" content="http://zzysay.github.io/2018/02/13/leetcode-16-3Sum-Closest/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="题目描述The string is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)12 P   A   H   NA P L S I I GY   I   R12A">
+<meta property="og:description" content="title: 【LeetCode】16. 3Sum Closestdate: 2018-02-13 23:25:59categories:  LeetCodetags: 分治法 数组操作mathjax: true   题目描述Given an array $S$ of n integers, find three integers in $S$ such that the sum is clos">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-05T13:18:24.460Z">
+<meta property="og:updated_time" content="2018-02-13T15:28:40.646Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【LeetCode】6. ZigZag Conversion">
-<meta name="twitter:description" content="题目描述The string is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)12 P   A   H   NA P L S I I GY   I   R12A">
+<meta name="twitter:title" content="ZZY SAY">
+<meta name="twitter:description" content="title: 【LeetCode】16. 3Sum Closestdate: 2018-02-13 23:25:59categories:  LeetCodetags: 分治法 数组操作mathjax: true   题目描述Given an array $S$ of n integers, find three integers in $S$ such that the sum is clos">
 
 
 
@@ -132,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://zzysay.github.io/2018/02/05/leetcode-6-ZigZag-Conversion/"/>
+  <link rel="canonical" href="http://zzysay.github.io/2018/02/13/leetcode-16-3Sum-Closest/"/>
 
 
 
 
 
-  <title>【LeetCode】6. ZigZag Conversion | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> | ZZY SAY</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -267,7 +266,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/05/leetcode-6-ZigZag-Conversion/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/13/leetcode-16-3Sum-Closest/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
@@ -284,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【LeetCode】6. ZigZag Conversion</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -296,8 +295,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-05T20:08:22+08:00">
-                2018-02-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-13T23:25:59+08:00">
+                2018-02-13
               </time>
             
 
@@ -306,28 +305,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -353,9 +330,25 @@
       
 
       
-        <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The string <figure class="highlight plain"><figcaption><span>is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
-<p>P   A   H   N<br>A P L S I I G<br>Y   I   R<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">And then read line by line: ```&quot;PAHNAPLSIIGYIR&quot;</div></pre></td></tr></table></figure></p>
-<p>Write the code that will take a string and make this conversion given a number of rows:<br><figure class="highlight plain"><figcaption><span>convert(string text, int nRows);```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">```convert(&quot;PAYPALISHIRING&quot;, 3)``` should return ```&quot;PAHNAPLSIIGYIR&quot;```.</div><div class="line"></div><div class="line">&lt;!--more--&gt;</div><div class="line"></div><div class="line">### 题目大意</div><div class="line"></div><div class="line">在行数给定时，将字符串按照 $Z$ 字排列，最后按行输出。</div><div class="line"></div><div class="line">### 解题思路</div><div class="line"></div><div class="line">模拟法，模拟 $Z$ 字从上到下再从下到上填充字符。</div><div class="line"></div><div class="line">### 参考代码</div><div class="line"></div><div class="line">```python</div><div class="line">class Solution:</div><div class="line">    def convert(self, s, numRows):</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        :type s: str</div><div class="line">        :type numRows: int</div><div class="line">        :rtype: str</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        if numRows == 1 or numRows &gt;= len(s):</div><div class="line">            return s</div><div class="line">        res_list = [[] for _ in range(numRows)]</div><div class="line"></div><div class="line">        res, i, j = &apos;&apos;, 0, 1</div><div class="line">        for c in s:</div><div class="line">            res_list[i] += c</div><div class="line">            if i == 0:</div><div class="line">                j = 1</div><div class="line">            elif i == numRows-1:</div><div class="line">                j = -1</div><div class="line">            i += j</div><div class="line"></div><div class="line">        for i in range(0, numRows):</div><div class="line">            res += &apos;&apos;.join(res_list[i])</div><div class="line">        return res</div></pre></td></tr></table></figure></p>
+        <hr>
+<p>title: 【LeetCode】16. 3Sum Closest<br>date: 2018-02-13 23:25:59<br>categories:</p>
+<ul>
+<li>LeetCode<br>tags:</li>
+<li>分治法</li>
+<li>数组操作<br>mathjax: true</li>
+</ul>
+<hr>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given an array $S$ of n integers, find three integers in $S$ such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution.</p>
+<p><strong>Example</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">For example, given array S = &#123;-1 2 1 -4&#125;, and target = 1.</div><div class="line">The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个数组和一个整数，求数组中的三个元素，他们的和离最近。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><p>该问题和 <a href="http://zzysay.github.io/2018/02/12/leetcode-15-3Sum/">【LeetCode 15. 3Sum】</a> 问题类似，同样可以在排序后使用双指针快速寻找答案，与 $3Sum$ 问题不同的有两点：</p>
+<ul>
+<li>不用考虑重复的情况</li>
+<li>如果出现三个元素的和与 $target$ 相等，可以直接返回。</li>
+</ul>
+<h3 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">threeSumClosest</span><span class="params">(self, nums, target)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        :type nums: List[int]</div><div class="line">        :type target: int</div><div class="line">        :rtype: int</div><div class="line">        """</div><div class="line">        nums.sort()</div><div class="line">        res = nums[<span class="number">0</span>] + nums[<span class="number">1</span>] + nums[<span class="number">2</span>] - target</div><div class="line">        n = len(nums)</div><div class="line"></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n):</div><div class="line">            j, k = i+<span class="number">1</span>, n<span class="number">-1</span></div><div class="line">            <span class="keyword">while</span> j &lt; k:</div><div class="line">                tmp = nums[i] + nums[j] + nums[k]</div><div class="line">                <span class="keyword">if</span> tmp == target:</div><div class="line">                    <span class="keyword">return</span> target</div><div class="line">                <span class="keyword">if</span> abs(tmp - target) &lt; abs(res - target):</div><div class="line">                    res = tmp</div><div class="line">                <span class="keyword">if</span> nums[j] + nums[k] &lt; target - nums[i]:</div><div class="line">                    j += <span class="number">1</span></div><div class="line">                <span class="keyword">else</span>:</div><div class="line">                    k -= <span class="number">1</span></div><div class="line">        <span class="keyword">return</span> res</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -383,14 +376,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/字符串操作/" rel="tag"># 字符串操作</a>
-          
-            <a href="/tags/模拟法/" rel="tag"># 模拟法</a>
-          
-        </div>
-      
 
       
       
@@ -400,8 +385,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/05/leetcode-5-Longest-Palindromic-Substring/" rel="next" title="【LeetCode】5. Longest Palindromic Substring">
-                <i class="fa fa-chevron-left"></i> 【LeetCode】5. Longest Palindromic Substring
+              <a href="/2018/02/12/leetcode-15-3Sum/" rel="next" title="【LeetCode】15. 3Sum">
+                <i class="fa fa-chevron-left"></i> 【LeetCode】15. 3Sum
               </a>
             
           </div>
@@ -410,8 +395,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/05/leetcode-7-Reverse-Integer/" rel="prev" title="【LeetCode】7. Reverse Integer">
-                【LeetCode】7. Reverse Integer <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/14/leetcode-17-Letter-Combinations-of-a-Phone-Number/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -542,7 +527,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-number">2.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">3.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考代码"><span class="nav-number">4.</span> <span class="nav-text">参考代码</span></a></li></ol></div>
             
 
           </div>
@@ -676,7 +661,7 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
@@ -720,26 +705,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
