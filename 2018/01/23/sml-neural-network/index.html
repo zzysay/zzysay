@@ -139,7 +139,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15167107516817.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15167118536935.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15167126992136.png">
-<meta property="og:updated_time" content="2018-02-07T13:42:33.719Z">
+<meta property="og:updated_time" content="2018-02-24T13:55:32.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="神经网络">
 <meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15166713554832.jpg">
@@ -461,9 +461,9 @@
 <p><strong>梯度消失</strong>的一种解决方案是使用 $Relu$ 激活函数替换 $Sigmoid$ 函数，$Relu$ 函数的梯度不会随着 $x$ 的增大而变小，$Sigmoid$ 函数在 $x$ 取值较大时梯度趋近于 $0$。</p>
 <p><strong>梯度爆炸</strong>可以使用梯度剪裁的方法来解决：</p>
 <ul>
-<li>选取一个梯度剪裁的阈值 $clip_norm$（一般选择 $1$）</li>
-<li>在计算完每个权重的梯度之后，我们并不像通常那样直接使用这些梯度进行权重更新，而是先求所有权重梯度的平方和 $global_norm$</li>
-<li>最后把每个梯度乘以缩放因子 $clip_norm / \max(global_norm, clip_norm)$</li>
+<li>选取一个梯度剪裁的阈值 $clip\;norm$（一般选择 $1$）</li>
+<li>在计算完每个权重的梯度之后，我们并不像通常那样直接使用这些梯度进行权重更新，而是先求所有权重梯度的平方和 $global\;norm$</li>
+<li>最后把每个梯度乘以缩放因子 $clip\;norm / \max(global\;norm, clip\;norm)$</li>
 </ul>
 <h2 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h2><p>多层感知机是一种全连接的结构，但又是全连接的网络会存在一定程度的冗余，卷积神经网络（$Convolutional\;Neural\;Network, CNN$）通过<strong>局部连接和权重共享</strong>的方法来实现对多层感知机的共享。</p>
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15166888671455.jpg" alt=""></p>
@@ -491,7 +491,7 @@
 <p>直觉上，这种机制能够有效地原因在于，在发现一个特征之后，它的精确位置远不及它和其他特征的相对位置的关系重要。<strong>池化层会不断地减小数据的空间大小，因此参数的数量和计算量也会下降，这在一定程度上也控制了过拟合</strong>。通常来说，$CNN$ 的卷积层之间都会周期性地插入池化层。</p>
 <p>池化层通常会分别作用于每个输入的特征并减小其大小。$Max\;Pooling$ 每隔 $2$ 个元素从图像划分出 $2\times 2$ 的区块，然后对每个区块中的 $4$ 个数取最大值，这将会减少百分之七十五的数据量。</p>
 <p>除了最大池化之外，池化层也可以使用其他池化函数，例如“平均池化”甚至“$L2$范数池化”等，由于池化层过快地减少了数据的大小，目前文献中的趋势是在池化运算时使用较小的区块，甚至不再使用池化层。</p>
-<h2 id="递归神经网络"><a href="#递归神经网络" class="headerlink" title="递归神经网络"></a>递归神经网络</h2><p>递归神经网络（$RNN$）是两种人工神经网络的总称，一种是时间递归神经网络（$Recurrent\;Neural\;Network$，即常说的循环神经网络），另一种是结构递归神经网络（$Recursive\;Neural\;Network$）。</p>
+<h2 id="递归神经网络"><a href="#递归神经网络" class="headerlink" title="递归神经网络"></a>递归神经网络</h2><p>递归神经网络（$RNN$）是两种人工神经网络的总称，一种是时间递归神经网络（$Recurrent\;Neural\;Network$，即常说的循环神经网络），另一种是递归神经网络（$Recursive\;Neural\;Network$）。</p>
 <h3 id="基本递归结构"><a href="#基本递归结构" class="headerlink" title="基本递归结构"></a>基本递归结构</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15166966756355.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15166966980497.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15166967282178.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15166967649556.jpg" alt=""></p>
 <p><strong>通用逼近定理</strong>：如果网络具有充分多的隐藏神经元，任意的非线性动态系统可以由递归神经网络以期望的精度来逼近，对于状态空间的紧致性没有限制。</p>
 <ul>
@@ -701,7 +701,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">53</span>
+                <span class="site-state-item-count">54</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -712,7 +712,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -723,7 +723,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">42</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
