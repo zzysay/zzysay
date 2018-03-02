@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="ZZY SAY">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15199814902907.jpg">
-<meta property="og:updated_time" content="2018-03-02T10:46:24.761Z">
+<meta property="og:updated_time" content="2018-03-02T10:49:47.550Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python使用Hadoop集群">
 <meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15199814902907.jpg">
@@ -365,7 +365,7 @@
       
         <p><img src="http://p1auo1a1h.bkt.clouddn.com/15199814902907.jpg" alt=""></p>
 <a id="more"></a>
-<p>$MapReduce$ 是一个编程模型，也是一个处理和生成超大数据集的算法模型的相关实现。用户首先创建一个 $Map$ 函数处理一个基于 $key/value$ 的数据集合，输出中间的基于 $key/value$ 的数据集合；然后再创建 一个 $Reduce$ 函数用来合并所有的具有相同中间 $key$ 值的中间 $value$ 值。</p>
+<p>$MapReduce$ 是一个编程模型，也是一个处理和生成超大数据集的算法模型的相关实现。用户首先创建一个 $Map$ 函数将数据处理成 $key/value$ 格式的数据集合；然后再创建一个 $Reduce$ 函数用来合并所有的具有相同 $key$ 值的 $value$ 值。</p>
 <h2 id="编写MapReduce函数"><a href="#编写MapReduce函数" class="headerlink" title="编写MapReduce函数"></a>编写MapReduce函数</h2><p>以下的实例是 $Google$ 在 $MapReduce$ 的论文中提到的一个计算单词个数的例子。使用 $Python$ 编写 $MapReduce$ 函数与通常编写程序的区别是我们需要利用 $Hadoop$ 流的 $API$，通过标准输入（$sys.stdin$）、标准输出（$sys.stdout$）在 $Map$ 函数和 $Reduce$ 函数之间传递数据，其余的事情 $Hadoop$ 流将会帮助我们完成。</p>
 <h3 id="Mapper部分"><a href="#Mapper部分" class="headerlink" title="Mapper部分"></a>Mapper部分</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</div><div class="line">    line = line.strip()</div><div class="line">    words = line.split()</div><div class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</div><div class="line">        <span class="keyword">print</span> <span class="string">"%s\t%s"</span> % (word, <span class="number">1</span>)</div></pre></td></tr></table></figure>
 <p>文件从标准输入 <code>sys.stdin</code> 读取文件后把单词切开，并把单词和词频输出标准输出。$mapper$ 不计算单词的总数，而是输出 <code>(word, 1)</code>，方便让随后的 $reducer$ 做统计工作。</p>
