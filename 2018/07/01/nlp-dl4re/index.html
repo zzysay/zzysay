@@ -130,7 +130,7 @@
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15302413830121.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15302462751878.jpg">
 <meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15302460252380.jpg">
-<meta property="og:updated_time" content="2018-07-02T03:26:35.907Z">
+<meta property="og:updated_time" content="2018-07-02T03:29:41.618Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于深度学习的关系抽取">
 <meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15302790797465.jpg">
@@ -588,7 +588,7 @@
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15301728190303.jpg" alt=""></p>
 <p>其中，$CNN-B$ 是一层卷积层和一层全连接层，$CNN$ 是一层卷积层和三层全连接层，$CNN-9$ 是九层卷积层和三层全连接层，$ReCNN-9$ 是九层残差卷积和三层全连接层。</p>
 <p>从图 $2$ 可以看出，传统的卷积网络在网络层数增加时性能有明显的下降，而残差网络可以解决这一问题。从图 $3$ 可以看出，模型在 $9$ 层残差块的时候达到最好的效果，随着残差块的持续增加，模型性能反而略有下降。论文中给出的一个直观解释是，低层、中层和高层学习到的分别是词汇级、句子级和语义级的特征，有时候忽略语义级的信息，直接使用词汇级和语义级信息也可以达到一定的模型效果。</p>
-<center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15301729065484.jpg" width="300/"><br></center>
+<center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15301729065484.jpg" width="350/"><br></center>
 
 <p>从表 $2$ 可以看出，使用简单的残差网络可以基本达到使用 $PCNN+ATT$ 的性能，而残差网络的网络结构相对来说简单了很多，同时，这也证明了残差网络可以有效解决远程监督中噪声数据的问题。</p>
 <h3 id="Neurocomputing-2017-Joint-Learning"><a href="#Neurocomputing-2017-Joint-Learning" class="headerlink" title="[Neurocomputing 2017] Joint Learning"></a>[Neurocomputing 2017] Joint Learning</h3><blockquote>
@@ -613,7 +613,7 @@
 <p><strong>Reinforcement Learning for Relation Classification from Noisy Data</strong></p>
 </blockquote>
 <p>这是清华大学黄民烈老师组的工作，同样也是为了解决远程监督标注数据集的错误标签问题。为了减少噪声数据对模型的影响，我们希望能够训练一个模型实现对样本的筛选，从而得到一个高质量的数据集。在对样本进行筛选时，我们无法直接判断每个样本的好坏，只能在全部样本选择完成后，集中评价整个数据集的质量，这种延迟反馈的方法天然适合强化学习的框架。</p>
-<h4 id="Methodology-10"><a href="#Methodology-10" class="headerlink" title="Methodology"></a>Methodology</h4><center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15301990105059.jpg" width="400/"><br></center>
+<h4 id="Methodology-10"><a href="#Methodology-10" class="headerlink" title="Methodology"></a>Methodology</h4><center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15301990105059.jpg" width="444/"><br></center>
 
 <p>模型框架如图所示，左边是句子选择器，右边是一个经典的基于卷积神经网络的关系分类器。句子选择器根据 $policy$ 函数对样本逐个筛选，每个样本都可以执行选或者不选两种 $action$，筛选完之后会生成一个新的数据集，$policy$ 函数定义如下：</p>
 <p>$$ \begin{align}<br>\pi_{\theta}(s_i, a_i) &amp;= P_{\theta}(a_i|s_i) \nonumber \\<br>&amp; = a_i\sigma(W·F(s_i) + b) + (1-a_i)(1-\sigma(W·F(s_i) + b)) \nonumber<br>\end{align} $$</p>
@@ -622,7 +622,7 @@
 <p>$$ r(s_i|B) = \begin{cases} 0 &amp; \text{if i &lt; |B| + 1} \\ \frac 1 {|\hat B|} \sum_{x_j \in |\hat B|} \log p(r|x_j) &amp; \text{if i = |B| + 1} \end{cases} $$</p>
 <p>其中，$B$ 代表一个示例包，$|\hat B|$ 表示筛选后得到的新示例包。为了得到更多的反馈，提高训练效率，论文将样本按照实体对分成若干个示例包，每次句子选择器完成一个包的选择后，模型都会用关系分类器来评估这部分数据，并更新 $policy$ 函数的参数。当所有包都训练完成之后，再筛选出所有的样本，来训练更新关系分类器的参数，得到最终的关系输出。</p>
 <h4 id="Experiments-10"><a href="#Experiments-10" class="headerlink" title="Experiments"></a>Experiments</h4><p>实验在 $NYT$ 数据集上进行，通过与当前主流深度神经网络方法的比较，来证明强化学习的方法在数据筛选方面的卓越性能。</p>
-<center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15302019386583.jpg" width="200/"><br></center>
+<center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15302019386583.jpg" width="300/"><br></center>
 
 <p>从表 $1$ 可以看出，基于强化学习的方法比当前基于池化和注意力机制的方法在性能上都高出很多，需要注意的一点是，这里的评价的是句子级别的准确率。</p>
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15302024675258.jpg" alt=""></p>
@@ -638,7 +638,7 @@
 <p>$$ R(\pi) = \frac {|G(\pi) \cap S_{pair}|} {|G(\pi)|} $$</p>
 <p>其中，$R(\pi)$ 表示的就是 $pattern\; \pi$ 的可靠度，$G(\pi)$ 表示根据 $pattern\; \pi$ 发现出的所有实体对的集合，$S_{pair}$ 表示当前关系下的种子实体对组成的集合，所以分子表示的就是  $pattern\; \pi$ 发现的种子实体对的个数，分母是 $pattern\; \pi$ 发现的总的实体对的个数。显然，$R(\pi)$ 的值越大，表示当前 $pattern$ 越可靠。例如图 $4$ 中，在 $capital\;of$ 关系上，$pattern$ 发现了两个实体对，其中一个实体对在种子集合中，所以这个 $pattern$ 的可靠度为 $0.5$。</p>
 <p>最后，模型的整个训练过程如算法 $1$ 所示：</p>
-<center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15302462751878.jpg" width="300/"><br></center>
+<center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15302462751878.jpg" width="400/"><br></center>
 
 <h4 id="Experiments-11"><a href="#Experiments-11" class="headerlink" title="Experiments"></a>Experiments</h4><p>实验在 $Wikipedia+Freebase$ 和 $NYT+Freebase$ 两个数据集上进行，分别在知识库补全和关系抽取两个任务上评价模型的性能。</p>
 <p><img src="http://p1auo1a1h.bkt.clouddn.com/15302460252380.jpg" alt=""></p>
