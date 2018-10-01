@@ -565,7 +565,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/19/leetcode-22-Generate-Parentheses/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/11/ml-xgboost/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
@@ -584,7 +584,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/19/leetcode-22-Generate-Parentheses/" itemprop="url">【LeetCode】22. Generate Parentheses</a></h1>
+                <a class="post-title-link" href="/2018/02/11/ml-xgboost/" itemprop="url">XGBoost原理</a></h1>
         
 
         <div class="post-meta">
@@ -596,8 +596,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-19T21:01:18+08:00">
-                2018-02-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-11T14:29:21+08:00">
+                2018-02-11
               </time>
             
 
@@ -619,8 +619,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
+                  <a href="/categories/Study-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Study Notes</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Study-Notes/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
                   </a>
                 </span>
 
@@ -654,12 +665,12 @@
 
       
         
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.<br>For example, given $n = 3$, a solution set is:</p>
-<p><strong>Example</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  &quot;((()))&quot;,</div><div class="line">  &quot;(()())&quot;,</div><div class="line">  &quot;(())()&quot;,</div><div class="line">  &quot;()(())&quot;,</div><div class="line">  &quot;()()()&quot;</div><div class="line">]</div></pre></td></tr></table></figure>
+          <h2 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h2><h3 id="模型和参数"><a href="#模型和参数" class="headerlink" title="模型和参数"></a>模型和参数</h3><p><strong>定义：</strong> $x_i \in \Bbb R^d$ 来表示第 $i$ 个训练样本</p>
+<p><strong>模型：</strong> 如何根据给定的 $x_i$ 做出预测 $\hat y_i$，通常有线性模型：$\hat y_i = \sum_j w_j x_{ij} $，常见的有线性回归模型和 $logistic$ 回归，这里的预测 $\hat y_i$ 可以有不同的解释，我们可以用它来作为回归目标的输出，或者进行 $sigmoid$ 变换得到概率，或者作为排序的指标等</p>
+<p><strong>参数：</strong>指我们需要学习的东西，在线性模型中，参数指我们的系数 $w$</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/19/leetcode-22-Generate-Parentheses/#more" rel="contents">
+            <a class="btn" href="/2018/02/11/ml-xgboost/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -705,7 +716,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/18/leetcode-21-Merge-Two-Sorted-Lists-1/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/07/ml-em/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
@@ -724,7 +735,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/18/leetcode-21-Merge-Two-Sorted-Lists-1/" itemprop="url">【LeetCode】21. Merge Two Sorted Lists</a></h1>
+                <a class="post-title-link" href="/2018/02/07/ml-em/" itemprop="url">期望最大算法</a></h1>
         
 
         <div class="post-meta">
@@ -736,8 +747,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-18T10:53:03+08:00">
-                2018-02-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-07T21:26:43+08:00">
+                2018-02-07
               </time>
             
 
@@ -759,8 +770,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
+                  <a href="/categories/Study-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Study Notes</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Study-Notes/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
                   </a>
                 </span>
 
@@ -794,12 +816,10 @@
 
       
         
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.</p>
-<p><strong>Example</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: 1-&gt;2-&gt;4, 1-&gt;3-&gt;4</div><div class="line">Output: 1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</div></pre></td></tr></table></figure>
+          <h2 id="EM算法的理解"><a href="#EM算法的理解" class="headerlink" title="EM算法的理解"></a>EM算法的理解</h2><p>考虑这样一个场景，我们需要调查学校里男生和女生的身高分布，假设我们在校园中随机抽取了 $100$ 个男生和 $100$ 个女生，随后让男生和女生分开站，分别统计男生和女生的身高，假设身高的分布是服从高斯分布的，那么通过最大化似然函数，我们可以得到对应高斯分布的均值和方差。<br>如果我们没有把男生和女生分开，那么这 $200$ 个人混在一起，从中随机抽取一个人，我们甚至不知道他是男生还是女生，换句话说，我们不知道这个样本是属于哪个分布的，这是就无法通过上述方法估计男女生的身高分布的均值和方差，此时我们只有估计出了分布的参数，才能知道某个样本是属于哪个分布的。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/18/leetcode-21-Merge-Two-Sorted-Lists-1/#more" rel="contents">
+            <a class="btn" href="/2018/02/07/ml-em/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -845,7 +865,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/18/leetcode-20-Valid-Parentheses/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/23/sml-neural-network/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
@@ -864,7 +884,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/18/leetcode-20-Valid-Parentheses/" itemprop="url">【LeetCode】20. Valid Parentheses</a></h1>
+                <a class="post-title-link" href="/2018/01/23/sml-neural-network/" itemprop="url">神经网络</a></h1>
         
 
         <div class="post-meta">
@@ -876,8 +896,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-18T10:09:51+08:00">
-                2018-02-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-23T21:42:44+08:00">
+                2018-01-23
               </time>
             
 
@@ -899,8 +919,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
+                  <a href="/categories/Class-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Class Notes</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Class-Notes/Statistical-Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistical Machine Learning</span>
                   </a>
                 </span>
 
@@ -934,11 +965,10 @@
 
       
         
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a string containing just the characters <code>&#39;(&#39;, &#39;)&#39;, &#39;{&#39;, &#39;}&#39;, &#39;[&#39;</code> and <code>&#39;]&#39;</code>, determine if the input string is valid.</p>
-<p>The brackets must close in the correct order, <code>&quot;()&quot;</code> and <code>&quot;()[]{}&quot;</code> are all valid but <code>&quot;(]&quot;</code> and <code>&quot;([)]&quot;</code> are not.</p>
+          <p><img src="http://p1auo1a1h.bkt.clouddn.com/15166713554832.jpg" alt=""></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/18/leetcode-20-Valid-Parentheses/#more" rel="contents">
+            <a class="btn" href="/2018/01/23/sml-neural-network/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -984,7 +1014,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/18/leetcode-19-Remove-Nth-Node-From-End-of-List/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/20/sml-graphical-model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
@@ -1003,7 +1033,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/18/leetcode-19-Remove-Nth-Node-From-End-of-List/" itemprop="url">【LeetCode】19. Remove Nth Node From End of List</a></h1>
+                <a class="post-title-link" href="/2018/01/20/sml-graphical-model/" itemprop="url">概率图模型</a></h1>
         
 
         <div class="post-meta">
@@ -1015,8 +1045,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-18T09:55:02+08:00">
-                2018-02-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-20T18:57:26+08:00">
+                2018-01-20
               </time>
             
 
@@ -1038,8 +1068,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
+                  <a href="/categories/Class-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Class Notes</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Class-Notes/Statistical-Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistical Machine Learning</span>
                   </a>
                 </span>
 
@@ -1073,13 +1114,15 @@
 
       
         
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a linked list, remove the $n^{th}$ node from the end of list and return its head.</p>
-<p><strong>Example</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Given linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5, and n = 2.</div><div class="line">After removing the second node from the end, the linked list becomes 1-&gt;2-&gt;3-&gt;5.</div></pre></td></tr></table></figure>
-<p><strong>Note:</strong><br>Given n will always be valid.<br>Try to do this in one pass.</p>
+          <p>概率图模型是用<strong>图结构</strong>来表达随机变量依赖关系的<strong>概率模型</strong>，用结点表示一个或一组随机变量，用边来表示随机变量之间的概率依赖关系。</p>
+<p><strong>信封问题</strong></p>
+<p>桌上有两个信封，其中一个信封装有一个红球（价值 $100$ 美元）和一个黑球，另外一个信封装有两个黑球。 </p>
+<center><br><img src="http://p1auo1a1h.bkt.clouddn.com/15161638421731.jpg" alt="-w300"><br></center>
+
+<p>你随机选了一个信封并从中随机取出一个球，发现是黑球。<br>这时你被告知可以有一次换信封重新取球的机会，你会选择换还是不换？ </p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/18/leetcode-19-Remove-Nth-Node-From-End-of-List/#more" rel="contents">
+            <a class="btn" href="/2018/01/20/sml-graphical-model/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1125,7 +1168,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/17/leetcode-18-4Sum/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/16/sml-feature-selection/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
@@ -1144,7 +1187,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/17/leetcode-18-4Sum/" itemprop="url">【LeetCode】18. 4Sum</a></h1>
+                <a class="post-title-link" href="/2018/01/16/sml-feature-selection/" itemprop="url">降维与特征选择</a></h1>
         
 
         <div class="post-meta">
@@ -1156,8 +1199,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-17T23:00:31+08:00">
-                2018-02-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-16T14:04:05+08:00">
+                2018-01-16
               </time>
             
 
@@ -1179,8 +1222,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
+                  <a href="/categories/Class-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Class Notes</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Class-Notes/Statistical-Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistical Machine Learning</span>
                   </a>
                 </span>
 
@@ -1214,13 +1268,16 @@
 
       
         
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given an array $S$ of n integers, are there elements $a, b, c$ and $d$ in $S$ such that $a + b + c + d = target$? Find all unique quadruplets in the array which gives the sum of $target$.</p>
-<p><strong>Note:</strong> The solution set must not contain duplicate quadruplets.</p>
-<p><strong>Example</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">For example, given array S = [1, 0, -1, 0, -2, 2], and target = 0.</div><div class="line"></div><div class="line">A solution set is:</div><div class="line">[</div><div class="line">  [-1,  0, 0, 1],</div><div class="line">  [-2, -1, 1, 2],</div><div class="line">  [-2,  0, 0, 2]</div><div class="line">]</div></pre></td></tr></table></figure>
+          <p>机器学习算法的有效性和计算复杂度是敏感于数据的特征表达和维度，数据的降维表示方法，主要包括特征选择和特征提取两种方法。</p>
+<ul>
+<li>特征抽取：在已有的特征上，采用特征变换的方法，生成新的特征集合。</li>
+<li>特征选择：使用某些方法，从当前特征集合中选择出特征子集。</li>
+</ul>
+<h2 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h2><p>特征选择的处理过程：</p>
+<p><img src="http://p1auo1a1h.bkt.clouddn.com/15160676378272.jpg" alt=""></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/17/leetcode-18-4Sum/#more" rel="contents">
+            <a class="btn" href="/2018/01/16/sml-feature-selection/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1266,7 +1323,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/14/leetcode-17-Letter-Combinations-of-a-Phone-Number/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/15/sml-information-theory/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
@@ -1285,7 +1342,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/14/leetcode-17-Letter-Combinations-of-a-Phone-Number/" itemprop="url">【LeetCode】17. Letter Combinations of a Phone Number</a></h1>
+                <a class="post-title-link" href="/2018/01/15/sml-information-theory/" itemprop="url">信息论模型</a></h1>
         
 
         <div class="post-meta">
@@ -1297,8 +1354,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-14T12:53:59+08:00">
-                2018-02-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-15T16:43:55+08:00">
+                2018-01-15
               </time>
             
 
@@ -1320,8 +1377,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
+                  <a href="/categories/Class-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Class Notes</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Class-Notes/Statistical-Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistical Machine Learning</span>
                   </a>
                 </span>
 
@@ -1355,14 +1423,19 @@
 
       
         
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a digit string, return all possible letter combinations that the number could represent.<br>A mapping of digit to letters (just like on the telephone buttons) is given below.</p>
-<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Telephone-keypad2.svg/200px-Telephone-keypad2.svg.png" alt=""></p>
-<p><strong>Example</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input:Digit string &quot;23&quot;</div><div class="line">Output: [&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;bd&quot;, &quot;be&quot;, &quot;bf&quot;, &quot;cd&quot;, &quot;ce&quot;, &quot;cf&quot;].</div></pre></td></tr></table></figure>
-<p><strong>Note:</strong><br>Although the above answer is in lexicographical order, your answer could be in any order you want.</p>
+          <p>信息论从另外一个角度解释了许多机器学习的问题</p>
+<ul>
+<li><strong>熵</strong>是不确定性的度量，类别不均匀程度的度量</li>
+<li><strong>最大熵</strong>是一种状态的平衡分布，可看作一种自然法则 </li>
+<li><strong>互信息</strong>是随机变量相关性的度量</li>
+</ul>
+<h2 id="信息熵与最大熵"><a href="#信息熵与最大熵" class="headerlink" title="信息熵与最大熵"></a>信息熵与最大熵</h2><p><strong>信息量</strong>是信息多少的度量：</p>
+<p>$$ I(x_k) = \log \frac 1 {p_k} = - \log p_k $$</p>
+<p>其中，$X = {x_k,| k = 0, \pm1,…,\pm N},\;p_k=P(X=x_k),\; 0\lt p_k \lt 1,\; \sum_{k=-N}^N p_k = 1 $</p>
+<p>信息量性质：<strong>概率越小的事件，信息量越大</strong>。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/14/leetcode-17-Letter-Combinations-of-a-Phone-Number/#more" rel="contents">
+            <a class="btn" href="/2018/01/15/sml-information-theory/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1408,7 +1481,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/13/leetcode-16-3Sum-Closest/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/14/sml-svm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
@@ -1427,7 +1500,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/13/leetcode-16-3Sum-Closest/" itemprop="url">【LeetCode】16. 3Sum Closest</a></h1>
+                <a class="post-title-link" href="/2018/01/14/sml-svm/" itemprop="url">支持向量机</a></h1>
         
 
         <div class="post-meta">
@@ -1439,8 +1512,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-13T23:25:59+08:00">
-                2018-02-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-14T23:13:59+08:00">
+                2018-01-14
               </time>
             
 
@@ -1462,8 +1535,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
+                  <a href="/categories/Class-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Class Notes</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Class-Notes/Statistical-Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistical Machine Learning</span>
                   </a>
                 </span>
 
@@ -1497,12 +1581,11 @@
 
       
         
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given an array $S$ of n integers, find three integers in $S$ such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution.</p>
-<p><strong>Example</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">For example, given array S = &#123;-1 2 1 -4&#125;, and target = 1.</div><div class="line">The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).</div></pre></td></tr></table></figure>
+          <h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><p><img src="http://p1auo1a1h.bkt.clouddn.com/15159152846032.jpg" alt=""></p>
+<p>支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/13/leetcode-16-3Sum-Closest/#more" rel="contents">
+            <a class="btn" href="/2018/01/14/sml-svm/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1548,7 +1631,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/12/leetcode-15-3Sum/">
+    <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/12/sml-clustering/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
@@ -1567,7 +1650,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/12/leetcode-15-3Sum/" itemprop="url">【LeetCode】15. 3Sum</a></h1>
+                <a class="post-title-link" href="/2018/01/12/sml-clustering/" itemprop="url">聚类分析</a></h1>
         
 
         <div class="post-meta">
@@ -1579,8 +1662,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-12T22:33:21+08:00">
-                2018-02-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-12T19:28:16+08:00">
+                2018-01-12
               </time>
             
 
@@ -1602,8 +1685,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
+                  <a href="/categories/Class-Notes/" itemprop="url" rel="index">
+                    <span itemprop="name">Class Notes</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Class-Notes/Statistical-Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Statistical Machine Learning</span>
                   </a>
                 </span>
 
@@ -1637,13 +1731,11 @@
 
       
         
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given an array $S$ of $n$ integers, are there elements $a, b, c$ in $S$ such that $a + b + c = 0$? Find all unique triplets in the array which gives the sum of zero.</p>
-<p><strong>Note:</strong> The solution set must not contain duplicate triplets.</p>
-<p><strong>Example</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">For example, given array S = [-1, 0, 1, 2, -1, -4],</div><div class="line"></div><div class="line">A solution set is:</div><div class="line">[</div><div class="line">  [-1, 0, 1],</div><div class="line">  [-1, -1, 2]</div><div class="line">]</div></pre></td></tr></table></figure>
+          <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15157424301195.jpg" alt=""></p>
+<p>聚类是无监督机器学习问题，目标是<strong>感知样本间的相似度，进行类别归纳</strong>，聚类既可以作为一个单独过程，用于寻找数据内在的分布结构，也可以作为分类、稀疏表示等其他学习任务的前驱过程。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/12/leetcode-15-3Sum/#more" rel="contents">
+            <a class="btn" href="/2018/01/12/sml-clustering/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1684,7 +1776,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1730,7 +1822,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1741,7 +1833,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">categories</span>
               </a>
             </div>
@@ -1752,7 +1844,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">47</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
