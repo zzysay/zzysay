@@ -126,7 +126,7 @@
 <meta property="og:image" content="http://qiniu.zzysay.cn/15519466599452.jpg">
 <meta property="og:image" content="http://qiniu.zzysay.cn/15519466710066.jpg">
 <meta property="og:image" content="http://qiniu.zzysay.cn/15519466837523.jpg">
-<meta property="og:updated_time" content="2019-03-07T08:47:38.153Z">
+<meta property="og:updated_time" content="2019-03-07T09:07:04.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于深度学习的关系抽取最新进展(2018)">
 <meta name="twitter:description" content="最早将深度学习应用到关系抽取的文章出现在COLING 2014上，近年来，基于深度学习的关系抽取呈现出蓬勃发展的趋势。但一直以来，学者们大都致力于解决远程监督标注数据产生的噪声问题，将一些在通用自然语言处理任务中效果很好的方法应用到关系抽取任务上。直到2018年，随着一些新技术和新思路的出现，学者们不再聚焦于传统的去噪任务，逐渐开始针对关系抽取任务的特点进行一些深入分析和大胆尝试。本文从2018年">
@@ -402,7 +402,7 @@
 <p>接下来，本文分四个部分，分别对上述每一类的代表性文章进行探讨分析。</p>
 <h2 id="模型去噪"><a href="#模型去噪" class="headerlink" title="模型去噪"></a>模型去噪</h2><h3 id="AAAI-2018-CNN-RL"><a href="#AAAI-2018-CNN-RL" class="headerlink" title="[AAAI 2018] CNN+RL"></a>[AAAI 2018] CNN+RL</h3><p><strong>Reinforcement Learning for Relation Classification from Noisy Data</strong></p>
 <p>这是来自清华大学黄民烈老师组的工作，文章的目的是解决远程监督标注数据集的错误标签问题。为了减少噪声数据对模型的影响，我们希望能够训练一个模型实现对样本的筛选，从而得到一个高质量的数据集。在对样本进行筛选时，往往无法直接判断每个样本的好坏，只能在全部样本选择完成后，集中评价整个数据集的质量，这种延迟反馈的方法天然适合强化学习的框架。</p>
-<h4 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h4><center><br><img src="http://qiniu.zzysay.cn/15519451227443.jpg" alt="-w500"><br></center>
+<h4 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h4><center><br><img src="http://qiniu.zzysay.cn/15519451227443.jpg" width="400/"><br></center>
 
 <p>模型框架如图所示，左边是句子选择器，右边是一个经典的基于卷积神经网络的关系分类器。句子选择器根据 policy 函数对样本逐个筛选，每个样本都可以执行选或者不选两种 action，筛选完之后会生成一个新的数据集，policy 函数定义如下：</p>
 <p>$$\pi_{\theta}(s_i, a_i) = P_{\theta}(a_i|s_i) = a_i\sigma(W·F(s_i) + b) + (1-a_i)(1-\sigma(W·F(s_i) + b)) $$</p>
@@ -429,7 +429,8 @@
 <p>$$ \min L_D = -(\sum_{s_j\in(B_i-T)}\log p_D(s_j) + \sum_{s_j\in T} \log (1-p_D(s_j))) $$</p>
 <p>生成器选择句子是离散的采样过程，不能直接基于梯度来优化网络，论文使用强化学习来解决这一问题。此外，判别器在每一个epoch开始时加载的都是同一套预训练的参数。这样做的原因有两个，首先，我们最后需要的是生成器而不是判别器。其次，在迭代过程中，生成器面向的是原始的数据而不是生成的新数据。综合来看，文章的亮点在于将判别器的目标逆向思考，即把生成器选择的正样本标记为负样本，使用判别器性能下降的程度来衡量生成器选择数据的质量。</p>
 <h4 id="实验-1"><a href="#实验-1" class="headerlink" title="实验"></a>实验</h4><p>实验首先在三种关系上分别探讨了不同的训练策略在训练过程中的收敛速度和表现性能，随后也展示了生成器在这三种关系上生成数据的准确率，最后在 NYT 数据集上进行关系抽取的实验。</p>
-<center><br><img src="http://qiniu.zzysay.cn/15519454011564.jpg" alt="-w300"><br></center>
+<center><br><img src="http://qiniu.zzysay.cn/15519454011564.jpg" width="400/"><br></center>
+
 
 <p>根据使用不同的判别器，文章把实验分成了两大组，一组是基于CNN的判别器，另一组是基于PCNN的判别器，通过上表可以看出，加入DSGAN策略后，AUC值普遍提升了1-2个点，从而说明这是一种十分有效的句子选择（去噪）手段。</p>
 <h3 id="EMNLP-2018-STP-TL"><a href="#EMNLP-2018-STP-TL" class="headerlink" title="[EMNLP 2018] STP+TL"></a>[EMNLP 2018] STP+TL</h3><blockquote>
@@ -486,7 +487,8 @@
 <p>前人的工作表明在词向量级别加入一些对抗噪声的时候，通常可以获得更好的实验效果，论文同样也做了这样的尝试：</p>
 <p>$$ w_i = w_i + v_i; \quad v_i = \epsilon * g/||g||; \quad where\; g = \partial L/ \partial w_i $$</p>
 <h4 id="实验-4"><a href="#实验-4" class="headerlink" title="实验"></a>实验</h4><p>实验在 SemEval-2010 Task 8 上进行，文章首先使用该控制变量的词项逐一探讨模型中各个模块对实验效果的影响，即文本描述信息的重要度、两个注意力机制的影响和对抗训练的影响，最后和当前的基线方法做了对比，</p>
-<center><br><img src="http://qiniu.zzysay.cn/15519459378535.jpg" alt="-w300"><br></center>
+<center><br><img src="http://qiniu.zzysay.cn/15519459378535.jpg" width="400/"><br></center>
+
 
 <p>相较于BRCNN，本文取得了约1个点的提升，下方4组实验表明可以发现，BRCNN比CNN有明显提升，加入实体描述信息也对实验效果有明显提升。其中，WordNet指的是将实体在WordNet中上位词的词向量与实体向量进行拼接。</p>
 <h3 id="EMNLP-2018-HATT"><a href="#EMNLP-2018-HATT" class="headerlink" title="[EMNLP 2018] HATT"></a>[EMNLP 2018] HATT</h3><blockquote>
