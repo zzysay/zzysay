@@ -101,17 +101,17 @@
 <meta property="og:site_name" content="ZZY SAY">
 <meta property="og:description" content="Logistic分布">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153138596418.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153142414584.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153143389183.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153148419813.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153150538259.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153176904048.jpg">
-<meta property="og:updated_time" content="2018-02-07T13:42:28.870Z">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15153138596418.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15153142414584.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15153143389183.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15153148419813.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15153150538259.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15153176904048.jpg">
+<meta property="og:updated_time" content="2019-03-07T07:20:35.301Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Logistic模型">
 <meta name="twitter:description" content="Logistic分布">
-<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15153138596418.jpg">
+<meta name="twitter:image" content="http://qiniu.zzysay.cn/15153138596418.jpg">
 
 
 
@@ -371,19 +371,19 @@
       
 
       
-        <h2 id="Logistic分布"><a href="#Logistic分布" class="headerlink" title="Logistic分布"></a>Logistic分布</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15153138596418.jpg" alt=""></p>
+        <h2 id="Logistic分布"><a href="#Logistic分布" class="headerlink" title="Logistic分布"></a>Logistic分布</h2><p><img src="http://qiniu.zzysay.cn/15153138596418.jpg" alt=""></p>
 <a id="more"></a>
 <p>设 $X$ 为连续随机变量，$X$ 服从 $logistic$ 分布指的是 $X$ 具有下列分布函数：</p>
 <p>$$ F(x) = P(X\le x) = \frac {1} {1+e^{-(x-\mu)/\gamma}}$$</p>
 <p>其中 $\mu$ 为位置参数，$\gamma \gt 0$ 是形状参数。</p>
-<h2 id="Logistic回归模型"><a href="#Logistic回归模型" class="headerlink" title="Logistic回归模型"></a>Logistic回归模型</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15153142414584.jpg" alt=""></p>
-<h3 id="二项回归模型"><a href="#二项回归模型" class="headerlink" title="二项回归模型"></a>二项回归模型</h3><p>对于二项 $logistic$ 回归模型，满足如下的条件概率分布<br><img src="http://p1auo1a1h.bkt.clouddn.com/15153143389183.jpg" alt=""></p>
+<h2 id="Logistic回归模型"><a href="#Logistic回归模型" class="headerlink" title="Logistic回归模型"></a>Logistic回归模型</h2><p><img src="http://qiniu.zzysay.cn/15153142414584.jpg" alt=""></p>
+<h3 id="二项回归模型"><a href="#二项回归模型" class="headerlink" title="二项回归模型"></a>二项回归模型</h3><p>对于二项 $logistic$ 回归模型，满足如下的条件概率分布<br><img src="http://qiniu.zzysay.cn/15153143389183.jpg" alt=""></p>
 <h4 id="模型理解"><a href="#模型理解" class="headerlink" title="模型理解"></a>模型理解</h4><p>从概率论的角度来讲，一个事件的<strong>几率</strong>指的是该事件发生概率与不发生概率的比值，如果事件发生的概率是 $p$，那么事件的几率就是 $\frac {p} {1-p}$，该事件的对数几率（$logit$ 函数）是：</p>
 <p>$$logit(p) =\log \frac {p} {1-p}$$</p>
 <p>对于二项 $logistic$ 回归而言，其事件的对数几率为：</p>
 <p>$$\log \frac {P(y=1|w,x)} {P(y=0|w,x)} $$</p>
-<p>我们用 $g_1(x)$ 表示事件发生的概率，用 $g_0(x)$ 表示事件不发生的概率，于是有：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15153148419813.jpg" alt=""></p>
-<p>所以可以得到线性决策面为：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15153150538259.jpg" alt=""></p>
+<p>我们用 $g_1(x)$ 表示事件发生的概率，用 $g_0(x)$ 表示事件不发生的概率，于是有：<br><img src="http://qiniu.zzysay.cn/15153148419813.jpg" alt=""></p>
+<p>所以可以得到线性决策面为：<br><img src="http://qiniu.zzysay.cn/15153150538259.jpg" alt=""></p>
 <p>这就是说，输出 $y=1$ 的对数几率是输入 $x$ 的线性函数，或者说，输出 $y=1$ 的对数几率是由输入 $x$ 的线性函数表示的模型，这就是 $logistic$ 回归模型，我们可以把 $logistic$ 看做是线性模型的一种概率解释。</p>
 <h4 id="参数求解"><a href="#参数求解" class="headerlink" title="参数求解"></a>参数求解</h4><p>为了更清晰地表达求解过程，我们定义：</p>
 <p>$$ P(y=1|x) = \frac {exp(w·x)} {1+exp(w·x)}<br>\\ P(y=0|x) = \frac 1 {1+exp(w·x)} $$</p>
@@ -404,7 +404,7 @@
 <li>选择步长，更新参数 $w_i=w_{i−1}−\eta\nabla J(w_{i−1})$</li>
 <li>重复以上两步直到满足终止条件</li>
 </ul>
-<h3 id="多项回归模型"><a href="#多项回归模型" class="headerlink" title="多项回归模型"></a>多项回归模型</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15153176904048.jpg" alt=""></p>
+<h3 id="多项回归模型"><a href="#多项回归模型" class="headerlink" title="多项回归模型"></a>多项回归模型</h3><p><img src="http://qiniu.zzysay.cn/15153176904048.jpg" alt=""></p>
 <p>对多分类问题，$softmax$ 回归是逻辑回归在多分类的直接推广，具体形式为：<br>$$ P(y=i|x, \theta) = \frac{e^{\theta_i^T x}}{\sum_j^K{e^{\theta_j^T x}}} $$</p>
 <p>决策函数为：<br>$$ y^* = \arg\max_i P(y=i|x,\theta) $$</p>
 <h2 id="判别模型和生成模型"><a href="#判别模型和生成模型" class="headerlink" title="判别模型和生成模型"></a>判别模型和生成模型</h2><p>$logistic$ 回归是一种判别模型，表现为<strong>直接对条件概率</strong> $P(y|x)$ <strong>建模</strong>，而不关心背后的数据分布 $P(x,y)$ 。而高斯贝叶斯模型是一种生成模型，先对数据的联合分布建模，再通过贝叶斯公式来计算样本属于各个类别的后验概率，即：</p>

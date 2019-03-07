@@ -101,16 +101,16 @@
 <meta property="og:site_name" content="ZZY SAY">
 <meta property="og:description" content="感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下: $$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153007333583.png">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030794778.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030920850.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030311370.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15153030442037.jpg">
-<meta property="og:updated_time" content="2018-02-07T13:42:41.423Z">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15153007333583.png">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15153030794778.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15153030920850.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15153030311370.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15153030442037.jpg">
+<meta property="og:updated_time" content="2019-03-07T07:22:01.726Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="感知机模型">
 <meta name="twitter:description" content="感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下: $$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$">
-<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15153007333583.png">
+<meta name="twitter:image" content="http://qiniu.zzysay.cn/15153007333583.png">
 
 
 
@@ -372,7 +372,7 @@
       
         <p>感知机模型是一个二分类模型，通常将输入空间映射到新的特征空间中再进行计算，模型的学习目标是寻找能够在特征空间内将实例划分为正负两类的分离超平面，其数学表达式如下:</p>
 <p>$$ y(x)=f(w^T\phi(x))=w_0\phi(x_0)+w_1\phi(x_1)+…+w_n\phi(x_n)$$</p>
-<p><img src="http://p1auo1a1h.bkt.clouddn.com/15153007333583.png" alt=""></p>
+<p><img src="http://qiniu.zzysay.cn/15153007333583.png" alt=""></p>
 <a id="more"></a>
 <p>这里 $ f(\cdot)$ 叫做激活函数，有时也被称为单位阶跃函数：</p>
 <p>$$f(a)= \begin{cases} +1&amp; a \ge 0 \\ -1&amp; a \lt 0 \end{cases}$$</p>
@@ -394,7 +394,7 @@
 <p>极小化过程不是一次使 $M$ 中所有误分类点的梯度下降，而是一次随机的选取一个误分类点使其梯度下降，损失函数的梯度为：<br>$$ \frac{\partial L(w,b)}{\partial w} = - \sum_{x_i\epsilon M}y_ix_i \\\frac{\partial L(w,b)}{\partial b} = - \sum_{x_i\epsilon M}y_i $$</p>
 <p>随机选取一个误分类点 $(x_i, y_i)$，对参数进行更新：<br>$$w_{t+1}=w_t + \eta {x_iy_i}\\<br>  b_{t+1}=b_t + \eta {y_i}$$</p>
 <p><strong>感知机随机梯度下降法的直观解释：</strong>对于感知机而言，当一个样本点被误分类之后，被误分类的样本点会位于决策超平面的错误的一侧，这时感知机会调整 $w,b$ 的值，使决策超平面向该误分类点的一侧移动，移动的尺度由 $\eta$ 决定，每一次移动，都可以减少误分类点和决策超平面之间的距离，直到决策超平面越过该误分类点，使其被正确分类为止。</p>
-<p><strong>算法举例</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15153030794778.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15153030920850.jpg" alt=""></p>
+<p><strong>算法举例</strong><br><img src="http://qiniu.zzysay.cn/15153030794778.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15153030920850.jpg" alt=""></p>
 <h2 id="感知机对偶形式"><a href="#感知机对偶形式" class="headerlink" title="感知机对偶形式"></a>感知机对偶形式</h2><p>感知机算法的对偶形式，是针对感知机随机梯度下降法来设计的。其基本思想是：感知机的原始形式中，$x$ 是自变量，$y$ 是因变量， $w,b$ 是模型的参数，通俗点说，在感知机的原始算法中，是用参数 $w,b$ 来表示 $x$ 和 $y$ 的。对偶式就是要把这这个关系反过来，用样本 $x$ 和 $y$ 的线性组合来表示参数 $w$ 和 $b$。</p>
 <p>感知机随机梯度下降法的参数更新方式为：</p>
 <p>$$ w_{t+1}=w_t + \eta {x_iy_i}\\<br>  b_{t+1}=b_t + \eta {y_i}$$</p>
@@ -415,7 +415,7 @@
 <p>这就表明：样本点的特征向量是以内积的形式存在于感知机对偶形式的训练算法中。为了简化计算过程，可以将训练集合之间的内积提前求出来，然后在训练过程中直接调用，样本点间的内积矩阵也就是所谓的 $Gram$ 矩阵：</p>
 <p>$$G=[x_i,x_j]_{N*N}$$</p>
 <p>这里的内积，也就是 <em>SVM</em> 算法中核方法的原型。</p>
-<p><strong>算法举例</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15153030311370.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15153030442037.jpg" alt=""></p>
+<p><strong>算法举例</strong><br><img src="http://qiniu.zzysay.cn/15153030311370.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15153030442037.jpg" alt=""></p>
 <p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] 李航,《统计学习方法》,清华大学出版社</p>
 
       

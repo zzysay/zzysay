@@ -101,25 +101,25 @@
 <meta property="og:site_name" content="ZZY SAY">
 <meta property="og:description" content="集成学习概述">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15154896483389.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15154906340624.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15154965839626.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15154965616881.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15154967269504.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155012429629.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155169981891.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155481173263.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155486454100.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155486759556.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155483704802.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155528779998.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155529673782.jpg">
-<meta property="og:image" content="http://p1auo1a1h.bkt.clouddn.com/15155590545871.jpg">
-<meta property="og:updated_time" content="2018-02-07T13:41:44.741Z">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15154896483389.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15154906340624.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15154965839626.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15154965616881.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15154967269504.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15155012429629.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15155169981891.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15155481173263.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15155486454100.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15155486759556.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15155483704802.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15155528779998.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15155529673782.jpg">
+<meta property="og:image" content="http://qiniu.zzysay.cn/15155590545871.jpg">
+<meta property="og:updated_time" content="2019-03-07T07:19:06.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="集成学习">
 <meta name="twitter:description" content="集成学习概述">
-<meta name="twitter:image" content="http://p1auo1a1h.bkt.clouddn.com/15154896483389.jpg">
+<meta name="twitter:image" content="http://qiniu.zzysay.cn/15154896483389.jpg">
 
 
 
@@ -379,20 +379,20 @@
       
 
       
-        <h2 id="集成学习概述"><a href="#集成学习概述" class="headerlink" title="集成学习概述"></a>集成学习概述</h2><p><img src="http://p1auo1a1h.bkt.clouddn.com/15154896483389.jpg" alt=""></p>
+        <h2 id="集成学习概述"><a href="#集成学习概述" class="headerlink" title="集成学习概述"></a>集成学习概述</h2><p><img src="http://qiniu.zzysay.cn/15154896483389.jpg" alt=""></p>
 <a id="more"></a>
 <p>集成学习通过将多个学习器进行结合，常可以获得比单一学习器更加优越显著的泛化能力， 在个体学习器是弱学习器（泛化能力略优于随机猜测的学习器，如在二分类问题上精度略高于 $50%$ 的学习器）的情况下尤为明显。</p>
-<h2 id="Bagging和随机森林"><a href="#Bagging和随机森林" class="headerlink" title="Bagging和随机森林"></a>Bagging和随机森林</h2><h3 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h3><p>$Bagging$ 通过随机采样确定分类器，从而保证分类器的差异，各个弱学习器之间没有依赖关系，可以并行生成：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15154906340624.jpg" alt=""></p>
+<h2 id="Bagging和随机森林"><a href="#Bagging和随机森林" class="headerlink" title="Bagging和随机森林"></a>Bagging和随机森林</h2><h3 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h3><p>$Bagging$ 通过随机采样确定分类器，从而保证分类器的差异，各个弱学习器之间没有依赖关系，可以并行生成：<br><img src="http://qiniu.zzysay.cn/15154906340624.jpg" alt=""></p>
 <p>$Bagging$ 的个体学习器的训练集是通过有放回的随机采样得到的。通过 $T$ 次的随机采样，就可以得到 $T$ 个采样集，对于这 $T$ 个采样集，分别独立地训练出 $T$ 个学习器，再对这 $T$ 个学习器通过结合策略来得到最终的强学习器。</p>
 <p><strong>算法过程</strong></p>
-<p><img src="http://p1auo1a1h.bkt.clouddn.com/15154965839626.jpg" alt=""></p>
+<p><img src="http://qiniu.zzysay.cn/15154965839626.jpg" alt=""></p>
 <p>$Bagging$ 的集合策略也比较简单，对于分类问题，通常使用简单投票法，得到最多票数的类别或者类别之一为最终的模型输出。对于回归问题，通常使用简单平均法，对 $T$ 个弱学习器得到的回归结果进行算术平均得到最终的模型输出。</p>
 <h3 id="Random-Forest"><a href="#Random-Forest" class="headerlink" title="Random Forest"></a>Random Forest</h3><p>随机森林是 $Bagging$ 的一个特化进阶版，特化是因为随机森林的弱学习器都是决策树。所谓的进阶是随机森林在 $Bagging$ 的样本<strong>随机采样</strong>基础上，又加上了<strong>特征</strong>的<strong>随机选择</strong>，其基本思想没有脱离 $Bagging$ 的范畴。</p>
 <p>随机森林使用 $CART$ 决策树作为弱学习器，但它在 $Bagging$ 的基础上进行了改进，改进点在于决策树的建立上：</p>
 <p>普通的决策树会在节点上所有的 $n$ 个样本特征中选择一个最优的特征来做决策树的左右子树划分，但是随机森林随机选择了节点上的一部分样本特征，这个数字小于 $n$，假设为 $n_{sub}$，然后在这些随机选择的 $n_{sub}$ 个样本特征中，选择一个<strong>最优的特征</strong>来做决策树的左右子树划分。这样进一步增强了模型的泛化能力。</p>
 <p>如果 $n_{sub}=n$，则此时随机森林的 $CART$ 决策树和普通的 $CART$ 决策树没有区别。$n_{sub}$ 越小，则模型越健壮，泛化能力越强，当然此时对于训练集的拟合程度会变差。也就是说 $n_{sub}$ 越小， 模型的方差会减小，但是偏差会增大。在实际案例中，一般会通过交叉验证调参获取一个合适的 $n_{sub}$ 的值，通常来讲，$n_{sub}$ 一般取 $\sqrt n$ 或者 $\log n$。</p>
 <p>除此之外，随机森林算法和普通的 $Bagging$ 没有区别。</p>
-<h4 id="算法过程"><a href="#算法过程" class="headerlink" title="算法过程"></a>算法过程</h4><p><img src="http://p1auo1a1h.bkt.clouddn.com/15154965616881.jpg" alt=""></p>
+<h4 id="算法过程"><a href="#算法过程" class="headerlink" title="算法过程"></a>算法过程</h4><p><img src="http://qiniu.zzysay.cn/15154965616881.jpg" alt=""></p>
 <h4 id="优缺点分析"><a href="#优缺点分析" class="headerlink" title="优缺点分析"></a>优缺点分析</h4><p><strong>优点</strong></p>
 <ul>
 <li>训练时树与树之间相互独立，训练可以高度<strong>并行化</strong></li>
@@ -406,7 +406,7 @@
 <li>随机森林已经被证明在某些<strong>噪音较大</strong>的分类或回归问题上会<strong>过拟合</strong></li>
 <li>取值划分比较多的特征容易对随机森林的决策产生更大的影响，从而影响拟合的模型的效果</li>
 </ul>
-<h2 id="Boosting和提升树"><a href="#Boosting和提升树" class="headerlink" title="Boosting和提升树"></a>Boosting和提升树</h2><h3 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h3><p><img src="http://p1auo1a1h.bkt.clouddn.com/15154967269504.jpg" alt=""></p>
+<h2 id="Boosting和提升树"><a href="#Boosting和提升树" class="headerlink" title="Boosting和提升树"></a>Boosting和提升树</h2><h3 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h3><p><img src="http://qiniu.zzysay.cn/15154967269504.jpg" alt=""></p>
 <p>从图中可以看出，$Boosting$ 算法的工作机制是首先从训练集用初始权重训练出一个弱学习器 $1$，根据弱学习器的学习误差率来更新训练样本的权重，使弱学习器 $1$ 学习误差率高的训练样本点的权重变高，使得这些误差率高的点在后面的弱学习器 $2$ 中得到更多的重视。然后基本调整权重后的训练集来训练弱学习器，如此重复进行，直到弱学习器数达到事先指定的数目 $T$，最后将这 $T$ 个弱学习器通过结合策略进行整合，得到最终的强学习器。</p>
 <p>$Boosting$ 其实是一个算法框架，没有规定具体的函数实现方式，框架内的算法，都要解决如下四个问题：</p>
 <ul>
@@ -417,7 +417,7 @@
 </ul>
 <h3 id="Adaptive-Boosting"><a href="#Adaptive-Boosting" class="headerlink" title="Adaptive Boosting"></a>Adaptive Boosting</h3><p>$AdaBoost$ 是英文“自适应增强”的缩写，其本质是一个加性模型。$AdaBoost$ 方法的自适应在于：前一个分类器分错的样本会被用来训练下一个分类器。$AdaBoost$ 既可以用于分类，又可以用于回归。</p>
 <h4 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h4><p><strong>算法描述</strong></p>
-<p><img src="http://p1auo1a1h.bkt.clouddn.com/15155012429629.jpg" alt=""></p>
+<p><img src="http://qiniu.zzysay.cn/15155012429629.jpg" alt=""></p>
 <p>对二元分类问题，数据标签 $y_i$ 和分类器输出 $g(x_i)$ 取值范围均为 ${+1,-1}$，训练样本为：<br>$$ T= {(x_1,y_1),(x_2,y_2),\dots,(x_m,y_m)}$$</p>
 <p>训练集数据对应第 $k$ 个弱分类器的权重为：<br>$$D(k) = (w_{k1},w_{k1},\dots, w_{k1}) \\<br> w_{1i} = \frac 1 m ; \; i = 1,2,\dots, m $$</p>
 <ol>
@@ -449,7 +449,7 @@
 <p>$$ e_k = \frac {\sum_{i=1}^m \widetilde{r}_{k,i}I(y_i \neq g_k(x_i))} {\sum_{i=1}^m \widetilde{r}_{k,i}} \tag{a-14} $$</p>
 <p>把式 $a-14$ 代入到式 $a-12$ 中，可以得到：<br>$$ \alpha_k = \frac 1 2 \ln(\frac 1 {e_k} -1) = \frac 1 2 \ln \frac {1-e_k} {e_k} \tag{a-15}$$</p>
 <p>关于算法在训练集上错误率的推导，见另外一篇博客：<a href="https://zzysay.github.io/2017/12/23/data-mining-adaboost/">从决策树到Adaboost算法</a></p>
-<p><strong>算法实例</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15155169981891.jpg" alt=""></p>
+<p><strong>算法实例</strong><br><img src="http://qiniu.zzysay.cn/15155169981891.jpg" alt=""></p>
 <h4 id="回归问题"><a href="#回归问题" class="headerlink" title="回归问题"></a>回归问题</h4><p>$Adaboost$ 的回归问题有很多变种，这里以 $Adaboost\;R2$ 算法为例，依旧套用 $Boosting$ 的四步框架：</p>
 <ol>
 <li><p>误差率计算<br>第 $k$ 个弱分类器 $g_k(x)$ 在训练集上的最大误差为：<br>$$ E_k = max |y_i - g_k(x_i)| \; i=1,2,\dots,m$$<br>然后计算每个样本的相对误差：<br>$$ e_{ki} = \frac {|y_i - g_k(x_i)|}{E_k} $$<br>若是选用平方误差，则有 $e_{ki} = \frac {(y_i - g_k(x_i))^2}{E_k}$，若是选用指数误差，则有 $e_{ki} = 1- exp (\frac {- y_i + g_k(x_i)}{E_k}) $。<br>最终得到第 $k$ 个弱分类器的误差率：<br>$$ e_k = \sum_{i=1}^m w_{ki}e_{ki} $$</p>
@@ -475,10 +475,10 @@
 </ul>
 <h3 id="Gradient-Boosting-Decision-Tree"><a href="#Gradient-Boosting-Decision-Tree" class="headerlink" title="Gradient Boosting Decision Tree"></a>Gradient Boosting Decision Tree</h3><p>$GBDT$ 是一种迭代的决策树算法，该算法由多棵决策树组成，所有树的结论累加起来做最终答案。它在被提出之初就和 $SVM$ 一起被认为是泛化能力较强的算法。$GBDT$ 中的树是回归树（不是分类树），$GBDT$ 用来做回归预测，调整后也可以用于分类。</p>
 <h4 id="回归树"><a href="#回归树" class="headerlink" title="回归树"></a>回归树</h4><p>回归树总体流程类似于分类树，区别在于，回归树的每一个节点都会得一个预测值，以年龄为例，该预测值等于属于这个节点的所有人年龄的平均值。分枝时穷举每一个特征的每个阈值找最好的分割点，但衡量最好的标准不再是最大熵，而是<strong>最小化平方误差</strong>。通过最小化平方误差能够找到最可靠的分支依据。分支直到每个叶子节点上人的年龄都唯一或者达到预设的终止条件（如叶子个数上限），若最终叶子节点上人的年龄不唯一，则以该节点上所有人的<strong>平均年龄</strong>做为该叶子节点的预测年龄。</p>
-<p><img src="http://p1auo1a1h.bkt.clouddn.com/15155481173263.jpg" alt=""></p>
+<p><img src="http://qiniu.zzysay.cn/15155481173263.jpg" alt=""></p>
 <h4 id="提升树"><a href="#提升树" class="headerlink" title="提升树"></a>提升树</h4><p>提升树是迭代多棵回归树来共同决策，当采用平方误差损失函数时，每一棵回归树学习的是之前所有树的结论和<strong>残差</strong>，拟合得到一个当前的残差回归树。提升树即是整个迭代过程生成的回归树的累加。</p>
-<p><strong>算法描述</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15155486454100.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15155486759556.jpg" alt=""></p>
-<p><strong>算法实例</strong><br>已知 $4$ 个人，$A，B，C，D$ 年龄分别是 $14，16，24，26$。又已知购物金额、上网时长、经常到百度知道提问等特征。提升树的过程如下：<br><img src="http://p1auo1a1h.bkt.clouddn.com/15155483704802.jpg" alt=""></p>
+<p><strong>算法描述</strong><br><img src="http://qiniu.zzysay.cn/15155486454100.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15155486759556.jpg" alt=""></p>
+<p><strong>算法实例</strong><br>已知 $4$ 个人，$A，B，C，D$ 年龄分别是 $14，16，24，26$。又已知购物金额、上网时长、经常到百度知道提问等特征。提升树的过程如下：<br><img src="http://qiniu.zzysay.cn/15155483704802.jpg" alt=""></p>
 <h4 id="GBDT-回归算法"><a href="#GBDT-回归算法" class="headerlink" title="GBDT 回归算法"></a>GBDT 回归算法</h4><p>上述的提升树算法，是对<strong>残差</strong>进行拟合，即以 $|y_i - f_{k-1}(x_i)|_{i=1}^m$ 作为第 $k$ 次拟合的训练样本，而 $GBDT$ 名为梯度提升树，使用<strong>损失函数的负梯度</strong>来拟合本轮损失的近似值。</p>
 <p>按照加法模型，有：<br>$$ L(y, f_k(x)) = L(y, f_{k-1}(x) +g_k (x)) \tag{g-1}$$</p>
 <p><strong>泰勒公式：</strong>设是 $n$ 一个正整数，如果定义在一个包含 $a$ 的区间上的函数 $f$ 在点 $a$ 处 $n+1$ 次可导，那么对于这个区间上的任意 $x$ 都有：$\displaystyle f(x)=\sum_{n=0}^{N}\frac{f^{(n)}(a)}{n!}(x-a)^ n+R_ n(x)$，其中的多项式称为函数在 $a$ 处的泰勒展开式，$R_n(x)$ 是泰勒公式的余项且是 $(x-a)^n$ 的高阶无穷小。</p>
@@ -487,7 +487,7 @@
 <p>上式可以改写为：<br>$$ L(y, f_k(x)) = L(y, f_{k-1}(x)) + \sum_{i=1}^m L’(y_i, f_{k-1}(x_i))g_k(x_i) \tag{g-4}$$</p>
 <p>若对 $g_k(x_i)$，使其取值为 $-L’(y_i, f_{k-1}(x_i))$，于是有：<br>$$ L(y, f_k(x)) = L(y, f_{k-1}(x)) - \sum_{i=1}^m L’(y_i, f_{k-1}(x_i))^2 \tag{g-5}$$</p>
 <p>显然，$L(y, f_k(x)) \lt L(y, f_{k-1}(x))$ 必然成立，这样就实现了损失函数的减小，此时 $g_k(x_i) = -L’(y_i, f_{k-1}(x_i))$ 为第 $k$ 次迭代时第 $i$ 个样本的损失函数的负梯度，记作 $r_{ki}$，即：<br>$$r_{ki} = \frac {\partial L(y_i, f_{k-1}(x_i))} {\partial f_{k-1}(x_i)} \tag{g-6}$$</p>
-<p><strong>算法过程</strong><br><img src="http://p1auo1a1h.bkt.clouddn.com/15155528779998.jpg" alt=""><br><img src="http://p1auo1a1h.bkt.clouddn.com/15155529673782.jpg" alt=""></p>
+<p><strong>算法过程</strong><br><img src="http://qiniu.zzysay.cn/15155528779998.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15155529673782.jpg" alt=""></p>
 <p>步骤 $2.b$ 中对训练集中的每个数据 $x_i$，计算 $r_{mi}$，得到新的数据集 ${(x_i,r_{mi})}_{i=1}^J$。使用新数据集训练得到的即为第 $m$ 棵回归树。<br>步骤 $2.c$ 中设第 $m$ 棵回归树共有 $J$ 个叶子节点，每个叶子节点被表示为 $R_{mj}$，对每个叶子节点，求出对叶子节点拟合效果最好的的输出值 $c_{mj}$，此时模型的输出值应该为 $f_{m -1}(x_i)+c$。</p>
 <h4 id="GBDT-二元分类算法"><a href="#GBDT-二元分类算法" class="headerlink" title="GBDT 二元分类算法"></a>GBDT 二元分类算法</h4><p>$GBDT$ 的分类算法从思想上和 $GBDT$ 的回归算法没有区别，使用的弱学习器也都是 $CART$ 回归树，但是由于样本输出不是连续的值，而是离散的类别，导致无法直接从输出类别去拟合类别 为了解决这个问题，主要有两个方法，一个是用指数损失函数，此时 $GBDT$ 退化为 $Adaboost$ 算法。另一种方法是用类似于逻辑回归的对数似然损失函数的方法。也就是说，用类别的预测概率值和真实概率值的差来拟合损失。对于二元 $GBDT$ ，如果用对数似然损失函数，则损失函数为:<br>$$ L(y, f(x)) = log(1+ exp(-yf(x)))$$</p>
 <p>其中 $y \in {+1, -1}$，此时负梯度误差为：<br>$$ r_{ki} = -\frac{\partial L(y_i, f_{k-1}(x_i))}{\partial f_{k-1}(x_i)} = \frac {y_i} {1+exp(y_if(x_i))}$$</p>
@@ -508,7 +508,7 @@
 <li>绝对值损失<br>$$ L(y, f(x)) =|y-f(x)|$$</li>
 <li>$Huber$损失<br>$$ L(y, f(x))= \begin{cases} \frac{1}{2}(y-f(x))^2&amp; {|y-f(x)| \le \delta}\\ \delta(|y-f(x)| - \frac{\delta}{2})&amp; {|y-f(x)| &gt; \delta} \end{cases} $$<br>$Huber$损失可以看做为均方差和绝对损失的折中产物，对于远离中心的异常点，采用绝对损失，而中心附近的点采用均方差，这个界限一般用分位数点度量<br>（分位数，亦称分位点，是指将一个随机变量的概率分布范围分为几个等份的数值点，常用的有中位数即二分位数、四分位数、百分位数等）。</li>
 </ul>
-<p><img src="http://p1auo1a1h.bkt.clouddn.com/15155590545871.jpg" alt=""></p>
+<p><img src="http://qiniu.zzysay.cn/15155590545871.jpg" alt=""></p>
 <h4 id="优缺点分析-2"><a href="#优缺点分析-2" class="headerlink" title="优缺点分析"></a>优缺点分析</h4><p><strong>优点</strong></p>
 <ul>
 <li>可以灵活<strong>处理各种类型的数据</strong>，包括连续值和离散值。</li>
