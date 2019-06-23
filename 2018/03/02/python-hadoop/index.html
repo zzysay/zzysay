@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="en">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
@@ -19,8 +19,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -38,7 +38,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -72,21 +72,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hadoop,MapReduce," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Hadoop,MapReduce,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1">
 
 
 
@@ -131,7 +131,7 @@
 
 
 
-  <link rel="canonical" href="http://zzysay.github.io/2018/03/02/python-hadoop/"/>
+  <link rel="canonical" href="http://zzysay.github.io/2018/03/02/python-hadoop/">
 
 
 
@@ -171,7 +171,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">ZZY SAY</span>
         <span class="logo-line-after"><i></i></span>
@@ -201,7 +201,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             Home
           </a>
@@ -211,7 +211,7 @@
         <li class="menu-item menu-item-categories">
           <a href="/categories/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             Categories
           </a>
@@ -221,7 +221,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
           </a>
@@ -231,7 +231,7 @@
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
             
             About
           </a>
@@ -270,7 +270,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -306,7 +306,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -363,41 +363,41 @@
       
 
       
-        <p><img src="http://qiniu.zzysay.cn/15199814902907.jpg" alt=""></p>
+        <p><img src="http://qiniu.zzysay.cn/15199814902907.jpg" alt></p>
 <a id="more"></a>
 <p>$MapReduce$ 是一个编程模型，也是一个处理和生成超大数据集的算法模型的相关实现。用户首先创建一个 $Map$ 函数将数据处理成 $key/value$ 格式的数据集合；然后再创建一个 $Reduce$ 函数用来合并所有的具有相同 $key$ 值的 $value$ 值。</p>
 <h2 id="编写MapReduce函数"><a href="#编写MapReduce函数" class="headerlink" title="编写MapReduce函数"></a>编写MapReduce函数</h2><p>以下的实例是 $Google$ 在 $MapReduce$ 的论文中提到的一个计算单词个数的例子。使用 $Python$ 编写 $MapReduce$ 函数与通常编写程序的区别是我们需要利用 $Hadoop$ 流的 $API$，通过标准输入（$sys.stdin$）、标准输出（$sys.stdout$）在 $Map$ 函数和 $Reduce$ 函数之间传递数据，其余的事情 $Hadoop$ 流将会帮助我们完成。</p>
-<h3 id="Mapper部分"><a href="#Mapper部分" class="headerlink" title="Mapper部分"></a>Mapper部分</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</div><div class="line">    line = line.strip()</div><div class="line">    words = line.split()</div><div class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</div><div class="line">        <span class="keyword">print</span> <span class="string">"%s\t%s"</span> % (word, <span class="number">1</span>)</div></pre></td></tr></table></figure>
+<h3 id="Mapper部分"><a href="#Mapper部分" class="headerlink" title="Mapper部分"></a>Mapper部分</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    line = line.strip()</span><br><span class="line">    words = line.split()</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"%s\t%s"</span> % (word, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 <p>文件从标准输入 <code>sys.stdin</code> 读取文件后把单词切开，并把单词和词频输出标准输出。$mapper$ 不计算单词的总数，而是输出 <code>(word, 1)</code>，方便让随后的 $reducer$ 做统计工作。</p>
 <p>对文件赋权以使其可以运行</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x mapper.py</div></pre></td></tr></table></figure>
-<h3 id="Reducer部分"><a href="#Reducer部分" class="headerlink" title="Reducer部分"></a>Reducer部分</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">!/usr/bin/env python</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">current_word = <span class="keyword">None</span></div><div class="line">current_count = <span class="number">0</span></div><div class="line">word = <span class="keyword">None</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</div><div class="line">    line = line.strip()</div><div class="line">    word, count = line.split(<span class="string">'\t'</span>, <span class="number">1</span>)</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        count = int(count)</div><div class="line">    <span class="keyword">except</span> ValueError:</div><div class="line">        <span class="keyword">continue</span></div><div class="line">    <span class="keyword">if</span> current_word == word:</div><div class="line">        current_count += count</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">if</span> current_word:</div><div class="line">            <span class="keyword">print</span> <span class="string">"%s\t%s"</span> % (current_word, current_count)</div><div class="line">        current_count = count</div><div class="line">        current_word = word</div><div class="line"></div><div class="line"><span class="keyword">if</span> word == current_word:</div><div class="line">    <span class="keyword">print</span> <span class="string">"%s\t%s"</span> % (current_word, current_count)</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x mapper.py</span><br></pre></td></tr></table></figure>
+<h3 id="Reducer部分"><a href="#Reducer部分" class="headerlink" title="Reducer部分"></a>Reducer部分</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">!/usr/bin/env python</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">current_word = <span class="keyword">None</span></span><br><span class="line">current_count = <span class="number">0</span></span><br><span class="line">word = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:</span><br><span class="line">    line = line.strip()</span><br><span class="line">    word, count = line.split(<span class="string">'\t'</span>, <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        count = int(count)</span><br><span class="line">    <span class="keyword">except</span> ValueError:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">if</span> current_word == word:</span><br><span class="line">        current_count += count</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> current_word:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"%s\t%s"</span> % (current_word, current_count)</span><br><span class="line">        current_count = count</span><br><span class="line">        current_word = word</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> word == current_word:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"%s\t%s"</span> % (current_word, current_count)</span><br></pre></td></tr></table></figure>
 <p>按照 $Hadoop$ 的设计理念，$mapper$ 输出的相同的 $key/value$ 数据会存储在同一个 $part$ 上，并且 $mapper$ 的输出会自动作为 $reducer$ 的输入。在这个需求中，$reducer$ 要做的事情只是依次接受集群的标准输入，并统计连续单词的个数，因为在这个例子中，$key$ 代表的就是单词。</p>
 <p>同样对文件赋权以使其可以运行</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x reducer.py</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x reducer.py</span><br></pre></td></tr></table></figure>
 <h3 id="本地测试"><a href="#本地测试" class="headerlink" title="本地测试"></a>本地测试</h3><p>通常在把任务提交给 $Hadoop$ 集群执行的之前，都进行一次本地测试。本地与 $Hadoop$ 环境不同之处在于我们需要手动对 $mapper$ 的输出按照 $key$ 来进行排序，模拟 $Hadoop$ 集群场景。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat data | mapper | sort | reducer &gt; output</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat data | mapper | sort | reducer &gt; output</span><br></pre></td></tr></table></figure>
 <p>实例：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat news.merge.0.json | python mapper.py | sort -k1,1 | python reducer.py &gt; ret</div><div class="line">cat file_input | python mapper.py &gt; ret</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat news.merge.0.json | python mapper.py | sort -k1,1 | python reducer.py &gt; ret</span><br><span class="line">cat file_input | python mapper.py &gt; ret</span><br></pre></td></tr></table></figure>
 <p>第一行是对当前统计单词个数的测试命令，可以拓展到含有 $mapper$ 和 $reducer$ 的任务中，第二行是对 $mapper$ 的单独测试，同样也可是应用到只有 $mapper$ 没有 $reducer$ 的任务中。</p>
 <h2 id="使用-Hadoop-集群执行任务"><a href="#使用-Hadoop-集群执行任务" class="headerlink" title="使用 Hadoop 集群执行任务"></a>使用 Hadoop 集群执行任务</h2><h3 id="集群运行"><a href="#集群运行" class="headerlink" title="集群运行"></a>集群运行</h3><p>在把任务提交给集群执行时，我们常常将诸多命令合并到一个脚本文件中，一次性执行所有内容</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nohup sh -x hadoop.sh &amp;</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup sh -x hadoop.sh &amp;</span><br></pre></td></tr></table></figure>
 <p>$hadoop.sh$ 的书写方法如下<br>对于含有 $mapper$ 和 $reducer$ 的任务</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">HADOOP=<span class="string">'/home/work/infra/infra-client/bin/hadoop'</span></div><div class="line"></div><div class="line"><span class="variable">$&#123;HADOOP&#125;</span> fs -rmr /user/.../output</div><div class="line"></div><div class="line"><span class="variable">$&#123;HADOOP&#125;</span> jar /home/work/infra/infra-client/bin/current/common-infra_client-pack/bin/current/c3prc-hadoop-hadoop-pack/share/hadoop/tools/lib/hadoop-streaming-2.6.0-mdh3.11-jre8-SNAPSHOT.jar \</div><div class="line">	-D mapreduce.job.queuename=root.production.cloud_group.qabot  \</div><div class="line">	-input /user/..../input-data \</div><div class="line">	-output /user/.../output/\</div><div class="line">	-mapper <span class="string">'python mapper.py'</span> \</div><div class="line">	-reducer <span class="string">'python reducer.py'</span> \</div><div class="line">	-file <span class="string">'./mapper.py'</span> \</div><div class="line">        -file <span class="string">'./reducer.py'</span></div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">HADOOP=<span class="string">'/home/work/infra/infra-client/bin/hadoop'</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$&#123;HADOOP&#125;</span> fs -rmr /user/.../output</span><br><span class="line"></span><br><span class="line"><span class="variable">$&#123;HADOOP&#125;</span> jar /home/work/infra/infra-client/bin/current/common-infra_client-pack/bin/current/c3prc-hadoop-hadoop-pack/share/hadoop/tools/lib/hadoop-streaming-2.6.0-mdh3.11-jre8-SNAPSHOT.jar \</span><br><span class="line">	-D mapreduce.job.queuename=root.production.cloud_group.qabot  \</span><br><span class="line">	-input /user/..../input-data \</span><br><span class="line">	-output /user/.../output/\</span><br><span class="line">	-mapper <span class="string">'python mapper.py'</span> \</span><br><span class="line">	-reducer <span class="string">'python reducer.py'</span> \</span><br><span class="line">	-file <span class="string">'./mapper.py'</span> \</span><br><span class="line">        -file <span class="string">'./reducer.py'</span></span><br></pre></td></tr></table></figure>
 <p>只有 $mapper$ 没有 $reducer$ 的任务</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line">HADOOP=/home/work/infra/infra-client/bin/hadoop</div><div class="line"></div><div class="line"><span class="variable">$&#123;HADOOP&#125;</span> fs -rmr /user/.../output</div><div class="line"></div><div class="line"><span class="variable">$&#123;HADOOP&#125;</span> jar /home/work/infra/infra-client/bin/current/common-infra_client-pack/bin/current/c3prc-hadoop-hadoop-pack/share/hadoop/tools/lib/hadoop-streaming-2.6.0-mdh3.11-jre8-SNAPSHOT.jar \</div><div class="line">	-D mapreduce.job.queuename=root.production.cloud_group.qabot  \</div><div class="line">	-input /user/..../input-data \</div><div class="line">	-output /user/.../output/\</div><div class="line">	-mapper <span class="string">'python mapper.py'</span> \</div><div class="line">	-reducer <span class="string">'cat'</span> \</div><div class="line">	-file <span class="string">'./mapper.py'</span> \</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">HADOOP=/home/work/infra/infra-client/bin/hadoop</span><br><span class="line"></span><br><span class="line"><span class="variable">$&#123;HADOOP&#125;</span> fs -rmr /user/.../output</span><br><span class="line"></span><br><span class="line"><span class="variable">$&#123;HADOOP&#125;</span> jar /home/work/infra/infra-client/bin/current/common-infra_client-pack/bin/current/c3prc-hadoop-hadoop-pack/share/hadoop/tools/lib/hadoop-streaming-2.6.0-mdh3.11-jre8-SNAPSHOT.jar \</span><br><span class="line">	-D mapreduce.job.queuename=root.production.cloud_group.qabot  \</span><br><span class="line">	-input /user/..../input-data \</span><br><span class="line">	-output /user/.../output/\</span><br><span class="line">	-mapper <span class="string">'python mapper.py'</span> \</span><br><span class="line">	-reducer <span class="string">'cat'</span> \</span><br><span class="line">	-file <span class="string">'./mapper.py'</span> \</span><br></pre></td></tr></table></figure>
 <p>$nohup$ 中会实时更新集群对任务的处理进度，任务执行结束后会在指定的 $output$ 目录下输出一个 $part-00000$ 文件。</p>
 <p>其中，<code>-file</code>命令用于上传文件到 $Hadoop$ 集群，若 $mapper$ 或 $reducer$ 中读入了额外的文件，同样需要将该程序上传到 $Hadoop$ 集群上。</p>
 <h2 id="常用的-Hadoop-Shell-命令"><a href="#常用的-Hadoop-Shell-命令" class="headerlink" title="常用的 Hadoop Shell 命令"></a>常用的 Hadoop Shell 命令</h2><p>$Hadoop$ 所有的对文件的操作都需要调用文件系统，所以其命令的格式为</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -shell</div></pre></td></tr></table></figure>
-<p>详细的命令可以查看这里：<a href="https://hadoop.apache.org/docs/r1.0.4/cn/hdfs_shell.html" target="_blank" rel="external">Hadoop Shell</a></p>
-<h3 id="get"><a href="#get" class="headerlink" title="get"></a>get</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -get [-ignorecrc] [-crc] &lt;src&gt; &lt;localdst&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -shell</span><br></pre></td></tr></table></figure>
+<p>详细的命令可以查看这里：<a href="https://hadoop.apache.org/docs/r1.0.4/cn/hdfs_shell.html" target="_blank" rel="noopener">Hadoop Shell</a></p>
+<h3 id="get"><a href="#get" class="headerlink" title="get"></a>get</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -get [-ignorecrc] [-crc] &lt;src&gt; &lt;localdst&gt;</span><br></pre></td></tr></table></figure>
 <p>复制文件到本地文件系统。可用 <code>-ignorecrc</code> 选项复制 <code>CRC</code> 校验失败的文件。使用 <code>-crc</code> 选项复制文件以及 <code>CRC</code> 信息。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hadoop fs -get /user/hadoop/file localfile</div><div class="line">hadoop fs -get hdfs://host:port/user/hadoop/file localfile</div></pre></td></tr></table></figure>
-<h3 id="put"><a href="#put" class="headerlink" title="put"></a>put</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hadoop fs -put &lt;localsrc&gt; ... &lt;dst&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -get /user/hadoop/file localfile</span><br><span class="line">hadoop fs -get hdfs://host:port/user/hadoop/file localfile</span><br></pre></td></tr></table></figure>
+<h3 id="put"><a href="#put" class="headerlink" title="put"></a>put</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -put &lt;localsrc&gt; ... &lt;dst&gt;</span><br></pre></td></tr></table></figure>
 <p>从本地文件系统中复制单个或多个源路径到目标文件系统。也支持从标准输入中读取输入写入目标文件系统。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">hadoop fs -put localfile /user/hadoop/hadoopfile</div><div class="line">hadoop fs -put localfile1 localfile2 /user/hadoop/hadoopdir</div><div class="line">hadoop fs -put localfile hdfs://host:port/hadoop/hadoopfile</div><div class="line">hadoop fs -put - hdfs://host:port/hadoop/hadoopfile</div></pre></td></tr></table></figure>
-<p>参考文献：<br>[1] <a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/mapreduce-osdi04.pdf" target="_blank" rel="external">MapReduce: Simplified Data Processing on Large Clusters-Google</a><br>[2] <a href="https://www.cnblogs.com/kaituorensheng/p/3826114.html#_label0" target="_blank" rel="external">用python写MapReduce函数 以WordCount为例-CNBolgs</a><br>[3] <a href="https://hadoop.apache.org/docs/r1.0.4/cn/hdfs_shell.html" target="_blank" rel="external">Hadoop Shell命令-Apache Hadoop</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -put localfile /user/hadoop/hadoopfile</span><br><span class="line">hadoop fs -put localfile1 localfile2 /user/hadoop/hadoopdir</span><br><span class="line">hadoop fs -put localfile hdfs://host:port/hadoop/hadoopfile</span><br><span class="line">hadoop fs -put - hdfs://host:port/hadoop/hadoopfile</span><br></pre></td></tr></table></figure>
+<p>参考文献：<br>[1] <a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/mapreduce-osdi04.pdf" target="_blank" rel="noopener">MapReduce: Simplified Data Processing on Large Clusters-Google</a><br>[2] <a href="https://www.cnblogs.com/kaituorensheng/p/3826114.html#_label0" target="_blank" rel="noopener">用python写MapReduce函数 以WordCount为例-CNBolgs</a><br>[3] <a href="https://hadoop.apache.org/docs/r1.0.4/cn/hdfs_shell.html" target="_blank" rel="noopener">Hadoop Shell命令-Apache Hadoop</a></p>
 
       
     </div>
@@ -503,7 +503,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -514,12 +514,10 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Zhenyu Zhang" />
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Zhenyu Zhang">
           <p class="site-author-name" itemprop="name">Zhenyu Zhang</p>
            
-              <p class="site-description motion-element" itemprop="description">Survival with technology<br/>And living with art</p>
+              <p class="site-description motion-element" itemprop="description">Survival with technology<br>And living with art</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -604,7 +602,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2019</span>
