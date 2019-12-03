@@ -170,7 +170,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -180,7 +180,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -280,16 +280,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/14/sml-svm/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ZZY SAY">
     </span>
 
@@ -332,7 +332,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/" itemprop="url" rel="index">
                     <span itemprop="name">Class Notes</span>
                   </a>
@@ -343,7 +343,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/Statistical-Machine-Learning/" itemprop="url" rel="index">
                     <span itemprop="name">Statistical Machine Learning</span>
                   </a>
@@ -378,7 +378,7 @@
       
 
       
-        <h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><p><img src="http://qiniu.zzysay.cn/15159152846032.jpg" alt></p>
+        <h1 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h1><p><img src="http://qiniu.zzysay.cn/15159152846032.jpg" alt=""></p>
 <p>支持向量机乃至线性分类器都起源于 $logistic$ 回归， $logistic$ 回归目的是从特征学习出一个 $0/1$ 分类模型，而这个模型是将特性的线性组合作为自变量，由于自变量的取值范围是负无穷到正无穷。因此，使用 $logistic$ 函数（或称作 $sigmoid$ 函数）将自变量映射到 $0/1$ 上，映射后的值被认为是属于 $y=1$ 的概率。</p>
 <a id="more"></a>
 <h2 id="硬边距支持向量机"><a href="#硬边距支持向量机" class="headerlink" title="硬边距支持向量机"></a>硬边距支持向量机</h2><h3 id="函数间隔与几何间隔"><a href="#函数间隔与几何间隔" class="headerlink" title="函数间隔与几何间隔"></a>函数间隔与几何间隔</h3><p>一般来说，一个点距离分类超平面的远近可以表示分类预测的确信程度，在超平面 $w·x+b=0$ 确定的情况下，$|w·x + b|$ 能够<strong>相对</strong>的表示点 $x$ 距离超平面的远近，而 $w·x + b$ 的符号与类别标记 $y$ 的符号一致就表示分类正确。</p>
@@ -388,7 +388,7 @@
 <p>定义超平面 $(w,b)$ 关于训练集 $T$ 的函数间隔为超平面 $(w,b)$ 关于 $T$ 中所有样本点的函数间隔最小值：</p>
 <p>$$\hat \gamma = \min_{i=1,…,N} \hat \gamma_i$$</p>
 <p>继续考虑 $(w,b)$ ，如果同时加大 $w$ 和 $b$，比如在 $(w·x_i+b)$ 前面乘个系数比如 $2$，那么所有点的函数间隔都会增大二倍，这个对求解问题来说不应该有影响，因为我们要求解的超平面是 $(w·x_i+b)=0$。这样，我们为了限制 $w$ 和 $b$，可能需要加入归一化条件，因为求解的目标是确定唯一的 $w$ 和 $b$，而不是多组线性相关的向量。</p>
-<h4 id="几何间隔"><a href="#几何间隔" class="headerlink" title="几何间隔"></a>几何间隔</h4><center><img src="http://qiniu.zzysay.cn/15159147939414.jpg" alt></center>
+<h4 id="几何间隔"><a href="#几何间隔" class="headerlink" title="几何间隔"></a>几何间隔</h4><center><img src="http://qiniu.zzysay.cn/15159147939414.jpg" alt=""></center>
 
 
 <p>假设我们有了 $B$ 点所在的 $(wx_i+b)=0$ 的分割面，$A$ 到该面的距离可以用 $\gamma_i$ 表示，假设 $B$ 就是 $A$ 在分割面上的投影，我们知道 $BA$ 的方向为 $w$，单位向量为 $\frac w {||w||}$，记 $\gamma_i = |AB|$，根据点到直线的距离公式：</p>
@@ -404,7 +404,7 @@
 <p>考虑几何间隔和函数间隔的关系，可以改写为：</p>
 <p>$$ \max_{w, b} \frac {\hat \gamma} {||w||}<br>\\ s.t. \;\; y_i(w·x_i+b) \ge \hat \gamma，i=1,2,…N $$</p>
 <p>函数间隔 $\hat \gamma$ 对目标函数的优化没有任何影响，所以我们可以令 $\hat \gamma =1$，而最大化 $\frac 1 {||w||}$ 和最小化 $\frac 1 2 ||w||^2$ 也是等价的，于是就有：<br>$$ \min_{w, b} \frac 1 2 ||w||^2<br>\\ s.t. \;\; y_i(w·x_i+b) -1 \ge 0，i=1,2,…N $$</p>
-<p>这就产生了支持向量机的最优化问题：<br><img src="http://qiniu.zzysay.cn/15159180756448.jpg" alt></p>
+<p>这就产生了支持向量机的最优化问题：<br><img src="http://qiniu.zzysay.cn/15159180756448.jpg" alt=""></p>
 <h3 id="线性可分支持向量机"><a href="#线性可分支持向量机" class="headerlink" title="线性可分支持向量机"></a>线性可分支持向量机</h3><p>硬边距支持向量机又被称作线性可分支持向量机，其原始优化问题：<br>$$ \begin{align} \min_{w, b} &amp;\;\; \frac 1 2 ||w||^2 \nonumber<br>\\ s.t. &amp; \;\; y_i(w·x_i+b) -1 \ge 0，i=1,2,…N  \nonumber \end{align}$$</p>
 <p>对偶优化问题：<br>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_jy_iy_j \langle x_i, x_j\rangle - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; \alpha_i \ge 0,\;i=1,2,…N \nonumber \end{align}$$</p>
 <p>求得最优解 $\alpha^*$ 后，最优参数：<br>$$ w^* = \sum_{i=1}^n \alpha^*_i y_i x_i \\ b^* = y_j - \sum_{i=1}^n \alpha^*_i y_i \langle x_i, x_j\rangle $$</p>
@@ -453,20 +453,20 @@
 <p>单个样本的损失如下图所示：<br><img src="http://qiniu.zzysay.cn/15159326412603.jpg" alt="w400"></p>
 <p>在二分类问题中，通常使用的是 $0-1$ 损失，因为 $0-1$ 损失不可导，通常使用可导的合页损失函数作为其上界。相比之下，合页损失函数不仅要求分类正确，而却确信度足够高时损失才为 $0$，也就是说，合页损失函数对学习有更高的要求。</p>
 <h2 id="非线性支持向量机与核函数"><a href="#非线性支持向量机与核函数" class="headerlink" title="非线性支持向量机与核函数"></a>非线性支持向量机与核函数</h2><h3 id="核函数方法"><a href="#核函数方法" class="headerlink" title="核函数方法"></a>核函数方法</h3><p>如下图所示，在线性不可分的情况下，支持向量机通过某种事先选择的非线性映射（核函数）将输入变量映射到一个高维特征空间，在这个空间中构造最优分类超平面，通过将数据映射到高维空间，来解决在原始空间中线性不可分的问题，核函数的价值在于它虽然也是把特征进行从低维映射到高维，但它事先<strong>在低维上进行计算</strong>，而将实质上的<strong>分类效果表现在了高维</strong>上，也就避免了直接在高维空间中的复杂计算。</p>
-<p><img src="http://qiniu.zzysay.cn/15159339249517.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15159339249517.jpg" alt=""></p>
 <p><strong>核函数的定义：</strong> 设 $X$ 是输入空间（欧式空间 $R^n$ 的子集或离散集合），有设 $H$ 为特征空间（希尔伯特空间），如果存在一个从 $X$ 到 $H$ 的映射：<br>$$ \phi(x): X \rightarrow H $$<br>使得对所有的 $x,z\in X$，函数 $K(x,z)$ 满足条件：<br>$$ K(x,z) = \phi(x)·\phi(z) $$<br>则称 $K(x,z)$ 为核函数，$\phi(x)$ 为映射函数，其中 $\phi(x)·\phi(z)$ 为 $\phi(x)$ 和 $\phi(z)$ 的内积。</p>
 <p>核技巧的想法是，在学习和预测中只定义核函数 $K(x,z)$，而不显式地定义应设函数 $\phi$，对于给定的核，特征空间和映射函数的取法并不唯一，可以取不同的特征空间，即使是在同一个特征空间内也可以有不同的映射。</p>
 <p>在线性支持向量机的对偶问题中，无论是目标函数还是决策函数都值设计输入实例与实例之间的内积，在对偶问题的目标函数中的内积 $\langle x_i, x_j\rangle$ 可以用核函数 $K(x_i,x_j) = \phi(x_i)·\phi(x_j)$ 来代替，这样就等价于把映射函数将原来的输入空间变换到一个新的特征空间，在新的特征空间里从训练样本学习线性支持向量机。</p>
 <h3 id="处理非线性数据"><a href="#处理非线性数据" class="headerlink" title="处理非线性数据"></a>处理非线性数据</h3><p>有如下图所示的一个数据集，分别分布为两个圆圈的形状，这样的数据本身就是线性不可分的，此时我们该如何把这两类数据分开呢？</p>
-<center><br><img src="http://qiniu.zzysay.cn/15159401779594.jpg" alt><br></center><br>事实上，上图所述的这个数据集，是用两个半径不同的圆圈加上了少量的噪音生成得到的，所以，一个理想的分界应该是一个“圆圈”而不是一条线。如果用 $X_1$ 和 $X_2$ 来表示这个二维平面的两个坐标的话，我们知道一条二次曲线的方程可以写作这样的形式:<br><br>$$ a_1X_1 + a_2X_1^2 + a_3X_2 + a_4X_2^2 + a_5X_1X_2 + a_6 = 0 $$<br><br>针对上式，如果我们构造另外一个五维的空间，其中五个坐标的值分别为 $Z_1=X_1, X_2=X_1^2, Z_3 = X_2, Z_4 = X_2^2, Z_5 = X_1X_2$，显然可以把上式改写为：<br><br>$$ \sum_{i=1}^5 \alpha_iZ_i +\alpha_6 = 0 $$<br><br>这正是一个超平面的方程，也就是说，我们做了这样一个映射将 $X_1,X_2$ 映射成了 $Z_1,Z_2,Z_3,Z_4,Z_5$，即把特征空间从二维映射到五维，那么在新的空间中原来的数据将变成线性可分的，从而使用之前我们推导的线性分类算法就可以进行处理了。<br><br>特别地，我们把它映射到 $Z_1 = X^2_1, Z_2 = X_2, Z_3 = X_2$ 这样一个三维空间中，将坐标轴经过适当的旋转，就可以很明显地看出，数据是可以通过一个平面来分开的。<br><br><center><br><img src="http://qiniu.zzysay.cn/1364952814_3505.gif" alt="1364952814_3505"><br></center>
+<center><br><img src="http://qiniu.zzysay.cn/15159401779594.jpg" alt=""><br></center><br>事实上，上图所述的这个数据集，是用两个半径不同的圆圈加上了少量的噪音生成得到的，所以，一个理想的分界应该是一个“圆圈”而不是一条线。如果用 $X_1$ 和 $X_2$ 来表示这个二维平面的两个坐标的话，我们知道一条二次曲线的方程可以写作这样的形式:<br><br>$$ a_1X_1 + a_2X_1^2 + a_3X_2 + a_4X_2^2 + a_5X_1X_2 + a_6 = 0 $$<br><br>针对上式，如果我们构造另外一个五维的空间，其中五个坐标的值分别为 $Z_1=X_1, X_2=X_1^2, Z_3 = X_2, Z_4 = X_2^2, Z_5 = X_1X_2$，显然可以把上式改写为：<br><br>$$ \sum_{i=1}^5 \alpha_iZ_i +\alpha_6 = 0 $$<br><br>这正是一个超平面的方程，也就是说，我们做了这样一个映射将 $X_1,X_2$ 映射成了 $Z_1,Z_2,Z_3,Z_4,Z_5$，即把特征空间从二维映射到五维，那么在新的空间中原来的数据将变成线性可分的，从而使用之前我们推导的线性分类算法就可以进行处理了。<br><br>特别地，我们把它映射到 $Z_1 = X^2_1, Z_2 = X_2, Z_3 = X_2$ 这样一个三维空间中，将坐标轴经过适当的旋转，就可以很明显地看出，数据是可以通过一个平面来分开的。<br><br><center><br><img src="http://qiniu.zzysay.cn/1364952814_3505.gif" alt="1364952814_3505"><br></center>
 
 <p>一般地，核函数能简化映射空间中的内积运算，向量的内积可以直接在原来的低维空间中进行计算，而不需要显式地写出映射后的结果，我们可以把决策函数可以写成：</p>
 <p>$$f(x) = \sum_{i=1}^n \alpha^*_i y_i K(x_i · x_j) $$</p>
 <p>对偶问题可以写成：</p>
 <p>$$ \begin{align} \min_{\alpha} &amp;\;\;  \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n \alpha_i \alpha_j y_i y_j K(x_i · x_j) - \sum_{i=1}^n \alpha_i \nonumber<br>\\ s.t. &amp;\;\; \sum_{i=1}^n \alpha_i y_i = 0 \nonumber<br>\\ &amp;\;\; 0 \le \alpha_i \le C,\;i=1,2,…N \nonumber \end{align}$$</p>
-<h3 id="常用核函数"><a href="#常用核函数" class="headerlink" title="常用核函数"></a>常用核函数</h3><p><img src="http://qiniu.zzysay.cn/15159419758530.jpg" alt></p>
+<h3 id="常用核函数"><a href="#常用核函数" class="headerlink" title="常用核函数"></a>常用核函数</h3><p><img src="http://qiniu.zzysay.cn/15159419758530.jpg" alt=""></p>
 <p><strong>高斯核</strong>会将原始空间映射为无穷维空间。不过，如果 $\sigma$ 选得很大的话，高次特征上的权重衰减得非常快，所以实际上相当于一个低维的子空间，反过来，如果 $\sigma$ 选得很小，则可以将任意的数据映射为线性可分，随之而来的可能是非常严重的过拟合问题。不过，总的来说，通过调控参数 $\sigma$ ，高斯核实际上具有相当高的灵活性，也是使用最广泛的核函数之一。</p>
-<center><br><img src="http://qiniu.zzysay.cn/15159417163475.jpg" alt><br></center>
+<center><br><img src="http://qiniu.zzysay.cn/15159417163475.jpg" alt=""><br></center>
 
 <h2 id="序列最小最优化算法"><a href="#序列最小最优化算法" class="headerlink" title="序列最小最优化算法"></a>序列最小最优化算法</h2><h3 id="拉格朗日乘子法与-KKT-条件"><a href="#拉格朗日乘子法与-KKT-条件" class="headerlink" title="拉格朗日乘子法与 KKT 条件"></a>拉格朗日乘子法与 KKT 条件</h3><h4 id="拉格朗日乘子法"><a href="#拉格朗日乘子法" class="headerlink" title="拉格朗日乘子法"></a>拉格朗日乘子法</h4><p><strong>引入</strong><br>拉格朗日说的是，我们要求 $\min f (x)$，我们可以通过令导数等于零来求解，如果给我们约束 $\min f (x)$，一定要满足等式 $g_i(x) = 0$ 的条件，再加入不等式条件 $h_i(x) \le 0$。</p>
 <p>即拉格朗日乘子法的引入是通过以下三步：</p>
@@ -479,7 +479,7 @@
 <p>我们考虑以下问题：</p>
 <p>$$ \begin{align} \min &amp;\quad f(x,y) \\s.t. &amp;\quad g(x,y) = 0 \end{align}$$</p>
 <p>我们把 $g(x, y) = 0$ 这条曲线画在图上，给 $f (x, y)$ 画等高线，比如说图上等于 $1$ 和 $2$，我们的目标是要在 $g(x, y) = 0$ 这条曲线上找一个点使得 $f (x, y)$ 越小越好。</p>
-<p><img src="http://qiniu.zzysay.cn/15180978860943.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15180978860943.jpg" alt=""></p>
 <p>我们就把它想成气球，这个气球一开始比较大，这上面与 $g(x, y) = 0$ 交了两个点，这时候能找到两个点且 $f(x,y)$ 等于 $2$，然后我们尝试 $f(x,y)$ 变小，直到与 $g(x, y) = 0$ 有一个交点，最后变成没有交点，这个时候 $f(x, y)$ 达到最小，所以可以得到最后最小的点肯定是 $g(x, y)$ 与等高线若近若离的，这个若近若离的表示方法就是 $g(x, y) = 0$ 与等高线相切的，那个点就是最优点。</p>
 <p>所以得到以下式子：</p>
 <p>$$ \begin{align} &amp; \nabla f(x, y) = \lambda \nabla g(x, y) \\&amp; L(x, y, \lambda) = f(x, y) - \lambda g(x, y) \\&amp; L(x^*, y^*, \lambda) = 0 \end{align}$$</p>
@@ -487,7 +487,7 @@
 <p>拉格朗日方程原始的优化目标减去了一个东西，这个东西可以看作是违反约束的阈值，因为我们要求约束的结果等于 $0$，如果 $g(x, y)$ 不等于 $0$ 那么我们就要减去后面这个式子，这个 $\lambda$ 就是拉格朗日乘子。</p>
 <h4 id="KKT-条件"><a href="#KKT-条件" class="headerlink" title="KKT 条件"></a>KKT 条件</h4><p>前面我们已经完成了约束为 $g(x) = 0$ 的求解方法，那如果是小于等于 $0$，那就不再是拉格朗日了，是拉格朗日的拓展，叫 $KKT$ 条件，所谓 $KKT$ 条件，是指在满足一些有规则的条件下，一个非线性规划问题能有最优化解法的一个必要和充分条件。</p>
 <p><strong>引入</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15180991255468.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15180991255468.jpg" alt=""></p>
 <p>要求 $g(x, y) \le 0$，也就是说我们是要在阴影区或者边界上找一个点， 使得 $f (x, y)$ 最小，我们把他分成两种情况:</p>
 <ol>
 <li>如果最优解恰好在边界上，那么这个就可以通过拉格朗日来求解。</li>
@@ -535,7 +535,7 @@
 <p>然后考虑约束 $0\le \alpha_j \le C$可以得到 $\alpha_i$ 的解析解为：</p>
 <p>$$ \alpha_i^{new,clipped} = \begin{cases} H, &amp; \alpha_i^{new} \ge H \\ \alpha_i^{new} , &amp; L \lt \alpha_i^{new} \lt H \\ L, &amp; \alpha_i^{new} \le L \end{cases} $$</p>
 <p>把 $SMO$ 中对于两个参数求解过程看成线性规划来理解来理解的话，根据 $y_i$ 和 $y_j$ 是否同号，可以得出两个上下界：</p>
-<p><img src="http://qiniu.zzysay.cn/15181038093566.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15181038093566.jpg" alt=""></p>
 <p>$$ y_i \neq y_j : \begin{cases} L=\max {0, \alpha_j-\alpha_i} \\ H = \min {C, C+\alpha_j-\alpha_i} \end{cases} \\ y_i = y_j : \begin{cases} L=\max {0, \alpha_j+\alpha_i-C} \\ H = \min {C, \alpha_j-\alpha_i} \end{cases} $$</p>
 <p>对于 $\alpha_i$，有：</p>
 <p>$$\alpha_i^{new} = \alpha_i + y_iy_j(\alpha_j-\alpha_j^{new,clipped})$$</p>
@@ -679,7 +679,7 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Zhenyu Zhang">
           <p class="site-author-name" itemprop="name">Zhenyu Zhang</p>
            

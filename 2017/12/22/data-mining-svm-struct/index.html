@@ -176,7 +176,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -186,7 +186,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -286,16 +286,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/12/22/data-mining-svm-struct/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ZZY SAY">
     </span>
 
@@ -338,7 +338,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/" itemprop="url" rel="index">
                     <span itemprop="name">Class Notes</span>
                   </a>
@@ -349,7 +349,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/Web-Data-Mining/" itemprop="url" rel="index">
                     <span itemprop="name">Web Data Mining</span>
                   </a>
@@ -384,17 +384,17 @@
       
 
       
-        <h2 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h2><h3 id="边距的表示"><a href="#边距的表示" class="headerlink" title="边距的表示"></a>边距的表示</h3><p><img src="http://qiniu.zzysay.cn/15138577662127.jpg" alt></p>
+        <h2 id="支持向量机"><a href="#支持向量机" class="headerlink" title="支持向量机"></a>支持向量机</h2><h3 id="边距的表示"><a href="#边距的表示" class="headerlink" title="边距的表示"></a>边距的表示</h3><p><img src="http://qiniu.zzysay.cn/15138577662127.jpg" alt=""></p>
 <a id="more"></a>
 <p>即 $SVM$ 的学习过程归结为寻找合适的 $w$ 和 $b$ 使边距 $M$ 最大化</p>
 <ul>
 <li>若所有的训练数据都在正确的分类区域，则有 $y_i(\langle w,x_i \rangle+b)≥1 $，其中 $y_i \in \lbrace +1,−1 \rbrace $</li>
 <li>$ max \frac 2 {\sqrt{\langle w,w \rangle}} \Leftrightarrow min ||w||^2 $</li>
 </ul>
-<p>即 $SVM$ 的优化问题可以表示为：<br><img src="http://qiniu.zzysay.cn/15138582978767.jpg" alt></p>
+<p>即 $SVM$ 的优化问题可以表示为：<br><img src="http://qiniu.zzysay.cn/15138582978767.jpg" alt=""></p>
 <p>$(\langle w,x_i \rangle+b)$ 应当是一个绝对值大于等于 $1$ 的值，约束条件就意味着所有点均位于正边距和负边距之上或之外</p>
-<h3 id="软边距SVM"><a href="#软边距SVM" class="headerlink" title="软边距SVM"></a>软边距SVM</h3><p><img src="http://qiniu.zzysay.cn/15138585285953.jpg" alt></p>
-<h3 id="原问题的对偶问题"><a href="#原问题的对偶问题" class="headerlink" title="原问题的对偶问题"></a>原问题的对偶问题</h3><p><img src="http://qiniu.zzysay.cn/15138588065447.jpg" alt></p>
+<h3 id="软边距SVM"><a href="#软边距SVM" class="headerlink" title="软边距SVM"></a>软边距SVM</h3><p><img src="http://qiniu.zzysay.cn/15138585285953.jpg" alt=""></p>
+<h3 id="原问题的对偶问题"><a href="#原问题的对偶问题" class="headerlink" title="原问题的对偶问题"></a>原问题的对偶问题</h3><p><img src="http://qiniu.zzysay.cn/15138588065447.jpg" alt=""></p>
 <p><strong>推导：</strong></p>
 <p>原问题的拉格朗日函数：<br>$$ L(w, b, \xi, \mu, a) = \frac 1 2 ||w||^2 + C \sum_{i=1}^n \xi_i - \sum_{i=1}^n a_i(y_i(w·x_i+b)-1+\xi_i)-\sum_{i=1}^n\mu_i \xi_i$$</p>
 <p>显然：<br>$$ \frac 1 2 ||w||^2 ≥ L(w, b, \xi, \mu, a) ≥ \mathop{inf} \limits_{w,b} L(w, b, \xi, \mu, a)$$</p>
@@ -402,27 +402,27 @@
 <p>原式可化为：<br>$$ L(w, b, \xi, \mu, a) =  \frac 1 2 ||w||^2 + \sum_{i=1}^n \xi_i  (C - a_i - \mu_i) - \sum_{i=1}^n a_iy_i(w·x_i+b) + \sum_{i=1}^n a_i $$</p>
 <p>代入易得：<br>$$ L(w, b, \xi, \mu, a) =\sum_{i=1}^n a_i - \frac 1 2 \sum_{i=1}^n\sum_{j=1}^n a_ia_jy_iy_j \langle x_i, x_j\rangle $$</p>
 <p>对拉格朗日乘子有以下约束：<br>$$ \sum_{i=1}^n a_iy_i = 0 $$$$ C ≥ a_i ≥ 0 $$</p>
-<h3 id="求解对偶问题"><a href="#求解对偶问题" class="headerlink" title="求解对偶问题"></a>求解对偶问题</h3><p><img src="http://qiniu.zzysay.cn/15138724404036.jpg" alt></p>
+<h3 id="求解对偶问题"><a href="#求解对偶问题" class="headerlink" title="求解对偶问题"></a>求解对偶问题</h3><p><img src="http://qiniu.zzysay.cn/15138724404036.jpg" alt=""></p>
 <p>据此学习到的分类函数为</p>
-<p><img src="http://qiniu.zzysay.cn/15138725261565.jpg" alt></p>
-<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><h4 id="损失函数的定义"><a href="#损失函数的定义" class="headerlink" title="损失函数的定义"></a>损失函数的定义</h4><p><img src="http://qiniu.zzysay.cn/15138726585077.jpg" alt></p>
-<h4 id="SVM的损失函数"><a href="#SVM的损失函数" class="headerlink" title="SVM的损失函数"></a>SVM的损失函数</h4><p><img src="http://qiniu.zzysay.cn/15138726966927.jpg" alt></p>
-<h2 id="结构化输出预测"><a href="#结构化输出预测" class="headerlink" title="结构化输出预测"></a>结构化输出预测</h2><h3 id="结构化输出问题描述"><a href="#结构化输出问题描述" class="headerlink" title="结构化输出问题描述"></a>结构化输出问题描述</h3><p><img src="http://qiniu.zzysay.cn/15138734373295.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15138725261565.jpg" alt=""></p>
+<h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><h4 id="损失函数的定义"><a href="#损失函数的定义" class="headerlink" title="损失函数的定义"></a>损失函数的定义</h4><p><img src="http://qiniu.zzysay.cn/15138726585077.jpg" alt=""></p>
+<h4 id="SVM的损失函数"><a href="#SVM的损失函数" class="headerlink" title="SVM的损失函数"></a>SVM的损失函数</h4><p><img src="http://qiniu.zzysay.cn/15138726966927.jpg" alt=""></p>
+<h2 id="结构化输出预测"><a href="#结构化输出预测" class="headerlink" title="结构化输出预测"></a>结构化输出预测</h2><h3 id="结构化输出问题描述"><a href="#结构化输出问题描述" class="headerlink" title="结构化输出问题描述"></a>结构化输出问题描述</h3><p><img src="http://qiniu.zzysay.cn/15138734373295.jpg" alt=""></p>
 <p>其简单做法就是将简化为更加细粒度的分类问题，即多个分类问题：</p>
-<p><img src="http://qiniu.zzysay.cn/15138735806254.jpg" alt></p>
-<h3 id="结构化输出预测模型"><a href="#结构化输出预测模型" class="headerlink" title="结构化输出预测模型"></a>结构化输出预测模型</h3><p><img src="http://qiniu.zzysay.cn/15138737252919.jpg" alt><br><img src="http://qiniu.zzysay.cn/15138737710424.jpg" alt></p>
-<h4 id="结构化感知机"><a href="#结构化感知机" class="headerlink" title="结构化感知机"></a>结构化感知机</h4><p><img src="http://qiniu.zzysay.cn/15138739353341.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15138735806254.jpg" alt=""></p>
+<h3 id="结构化输出预测模型"><a href="#结构化输出预测模型" class="headerlink" title="结构化输出预测模型"></a>结构化输出预测模型</h3><p><img src="http://qiniu.zzysay.cn/15138737252919.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15138737710424.jpg" alt=""></p>
+<h4 id="结构化感知机"><a href="#结构化感知机" class="headerlink" title="结构化感知机"></a>结构化感知机</h4><p><img src="http://qiniu.zzysay.cn/15138739353341.jpg" alt=""></p>
 <h4 id="结构化SVM"><a href="#结构化SVM" class="headerlink" title="结构化SVM"></a>结构化SVM</h4><p><strong>基本思路</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15138740698079.jpg" alt></p>
-<p><strong>具体实现</strong><br><img src="http://qiniu.zzysay.cn/15138741427163.jpg" alt><br><img src="http://qiniu.zzysay.cn/15138741766034.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15138740698079.jpg" alt=""></p>
+<p><strong>具体实现</strong><br><img src="http://qiniu.zzysay.cn/15138741427163.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15138741766034.jpg" alt=""></p>
 <p>注：负例并不会出现在正边距及其方向上，因为要保证正确样本的得分值比错误样本的得分值高。</p>
-<p>转化成差值后的形式，类似于 $RankingSVM$<br><img src="http://qiniu.zzysay.cn/15138743582891.jpg" alt></p>
+<p>转化成差值后的形式，类似于 $RankingSVM$<br><img src="http://qiniu.zzysay.cn/15138743582891.jpg" alt=""></p>
 <p>对于上图，正确样本的误差为 $0$，其位置应该位于分类面上，即垂直于 $w$ 的过原点的直线，这也就是与原图相比转换成差值后增加了坐标轴的原因。</p>
 <h4 id="软边距及变边距SVM-Struct"><a href="#软边距及变边距SVM-Struct" class="headerlink" title="软边距及变边距SVM-Struct"></a>软边距及变边距SVM-Struct</h4><p>和软边距$SVM$、变边距$SVM$和 $SVM$ 的区别一样，只是对边距表示的调整。</p>
 <p><strong>软边距 SVM-Struct</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15138750317473.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15138750317473.jpg" alt=""></p>
 <p><strong>变边距 SVM-Struct</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15138750990256.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15138750990256.jpg" alt=""></p>
 <p>参考文献：<br>[1] 徐君,《网络数据挖掘》,中国科学院大学2017年秋季研究生课程<br>[2] 卜东波,《计算机算法设计与分析》,中国科学院大学2017年秋季研究生课程<br>[3] 李航,《统计学习方法》,清华大学出版社</p>
 
       
@@ -539,7 +539,7 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Zhenyu Zhang">
           <p class="site-author-name" itemprop="name">Zhenyu Zhang</p>
            

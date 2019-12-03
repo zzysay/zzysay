@@ -180,7 +180,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -190,7 +190,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -290,16 +290,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/06/sml-bayesian-learning/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ZZY SAY">
     </span>
 
@@ -342,7 +342,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/" itemprop="url" rel="index">
                     <span itemprop="name">Class Notes</span>
                   </a>
@@ -353,7 +353,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/Statistical-Machine-Learning/" itemprop="url" rel="index">
                     <span itemprop="name">Statistical Machine Learning</span>
                   </a>
@@ -399,54 +399,54 @@
 <p>所以，我们认为，如果前一天有晚霞，第二天将会是一个晴朗的天气。</p>
 <h2 id="贝叶斯决策理论"><a href="#贝叶斯决策理论" class="headerlink" title="贝叶斯决策理论"></a>贝叶斯决策理论</h2><h3 id="概率论基础"><a href="#概率论基础" class="headerlink" title="概率论基础"></a>概率论基础</h3><p><strong>事件概率：</strong> $0\lt P(A) \lt 1$<br><strong>条件概率：</strong> $P(A|B) = \frac {P(A,B)} {P(B)} $<br><strong>全概率公式：</strong> $P(A) = \sum_{i=1}^n P(A|B_i) P(B_i)$<br><strong>贝叶斯公式：</strong> $P(B_i|A) = \frac {P(A|B_i)P(B_i)} {\sum_{j=1}^n P(A|B_j) P(B_j)}$，即 $P(B|A) = \frac {P(A|B)P(B)} {P(A)}$。</p>
 <h3 id="贝叶斯决策"><a href="#贝叶斯决策" class="headerlink" title="贝叶斯决策"></a>贝叶斯决策</h3><p><strong>基于观察特征和类别的贝叶斯公式：</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15152258425098.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15152258425098.jpg" alt=""></p>
 <p><strong>贝叶斯决策：</strong></p>
 <p>$$ Decide = \begin{cases} \omega_1, &amp; \text{if $p(\omega_1|x)p(x) \gt p(\omega_2|x)p(x)$} \\ \omega_2, &amp; \text{otherwise} \end{cases}  $$</p>
 <p>通常来讲，贝叶斯决策使用的是 $0-1$ 损失：</p>
-<p><img src="http://qiniu.zzysay.cn/15152258926544.jpg" alt></p>
-<p><img src="http://qiniu.zzysay.cn/15152259153139.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15152258926544.jpg" alt=""></p>
+<p><img src="http://qiniu.zzysay.cn/15152259153139.jpg" alt=""></p>
 <p>后验概率最大化完全等价于期望风险最小化，这也是朴素贝叶斯采用的原理。</p>
-<h3 id="最小风险的贝叶斯决策"><a href="#最小风险的贝叶斯决策" class="headerlink" title="最小风险的贝叶斯决策"></a>最小风险的贝叶斯决策</h3><p><img src="http://qiniu.zzysay.cn/15152264363891.jpg" alt></p>
+<h3 id="最小风险的贝叶斯决策"><a href="#最小风险的贝叶斯决策" class="headerlink" title="最小风险的贝叶斯决策"></a>最小风险的贝叶斯决策</h3><p><img src="http://qiniu.zzysay.cn/15152264363891.jpg" alt=""></p>
 <p><strong>完整的风险损失函数：</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15152264902987.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15152264902987.jpg" alt=""></p>
 <p><strong>决策规则：</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15152270434232.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15152270434232.jpg" alt=""></p>
 <p>即当损失函数为 $0-1$ 损失时，损失系数</p>
 <p>$$ \lambda_{ij} = \begin{cases} 0, &amp; \text{if $i=j$} \\ 1, &amp; \text{otherwise} \end{cases} $$</p>
 <p>最小风险贝叶斯决策等价于最小错误率贝叶斯决策。 </p>
 <h2 id="贝叶斯分类器"><a href="#贝叶斯分类器" class="headerlink" title="贝叶斯分类器"></a>贝叶斯分类器</h2><p>所谓贝叶斯分类器就是基于贝叶斯决策的分类器，我们用 $C$ 来表示类别，用 $\theta$ 表示类别变量 $C$ 中的参数，用 $x$ 表示样本，用 $D$ 表示数据集。</p>
 <p><strong>朴素贝叶斯分类器：</strong> 假设 $P(x|c)$ 中 $x$ 的各维属性独立<br><strong>半朴素贝叶斯分类器：</strong> 假设 $P(x|c)$ 中 $x$ 的各维属性存在依赖<br><strong>正态分布贝叶斯分类器：</strong> 假设 $P(x|c(\theta))$ 服从正态分布</p>
 <h3 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h3><p>所谓朴素贝叶斯分类器，关键点在于采用了“属性条件独立性假设”，即</p>
-<p><img src="http://qiniu.zzysay.cn/15152282033705.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15152282033705.jpg" alt=""></p>
 <p>于是关键问题就变为由训练样本学习类别条件概率 $P(x|c)$ 和类别先验概率 $P(c)$。</p>
-<p><strong>学习过程：</strong><br><img src="http://qiniu.zzysay.cn/15152284355051.jpg" alt></p>
-<p>对于类别条件概率估计，<strong>分两种情况</strong>：<br><img src="http://qiniu.zzysay.cn/15152284816892.jpg" alt></p>
-<p><strong>算法举例：</strong><br><img src="http://qiniu.zzysay.cn/15152289080988.jpg" alt><br><img src="http://qiniu.zzysay.cn/15152289603879.jpg" alt></p>
+<p><strong>学习过程：</strong><br><img src="http://qiniu.zzysay.cn/15152284355051.jpg" alt=""></p>
+<p>对于类别条件概率估计，<strong>分两种情况</strong>：<br><img src="http://qiniu.zzysay.cn/15152284816892.jpg" alt=""></p>
+<p><strong>算法举例：</strong><br><img src="http://qiniu.zzysay.cn/15152289080988.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15152289603879.jpg" alt=""></p>
 <h3 id="拉普拉斯平滑"><a href="#拉普拉斯平滑" class="headerlink" title="拉普拉斯平滑"></a>拉普拉斯平滑</h3><p>在朴素贝叶斯分类过程中，用极大似然估计可能会出现所要估计的概率值为零的情况，这是会影响到后验概率的计算结果，是分类产生错误，此时往往会采用拉普拉斯平滑来解决这一问题。</p>
-<p><img src="http://qiniu.zzysay.cn/15152285510563.jpg" alt></p>
-<p><strong>算法举例：</strong><br><img src="http://qiniu.zzysay.cn/15152290062059.jpg" alt></p>
-<h3 id="正态分布贝叶斯分类器"><a href="#正态分布贝叶斯分类器" class="headerlink" title="正态分布贝叶斯分类器"></a>正态分布贝叶斯分类器</h3><p><img src="http://qiniu.zzysay.cn/15152318929128.jpg" alt><br><img src="http://qiniu.zzysay.cn/15152319047549.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15152285510563.jpg" alt=""></p>
+<p><strong>算法举例：</strong><br><img src="http://qiniu.zzysay.cn/15152290062059.jpg" alt=""></p>
+<h3 id="正态分布贝叶斯分类器"><a href="#正态分布贝叶斯分类器" class="headerlink" title="正态分布贝叶斯分类器"></a>正态分布贝叶斯分类器</h3><p><img src="http://qiniu.zzysay.cn/15152318929128.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15152319047549.jpg" alt=""></p>
 <p><strong>贝叶斯分类：</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15152319284489.jpg" alt></p>
-<p><strong>不同高斯参数情况讨论：</strong><br><img src="http://qiniu.zzysay.cn/15152319770205.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15152319284489.jpg" alt=""></p>
+<p><strong>不同高斯参数情况讨论：</strong><br><img src="http://qiniu.zzysay.cn/15152319770205.jpg" alt=""></p>
 <p>在这种情况下，有：<br>$$ \Sigma_i=\begin{pmatrix}<br> \sigma^2 &amp;  \cdots &amp;  0 \\<br> \<br> \vdots &amp;  \ddots &amp; \vdots \\<br> 0 &amp;  \cdots &amp;  \sigma^2 \\<br> \end{pmatrix}\;\;\;\;|\Sigma_i|=\sigma^{2d}\;\;\;\;\;\Sigma_i^{-1}=\begin{pmatrix}<br> 1/\sigma^2 &amp;  \cdots &amp;  0 \\<br> \<br> \vdots &amp;  \ddots &amp; \vdots \\<br> 0 &amp;  \cdots &amp;  1/\sigma^2 \\<br> \end{pmatrix} $$</p>
 <p>代入式 $1$ 得：</p>
 <p>$$ g_i({\bf x})=\frac{d}{2}{\rm ln}\;2\pi-\frac{1}{2}{\rm In}\;\sigma^{2d}-\frac{\bf x^Tx}{2\sigma^2}-\frac{(-2{\bf \mu_i}^T{\bf x}+{\bf \mu_i}^T{\bf \mu_i})}{2\sigma^2}+{\rm In}\;p(\omega_i)$$</p>
 <p>上式的第一项、第二项和第三项与类别无关，可以忽略。</p>
-<p><img src="http://qiniu.zzysay.cn/15152319930871.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15152319930871.jpg" alt=""></p>
 <p>决策面方程：<br>$$({\bf \mu_i}-{\bf \mu_j})^T[{\bf x}+\frac{1}{2}({\bf \mu_i}+{\bf \mu_j})-\frac{\sigma^2}{({\bf \mu_i}-{\bf \mu_j})^T}{\rm In}\;\frac{p(\omega_i)}{p(\omega_j)}]=0$$</p>
 <p>注：由于 $g_i(x)=w_i^tx+ \omega_{i0}$ 为线性函数，其决策面由线性方程 $g_i(x)-g_j(x)=0$ 决定，决策面为一个超平面。在该情况下，决策界方差可以写成 $w^t(x-x_0)=0$ 的形式，其中 $x_0$ 只是一个符号，和变量 $x$ 并没有关系。</p>
 <p>满足 $w^t(x-x_0)=0$ 的 $x$ 的轨迹是 $\omega_i$ 和 $\omega_j$ 类间的决策面，当 $ p(\omega_i) = p(\omega_j)$ 时，超平面通过 $\mu_i$ 和 $\mu_j$ 连线中点并与连线正交。</p>
-<p><img src="http://qiniu.zzysay.cn/15152320138209.jpg" alt><br><img src="http://qiniu.zzysay.cn/15152328274300.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15152320138209.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15152328274300.jpg" alt=""></p>
 <p>第二种情况和第一种情况相比缺少了各维属性相互独立的条件，代入式 $1$ 得到：</p>
 <p>$$ g_i({\bf x})=-\frac{d}{2}{\rm In}\;2\pi-\frac{1}{2}{\rm In}\;|\Sigma|-\frac{1}{2}({\bf x}-{\bf \mu_i})^T\Sigma^{-1}({\bf x}-{\bf \mu_i})+{\rm In}\;p(\omega_j)$$</p>
 <p>其中，第一项和第二项与类别无关，可以忽略。</p>
 <p>展开后忽略无关项得到：</p>
 <p>$$ \begin{align} g_i({\bf x}) &amp;=-\frac{1}{2}(-{\bf x}^T\Sigma^{-1}{\bf \mu_i}-{\bf \mu_i}^T\Sigma^{-1}{\bf x}+{\bf \mu_i}^T\Sigma^{-1}{\bf \mu_i})+{\rm In}\;p(\omega_j) \nonumber \\&amp;<br>=-\frac{1}{2}(-2{\bf \mu_i}^T\Sigma^{-1}{\bf x}+{\bf \mu_i}^T\Sigma^{-1}{\bf \mu_i})+{\rm In}\;p(\omega_j) \nonumber \\&amp;<br>={\bf \mu_i}^T\Sigma^{-1}{\bf x}-\frac{1}{2}{\bf \mu_i}^T\Sigma^{-1}{\bf \mu_i}+{\rm In}\;p(\omega_j)\nonumber \end{align}$$</p>
-<p><img src="http://qiniu.zzysay.cn/15152328498774.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15152328498774.jpg" alt=""></p>
 <p>决策面方程：</p>
 <p>$$({\bf \mu_i}^T-{\bf \mu_j}^T)\Sigma^{-1}{\bf x}-\frac{1}{2}({\bf \mu_i}^T\Sigma^{-1}{\bf \mu_i}-{\bf \mu_j}^T\Sigma^{-1}{\bf \mu_j})+{\rm In}\;\frac{p(\omega_i)}{p(\omega_j)}=0$$</p>
-<p><img src="http://qiniu.zzysay.cn/15152329459510.jpg" alt><br><img src="http://qiniu.zzysay.cn/15152330098013.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15152329459510.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15152330098013.jpg" alt=""></p>
 <p>决策面方程：<br>$${\bf x}^T(W_i-W_j){\bf x}+({\bf w_i}^T-{\bf w_j}^T){\bf x}+w_{i0}-w_{j0}=0$$</p>
 <p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] 李航,《统计学习方法》,清华大学出版社</p>
 
@@ -564,7 +564,7 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Zhenyu Zhang">
           <p class="site-author-name" itemprop="name">Zhenyu Zhang</p>
            

@@ -194,7 +194,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -204,7 +204,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -304,16 +304,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/23/sml-neural-network/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ZZY SAY">
     </span>
 
@@ -356,7 +356,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/" itemprop="url" rel="index">
                     <span itemprop="name">Class Notes</span>
                   </a>
@@ -367,7 +367,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/Statistical-Machine-Learning/" itemprop="url" rel="index">
                     <span itemprop="name">Statistical Machine Learning</span>
                   </a>
@@ -402,10 +402,10 @@
       
 
       
-        <p><img src="http://qiniu.zzysay.cn/15166713554832.jpg" alt></p>
+        <p><img src="http://qiniu.zzysay.cn/15166713554832.jpg" alt=""></p>
 <a id="more"></a>
 <h2 id="多层感知机"><a href="#多层感知机" class="headerlink" title="多层感知机"></a>多层感知机</h2><h3 id="多层感知机的运算"><a href="#多层感知机的运算" class="headerlink" title="多层感知机的运算"></a>多层感知机的运算</h3><p>多层感知机的含有 $1$ 个数据输入层，$1$ 个以上的隐藏层，$1$ 个数据输出层，各层神经元之间全连接，同一层神经元之间无连接。</p>
-<p><img src="http://qiniu.zzysay.cn/15166714102481.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15166714102481.jpg" alt=""></p>
 <p>信息传播公式：<br>$$ z^{(l)} = W^{(l)}·a^{(l-1)} + b^{(l)} \\<br>a^{(l)} = f_l(z^{(l)})$$</p>
 <p>其中：</p>
 <ul>
@@ -425,19 +425,19 @@
 <p>对于参数的学习，有两种学习方法，批量学习和在线学习。</p>
 <p><strong>批量学习</strong>：共有 $N$ 个样本（一个 $batch$），随机采样 $batch$ 训练样本值，$batch-by-batch$ 地调整权重，优点是梯度向量形式固定，缺点是需要的内存资源大。<br><strong>在线学习</strong>：$sample-by-sample$ 地调整权重，优点是易执行、存储量小、有效解决大规模和困难模式的分类，缺点是学习过程随机、不稳定。</p>
 <h3 id="误差反向传播算法"><a href="#误差反向传播算法" class="headerlink" title="误差反向传播算法"></a>误差反向传播算法</h3><h4 id="BP基本思想"><a href="#BP基本思想" class="headerlink" title="BP基本思想"></a>BP基本思想</h4><p>$BP$ 算法全称叫作误差反向传播算法（$Error\;Back\;Propagation$），或者也叫误差逆传播算法，其核心思想为<strong>数据正向传递，误差反向传播</strong>。</p>
-<p><img src="http://qiniu.zzysay.cn/15166714102481.jpg" alt><br><img src="http://qiniu.zzysay.cn/15166732763992.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15166714102481.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15166732763992.jpg" alt=""></p>
 <p><strong>变量依赖关系</strong><br>由$ z^{(l)} = W^{(l)}·a^{(l-1)} + b^{(l)} ，a^{(l)} = f_l(z^{(l)})$ 得：</p>
 <p>$$ z^{(l)} = W^{(l)}·f_l(z^{(l)}) + b^{(l)}$$</p>
 <p>可见 $W^{(l)}$ 和 $b^{(l)}$ 都与 $z^{(l)}$ 有关，所以如果能够求取 $z^{(l)}$ 的局部梯度，就可以求出 $W^{(l)}$ 和 $b^{(l)}$ 的梯度。</p>
-<p><img src="http://qiniu.zzysay.cn/15166739208412.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15166739208412.jpg" alt=""></p>
 <p>如下图所示，反向越深的隐层与目标函数之间的变量依赖关系越复杂，使用近似计算的计算复杂度会相当高。</p>
-<p><img src="http://qiniu.zzysay.cn/15166739513116.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15166739513116.jpg" alt=""></p>
 <p>$BP$ 算法通过局部梯度迭代的策略，解决了这一问题：</p>
-<p><img src="http://qiniu.zzysay.cn/15166740295852.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15166740295852.jpg" alt=""></p>
 <h4 id="BP算法过程"><a href="#BP算法过程" class="headerlink" title="BP算法过程"></a>BP算法过程</h4><p>按照 $BP$ 的局部梯度迭代策略，问题也就转化成了已知 $l+1$ 层的局部梯度，求 $l$ 层的局部梯度。</p>
 <p>假设 $l+1$ 层的局部梯度是已知的：</p>
 <p>$$ \delta_j^{(l+1)} = \frac {\partial L} {\partial z_j^{(l+1)}}$$</p>
-<p><img src="http://qiniu.zzysay.cn/15166746830058.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15166746830058.jpg" alt=""></p>
 <p>由图可知：<br>$$z_j^{(l+1)} = \sum_j a_i^{(l)}w_{ij}^{(l+1)} = \sum_i f_i(z_i^{(l)})w_{ij}^{(l+1)} $$</p>
 <p>显然：</p>
 <p>$$ \frac {\partial z_j^{(l+1)}} {\partial z_i^{(l)}} =  \frac {\partial z_j^{(l+1)}} {\partial z_i^{(l)}}· \frac {\partial a_i^{(l)}} {\partial z_i^{(l)}} =  f’_i(z_i^{(l)}) w_{ij}^{(l+1)} $$</p>
@@ -445,9 +445,9 @@
 <p>$$ \delta_i^{(l)} = \sum_{j=1}^m \frac {\partial z_j^{(l+1)}} {\partial z_i^{(l)}} · \frac {\partial L} {\partial z_j^{(l+1)}}  = \sum_{j=1}^m f’_i(z_i^{(l)}) w_{ij}^{(l+1)} \delta_i^{(l+1)} = f’_i(z_i^{(l)}) \sum_{j=1}^m  w_{ij}^{(l+1)} \delta_i^{(l+1)} $$</p>
 <center><br><img src="http://qiniu.zzysay.cn/15166754014576.jpg" width="180/"><br></center>
 
-<p>输出层参数的学习：<br><img src="http://qiniu.zzysay.cn/15166758063254.jpg" alt></p>
+<p>输出层参数的学习：<br><img src="http://qiniu.zzysay.cn/15166758063254.jpg" alt=""></p>
 <p>在 $(1)$ 中，$y$ 代表的是感知机的输出，也就是第 $L$ 层的输出，和 $a^{(L)}$ 是等价的。</p>
-<p>隐层参数的学习：<br><img src="http://qiniu.zzysay.cn/15166758345608.jpg" alt></p>
+<p>隐层参数的学习：<br><img src="http://qiniu.zzysay.cn/15166758345608.jpg" alt=""></p>
 <p>于是可以得到 $BP$ 算法的流程：</p>
 <ol>
 <li>数据初始化</li>
@@ -466,9 +466,9 @@
 <li>最后把每个梯度乘以缩放因子 $clip\;norm / \max(global\;norm, clip\;norm)$</li>
 </ul>
 <h2 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h2><p>多层感知机是一种全连接的结构，但又是全连接的网络会存在一定程度的冗余，卷积神经网络（$Convolutional\;Neural\;Network, CNN$）通过<strong>局部连接和权重共享</strong>的方法来实现对多层感知机的共享。</p>
-<p><img src="http://qiniu.zzysay.cn/15166888671455.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15166888671455.jpg" alt=""></p>
 <p>我们可以对通过下图对卷积神经网络的结构有一个直观的认识：</p>
-<p><img src="http://qiniu.zzysay.cn/15166891283560.png" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15166891283560.png" alt=""></p>
 <h3 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h3><p>卷积神经网络中每层卷积层由若干卷积单元组成。卷积运算的目的是<strong>提取输入的不同特征</strong>，第一层卷积层可能只能提取一些低级的特征如边缘、线条和角等层级，更多层的网络能从低级特征中迭代提取更复杂的特征。</p>
 <h4 id="一维卷积"><a href="#一维卷积" class="headerlink" title="一维卷积"></a>一维卷积</h4><p>给定一个序列 $x_t, t=1,2,\dots, n$ 和一个过滤器 $f_t,  t=1,2,\dots, m$，卷积结果是：</p>
 <p>$$ y_t = \sum_{k=1}^m f_k · x_{t-k+1}$$</p>
@@ -477,33 +477,33 @@
 <h4 id="二维卷积"><a href="#二维卷积" class="headerlink" title="二维卷积"></a>二维卷积</h4><p>给定一个图像 $x_{ij},1 \le i \le M,1 \le j \le N $ 和一个过滤器 $f_{ij},1 \le i \le m,1 \le j \le n$，卷积结果是：</p>
 <p>$$ y_{ij} = \sum_{u=1}^m \sum_{v=1}^n f_{uv} · x_{i-u+1,j-v+1} $$</p>
 <p>在二维图像中，卷积意味着区域内像素的加权平均</p>
-<p><img src="http://qiniu.zzysay.cn/15167030196805.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15167030196805.jpg" alt=""></p>
 <h4 id="输出尺度和参数个数"><a href="#输出尺度和参数个数" class="headerlink" title="输出尺度和参数个数"></a>输出尺度和参数个数</h4><p><strong>填充设置</strong><br>填充设置 $Pad$ 是卷积中的另外一个参数，根据填充设置的不同，卷积的结果有窄卷积，等长卷积和宽卷积，通常情况下，填充的内容都为 $0$，在上面的演示中，一维卷积我们使用的是窄卷积，二维卷积我们使用的是等长卷积。<br><strong>窄卷积</strong>：信号两端不补 $0$，输出信号长度为 $N-M+1$<br><strong>宽卷积</strong>：信号两端补 $0$，输出信号长度为 $N+M-1$<br><strong>等长卷积</strong>：信号两端补 $0$，输出信号长度为 $N$</p>
 <p><strong>输出尺度</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15166915129929.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15166915129929.jpg" alt=""></p>
 <p>输入尺度：<br>宽度 $W_1 = 32$<br>高度 $H_1 = 32$<br>深度 $D_1 = 32$<br>输出尺寸：<br>宽度 $W_2 = 1+ (W_1-F_W+2P)/S = 32$<br>高度 $H_2 = 1+ (H_1-F_H+2P)/S = 32$<br>深度 $D_2 = K = 10$<br>其中，$F_W$ 是过滤器宽度，$F_H$ 是过滤器高度，$K$ 是过滤器个数，$P$ 是填充大小，$S$ 是步长。</p>
 <p>注：不同的过滤器可能是对不同层采样，也可能使用不同的参数对同一层采样。</p>
-<p><strong>参数个数</strong><br><img src="http://qiniu.zzysay.cn/15166939232739.jpg" alt></p>
+<p><strong>参数个数</strong><br><img src="http://qiniu.zzysay.cn/15166939232739.jpg" alt=""></p>
 <p>参数个数 $P = (F_W \times F_H \times D_1 + 1) \times K$，其中的 $1$ 表示阈值。</p>
 <p>卷积层有一个概念就是权值共享，如没有这个原则，则特征图由 $10$ 个$32\times 32\times 1$ 的特征图组成，即每个特征图上有 $1024$ 个神经元，每个神经元对应输入图像上一块 $5\times 5\times 3$ 的区域，即一个神经元和输入图像的这块区域有 $75$ 个连接，即 $75$ 个权值参数，这是非常复杂的，因此卷积神经网络引入权值共享原则，即一个特征图上每个神经元对应的 $75$ 个权值参数被每个神经元共享，这样则只需 $75\times10=750$ 个权值参数，而每个特征图的阈值也共享，即需要 $10$ 个阈值，则总共需要$750+10=760$ 个参数。</p>
 <h3 id="子采样层"><a href="#子采样层" class="headerlink" title="子采样层"></a>子采样层</h3><p>池化（$Pooling$）是卷积神经网络中另一个重要的概念，它实际上是一种形式的<strong>下采样</strong>。当前最大池化（$Max\;Pooling$）是最为常见，它是将输入的图像划分为若干个矩形区域，对每个子区域输出最大值。</p>
-<p><img src="http://qiniu.zzysay.cn/15166954944043.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15166954944043.jpg" alt=""></p>
 <p>直觉上，这种机制能够有效地原因在于，在发现一个特征之后，它的精确位置远不及它和其他特征的相对位置的关系重要。<strong>池化层会不断地减小数据的空间大小，因此参数的数量和计算量也会下降，这在一定程度上也控制了过拟合</strong>。通常来说，$CNN$ 的卷积层之间都会周期性地插入池化层。</p>
 <p>池化层通常会分别作用于每个输入的特征并减小其大小。$Max\;Pooling$ 每隔 $2$ 个元素从图像划分出 $2\times 2$ 的区块，然后对每个区块中的 $4$ 个数取最大值，这将会减少百分之七十五的数据量。</p>
 <p>除了最大池化之外，池化层也可以使用其他池化函数，例如“平均池化”甚至“$L2$范数池化”等，由于池化层过快地减少了数据的大小，目前文献中的趋势是在池化运算时使用较小的区块，甚至不再使用池化层。</p>
 <h2 id="递归神经网络"><a href="#递归神经网络" class="headerlink" title="递归神经网络"></a>递归神经网络</h2><p>递归神经网络（$RNN$）是两种人工神经网络的总称，一种是时间递归神经网络（$Recurrent\;Neural\;Network$，即常说的循环神经网络），另一种是递归神经网络（$Recursive\;Neural\;Network$）。</p>
-<h3 id="基本递归结构"><a href="#基本递归结构" class="headerlink" title="基本递归结构"></a>基本递归结构</h3><p><img src="http://qiniu.zzysay.cn/15166966756355.jpg" alt><br><img src="http://qiniu.zzysay.cn/15166966980497.jpg" alt><br><img src="http://qiniu.zzysay.cn/15166967282178.jpg" alt><br><img src="http://qiniu.zzysay.cn/15166967649556.jpg" alt></p>
+<h3 id="基本递归结构"><a href="#基本递归结构" class="headerlink" title="基本递归结构"></a>基本递归结构</h3><p><img src="http://qiniu.zzysay.cn/15166966756355.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15166966980497.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15166967282178.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15166967649556.jpg" alt=""></p>
 <p><strong>通用逼近定理</strong>：如果网络具有充分多的隐藏神经元，任意的非线性动态系统可以由递归神经网络以期望的精度来逼近，对于状态空间的紧致性没有限制。</p>
 <ul>
 <li><strong>可控和可观测</strong>：递归网络具有局部线性可控和局部可观测性</li>
 <li><strong>计算能力</strong>：所有图灵机都可由建立在用 $sigmoid$ 激活函数的神经元上的完全连接递归网络模拟</li>
 </ul>
 <h3 id="循环神经网络"><a href="#循环神经网络" class="headerlink" title="循环神经网络"></a>循环神经网络</h3><p>循环神经网络类似于上文所述的第二种结构，基本的循环单元如下图所示：</p>
-<p><img src="http://qiniu.zzysay.cn/15166969174380.jpg" alt></p>
-<p>按照时间上延展开：<br><img src="http://qiniu.zzysay.cn/15166972908293.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15166969174380.jpg" alt=""></p>
+<p>按照时间上延展开：<br><img src="http://qiniu.zzysay.cn/15166972908293.jpg" alt=""></p>
 <h4 id="分回合训练"><a href="#分回合训练" class="headerlink" title="分回合训练"></a>分回合训练</h4><p>同样，梯度是反向传播的，问题在于求 $W_a$，$W_b$，$W_c$，其中，$W_a$，$W_b$ 的梯度依赖于局部梯度，$W_a$ 相当于多层感知机的隐层，$W_c$ 相当于输出层。</p>
-<p><img src="http://qiniu.zzysay.cn/15166976732255.jpg" alt></p>
-<p>局部梯度迭代：<br><img src="http://qiniu.zzysay.cn/15166978706104.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15166976732255.jpg" alt=""></p>
+<p>局部梯度迭代：<br><img src="http://qiniu.zzysay.cn/15166978706104.jpg" alt=""></p>
 <p>采用 $BP$ 算法的思想，显然有：</p>
 <p>$$ \delta_k = \frac {\partial L} {\partial v_k} = \frac {\partial\left(\sum_{l=k}^n L(y_l) \right)} {\partial v_k} = \frac {\partial L(y_k)} {\partial v_k} + \frac {\partial\left(\sum_{l=k}^n L(y_l) \right)} {\partial v_k} = \frac {\partial L(y_k)} {\partial v_k} + \frac {\partial v_{k+1}} {\partial v_k}\delta_{k+1} $$</p>
 <p>其中：</p>
@@ -513,40 +513,40 @@
 <p>当 $k \ne n$ 时<br>$$ \delta_k = \frac {\partial L} {\partial v_k}= \frac {\partial L(y_k)} {\partial v_k} + \frac {\partial s_{k+1}} {\partial v_k} \delta_{k+1} = diag(\sigma’(v_k))(W_c^T L’(y_k)+W_a^T\delta_{k+1}) $$</p>
 <p>参数更新：</p>
 <p>$$ W_a = W_a - \eta_1 \delta_k \frac {\partial v_k}{\partial W_a} = W_a - \eta_1 \delta_k \sum_{k=1}^n s_{k-1}^T<br>\\ W_b = W_b - \eta_2 \delta_k \frac {\partial v_k}{\partial W_b} = W_b - \eta_2 \delta_k \sum_{k=1}^n x_k^T<br>\\ W_c = W_c - \eta_3 \delta_k \frac {\partial v_k}{\partial W_c} = W_c - \eta_3 \sum_{k=1}^n s_k^T$$</p>
-<h4 id="实时递归训练"><a href="#实时递归训练" class="headerlink" title="实时递归训练"></a>实时递归训练</h4><p><img src="http://qiniu.zzysay.cn/15167023900793.jpg" alt></p>
+<h4 id="实时递归训练"><a href="#实时递归训练" class="headerlink" title="实时递归训练"></a>实时递归训练</h4><p><img src="http://qiniu.zzysay.cn/15167023900793.jpg" alt=""></p>
 <h4 id="RNN扩展结构"><a href="#RNN扩展结构" class="headerlink" title="RNN扩展结构"></a>RNN扩展结构</h4><p>$RNN$ 可以较好地处理短依赖关系，但是往往无法较好地处理长时依赖关系，下图所示的是一个标准的 $RNN$ 按时序的延展结构，</p>
-<p><img src="http://qiniu.zzysay.cn/15167039514705.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15167039514705.jpg" alt=""></p>
 <p>在自然语言处理的环境中，有时候只考虑前面的词是远远不够的，于是就出现了<strong>双向循环神经网络</strong>结构：</p>
-<p><img src="http://qiniu.zzysay.cn/15167039596696.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15167039596696.jpg" alt=""></p>
 <p>从上图可以看出，双向卷积神经网络的隐藏层要保存两个值，一个 $A$ 参与正向计算，另一个值 $A’$ 参与反向计算，最终的输出值 $y_n$ 取决于 $A_n$ 和 $A_n’$ 。正向计算时，隐藏层的值与 $s_t$ 和 $s_{t-1}$ 有关；反向计算时，隐藏层的值与 $s_t’$ 和 $s_{t+1}’$ 有关，最终的输出取决于正向和反向计算的加和，正向计算和反向计算的权重矩阵都是不相同的。</p>
 <h3 id="长短时记忆神经网络"><a href="#长短时记忆神经网络" class="headerlink" title="长短时记忆神经网络"></a>长短时记忆神经网络</h3><p>如下图所示的是一个传统的 $RNN$ 单元结构，梯度消失和梯度爆炸是传统 $RNN$ 中最为致命的一个缺陷。</p>
-<p><img src="http://qiniu.zzysay.cn/15167054767233.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15167054767233.jpg" alt=""></p>
 <p>在梯度的反向传播过程中，当到达一个梯度几乎为零的阶段 $t$ ，从这个时刻开始再继续往前传播，得到的梯度就不会对最终的梯度值有任何贡献，这就相当于无论 $t$ 之前的网络状态是什么，在训练中都不会对权重数组的更新产生影响，也就是网络事实上已经忽略了 $t$ 时刻之前的状态，这就是原始 $RNN$ 无法处理长距离依赖的原因。</p>
 <p>长短时记忆神经网络($Long\; Short-Term\;Memory\;Neural\;Network， LSTM$)是 $RNN$ 的一个变体，可以有效地解决简单循环神经网络的梯度爆炸或消失问题。</p>
-<p><img src="http://qiniu.zzysay.cn/15167054592843.png" alt><br><img src="http://qiniu.zzysay.cn/15167055228439.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15167054592843.png" alt=""><br><img src="http://qiniu.zzysay.cn/15167055228439.jpg" alt=""></p>
 <p>$LSTM$ 模型的关键是引入了一组记忆单元($Memory\;Units$)，允许网络可以学习何时遗忘历史信息，何时用新信息更新记忆单元。在时刻 $t$ 时，记忆单元 $c_t$ 记录了到当前时刻为止的所有历史信息，并受三个门控制：输入门 $i_t$, 遗忘门 $f_t$ 和输出门 $o_t$，三个门的元素的值在 $[0,1]$ 之间。</p>
-<p>$LSTM$ 中最为核心的就是贯穿整个网络的记忆，也就是细胞的状态，用来记录目前为止的所有历史信息。<br><img src="http://qiniu.zzysay.cn/15167057481734.jpg" alt></p>
+<p>$LSTM$ 中最为核心的就是贯穿整个网络的记忆，也就是细胞的状态，用来记录目前为止的所有历史信息。<br><img src="http://qiniu.zzysay.cn/15167057481734.jpg" alt=""></p>
 <p>除此之外，还有门的概念，门由一个 $sigmoid$ 层和一个点乘运算组成，使用 $sigmoid$ 函数意味着要么使信息全部通过，要么阻止全部信息，每个门都可开可关，而且门在每个步骤都会重新组合开关状态。</p>
 <center><br><img src="http://qiniu.zzysay.cn/15167063527521.jpg" width="100/"><br></center>
 
 <p>$\sigma$ 符号表示 $sigmoid$ 激活函数，用于决定什么信息需要遗忘/输入/输出<br>点乘符号来执行遗忘/输入/输出操作，遗忘/输入/输出那些我们在 $sigmoid$ 层决定遗忘/输入/输出的信息</p>
 <h4 id="遗忘门"><a href="#遗忘门" class="headerlink" title="遗忘门"></a>遗忘门</h4><p>$LSTM$ 的第一步是决定要丢弃多少历史信息（遗忘细胞中的记忆），遗忘门（$Forget\;Gate$）就是来做这个工作的。它输入 $h_{t−1}$ 和 $x_t$，然后为 $C_{t−1}$ 中的每个神经元生成一个 $0~1$ 之间的数字，$0$ 代表完全丢弃，$1$ 代表完全保留。所以我们期望让它需要记住一些确切的东西时，它可以被完全激活；当不再需要这些信息时，它可以被再次关闭。</p>
-<p><img src="http://qiniu.zzysay.cn/15167066694504.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15167066694504.jpg" alt=""></p>
 <p>符号含义：<br>$f_t$：遗忘门的输出<br>$W_f$：遗忘门的权重矩阵<br>$b_f$：遗忘门的偏移量<br>$h_{t−1}$：$t-1$ 时刻的输出，同时也是 $t$ 时刻的输入<br>$x_t$：$t$ 时刻新输入的内容<br>$\sigma$：$sigmoid$ 激活函数</p>
 <p>模拟一个语言模型的场景，在神经元状态或许包括当前主语中的性别信息，所以可以使用正确的代词。当我们看到一个新的主语，我们会去遗忘之前的性别信息。</p>
 <h4 id="输入门"><a href="#输入门" class="headerlink" title="输入门"></a>输入门</h4><p>下一步的工作就是我们要决定在决定了是否要在记忆细胞中保存从新输入的信息，这个模块包括两个部分，一个部分是输入门（$Input\;Gate$），决定我们要更新的数值，一个部分创建一个新的候选值，这都是为下一步的状态更新做准备。</p>
-<p><img src="http://qiniu.zzysay.cn/15167077598531.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15167077598531.jpg" alt=""></p>
 <p>符号含义：<br>$i_t$：输入门的输出<br>$W_i$：输入门的权重矩阵<br>$b_i$：输入门的偏移量<br>$h_{t−1}$：$t-1$ 时刻的输出，同时也是 $t$ 时刻的输入<br>$x_t$：$t$ 时刻新输入的内容<br>$\sigma$：$sigmoid$ 激活函数</p>
 <p>$\tilde C_t$：新输入的全部信息<br>$W_C$：输入状态的权重矩阵<br>$b_C$：输入状态的偏移量<br>$\tanh$：双曲正切激活函数</p>
 <p>在语言模型的例子中，我们想给神经元状态增加新的主语的性别，替换我们将要遗忘的旧主语。</p>
 <p>关于激活函数：<br>$sigmoid$ 用在各种门上，产生 $[0,1]$ 之间的值，这个工作只有 $sigmoid$ 可以胜任。<br>$tanh$ 用在状态和输出上，是对数据的处理，产生的是 $[-1,1]$ 之间的值，这个工作使用其他的激活函数或许也可以。</p>
 <h4 id="更新记忆"><a href="#更新记忆" class="headerlink" title="更新记忆"></a>更新记忆</h4><p>现在我们来更新记忆细胞中的信息，我们在上一步已经确定了有什么信息需要更新，现在只需要把它们结合到一起。我们给旧的记忆乘以 $f_t$，遗忘掉我们之前决定要遗忘的信息，然后给新的候选记忆 $\tilde C_t$ 乘以 $i_t$，加入我们之前决定要加入的信息，加入的信息量的多少取决于我们决定更新每个状态的程度。</p>
-<p><img src="http://qiniu.zzysay.cn/15167093804653.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15167093804653.jpg" alt=""></p>
 <p>符号含义：<br>$f_t$：遗忘门的输出<br>$C_{t_1}$：上一时刻的全部信息<br>$i_i$：输入门的输出<br>$\tilde C_t$：新输入的全部信息<br>$C_t$：当前时刻的全部信息</p>
 <p>在状态更新的时候，$LSTM$ 是用的乘法函数和加法函数结合的方法，所以就不容易出现总梯度逐渐接近 $0$ 的情况，从而解决了 $RNN$ 出现梯度消失，不能进行长时依赖的问题。</p>
 <p>在语言模型的例子中，这里就是我们实际上要丢弃旧主语的性别信息，增加新主语性别信息的地方。</p>
 <h4 id="输出门"><a href="#输出门" class="headerlink" title="输出门"></a>输出门</h4><p>最后，我们要做的是决定当前环节的输出，首先使用一个输出门（$Output\;Gate$）决定输出细胞状态的哪个部分，接着用 $tanh$ 函数处理细胞状态（使其值域在 $[-1,1]$ 之间），再将其和输出门的输出相乘，输出我们确定要输出的部分。</p>
-<p><img src="http://qiniu.zzysay.cn/15167107516817.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15167107516817.jpg" alt=""></p>
 <p>符号含义：<br>$o_t$：输出门的输出<br>$W_o$：输出门的权重矩阵<br>$b_o$：输出门的偏移量<br>$h_{t−1}$：$t-1$ 时刻的输出，同时也是 $t$ 时刻的输入<br>$x_t$：$t$ 时刻新输入的内容<br>$\sigma$：$sigmoid$ 激活函数</p>
 <p>$C_t$：当前时刻的全部信息<br>$h_t$：当前时刻的输出<br>$\tanh$：双曲正切激活函数</p>
 <p>在语言模型的例子中，当我们看到一个主语的时候，我们或许想输出相关的动词信息，例如我们可能需要根据单复数信息来输出“他”或者“他们”。</p>
@@ -554,11 +554,11 @@
 <p>$$ i_t = \sigma(W_ix_t + U_ih_{t-1} + V_ic_{t-1})<br>\\ f_t = \sigma(W_fx_t + U_fh_{t-1} + V_fc_{t-1})<br>\\ o_t = \sigma(W_ox_t + U_oh_{t-1} + V_oc_{t-1})<br>\\ \tilde C_t = tanh(W_Cx_t + U_Ch_{t-1})<br>\\ C_t = f_t · c_{t-1} + i_t · \tilde C_t<br>\\ h_t = o_t · tanh(c_t)$$</p>
 <p>这里，$x_t$ 是当前时刻的输入，$\sigma$ 是 $sigmoid$ 函数，$V_i, V_f, V_o$ 是对角矩阵。<br>遗忘门 $f_t$ 控制每一个内存单元需要遗忘多少信息<br>输入门 $i_t$ 控制每一个内存单元加入多少新的信息<br>输出门 $o_t$ 控制每一个内存单元输出多少信息</p>
 <h4 id="LSTM变种结构"><a href="#LSTM变种结构" class="headerlink" title="LSTM变种结构"></a>LSTM变种结构</h4><p><strong>Peephole</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15167118536935.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15167118536935.jpg" alt=""></p>
 <p>加入了窥视孔连接。这意味着门限层也将单元状态作为输入，上图中所有的门限中都加入了窥视孔，但是许多论文都只使用部分窥视孔。</p>
 <p><strong>GRU</strong></p>
 <p>门限循环单元（$Gated\;Recurrent\;Unit, GRU$）是一种 $LSTM$ 的简化版本。$GRU$ 将输入门与和遗忘门合并成一个门：更新门（$Update\;Gate$），同时还合并了记忆单元 $c_t$ 和神经元活性 $h_t$。</p>
-<p><img src="http://qiniu.zzysay.cn/15167126992136.png" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15167126992136.png" alt=""></p>
 <p>$GRU$ 模型：更新门 $z$ 和重置门 $r$</p>
 <ul>
 <li>更新门 $z$：用来控制当前的状态需要遗忘多少历史信息和接受多少新信息</li>
@@ -687,7 +687,7 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Zhenyu Zhang">
           <p class="site-author-name" itemprop="name">Zhenyu Zhang</p>
            

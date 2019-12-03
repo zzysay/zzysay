@@ -173,7 +173,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -183,7 +183,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -283,16 +283,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/11/sml-regression/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ZZY SAY">
     </span>
 
@@ -335,7 +335,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/" itemprop="url" rel="index">
                     <span itemprop="name">Class Notes</span>
                   </a>
@@ -346,7 +346,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/Statistical-Machine-Learning/" itemprop="url" rel="index">
                     <span itemprop="name">Statistical Machine Learning</span>
                   </a>
@@ -381,25 +381,25 @@
       
 
       
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><img src="http://qiniu.zzysay.cn/15156763006592.jpg" alt></p>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><img src="http://qiniu.zzysay.cn/15156763006592.jpg" alt=""></p>
 <a id="more"></a>
 <h3 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h3><p>根据给定的训练集 $T={(x_1, y_1),\dots,(x_l, y_l)}$，其中 $x_i \in C = R^n$，$y_i \in Y = R$，预测的结果 $y$ 为连续函数值，要求寻找 $R^n$ 上的决策函数 $f(x): C \rightarrow Y$。</p>
-<h3 id="性能评价"><a href="#性能评价" class="headerlink" title="性能评价"></a>性能评价</h3><p><img src="http://qiniu.zzysay.cn/15156764491048.jpg" alt><br><img src="http://qiniu.zzysay.cn/15156766017162.jpg" alt></p>
-<h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3><p><img src="http://qiniu.zzysay.cn/15156769005581.jpg" alt></p>
+<h3 id="性能评价"><a href="#性能评价" class="headerlink" title="性能评价"></a>性能评价</h3><p><img src="http://qiniu.zzysay.cn/15156764491048.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15156766017162.jpg" alt=""></p>
+<h3 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h3><p><img src="http://qiniu.zzysay.cn/15156769005581.jpg" alt=""></p>
 <p>对于所谓的一元、二元、多元回归，$N$ 元对应的就是变量 $x$ 的维度。 </p>
 <h2 id="最小二乘估计"><a href="#最小二乘估计" class="headerlink" title="最小二乘估计"></a>最小二乘估计</h2><p>“二乘”的意思就是“平方”，其目标函数也就是最小化平方误差的和：</p>
 <p>$$ \min_{\theta} \sum_{t=1}^n (y_t - \theta^Tx_t - \theta_0)^2 $$</p>
 <p>矩阵求解过程：</p>
-<p><img src="http://qiniu.zzysay.cn/15156774780393.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15156774780393.jpg" alt=""></p>
 <h2 id="最大似然估计"><a href="#最大似然估计" class="headerlink" title="最大似然估计"></a>最大似然估计</h2><p>最大似然估计中最重要的是“似然”的概念，即模型已知，参数未定。关于概率和似然的相关概念，<a href="http://zzysay.github.io/2018/01/06/sml-parameter-estimation/">这里</a>有更为详细的解释。本章节讨论的是似然函数服从正态分布假设的最大似然估计。</p>
 <p>这里我们所说的正态分布指的是误差服从正态分布：<br>$$ y_t = \theta^Tx + \theta_0 + \epsilon_t \; t=1,2,\dots, n $$</p>
 <p>其中，$\epsilon_t \sim N(0, \sigma^2)$ 并且 $\epsilon$ 之间相互独立。</p>
 <p>正态分布概率密度函数：<br>$$f(x) = \frac 1 {\sqrt[]{2\pi \sigma^2}} exp (-\frac {(x-\mu)^2} {2\sigma^2}) $$</p>
-<p>写出似然函数：<br><img src="http://qiniu.zzysay.cn/15156784474169.jpg" alt></p>
-<p>对数似然：<br><img src="http://qiniu.zzysay.cn/15156785443854.jpg" alt></p>
+<p>写出似然函数：<br><img src="http://qiniu.zzysay.cn/15156784474169.jpg" alt=""></p>
+<p>对数似然：<br><img src="http://qiniu.zzysay.cn/15156785443854.jpg" alt=""></p>
 <p>显然，此时最大化对数似然估计等价于最小化二乘估计，这种情况出现在正态分布的情况下是完全可解释的。</p>
 <h3 id="优化学习方法"><a href="#优化学习方法" class="headerlink" title="优化学习方法"></a>优化学习方法</h3><p>对于最大似然估计的优化学习方法，第一种方法就是在最小二乘估计中介绍的矩阵求解方法，另外一种就是梯度下降方法：</p>
-<p><img src="http://qiniu.zzysay.cn/15156853000823.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15156853000823.jpg" alt=""></p>
 <h2 id="最大后验估计"><a href="#最大后验估计" class="headerlink" title="最大后验估计"></a>最大后验估计</h2><p>在本部分的最大化后验估计中，我们依旧使用正态分布的误差数据，写出正态分布的先验概率：</p>
 <p>$$ p(y|x, \theta, \theta_0) = L(\theta, \theta_0, \sigma^2) = \prod_{t=1}^n \frac 1 {\sqrt[]{2\pi \sigma^2}} exp \left(-\frac 1 {2\sigma^2} (y_t-\theta^Tx_t-\theta_0)^2 \right)$$</p>
 <p>参数先验：</p>
@@ -408,15 +408,15 @@
 <p>对数参数后验：<br>$$ log \pi(\theta, \theta_0)p(y|x, \theta, \theta_0 ) = -\frac 1 {2\sigma^2} \sum_{t=1}^n (y_t-\theta^Tx_t-\theta_0)^2 -\frac 1 {2\sigma^2}||\theta||^2 + const $$</p>
 <p>目标函数：<br>$$ \min_{\theta} -\frac 1 2 \sum_{t=1}^n (y_t-\theta^Tx_t-\theta_0)^2 -\frac \lambda 2||\theta||^2 $$<br>其中，$\lambda = \frac {\sigma^2} {\sigma^2_{\theta}}$</p>
 <p>于是，最大后验估计可以看做是正则化的最小二乘估计。</p>
-<p><img src="http://qiniu.zzysay.cn/15156881427369.jpg" alt></p>
-<h2 id="非线性回归模型"><a href="#非线性回归模型" class="headerlink" title="非线性回归模型"></a>非线性回归模型</h2><p><img src="http://qiniu.zzysay.cn/15156882032355.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15156881427369.jpg" alt=""></p>
+<h2 id="非线性回归模型"><a href="#非线性回归模型" class="headerlink" title="非线性回归模型"></a>非线性回归模型</h2><p><img src="http://qiniu.zzysay.cn/15156882032355.jpg" alt=""></p>
 <p>常见的基函数形式：</p>
-<p><img src="http://qiniu.zzysay.cn/15156882315930.jpg" alt><br><img src="http://qiniu.zzysay.cn/15156882425237.jpg" alt></p>
-<h2 id="误差分析"><a href="#误差分析" class="headerlink" title="误差分析"></a>误差分析</h2><p>对于文章开篇提到的泛化误差：<br><img src="http://qiniu.zzysay.cn/15156766017162.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15156882315930.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15156882425237.jpg" alt=""></p>
+<h2 id="误差分析"><a href="#误差分析" class="headerlink" title="误差分析"></a>误差分析</h2><p>对于文章开篇提到的泛化误差：<br><img src="http://qiniu.zzysay.cn/15156766017162.jpg" alt=""></p>
 <p>我们可以将其展开：</p>
-<p><img src="http://qiniu.zzysay.cn/15156883745030.jpg" alt></p>
-<p>正则项对偏差和方差的影响：<br><img src="http://qiniu.zzysay.cn/15156885581392.jpg" alt></p>
-<p><img src="http://qiniu.zzysay.cn/15156886905596.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15156883745030.jpg" alt=""></p>
+<p>正则项对偏差和方差的影响：<br><img src="http://qiniu.zzysay.cn/15156885581392.jpg" alt=""></p>
+<p><img src="http://qiniu.zzysay.cn/15156886905596.jpg" alt=""></p>
 <p>而正则化的最小二乘估计是有偏估计，增加正则项相当于增加白噪声，使得参数估计更加稳定。</p>
 <p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程</p>
 
@@ -534,7 +534,7 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Zhenyu Zhang">
           <p class="site-author-name" itemprop="name">Zhenyu Zhang</p>
            

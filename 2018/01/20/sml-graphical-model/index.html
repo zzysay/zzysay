@@ -203,7 +203,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -213,7 +213,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -313,16 +313,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/20/sml-graphical-model/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ZZY SAY">
     </span>
 
@@ -365,7 +365,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/" itemprop="url" rel="index">
                     <span itemprop="name">Class Notes</span>
                   </a>
@@ -376,7 +376,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/Statistical-Machine-Learning/" itemprop="url" rel="index">
                     <span itemprop="name">Statistical Machine Learning</span>
                   </a>
@@ -547,18 +547,18 @@
 <h4 id="前向后向算法"><a href="#前向后向算法" class="headerlink" title="前向后向算法"></a>前向后向算法</h4><p><strong>前向算法</strong></p>
 <p><strong>前向概率</strong>：给定隐马尔科夫模型 $\lambda = (A,B,\pi)$，记到时刻 $t$ 部分观测序列为 $x_1,x_2\dots x_t$ 且状态为 $s_i$ 的概率为前向概率，记作<br>$$\alpha_t(i) = Pr(x_1,x_2\dots x_t,y_t=s_i|\lambda) $$</p>
 <p><strong>前向概率递推公式</strong></p>
-<center><br><img src="http://qiniu.zzysay.cn/15164340497887.jpg" alt><br></center>
+<center><br><img src="http://qiniu.zzysay.cn/15164340497887.jpg" alt=""><br></center>
 
 <p>其中，$b_i(x_{t+1})$ 表示的是在状态为 $y_{t+1}=s_i$ 观测值为 $x_{t+1}$ 的观测概率，例如假设 $x_{t+1} = o_j$，则有 $b_i(x_{t+1}) = b_i(o_j) = b_{ij}$ </p>
-<center><br><img src="http://qiniu.zzysay.cn/15164344075925.jpg" alt><br></center>
+<center><br><img src="http://qiniu.zzysay.cn/15164344075925.jpg" alt=""><br></center>
 
 <p>显然前向算法的时间复杂度为 $O(nN^2)$</p>
 <p><strong>算法实例</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15164373686025.jpg" alt><br><img src="http://qiniu.zzysay.cn/15164374091139.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15164373686025.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15164374091139.jpg" alt=""></p>
 <p><strong>后向算法</strong></p>
 <p><strong>后向概率</strong>：给定隐马尔科夫模型 $\lambda = (A,B,\pi)$，记在时刻 $t$ 状态为 $s_i$ 的条件下，从时刻 $t+1$ 到 $n$ 的部分观测序列为  $x_{t+1},x_{t+2}\dots x_n$ 的概率为后向概率，记作<br>$$\beta_t(i) = Pr(x_{t+1},x_{t+2}\dots x_n | y_t=s_i,\lambda) $$</p>
 <p><strong>后向概率递推公式</strong></p>
-<center><br><img src="http://qiniu.zzysay.cn/15164354254941.jpg" alt><br><img src="http://qiniu.zzysay.cn/15164354800353.jpg" alt><br></center>
+<center><br><img src="http://qiniu.zzysay.cn/15164354254941.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15164354800353.jpg" alt=""><br></center>
 
 <p>显然后向算法的时间复杂度也为 $O(nN^2)$</p>
 <p><strong>前向后向算法</strong></p>
@@ -595,11 +595,11 @@
 <li><strong>路径变量</strong>：记录该路径上状态 $s_i$ 的前一个状态，即概率最大路径上的前一个节点<br>$$ \phi_t(i) = \arg\max_{1\le j \le N}  \delta_{t-1}(j)a_{ji}b_i(x_t)\quad t=2,3,\dots,n  $$</li>
 </ul>
 <p><strong>算法过程</strong></p>
-<center><br><img src="http://qiniu.zzysay.cn/15164389564081.jpg" alt><br></center>
+<center><br><img src="http://qiniu.zzysay.cn/15164389564081.jpg" alt=""><br></center>
 
 <p>显然维特比算法的计算复杂度为 $O(nN^2)$</p>
 <p><strong>算法实例</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15164391191057.jpg" alt><br><img src="http://qiniu.zzysay.cn/15164391405941.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15164391191057.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15164391405941.jpg" alt=""></p>
 <h3 id="学习问题"><a href="#学习问题" class="headerlink" title="学习问题"></a>学习问题</h3><p>给定观测序列 $x={x_1,\dots,x_n}$，学习模型$\lambda = (A,B,\pi)$ 参数使得该序列出现的概率  $P(x|\lambda)$ 最大，即使训练模型能够更好地描述观测数据。</p>
 <ul>
 <li>监督学习方法</li>
@@ -749,7 +749,7 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Zhenyu Zhang">
           <p class="site-author-name" itemprop="name">Zhenyu Zhang</p>
            

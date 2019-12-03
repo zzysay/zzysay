@@ -162,7 +162,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -172,7 +172,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -272,16 +272,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/02/07/ml-em/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ZZY SAY">
     </span>
 
@@ -324,7 +324,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Study-Notes/" itemprop="url" rel="index">
                     <span itemprop="name">Study Notes</span>
                   </a>
@@ -335,7 +335,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Study-Notes/Machine-Learning/" itemprop="url" rel="index">
                     <span itemprop="name">Machine Learning</span>
                   </a>
@@ -383,7 +383,7 @@
 </ul>
 </li>
 </ol>
-<p>李航的《统计学习方法》中有另外一种表述，其本质都是一样的。<br><img src="http://qiniu.zzysay.cn/15180066118194.jpg" alt><br><img src="http://qiniu.zzysay.cn/15180066327052.jpg" alt></p>
+<p>李航的《统计学习方法》中有另外一种表述，其本质都是一样的。<br><img src="http://qiniu.zzysay.cn/15180066118194.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15180066327052.jpg" alt=""></p>
 <h2 id="EM算法的推导"><a href="#EM算法的推导" class="headerlink" title="EM算法的推导"></a>EM算法的推导</h2><p>有 $m$ 个样本观测数据 $x={x_1,x_2,\dots,x_m}$，我们要估计概率模型 $P(x|\theta)$ 的参数向量 $\theta$，假设观察数据有未观察到的隐含数据 $c={c_1, c_2,\dots,c_k}$，此时我们的对数似然函数可以写为：</p>
 <p>$$ \begin{align}\theta^* &amp;= \arg \max \limits_{\theta}\sum\limits_{i=1}^m logP(x_i|\theta)<br>\\ &amp; = \arg \max \limits_{\theta}\sum\limits_{i=1}^m log\sum\limits_{j=1}^nP(x_i,c_j|\theta)<br>\\ &amp; = \arg \max \limits_{\theta} \sum\limits_{i=1}^m log \left(\sum\limits_{j=1}^nP(x_i|c_j,\theta) P(c_j|\theta) \right)\end{align}$$</p>
 <p>事实上，$EM$ 算法是通过迭代增加 $L(\theta)$ 来逐步更新 $\theta$ 的，假设在第 $i$ 次更新后 $\theta$ 的估计值为 $\theta^{(i)}$，我们希望新产生的估计值 $\theta^{(i+1)}$ 能使  $L(\theta)$ 增大，也就是 $ L(\theta^{(i+1)}) \gt L(\theta^{(i)}) $，我们可以考虑二者的差值：</p>
@@ -398,9 +398,9 @@
 <p>第 $i$ 轮迭代得到的对数似然函数最大值为 $L(\theta^{(i)})$，如果第 $i+1$ 轮的 $\theta^{(i+1)}$ 能够最大化 $L(\theta^{(i+1)})-L(\theta^{(i)})$，那也就是相当于最大化了第 $i+1$ 轮的似然函数 $L(\theta^{(i+1)})$。所以有：</p>
 <p>$$\begin{align} \theta^{(i+1)} &amp;= \arg \min_{\theta^{(i+1)}} L(\theta^{(i+1)}) \\<br>&amp;=\arg \min_{\theta^{(i+1)}} (L(\theta^{(i+1)})-L(\theta^{(i)})) \\<br>&amp;=\arg \min_{\theta^{(i+1)}}\sum\limits_{i=1}^m \sum\limits_{j=1}^n P(c_j|x_i,\theta^{(i)}) log \frac {P(x_i, c_j|\theta^{(i+1)})} {P(x_i, c_j|\theta^{(i)})}\\<br>&amp;=\arg \min_{\theta^{(i+1)}}\sum\limits_{i=1}^m \sum\limits_{j=1}^n P(c_j|x_i,\theta^{(i)}) log P(x_i, c_j|\theta^{(i+1)}) \end{align} $$</p>
 <p>上式约去了对 $\theta^{(i+1)}$ 来说是常数的部分，此时 $\theta^{(i)}$ 是已知的常数，$P(c_j|x_i,\theta^{(i)})$ 同样也已知，根据期望定义 $E(f(X)) = \sum_i P(X=x_i)f(x_i)$，所以上式右半部分可以看做是 $log P(x_i, c_j|\theta^{(i+1)})$ 基于条件概率 $P(c_j|x_i,\theta^{(i)})$ 的期望，上式也就是使得 $m$ 个期望加和最大的 $\theta^{(i+1)}$ 的取值，这就是最大期望一词的由来。</p>
-<h2 id="EM算法的解释"><a href="#EM算法的解释" class="headerlink" title="EM算法的解释"></a>EM算法的解释</h2><p><img src="http://qiniu.zzysay.cn/15180061575302.jpg" alt></p>
+<h2 id="EM算法的解释"><a href="#EM算法的解释" class="headerlink" title="EM算法的解释"></a>EM算法的解释</h2><p><img src="http://qiniu.zzysay.cn/15180061575302.jpg" alt=""></p>
 <p>由上图可以看出，$EM$ 算法可以保证收敛到一个稳定点，但是却不能保证收敛到全局的极大值点，因此它是局部最优的算法，当 然，如果优化目标是凸的，则 $EM$ 算法可以保证收敛到全局最大值。</p>
-<h2 id="EM算法在高斯混合模型中的应用"><a href="#EM算法在高斯混合模型中的应用" class="headerlink" title="EM算法在高斯混合模型中的应用"></a>EM算法在高斯混合模型中的应用</h2><p><img src="http://qiniu.zzysay.cn/15180097247714.jpg" alt><br><img src="http://qiniu.zzysay.cn/15180096509020.jpg" alt></p>
+<h2 id="EM算法在高斯混合模型中的应用"><a href="#EM算法在高斯混合模型中的应用" class="headerlink" title="EM算法在高斯混合模型中的应用"></a>EM算法在高斯混合模型中的应用</h2><p><img src="http://qiniu.zzysay.cn/15180097247714.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15180096509020.jpg" alt=""></p>
 <p>参考文献：<br>[1] 李航,《统计学习方法》,清华大学出版社</p>
 
       
@@ -517,7 +517,7 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Zhenyu Zhang">
           <p class="site-author-name" itemprop="name">Zhenyu Zhang</p>
            

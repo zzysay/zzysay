@@ -179,7 +179,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -189,7 +189,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -289,16 +289,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/09/sml-decision-tree/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ZZY SAY">
     </span>
 
@@ -341,7 +341,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/" itemprop="url" rel="index">
                     <span itemprop="name">Class Notes</span>
                   </a>
@@ -352,7 +352,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/Statistical-Machine-Learning/" itemprop="url" rel="index">
                     <span itemprop="name">Statistical Machine Learning</span>
                   </a>
@@ -387,9 +387,9 @@
       
 
       
-        <h2 id="决策树模型概述"><a href="#决策树模型概述" class="headerlink" title="决策树模型概述"></a>决策树模型概述</h2><p><img src="http://qiniu.zzysay.cn/15154627772145.jpg" alt></p>
+        <h2 id="决策树模型概述"><a href="#决策树模型概述" class="headerlink" title="决策树模型概述"></a>决策树模型概述</h2><p><img src="http://qiniu.zzysay.cn/15154627772145.jpg" alt=""></p>
 <a id="more"></a>
-<p><img src="http://qiniu.zzysay.cn/15154627215377.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15154627215377.jpg" alt=""></p>
 <p>决策树方法的目标就是在一个树的结构上，根据节点的判断来搜索类别，对于一个二分判决问题，我们可以将其类比为二叉树，用内部节点代表一个特征或者属性，用叶子节点代表一个类别。</p>
 <p>决策树模型呈树形结构，有着树结构的优点：不必测试所有特征和区域，但是也面临着两个问题：一是高维特征空间不可见，<strong>如何确定节点？</strong>，二是我们怎么知道应该<strong>从那些特征开始？</strong> 这也就引出了决策树模型的关键问题：</p>
 <ul>
@@ -398,8 +398,8 @@
 <li>决策树生成</li>
 <li>决策树剪枝</li>
 </ul>
-<h3 id="问题数"><a href="#问题数" class="headerlink" title="问题数"></a>问题数</h3><p><strong>离散值情况：</strong>以特征或者特征可能的离散值作为问题<br><img src="http://qiniu.zzysay.cn/15154633643209.jpg" alt></p>
-<p><strong>连续值情况：</strong>以每个维度的样本特征作为问题<br><img src="http://qiniu.zzysay.cn/15154633863963.jpg" alt></p>
+<h3 id="问题数"><a href="#问题数" class="headerlink" title="问题数"></a>问题数</h3><p><strong>离散值情况：</strong>以特征或者特征可能的离散值作为问题<br><img src="http://qiniu.zzysay.cn/15154633643209.jpg" alt=""></p>
+<p><strong>连续值情况：</strong>以每个维度的样本特征作为问题<br><img src="http://qiniu.zzysay.cn/15154633863963.jpg" alt=""></p>
 <p>无论特征值是连续还是离散，确定每个属性所产生的候选问题后，最后的候选问题总数是：<br>$$N = \sum N_i$$</p>
 <h3 id="划分选择"><a href="#划分选择" class="headerlink" title="划分选择"></a>划分选择</h3><p>我们定义非纯度 $IM(Impurity\;Measure)$ 作为衡量度量类别划分优劣的标准，$IM$ 定义应该满足以下两点：</p>
 <ul>
@@ -408,7 +408,7 @@
 </ul>
 <p>所以最后的划分目标是：选择能最大程度上减少类别非纯度的问题作为划分节点。非纯度的减少量为:<br>$$ \Delta I(t) = 1 - \frac {N_{tY}} {N_t}I(tY) - \frac {N_{tN}} {N_t}I(tN) $$</p>
 <p>$IM$ 在不同的算法中有着不同的度量方式，较为典型的就是<strong>熵度量</strong>和<strong>基尼度量</strong></p>
-<h4 id="非纯度的熵度量"><a href="#非纯度的熵度量" class="headerlink" title="非纯度的熵度量"></a>非纯度的熵度量</h4><p>$$ I(D) = Entropy\,(D) = - \sum_{i=1}^kp_i\log p_i $$<br><img src="http://qiniu.zzysay.cn/15154641610099.jpg" alt></p>
+<h4 id="非纯度的熵度量"><a href="#非纯度的熵度量" class="headerlink" title="非纯度的熵度量"></a>非纯度的熵度量</h4><p>$$ I(D) = Entropy\,(D) = - \sum_{i=1}^kp_i\log p_i $$<br><img src="http://qiniu.zzysay.cn/15154641610099.jpg" alt=""></p>
 <p><strong>信息增益</strong></p>
 <p>$$ Gain\,(D,a) = Entropy\,(D) - \sum_{v=1}^V \frac {|D^v|} {|D|}  Entropy\,(D^v) $$</p>
 <p>其中 $v$ 是特征 $a$ 的问题数</p>
@@ -425,9 +425,9 @@
 <p>$CART$ 决策树使用了基尼指数作为非纯度的度量标准，基尼指数越小，划分效果越好。</p>
 <p><strong>停止划分</strong><br>叶子节点纯度达到预设阈值后，停止划分，并对叶子节点进行类别设置。 按概率最大的类别设定：<br>$$ j = \arg\max_i p_i $$</p>
 <h3 id="决策树生成"><a href="#决策树生成" class="headerlink" title="决策树生成"></a>决策树生成</h3><p>决策树的生成过程和传统树结构的生成过程相同，都是一个<strong>自顶向下</strong>，不断增加节点的迭代过程。</p>
-<p><img src="http://qiniu.zzysay.cn/15154673720821.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15154673720821.jpg" alt=""></p>
 <h2 id="ID3-算法"><a href="#ID3-算法" class="headerlink" title="ID3 算法"></a>ID3 算法</h2><p>$ID3$ 算法的划分选择依据是最大化信息增益，以属性特征作为结点问题，划分选择的过程其实就是特征选择的过程。</p>
-<p><img src="http://qiniu.zzysay.cn/15154680562782.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15154680562782.jpg" alt=""></p>
 <p>$ID3$ 算法以信息增益作为非纯度的度量标准，所以在特征选择时，会倾向于选择特征取值较多的特征，也正是因为这个原因，$ID3$ 算法不能够处理连续的特征值，如果直接按照连续值的取值进行分类，分出的类别将会非常多，最后学得的决策树可能只有这一连续值特征，明显不具备泛化性能，若是简单地把连续值分成 $n$ 类，$n$ 的选择对特征选择有很大的影响，通常情况下人工很难找到优秀的一个 $n$。</p>
 <h2 id="C4-5-算法"><a href="#C4-5-算法" class="headerlink" title="C4.5 算法"></a>C4.5 算法</h2><p>$C4.5$ 算法和 $ID3$ 算法类似，把非纯度的度量标准由信息增益改成了信息增益比，于是有了以下改进：</p>
 <ul>
@@ -435,7 +435,7 @@
 <li>能够对连续值进行离散化</li>
 <li>能够处理缺失值</li>
 </ul>
-<p><img src="http://qiniu.zzysay.cn/15154683588148.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15154683588148.jpg" alt=""></p>
 <h3 id="连续值处理"><a href="#连续值处理" class="headerlink" title="连续值处理"></a>连续值处理</h3><ol>
 <li>对特征的取值进行升序排序</li>
 <li>两个特征取值的<strong>平均值</strong>作为候选划分点，将数据集分成两部分，计算每个候选划分点的<strong>信息增益</strong></li>
@@ -444,7 +444,7 @@
 </ol>
 <p>此处需对最佳划分点的信息增益进行修正：减去 $\log_2 \frac {N-1} {|D|}$，其中 $N$ 是连续特征的取值个数，$D$ 是训练数据数目，此修正使当离散属性和连续属性并存时，$C4.5$ 算法倾向于选择连续特征做最佳树分裂点。</p>
 <p><strong>算法实例</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15154750569074.jpg" alt><br><img src="http://qiniu.zzysay.cn/15154750925045.jpg" alt><br><img src="http://qiniu.zzysay.cn/15154751124045.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15154750569074.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15154750925045.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15154751124045.jpg" alt=""></p>
 <h3 id="缺失值处理"><a href="#缺失值处理" class="headerlink" title="缺失值处理"></a>缺失值处理</h3><p>对于缺失值，我们需要解决两个问题：</p>
 <ol>
 <li>（训练）如何在属性值缺失的情况下进行划分属性选择？</li>
@@ -456,18 +456,18 @@
 <p>对于问题 $2$：</p>
 <p>若样本 $x$ 在属性 $a$ 上的取值已知，则将 $x$ 划分到与其取值对应的子节点，样本权重 $w_x$ 不变；若样本 $x$ 在属性 $a$ 上的取值未知，则将 $x$ 划分到所有子节点，且样本权值在属性 $a^v$ 对应的子节点中调整为 $\tilde{r_v} $。直观地看，就是让同一个样本以不同的概率划分到不同的子节点中去。</p>
 <p><strong>算法实例</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15154752163451.jpg" alt><br><img src="http://qiniu.zzysay.cn/15154752313013.jpg" alt><br><img src="http://qiniu.zzysay.cn/15154752600065.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15154752163451.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15154752313013.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15154752600065.jpg" alt=""></p>
 <h2 id="CART-算法"><a href="#CART-算法" class="headerlink" title="CART 算法"></a>CART 算法</h2><p>$Classification\;And\;Regression\;Tree,\;CART$ 是分类与回归树，与 $ID3$ 和 $C4.5$ 不同，$CART$ 不单单能够用户分类，同样也可以用于回归，其本质是一个<strong>二叉树</strong>，左分支是“是”，右分支是“否”。生成过程的第一步是生成尽可能大的决策树，第二步使用验证集对决策树进行剪枝。</p>
 <h3 id="回归树"><a href="#回归树" class="headerlink" title="回归树"></a>回归树</h3><p>回归树在构建过程中始终遵循平方误差最小化的准则</p>
-<p><img src="http://qiniu.zzysay.cn/15154820966945.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15154820966945.jpg" alt=""></p>
 <p>其中，$c_m$ 为元素在空间 $R_m$ 上的输出，显然当 $c_m$ 取 $R_m$ 中所有实例输出的均值时，平方误差最小。在式 $(5.21)$ 中，对每个不同的 $j$ 都有不同的 $c_1$ 和 $c_2$，此时 $c$ 可以看到当前区域的均值，而整个式子就是寻找一组使划分后两个区域的方差和最小的 $j,s$。</p>
 <h3 id="分类树"><a href="#分类树" class="headerlink" title="分类树"></a>分类树</h3><p>分类树使用基尼指数选择最优特征，同时决定该特征的最优二值切分点，在特征 $a$ 的条件下，集合 $D$ 的基尼指数为：</p>
 <p>$$ Gini\,(D,a) = \frac {|D_1|}{|D|} Gini\,(D_1) + \frac {|D_2|}{|D|} Gini\,(D_2)$$</p>
-<p><img src="http://qiniu.zzysay.cn/15154807412850.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15154807412850.jpg" alt=""></p>
 <h2 id="剪枝算法"><a href="#剪枝算法" class="headerlink" title="剪枝算法"></a>剪枝算法</h2><h3 id="ID3及C4-5算法的剪枝"><a href="#ID3及C4-5算法的剪枝" class="headerlink" title="ID3及C4.5算法的剪枝"></a>ID3及C4.5算法的剪枝</h3><p>构造整体损失函数：<br>$$ C_{\alpha}\left( T \right) = C\left( T \right) + \alpha\left| T \right|$$</p>
 <p>其中 $C(T)$ 表示模型对训练数据的预测误差，$|T|$ 表示模型复杂度，通常可以用节点数量来表示，$\alpha \ge 0 $ 控制两者之间的影响，较大的 $\alpha$ 会促使选择较为简单的模型，反之则会选择较为复杂的模型，剪枝的过程也就是当 $\alpha$ 给定时，选择损失函数最小的模型。</p>
 <p><strong>算法描述</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15154836884865.jpg" alt><br><img src="http://qiniu.zzysay.cn/15154837084672.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15154836884865.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15154837084672.jpg" alt=""></p>
 <p>由算法可以看出，式 $(5.15)$ 值考虑两个数的损失函数的差，其计算可以在<strong>局部进行</strong>。</p>
 <h3 id="CART算法的剪枝"><a href="#CART算法的剪枝" class="headerlink" title="CART算法的剪枝"></a>CART算法的剪枝</h3><p>按照损失函数的定义，对于一个子树 $|T_t|$，有：</p>
 <p>$$C_{\alpha}(T_t)=C(T_t)+\alpha |T_t|$$</p>
@@ -480,15 +480,15 @@
 <p>$$ g(t)=\frac{C(t)-C_(T_t)}{|T_t|-1} $$</p>
 <p>它表示<strong>剪枝后</strong>整体损失函数减少的程度（抛开正则项），在 $T_0$ 中减去 $g(t)$ 最小的 $T_t$，得到子树 $T_1$，同时将最小的 $g(t)$ 设为 $\alpha_1$， $T_1$ 即为区间 $[\alpha_1, \alpha_2)$ 之间的最优子树，不断迭代，增加 $\alpha$ 的值，直至根节点。</p>
 <p>对于同一棵树的结点， $\alpha$ 都是一样的，当 $\alpha$ 从 $0$ 开始缓慢增大，总会有某棵子树该剪，其他子树不该剪的情况，即 $\alpha$ 超过了某个结点的 $g(t)$，但还没有超过其他结点的 $g(t)$。这样随着 $\alpha$ 不断增大，不断地剪枝，就得到了 $n+1$ 棵嵌套的子树。</p>
-<p><strong>算法描述</strong><br><img src="http://qiniu.zzysay.cn/15154899883921.jpg" alt></p>
+<p><strong>算法描述</strong><br><img src="http://qiniu.zzysay.cn/15154899883921.jpg" alt=""></p>
 <p>对于子树 $T_k$ 来说，节点 $t$ 是当前 $\alpha$ 下最优的切分点，其它节点的 $g(t)$ 都比该节点的 $g(t)$ 大。</p>
 <p>总的来说，就是 $ID3$ 和 $C4.5$ 剪枝时 $\alpha$ 是人为给定的，而 $CART$ 剪枝时的 $\alpha$ 是根据特征值在 $[0, +\infty)$ 找到一系列的值，从而得到一系列剪枝后的树，从中选取最优的。从最宏观的角度去考虑的话，就是利用 $\alpha$ 生成 $T_{\alpha}$。抽象一下，即从无限的实数中找寻有限个数的 $T_{\alpha}$。</p>
-<h2 id="预剪枝与后剪枝"><a href="#预剪枝与后剪枝" class="headerlink" title="预剪枝与后剪枝"></a>预剪枝与后剪枝</h2><p><img src="http://qiniu.zzysay.cn/15154877338124.jpg" alt></p>
+<h2 id="预剪枝与后剪枝"><a href="#预剪枝与后剪枝" class="headerlink" title="预剪枝与后剪枝"></a>预剪枝与后剪枝</h2><p><img src="http://qiniu.zzysay.cn/15154877338124.jpg" alt=""></p>
 <p>剪枝操作是防止决策树过拟合的有效方法，上图所示的是一个未经剪枝的决策树。</p>
 <h3 id="预剪枝"><a href="#预剪枝" class="headerlink" title="预剪枝"></a>预剪枝</h3><p>预剪枝就是在树的构建过程（只使用训练集），设置一个阈值（样本个数小于预定阈值或基尼指数小于预定阈值），若当前节点划分前和划分后的误差超过这个阈值则进行划分，否则不进行划分，预剪枝基于“贪心”本质禁止这些分支展开，防止了过拟合的同时也带来了<strong>欠拟合</strong>的风险。</p>
-<p><img src="http://qiniu.zzysay.cn/15154877849795.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15154877849795.jpg" alt=""></p>
 <h3 id="后剪枝"><a href="#后剪枝" class="headerlink" title="后剪枝"></a>后剪枝</h3><p>后剪枝是先按照训练集生成一颗完整的决策树，随后按照验证集尝试不断回缩，设置一个阈值，若回缩后模型的精度和回缩前模型的精度差超过了这个阈值，则进行回缩（剪枝）。一般情况下，后剪枝决策树通常比预剪枝决策树保留了更多的分支，所以欠拟合的风险很小，<strong>泛化性能更好</strong>，但是后剪枝过程首先需要生成完整的决策树，并且自底向上地对所有非叶子节点逐一考察，因此<strong>时间开销远大于预剪枝和未剪枝决策树</strong>。</p>
-<p><img src="http://qiniu.zzysay.cn/15154878291741.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15154878291741.jpg" alt=""></p>
 <p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] 李航,《统计学习方法》,清华大学出版社<br>[3] 周志华,《机器学习》,清华大学出版社</p>
 
       
@@ -605,7 +605,7 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Zhenyu Zhang">
           <p class="site-author-name" itemprop="name">Zhenyu Zhang</p>
            

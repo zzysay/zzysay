@@ -179,7 +179,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -189,7 +189,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -289,16 +289,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2017/12/25/data-mining-rs-collaborative-filtering/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ZZY SAY">
     </span>
 
@@ -341,7 +341,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/" itemprop="url" rel="index">
                     <span itemprop="name">Class Notes</span>
                   </a>
@@ -352,7 +352,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/Web-Data-Mining/" itemprop="url" rel="index">
                     <span itemprop="name">Web Data Mining</span>
                   </a>
@@ -387,7 +387,7 @@
       
 
       
-        <h2 id="打分矩阵"><a href="#打分矩阵" class="headerlink" title="打分矩阵"></a>打分矩阵</h2><p>协同过滤中的 $UserCF$ 和 $ItemCF$ 都是基于打分矩阵的：<br><img src="http://qiniu.zzysay.cn/15141208052408.jpg" alt></p>
+        <h2 id="打分矩阵"><a href="#打分矩阵" class="headerlink" title="打分矩阵"></a>打分矩阵</h2><p>协同过滤中的 $UserCF$ 和 $ItemCF$ 都是基于打分矩阵的：<br><img src="http://qiniu.zzysay.cn/15141208052408.jpg" alt=""></p>
 <a id="more"></a>
 <h3 id="非个性化的解决方案"><a href="#非个性化的解决方案" class="headerlink" title="非个性化的解决方案"></a>非个性化的解决方案</h3><h4 id="Just-Average"><a href="#Just-Average" class="headerlink" title="Just Average"></a>Just Average</h4><p>$$ P_{ai} = \frac {\sum_{u=1}^n r_{ui}} {n} $$<br><strong>存在的问题：</strong> 不同用户的给分程度是不一样的，如有的用户很严苛，给分都很低，有的很慷慨，给分都很高，所以需要减去其给分的均值。</p>
 <h4 id="Rating-Normalization"><a href="#Rating-Normalization" class="headerlink" title="Rating Normalization"></a>Rating Normalization</h4><p>$$ P_{ai} = \bar r_a + \frac {\sum_{u=1}^n (r_{ui}-\bar r_u)} {n} $$<br><strong>存在的问题：</strong>这个打分可能超出打分区间，但是做推荐只需要一个顺序，所以并没有什么关系。</p>
@@ -398,30 +398,30 @@
 <li>如果 $w_{a,u}$ 是负值，则去掉该用户，或者等价设置为 $0$<br><strong>存在的问题：</strong>如何选择相似用户</li>
 </ol>
 <h2 id="USER-USER-协同过滤方法"><a href="#USER-USER-协同过滤方法" class="headerlink" title="USER-USER 协同过滤方法"></a>USER-USER 协同过滤方法</h2><p>$UUCF$ 的一个直观理解：<strong>兴趣相近的用户可能会带来新颖的东西</strong>，对于一个用户 $u$ ，首先找到与其相似的一个用户集，这个相似是通过它们的打分来判定的，然后推荐用户集中用户喜欢的物品给用户 $u$。</p>
-<h3 id="基本假设"><a href="#基本假设" class="headerlink" title="基本假设"></a>基本假设</h3><p><img src="http://qiniu.zzysay.cn/15141204226164.jpg" alt></p>
-<h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p><img src="http://qiniu.zzysay.cn/15141227211642.jpg" alt></p>
-<h3 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h3><h4 id="理论问题"><a href="#理论问题" class="headerlink" title="理论问题"></a>理论问题</h4><p><img src="http://qiniu.zzysay.cn/15141238913140.jpg" alt></p>
+<h3 id="基本假设"><a href="#基本假设" class="headerlink" title="基本假设"></a>基本假设</h3><p><img src="http://qiniu.zzysay.cn/15141204226164.jpg" alt=""></p>
+<h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p><img src="http://qiniu.zzysay.cn/15141227211642.jpg" alt=""></p>
+<h3 id="存在问题"><a href="#存在问题" class="headerlink" title="存在问题"></a>存在问题</h3><h4 id="理论问题"><a href="#理论问题" class="headerlink" title="理论问题"></a>理论问题</h4><p><img src="http://qiniu.zzysay.cn/15141238913140.jpg" alt=""></p>
 <ul>
 <li>对于一个新用户，几乎没有打分，这样就找不到相似用户</li>
 <li>对于一个新物品，用户的所有邻居在该物品上都几乎没有打分</li>
 </ul>
-<h4 id="实际问题"><a href="#实际问题" class="headerlink" title="实际问题"></a>实际问题</h4><p><img src="http://qiniu.zzysay.cn/15141239910721.jpg" alt></p>
+<h4 id="实际问题"><a href="#实际问题" class="headerlink" title="实际问题"></a>实际问题</h4><p><img src="http://qiniu.zzysay.cn/15141239910721.jpg" alt=""></p>
 <p>在实际运算过程中，算法面临的最大的问题就是复杂度高。</p>
-<h3 id="改进策略"><a href="#改进策略" class="headerlink" title="改进策略"></a>改进策略</h3><h4 id="用户相似度：Similarities"><a href="#用户相似度：Similarities" class="headerlink" title="用户相似度：Similarities"></a>用户相似度：Similarities</h4><p><img src="http://qiniu.zzysay.cn/15141242559063.jpg" alt></p>
-<h4 id="重要性度量：Significance-Weighting"><a href="#重要性度量：Significance-Weighting" class="headerlink" title="重要性度量：Significance Weighting"></a>重要性度量：Significance Weighting</h4><p><img src="http://qiniu.zzysay.cn/15141243773518.jpg" alt></p>
+<h3 id="改进策略"><a href="#改进策略" class="headerlink" title="改进策略"></a>改进策略</h3><h4 id="用户相似度：Similarities"><a href="#用户相似度：Similarities" class="headerlink" title="用户相似度：Similarities"></a>用户相似度：Similarities</h4><p><img src="http://qiniu.zzysay.cn/15141242559063.jpg" alt=""></p>
+<h4 id="重要性度量：Significance-Weighting"><a href="#重要性度量：Significance-Weighting" class="headerlink" title="重要性度量：Significance Weighting"></a>重要性度量：Significance Weighting</h4><p><img src="http://qiniu.zzysay.cn/15141243773518.jpg" alt=""></p>
 <p>共同打分多的用户相似的可能性更高，$50$ 是一个计算上界</p>
-<h4 id="权重差异：Variance-weighting"><a href="#权重差异：Variance-weighting" class="headerlink" title="权重差异：Variance weighting"></a>权重差异：Variance weighting</h4><p><img src="http://qiniu.zzysay.cn/15141249274649.jpg" alt></p>
+<h4 id="权重差异：Variance-weighting"><a href="#权重差异：Variance-weighting" class="headerlink" title="权重差异：Variance weighting"></a>权重差异：Variance weighting</h4><p><img src="http://qiniu.zzysay.cn/15141249274649.jpg" alt=""></p>
 <p>考虑特定的 $item$ 的差异波动，例如恐怖片，可能不同的人对此打分有很大的差异。因为喜欢恐怖片的用户和不喜欢恐怖片的用户其打分肯定相差大，但是在 $UserCF$ 中这个方法并没有取得什么优化。</p>
 <h4 id="物品归一化：Normalizing-Ratings"><a href="#物品归一化：Normalizing-Ratings" class="headerlink" title="物品归一化：Normalizing Ratings"></a>物品归一化：Normalizing Ratings</h4><p>归一化主要解决的就是不同用户的给分程度是不一样的问题<br>$$ P_{ai} = \bar r_a + \frac {\sum_{u=1}^n (r_{ui}-\bar r_u)} {n} $$</p>
 <p>$$ P_{ai} = \bar r_a + \sigma_a \frac {\sum_{u=1}^n z_{ui}} {n} $$</p>
 <p>其中，$\sigma_a$ 表示的是用户 $a$ 所有打分的均方差，$z_{ui} = \frac {r_{ui} - \bar r_u} {\sigma_u} $</p>
-<h4 id="邻居选择：Selecting-Neighborhoods"><a href="#邻居选择：Selecting-Neighborhoods" class="headerlink" title="邻居选择：Selecting Neighborhoods"></a>邻居选择：Selecting Neighborhoods</h4><p><strong>步骤</strong><br><img src="http://qiniu.zzysay.cn/15141259434605.jpg" alt></p>
-<p><strong>数量</strong><br><img src="http://qiniu.zzysay.cn/15141260726231.jpg" alt></p>
+<h4 id="邻居选择：Selecting-Neighborhoods"><a href="#邻居选择：Selecting-Neighborhoods" class="headerlink" title="邻居选择：Selecting Neighborhoods"></a>邻居选择：Selecting Neighborhoods</h4><p><strong>步骤</strong><br><img src="http://qiniu.zzysay.cn/15141259434605.jpg" alt=""></p>
+<p><strong>数量</strong><br><img src="http://qiniu.zzysay.cn/15141260726231.jpg" alt=""></p>
 <ul>
 <li>在不同的 $item$ 上使用相同的 $user group$</li>
 <li>目标 $item$ 的打分过少时，放弃个性化推荐</li>
 </ul>
-<h4 id="总结：Summary"><a href="#总结：Summary" class="headerlink" title="总结：Summary"></a>总结：Summary</h4><p><img src="http://qiniu.zzysay.cn/15141272308210.jpg" alt></p>
+<h4 id="总结：Summary"><a href="#总结：Summary" class="headerlink" title="总结：Summary"></a>总结：Summary</h4><p><img src="http://qiniu.zzysay.cn/15141272308210.jpg" alt=""></p>
 <h2 id="ITEM-ITEM-协同过滤方法"><a href="#ITEM-ITEM-协同过滤方法" class="headerlink" title="ITEM-ITEM 协同过滤方法"></a>ITEM-ITEM 协同过滤方法</h2><p>$ItemCF$ 的一个直观理解，<strong>用户可能喜欢相似的物品</strong>。 $ItemCF$ 算法并不利用物品的内容属性计算物品之间的相似度，它主要通过分析用户的行为记录计算物品之间的相似度。</p>
 <h3 id="算法动机"><a href="#算法动机" class="headerlink" title="算法动机"></a>算法动机</h3><p>$UserCF$ 在很多情况下的表现性能都非常好，但是也存在很多问题：</p>
 <ol>
@@ -429,28 +429,28 @@
 <li>Computational performance，用户较多的情况，计算用户相似度是一件很耗时的工作，并且用户的画像是在不断变化的，所以需要频繁地更新用户相似度。</li>
 </ol>
 <p>$ItemCF$ 适用于物品比用户少的情况，物品的属性值相对来说是恒定的，可以在很大程度上减少计算量，并且物品的相似度可以提前计算。</p>
-<h3 id="基本假设-1"><a href="#基本假设-1" class="headerlink" title="基本假设"></a>基本假设</h3><p><img src="http://qiniu.zzysay.cn/15141311802710.jpg" alt></p>
+<h3 id="基本假设-1"><a href="#基本假设-1" class="headerlink" title="基本假设"></a>基本假设</h3><p><img src="http://qiniu.zzysay.cn/15141311802710.jpg" alt=""></p>
 <p>算法的基本假设是<strong>用户的口味需要符合大众口味</strong>，算法的局限性也很明显，因为是通过用户在相似的物品集上的打分来预测在新物品上的打分，这就使算法过分依赖于矩阵的稀疏程度，若用户打分的物品和相似物品集合重合度较低，则预测效果较差。</p>
-<h3 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="算法描述"></a>算法描述</h3><p><img src="http://qiniu.zzysay.cn/15141301344016.jpg" alt></p>
-<h4 id="选择相似物品"><a href="#选择相似物品" class="headerlink" title="选择相似物品"></a>选择相似物品</h4><p><img src="http://qiniu.zzysay.cn/15141302405968.jpg" alt></p>
+<h3 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="算法描述"></a>算法描述</h3><p><img src="http://qiniu.zzysay.cn/15141301344016.jpg" alt=""></p>
+<h4 id="选择相似物品"><a href="#选择相似物品" class="headerlink" title="选择相似物品"></a>选择相似物品</h4><p><img src="http://qiniu.zzysay.cn/15141302405968.jpg" alt=""></p>
 <ul>
 <li>如果 $Itemset_u$ 和 $Neighbor_i$ 的交点过少，则应当放弃推荐</li>
 <li>在 $k$ 的选择上，如果 $k$ 较大可能会有噪声的影响，如果 $k$ 较小则可能会出现稀疏问题，通常情况下 $k=30$ 是一个较好的选择</li>
 <li>需要注意的是在求物品相似度之前一定要进行打分的归一化，因为不同用户的打分倾向不同</li>
 </ul>
-<h4 id="计算物品得分"><a href="#计算物品得分" class="headerlink" title="计算物品得分"></a>计算物品得分</h4><p><img src="http://qiniu.zzysay.cn/15141304898899.jpg" alt></p>
+<h4 id="计算物品得分"><a href="#计算物品得分" class="headerlink" title="计算物品得分"></a>计算物品得分</h4><p><img src="http://qiniu.zzysay.cn/15141304898899.jpg" alt=""></p>
 <p>$$ P_{ui} = \frac {\sum_{j \in N} sim(i,j) r_{uj}} {\sum_{j \in N} |sim(i,j)|} $$</p>
 <p>即通过用户在 $itemj$ 上的打分来预测用户对 $itemi$ 的喜好程度</p>
-<h4 id="算法示例"><a href="#算法示例" class="headerlink" title="算法示例"></a>算法示例</h4><p><img src="http://qiniu.zzysay.cn/15141335412650.jpg" alt></p>
+<h4 id="算法示例"><a href="#算法示例" class="headerlink" title="算法示例"></a>算法示例</h4><p><img src="http://qiniu.zzysay.cn/15141335412650.jpg" alt=""></p>
 <p>$$r_51 = (0.41<em>2 + 0.59</em>3)/(0.41 + 0.59) = 2.6$$</p>
 <h3 id="改进策略-1"><a href="#改进策略-1" class="headerlink" title="改进策略"></a>改进策略</h3><h4 id="物品相似度：Similarities"><a href="#物品相似度：Similarities" class="headerlink" title="物品相似度：Similarities"></a>物品相似度：Similarities</h4><p>在计算物品相似度之前，首先需要进行归一化操作，为防止不同用户的打分习惯造成的影响，随后再进行求相似度</p>
 <h4 id="重要性度量：Significance-Weighting-1"><a href="#重要性度量：Significance-Weighting-1" class="headerlink" title="重要性度量：Significance Weighting"></a>重要性度量：Significance Weighting</h4><p>作用不大，因为一个 $item$ 上面的打分数量会比较多</p>
 <h4 id="权重差异：Variance-weighting-1"><a href="#权重差异：Variance-weighting-1" class="headerlink" title="权重差异：Variance weighting"></a>权重差异：Variance weighting</h4><p>考虑不同 $user$ 之间打分的差异， $UserCF$ 是考虑特定 $item$ 打分的不同</p>
 <h4 id="物品归一化：Normalizing-Ratings-1"><a href="#物品归一化：Normalizing-Ratings-1" class="headerlink" title="物品归一化：Normalizing Ratings"></a>物品归一化：Normalizing Ratings</h4><p>不需要</p>
 <h4 id="邻居选择：Selecting-Neighborhoods-1"><a href="#邻居选择：Selecting-Neighborhoods-1" class="headerlink" title="邻居选择：Selecting Neighborhoods"></a>邻居选择：Selecting Neighborhoods</h4><p>和 $UserCF$ 上的方法相同</p>
-<h3 id="一元数据上的-ItemCF"><a href="#一元数据上的-ItemCF" class="headerlink" title="一元数据上的 ItemCF"></a>一元数据上的 ItemCF</h3><p><img src="http://qiniu.zzysay.cn/15141330628277.jpg" alt><br><img src="http://qiniu.zzysay.cn/15141331391058.jpg" alt></p>
+<h3 id="一元数据上的-ItemCF"><a href="#一元数据上的-ItemCF" class="headerlink" title="一元数据上的 ItemCF"></a>一元数据上的 ItemCF</h3><p><img src="http://qiniu.zzysay.cn/15141330628277.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15141331391058.jpg" alt=""></p>
 <p>那些喜欢很多 $item$ 的用户通常会提供较少的有效信息。</p>
-<h2 id="UserCF-和-ItemCF-的比较"><a href="#UserCF-和-ItemCF-的比较" class="headerlink" title="UserCF 和 ItemCF 的比较"></a>UserCF 和 ItemCF 的比较</h2><p><img src="http://qiniu.zzysay.cn/15141299516299.jpg" alt></p>
+<h2 id="UserCF-和-ItemCF-的比较"><a href="#UserCF-和-ItemCF-的比较" class="headerlink" title="UserCF 和 ItemCF 的比较"></a>UserCF 和 ItemCF 的比较</h2><p><img src="http://qiniu.zzysay.cn/15141299516299.jpg" alt=""></p>
 <p>$UserCF$ 的推荐结果着重于反映和用户兴趣相似的小群体的热点，而 $ItemCF$ 的推荐结果着重于维系用户的历史兴趣。换句话说，$UserCF$ 的推荐更社会化，反映了用户所在的小型兴趣群体中物品的热门程度，而 $ItemCF$ 的推荐更加个性化，反映了用户自己的兴趣传承。</p>
 <p>从技术上考虑，$UserCF$ 需要维护一个用户相似度的矩阵，而 $ItemCF$ 需要维护一个物品相似度矩阵。从存储的角度说，如果用户很多，那么维护用户兴趣相似度矩阵需要很大的空间，同理，如果物品很多，那么维护物品相似度矩阵代价较大。所以 $UserCF$ 更适合用于个性化新闻推荐， $ItemCF$ 更适合于图书、电子商务和电影的个性化推荐。</p>
 <p>考虑如下表所示的一个打分矩阵：打分</p>
@@ -459,15 +459,15 @@
 <h2 id="基于降维分解的协同过滤方法"><a href="#基于降维分解的协同过滤方法" class="headerlink" title="基于降维分解的协同过滤方法"></a>基于降维分解的协同过滤方法</h2><h3 id="FunkSVD"><a href="#FunkSVD" class="headerlink" title="FunkSVD"></a>FunkSVD</h3><p>$FunkSVD$ 的训练过程是利用已有值进行矩阵分解，在训练过程中可以忽略矩阵中空缺的数据，$R_{n\times m} \approx U_{n\times k}V_{k\times m}$，在计算出 $UV$ 之后，相乘就可以对原本打分矩阵中空缺的值进行预测。其中， $R$ 表示待分解的打分矩阵，$U$ 表示用户矩阵，$V$表示物品矩阵。</p>
 <h4 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h4><p>$$J(a,i) = \mathop{argmin} \limits_{u_a, v_i} \;\frac 1 2 \left( \sum_{r_{ai} \in ratings} (r_{ai} - \bar u_a · \bar v_i)^2 + \gamma(\sum_a||u_a||^2 + \sum_i||v_i||^2) \right)$$</p>
 <p>每一个 $user\,a$ 都对应一个向量 $u_a$，每一个 $item\,i$ 也对应一个向量 $v_i$，这两个向量的点积就是 $user$ 在 $item$ 上的打分 $r_ui$。在分解过程中相当于把 $u_a$ 的打分映射到一个 $k$ 维的隐向量上，再用这个 $k$ 的隐向量表示 $v_i$。</p>
-<h4 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h4><p><img src="http://qiniu.zzysay.cn/15141805697922.jpg" alt></p>
-<p>求解使用<strong>梯度下降</strong>方法，参数更新公式如下所示<br><img src="http://qiniu.zzysay.cn/15141807102344.jpg" alt></p>
+<h4 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h4><p><img src="http://qiniu.zzysay.cn/15141805697922.jpg" alt=""></p>
+<p>求解使用<strong>梯度下降</strong>方法，参数更新公式如下所示<br><img src="http://qiniu.zzysay.cn/15141807102344.jpg" alt=""></p>
 <p>在适用性方面，$FunkSVD$ 只适用于有打分的数据，不适用与一元数据。</p>
 <h4 id="分解更新"><a href="#分解更新" class="headerlink" title="分解更新"></a>分解更新</h4><p>如果有新的 $user$ 加入的话，无需全部重新学习，而只需要学习新加入的 $user$ 的向量表示，其对应的损失函数如下：</p>
 <p>$$ \sum_{i} = (r_{m+1, i} - u_{m+1}·v_i^2) + \gamma||r_{m+1}||^2 $$</p>
 <h2 id="协同过滤的冷启动问题"><a href="#协同过滤的冷启动问题" class="headerlink" title="协同过滤的冷启动问题"></a>协同过滤的冷启动问题</h2><h3 id="用户冷启动"><a href="#用户冷启动" class="headerlink" title="用户冷启动"></a>用户冷启动</h3><p>最简单的方法就是给用户推荐热门排行。再进一步，如果知道用户的分类（如：男或者女用户），或者能够通过一些信息（如：用户的注册信息）来获得用户的分类，在这个分类中，根据已有的用户统计这个分类下的排行，再把这个排行结果推荐给新用户。如果用户的注册信息不多，且用户填写的比较全面，则这些信息可以形成一个决策树的组织形式，新用户总会落到树的一个叶子节点（分类）中，推荐该节点下的热门排行。</p>
 <h3 id="系统冷启动"><a href="#系统冷启动" class="headerlink" title="系统冷启动"></a>系统冷启动</h3><p>让用户回答一个问题列表，这个列表随着用户的回答而改变问题，每次给用户提出最具区分力的物品，问用户是否感兴趣。对于一群用户和一些物品，如果用户对这些物品的打分的方差很大，说明这些用户的兴趣不一致；其次，对于某一个物品，用户的反应是，喜欢、不喜欢、无所谓（没有打分），这三种反应可以将用户分为三个群体；那么就可以使用此物品作为决策问题对用户进行分类。</p>
 <h3 id="物品冷启动"><a href="#物品冷启动" class="headerlink" title="物品冷启动"></a>物品冷启动</h3><p>$UserCF$ 对物品冷启动问题并不敏感，因为总有用户会访问到新物品，此时给那些相似的用户推荐这个物品，就会有越来越多的人来访问这个物品，形成良性循环。在 $ItemCF$ 中，物品冷启动就是比较严重的问题了，因为使用新物品的用户比较少，不容易计算新物品同其他物品的相似度，解决方法是通过物品的内容来计算物品之间的相似度，并作为 $ItemCF$ 的补充。</p>
-<h2 id="附：信息表达方式"><a href="#附：信息表达方式" class="headerlink" title="附：信息表达方式"></a>附：信息表达方式</h2><p><img src="http://qiniu.zzysay.cn/15141289089307.jpg" alt></p>
+<h2 id="附：信息表达方式"><a href="#附：信息表达方式" class="headerlink" title="附：信息表达方式"></a>附：信息表达方式</h2><p><img src="http://qiniu.zzysay.cn/15141289089307.jpg" alt=""></p>
 <p>参考文献：<br>[1] 罗平,《网络数据挖掘》,中国科学院大学2017年秋季研究生课程</p>
 
       
@@ -584,7 +584,7 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Zhenyu Zhang">
           <p class="site-author-name" itemprop="name">Zhenyu Zhang</p>
            

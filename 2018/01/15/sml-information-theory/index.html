@@ -169,7 +169,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -179,7 +179,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -279,16 +279,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2018/01/15/sml-information-theory/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ZZY SAY">
     </span>
 
@@ -331,7 +331,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/" itemprop="url" rel="index">
                     <span itemprop="name">Class Notes</span>
                   </a>
@@ -342,7 +342,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Class-Notes/Statistical-Machine-Learning/" itemprop="url" rel="index">
                     <span itemprop="name">Statistical Machine Learning</span>
                   </a>
@@ -395,7 +395,7 @@
 <li><p>微分熵<br>$$ h(X) = - \int_{-\infty}^{\infty} p_X(x) \log p_X(x) dx = - E[\log p_X(x)]$$<br>微分熵不是严格意义的信息熵，但是它用于衡量<strong>熵差</strong>时是有意义的。 </p>
 </li>
 </ul>
-<p>从离散熵推导微分熵<br><img src="http://qiniu.zzysay.cn/15159844674529.jpg" alt></p>
+<p>从离散熵推导微分熵<br><img src="http://qiniu.zzysay.cn/15159844674529.jpg" alt=""></p>
 <p><strong>离散熵性质</strong></p>
 <p>$$ 0 \le H(X) \le \log(2N+1) $$</p>
 <p>其中 $2N+1$ 是总的离散值的数目，当且仅当对于某一 $k$ 概率 $p_k=1$ 时，不确定性为 $0$。当且仅当所有 $k$ 概率 $p_k= 1/(2N+1)$ 时，不确定性最大。</p>
@@ -406,17 +406,17 @@
 </ul>
 <p><strong>定义：</strong>当根据不完整的信息作为依据进行推断时，应该由满足分布限制条件的<strong>具有最大熵的概率分布</strong>推得。</p>
 <p>$$ \begin{align} &amp; \;\; h(X) = - \int_{-\infty}^{\infty} p_X(x) \log p_X(x) dx \nonumber<br>\\ s.t. &amp; \;\; p_X(x) \ge 0 \nonumber<br>\\ &amp; \;\;  \int_{-\infty}^{\infty} p_X(x)dx = 1 \nonumber<br>\\ &amp; \;\;  \int_{-\infty}^{\infty} p_X(x)g_i(x)dx = \alpha_i (i=1,2,…,m)\nonumber \end{align} $$</p>
-<p><img src="http://qiniu.zzysay.cn/15159853167857.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15159853167857.jpg" alt=""></p>
 <p><strong>最大熵原理：</strong>学习概率模型时，在所有可能的概率模型中，熵最大的模型是最好的模型。</p>
 <ul>
 <li>在完全无约束的条件下，<strong>均匀分布</strong>的熵最大</li>
 <li>若已知均值和方差，<strong>高斯分布</strong>的微分熵最大</li>
 </ul>
-<p><img src="http://qiniu.zzysay.cn/15159854958246.jpg" alt><br><img src="http://qiniu.zzysay.cn/15159860302732.jpg" alt></p>
-<h2 id="熵与互信息"><a href="#熵与互信息" class="headerlink" title="熵与互信息"></a>熵与互信息</h2><h3 id="条件熵"><a href="#条件熵" class="headerlink" title="条件熵"></a>条件熵</h3><p><img src="http://qiniu.zzysay.cn/15159861725365.jpg" alt></p>
-<h3 id="联合熵"><a href="#联合熵" class="headerlink" title="联合熵"></a>联合熵</h3><p><img src="http://qiniu.zzysay.cn/15159863957140.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15159854958246.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15159860302732.jpg" alt=""></p>
+<h2 id="熵与互信息"><a href="#熵与互信息" class="headerlink" title="熵与互信息"></a>熵与互信息</h2><h3 id="条件熵"><a href="#条件熵" class="headerlink" title="条件熵"></a>条件熵</h3><p><img src="http://qiniu.zzysay.cn/15159861725365.jpg" alt=""></p>
+<h3 id="联合熵"><a href="#联合熵" class="headerlink" title="联合熵"></a>联合熵</h3><p><img src="http://qiniu.zzysay.cn/15159863957140.jpg" alt=""></p>
 <h3 id="互信息"><a href="#互信息" class="headerlink" title="互信息"></a>互信息</h3><p>互信息是信息熵与条件熵的差，其中熵可以是离散熵和微分熵。互信息等于<strong>信息增益</strong>，意义是给定一个随机变量 $X$ 后，$Y$ 所<strong>减少</strong>的不确定性。</p>
-<p><img src="http://qiniu.zzysay.cn/15159870939766.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15159870939766.jpg" alt=""></p>
 <p>互信息越大，说明两个变量越相关，给定一个变量后，另外一个变量减少的不确定性越大，剩余的不确定性越小。</p>
 <p><strong>互信息的性质</strong></p>
 <ul>
@@ -425,8 +425,8 @@
 <li><strong>不变性：</strong> 在随机变量的可逆交换下互信息是不变的，$u =f(x);\;v=g(y);\; I(X;Y) = I(U;V)$</li>
 </ul>
 <p><strong>互信息与熵的关系</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15159877369014.jpg" alt></p>
-<h3 id="熵的意义"><a href="#熵的意义" class="headerlink" title="熵的意义"></a>熵的意义</h3><p><img src="http://qiniu.zzysay.cn/15159878194026.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15159877369014.jpg" alt=""></p>
+<h3 id="熵的意义"><a href="#熵的意义" class="headerlink" title="熵的意义"></a>熵的意义</h3><p><img src="http://qiniu.zzysay.cn/15159878194026.jpg" alt=""></p>
 <h3 id="相对熵"><a href="#相对熵" class="headerlink" title="相对熵"></a>相对熵</h3><p>相对熵是衡量两个分布的平均信息差异，对于两个完全相同的分布，它们的相对熵为 $0$，相对熵越大，两个分布的差异越大。</p>
 <p>$$ D_{p_x||q_x} = \int_{-\infty}^{+\infty} p_x(x) \log \left(\frac {p_x(x)} {q_x(x)} \right) = E \left[\log \left(\frac {p_x(x)} {q_x(x)} \right) \right] $$</p>
 <p><strong>相对熵性质</strong></p>
@@ -471,9 +471,9 @@
 <li>假设分类模型是一个条件概率分布 $P(Y|X)$，$X$ 表示输入，$Y$ 表示输出。这个模型表示的是对于给定的输入 $X$，以条件概率 $P(Y|X)$ 输出 $Y$</li>
 <li>给定一个训练数据集 $T$，我们的目标就是利用最大熵原理选择最好的分类模型</li>
 </ul>
-<p><img src="http://qiniu.zzysay.cn/15160023047820.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15160023047820.jpg" alt=""></p>
 <p>这个模型表示的是对于给定的输入 $X$，以条件概率 $P(Y|X)$ 输出 $Y$。</p>
-<p><img src="http://qiniu.zzysay.cn/15160024979985.jpg" alt><br><img src="http://qiniu.zzysay.cn/15160026577111.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15160024979985.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15160026577111.jpg" alt=""></p>
 <p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] 李航,《统计学习方法》,清华大学出版社</p>
 
       
@@ -592,7 +592,7 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Zhenyu Zhang">
           <p class="site-author-name" itemprop="name">Zhenyu Zhang</p>
            

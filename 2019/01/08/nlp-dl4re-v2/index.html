@@ -182,7 +182,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
 
   
   
@@ -192,7 +192,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
     
@@ -292,16 +292,16 @@
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://zzysay.github.io/2019/01/08/nlp-dl4re-v2/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhenyu Zhang">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ZZY SAY">
     </span>
 
@@ -344,7 +344,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Study-Notes/" itemprop="url" rel="index">
                     <span itemprop="name">Study Notes</span>
                   </a>
@@ -355,7 +355,7 @@
                   , 
                 
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Study-Notes/Nature-Language-Processing/" itemprop="url" rel="index">
                     <span itemprop="name">Nature Language Processing</span>
                   </a>
@@ -412,13 +412,13 @@
 <p>其中，$B$ 代表一个示例包，$|\hat B|$ 表示筛选后得到的新示例包。为了得到更多的反馈，提高训练效率，论文将样本按照实体对分成若干个示例包，每次句子选择器完成一个包的选择后，模型都会用关系分类器来评估这部分数据，并更新 policy 函数的参数。当所有包都训练完成之后，再筛选出所有的样本，训练更新关系分类器的参数，从而得到最终的模型来用于关系预测。</p>
 <h4 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h4><p>实验在 NYT 数据集上进行，通过与当前主流深度神经网络方法的比较，来证明强化学习的方法在数据筛选方面的卓越性能。</p>
 <p>从下表可以看出，基于强化学习的方法比当前基于池化和注意力机制的方法在性能上都高出很多，需要注意的一点是，这里的评价的是句子级别的准确率。</p>
-<p><img src="http://qiniu.zzysay.cn/15519452105468.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15519452105468.jpg" alt=""></p>
 <p>实验还使用保留集比较了句子质量和句子选择策略对模型效果的影响。由上图中的图 3 可以看出，使用句子选择器筛选后的数据集训练出了更好的关系分类模型，这也就意味着强化学习对句子的筛选在提高模型性能方面起到了一定的作用。此外，文章还通过实验说明，在对句子的选择上，强化学习的方法优于使用贪心策略的方法。</p>
 <h3 id="ACL-2018-DSGAN"><a href="#ACL-2018-DSGAN" class="headerlink" title="[ACL 2018] DSGAN"></a>[ACL 2018] DSGAN</h3><blockquote>
 <p><strong>DSGAN: Generative Adversarial Training for Distant Supervision Relation Extraction</strong></p>
 </blockquote>
 <p>这是来自UCSB王威廉老师组的工作，论文使用生成对抗网络（GAN）来解决远程监督的噪声数据问题，按照GAN的框架思想，在生成器生成数据划分之后，判别器来评价该划分的好坏，并将结果反馈给生成器，生成器根据反馈进一步生成新的数据，希望能够最大限度地降低判别器的判别能力。</p>
-<h4 id="模型-1"><a href="#模型-1" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519453561228.jpg" alt></p>
+<h4 id="模型-1"><a href="#模型-1" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519453561228.jpg" alt=""></p>
 <p>模型的整体结构如上图所示，给定一个使用远程监督标注的数据集，生成器希望从中选择出全部的真正例，但是在整个框架中，这些被选择出来的正例却被看作为负例来训练判别器，没有被选择出来的样本却被当做正例。最后，生成器发现越多的正例，那么被标记的负例也就越多，判别器的性能下降也就越多。这样一来，我们的目标就是希望得到一个强大的生成器，以至于在最大程度上使得判别器丧失分类能力。显然，在这个迭代过程开始之前，我们需要对判别器进行预训练。</p>
 <p>为了获得更多的反馈，我们把整个正例集合划分成了 $N$ 个包，每处理完一个包，就更新一次模型参数。我们把第 $i$ 个包记作 $B_i$，对于其中的一个句子 $s_j$, 定义其被生成器判断为真正例的概率为 $p_G(s_j)$，其被判别器判断为真正例的概率为 $p_D(s_j)$。</p>
 <p>生成器基于 $p_G(s_j)$ 来选出高概率的句子组成一个集合 $T$：</p>
@@ -437,7 +437,7 @@
 <p><strong>Neural Relation Extraction via Inner-Sentence Noise Reduction and Transfer Learning</strong></p>
 </blockquote>
 <p>这是来自上海交通大学的工作，在远程监督场景下，除了语料的错误标注问题，还存在句内噪声单词过多的问题，这个问题一直没有引起足够的重视，并且，随机初始化特征抽取器参数的方法过于粗暴。文章分别使用子树解析和迁移学习的方法来解决这两个问题。同时，这也是第一篇在关系抽取任务中使用迁移学习的文章。</p>
-<h4 id="模型-2"><a href="#模型-2" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519456325466.jpg" alt></p>
+<h4 id="模型-2"><a href="#模型-2" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519456325466.jpg" alt=""></p>
 <p>上图的框架可以大致分为三个部分，第一个部分是子树解析（Sub-Tree Parse），对句子进行句法解析后，找到两个实体最近的公共祖先，取以该祖先节点的父节点为根节点的子树，只保留句子中的这些单词。随后将原始句子包的 STP 输入到网络中，经过一个 Bi-GRU 来编码句子的语义，第二个部分就是编码器中的注意力机制，编码器中不仅含有单词级别的注意力机制和句子级别的注意力机制，还增加了一个面向实体的注意力机制：</p>
 <p>$$ \alpha_{it}^e = \begin{cases} 1, &amp; t\;=\;head, tail \\ 0, &amp; others \end{cases};  \quad<br>   \alpha_{it}^w = \frac{\exp(h_{it}A^wr^w)}{\sum_{t^{‘}=1}^T\exp(h_{it^{‘}}A^wr^w)}; \quad<br>   \alpha_{i}^s = \frac {\exp(S_iA^sr^s)} {\sum_j\exp(S_jA^sr^s)}$$</p>
 <p>$$ S_i = \sum_t(\alpha_{it}^w + \alpha_{it}^e)h_{it}; \quad<br>   S = \sum_i \alpha_i^s S_i $$    </p>
@@ -447,15 +447,15 @@
 <p>实体分类和关系分类任务共享除了注意力层和输出层的所有参数，需要注意的是，对头实体和尾实体的分类分别是两个不同的任务，使用的也是两套不同的参数（笔者注：在对头实体预测时，实体级别的注意力机制可能只关注头实体，反之亦然）。在最后的训练过程中，首先训练两个实体分类任务，随后将共享层的参数迁移到关系分类任务上，作为模型的初始化，最后再进一步优化与关系分类任务相关的参数。</p>
 <h4 id="实验-2"><a href="#实验-2" class="headerlink" title="实验"></a>实验</h4><p>实验在 NYT 数据集上进行，首先使用 PR 曲线来分别展示文章中三个模块的具体作用，每一个功能模块的增加都对最终的结果产生了明显的提升，尤其是 STP 部分和迁移学习部分。</p>
 <p>值得一提的是，在STP部分，实验表明了使用SDP比使用整个句子有小幅度的提升，相较于前两个部分，STP的提升则十分显著，这是一种符合数据分布的结果，因为 SDP 在去除噪音词的同时，也误删了很多对关系分类来说十分有意义的词汇。</p>
-<p><img src="http://qiniu.zzysay.cn/15519456619877.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15519456619877.jpg" alt=""></p>
 <p>通过表 3 可以发现，相比于 PCNN + ATT，这种方法取得了6-7个点的性能提升。在不使用迁移学习的情况下，就取得了不错的效果，从而也说明了 STP 和实体级别的注意力机制都是十分有效的方法。此外，预训练和迁移学习对模型效果的提升可能不限于此，选择更合适的预训练任务可能能够取得更好的效果。</p>
 <h2 id="外部知识"><a href="#外部知识" class="headerlink" title="外部知识"></a>外部知识</h2><h3 id="COLING-2018-CORD"><a href="#COLING-2018-CORD" class="headerlink" title="[COLING 2018] CORD"></a>[COLING 2018] CORD</h3><blockquote>
 <p><strong>Cooperative Denoising for Distantly Supervised Relation Extraction</strong></p>
 </blockquote>
 <p>这是来自北京大学深圳研究生院和腾讯 Medical AI Lab的工作，合作作者还有中科院深研院的杨敏老师。文章认为，当前的很多方法都仅仅局限于语料集，知识图谱中的很多信息都未得到充分利用，充分利用各种信息源的监督信息，有利于缓解远程监督中的噪声标签问题。此外，论文还获得了COLING 2018 Best Paper的提名。</p>
-<h4 id="模型-3"><a href="#模型-3" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519457568216.jpg" alt></p>
+<h4 id="模型-3"><a href="#模型-3" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519457568216.jpg" alt=""></p>
 <p>文章提出了一种协同去噪框架CORD，该框架由Corpus-Net、KG-Net两个神经网络和一个协同模块组成，两个神经网络分别在文本语料库和知识图谱中进行学习，再通过一个自适应的双向知识蒸馏模块（Adaptive Bi-directional Knowledge Distillation）完成它们间的相互学习，并结合一些实体类型的约束，最终达到去除噪声的目的。</p>
-<p><img src="http://qiniu.zzysay.cn/15519457646002.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15519457646002.jpg" alt=""></p>
 <p>其中，Corpus-Net 和 <a href="http://aclweb.org/anthology/P16-1200.pdf" target="_blank" rel="noopener">PCNN +ATT</a> 几乎完全相同，只是把编码器换成了 Bi-GRU。KG-Net 的输入是从句子中识别出的实体在知识库中对应的候选实体序列，这些候选实体经过一个链指级别的注意力机制（候选实体向量预先使用 DeepWalk 和 TransE 得到），得到对应实体的向量表示，与该实体在原句子中的位置向量拼接后输入到一个 Bi-GRU 中，再经过一个实体级别的注意力机制，就可以得到基于知识图谱的句子表示。</p>
 <p>文章还关注了关系的特定规则，因为一些典型的错误可以通过这种规则来纠正，比如两个实体的类型都为 person，那么其关系就不可能是 born_in，这种规则信息可以大规模地从 Freebase 中统计得出。给定一个实体对中两个实体的所有实体类型 $t_{j,1}$ 和 $t_{j,2}$，我们给每个关系 $i$ 设计了一个逻辑规则：$r_i= (T_{i,1} \in t_{j,1}) \land (T_{i,2} \in t_{j,2})$，即关系对应的头尾实体的类型需要在对应位置实体的类型集合中出现过。这里沿用<a href="http://jmlr.org/papers/volume18/15-631/15-631.pdf" target="_blank" rel="noopener">前人的工作</a>使用了一种软逻辑，使得这个规则得分取值在 [0,1] 之间。这样，我们就可以使用后验正则化的方式将原预测结果 $p(S^e)$ 投影到新的约束子空间 $(p^{‘}(S^e))^*$  中去：</p>
 <p>$$ (p^{‘}(S^e))^* \propto p(S^e) \times e^{s_r}, \quad \quad s_r = -\sum_{i=1}^l C \lambda_i (1-r_i(S^e)) $$</p>
@@ -468,14 +468,14 @@
 <p>$$p^{co} = (1-w_k)p^c+w_kp^k, \quad w_k = \alpha + \beta (\frac{s_r} {n_r} - \frac {n_c}  {n_e\times N_e}) $$</p>
 <p>其中，$\alpha$ 是KG-Net的经验权重，$\beta$ 是自由调节权重， $n_r, n_c, n_e, N_e$ 分别是关系的数量，所有候选实体的数量，句子中实体的数量和，候选实体的数量上限。</p>
 <h4 id="实验-3"><a href="#实验-3" class="headerlink" title="实验"></a>实验</h4><p>实验在 NYT 数据集上进行，首先比较了CORD的方法和传统方法在 PR 曲线上的性能，随后探讨了实体向量的不同预训练方式对KG-Net的影响，最后还探讨了在知识蒸馏模块使用不同的模仿率、静态和动态的联合预测对最终结果的影响。</p>
-<p><img src="http://qiniu.zzysay.cn/15519457845589.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15519457845589.jpg" alt=""></p>
 <p>上图的结果表明，Corpus-Net和传统的注意力机制的方法效果相近，因为只是编码器的CNN换成了GRU，KG-Net 的效果超过了基于特征的方法，这似乎表明它们捕获的都是一些特定的模式，所以具有较高的准确率和较低的召回率，最终，CORD的方法达到了最好的效果，虽然提升不是很大。</p>
-<p><img src="http://qiniu.zzysay.cn/15519457945842.jpg" alt><br>根据上图可以看出，加入关系类型的约束对长尾数据有很大提升（$\ge 1$表示使用整个测试集， $&gt; 1$ 表示过滤掉那些实体对只出现过一次的情况）。这是一种很符合直觉的结果，因为长尾关系的训练相对不充分，加入额外的约束就显得十分有用。 </p>
+<p><img src="http://qiniu.zzysay.cn/15519457945842.jpg" alt=""><br>根据上图可以看出，加入关系类型的约束对长尾数据有很大提升（$\ge 1$表示使用整个测试集， $&gt; 1$ 表示过滤掉那些实体对只出现过一次的情况）。这是一种很符合直觉的结果，因为长尾关系的训练相对不充分，加入额外的约束就显得十分有用。 </p>
 <h3 id="COLING-2018-DesRC"><a href="#COLING-2018-DesRC" class="headerlink" title="[COLING 2018] DesRC"></a>[COLING 2018] DesRC</h3><blockquote>
 <p><strong>Neural Relation Classification with Text Descriptions</strong></p>
 </blockquote>
 <p>这是来自东北大学知识图谱组的工作，针对关系抽取中的数据稀疏性问题，提出了一个DesRC模型，借助注意力机制将实体的文本描述作为额外信息加入到了句子向量中去。在训练过程中，论文还使用了一些对抗方法来提高模型的鲁棒性。</p>
-<h4 id="模型-4"><a href="#模型-4" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519459138774.jpg" alt></p>
+<h4 id="模型-4"><a href="#模型-4" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519459138774.jpg" alt=""></p>
 <p>模型的输入包括三个部分，原句子和两个实体的描述信息。对于关系分类来说，<a href="http://aclweb.org/anthology/P16-1072.pdf" target="_blank" rel="noopener">BRCNN</a> 是目前表现最好的一种句子编码器，输入的是两个实体之间的最短依存路径（SDP），由于实体描述信息中通常只有一个我们关注的实体，无法抽取SDP，所以只能使用CNN来进行编码。在输入部分，依旧使用词向量和位置向量相结合的方法，只是对于描述信息，我们只关注到当前实体的距离。</p>
 <p>文章使用单词级别的注意力机制来调整原始的词向量，使那些与实体对和关系相关的单词权重更高。对于句子中的单词 $w$，取其$m$个上下文单词来计算新的词表示 $x$：</p>
 <p>$$ x = \sum_i \alpha_i * w_i; \quad \alpha_i = \frac {\exp(f_i)} {\sum_j\exp(f_j)} $$</p>
@@ -495,7 +495,7 @@
 <p><strong>Hierarchical Relation Extraction with Coarse-to-Fine Grained Attention</strong></p>
 </blockquote>
 <p>这是来自清华大学刘知远老师组的工作，之前的工作中，关系都是被独立处理的，但是知识库中的关系往往具有层级结构。文章提出了一种层级注意力机制来关注关系之间的层级关系，使得高层次的关系具有更多的训练数据，从而可以获得更好的性能。</p>
-<h4 id="模型-5"><a href="#模型-5" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519460227458.jpg" alt></p>
+<h4 id="模型-5"><a href="#模型-5" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519460227458.jpg" alt=""></p>
 <p>模型包括一个句子编码器和一个从粗到细的层级注意力机制，句子编码器使用CNN或PCNN来编码句子，层级注意力机制来选择那些最能表达这个关系的示例。底层的注意力关注的是具体关系的特征，是一种细粒度的样例选择，和传统的方法并无二致，高层的注意力关注的是关系之间的共同特征，是一种粗粒度的样例选择，因为顶层的关系具有足够多的训练数据，所以对长尾关系有很大程度的性能提升。</p>
 <p>记实体对 ($h,t$) 对应的句子包为 $S_{h,t}$，关系的全集为 $R$。框架输出层通过加权句子向量得到两个实体之间的文本关系向量 $r_{h,t}$，随后根据这个文本关系向量计算当前向量对知识库关系的得分，得分最高的即为预测出来的关系：</p>
 <p>$$ r_{h,t} = \sum_{i=1}^m \alpha_is_i, \; s_1, … , s_m \in S_{h,t}; \quad \quad P(r|h,t,S_{h,t}) = \frac {\exp(o_r)} {\sum_{r^{‘}\in R}\exp(o_{r^{‘}})}, \; o = Mr_{h,t} $$</p>
@@ -505,21 +505,21 @@
 <p>$$ r_{h,t}^i = ATT(q_{r^i}, S_{h,t}); \quad r_{h,t} = [r_{h,t}^0;…;r_{h,t}^{k-1}] $$</p>
 <p>这样的一个直观解释就是，对于/location/province/capital的实体对，同样具有/location/province和/location关系，/location的训练数据也会包括/location/contains下的关系，所以就具有更多的训练数据，最后是把所有层级的向量拼接到一起，很显然，这种做法可以提高那些细粒度的长尾关系的识别率。</p>
 <h4 id="实验-5"><a href="#实验-5" class="headerlink" title="实验"></a>实验</h4><p>实验在 NYT 数据集上进行，如上文例子中所述的那样，NYT数据集中的关系本身就具有层级。首先分别使用 PR 曲线和 P@N 指标和基线模型对比，来表明当前模型的优越性，随后分开探讨了层级注意力机制对不同关系的影响，尤其是在长尾关系上。最后做了样例分析，来展示高层次关系和低层次关系关注的不同点。</p>
-<p><img src="http://qiniu.zzysay.cn/15519460582502.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15519460582502.jpg" alt=""></p>
 <p>由上图中的图 3 可以看出，HATT方法和对应的基础方法相比，具有很大程度上的提升，显然，这种程度的提升远不是长尾数据能够带来的，论文也通过实验给出了说明，对于普通的关系，Hits@K平均都有10个点的提升。上图中的表 3 分析了训练数据少于 100/200 条的关系的表现性能，可以看出，传统的方法几乎不能处理此类数据，加入HATT策略可以给此类数据带来成倍的性能提升。 </p>
 <h3 id="EMNLP-2018-RESIDE"><a href="#EMNLP-2018-RESIDE" class="headerlink" title="[EMNLP 2018] RESIDE"></a>[EMNLP 2018] RESIDE</h3><blockquote>
 <p><strong>RESIDE: Improving Distantly-Supervised Neural Relation Extraction using Side Information</strong></p>
 </blockquote>
 <p>这是来自Indian Institute of Science的工作，论文使用关系别名和实体类型这两种知识库知识来辅助解决远程监督关系抽取问题。在自然语言场景中，不同的句子对关系的表达方式不尽相同，这种关系别名的信息在关系抽取中十分重要。同时，因为每种关系对应的实体类型都是有限的，所以实体类型在关系抽取中也扮演着不可或缺的角色。</p>
-<h4 id="模型-6"><a href="#模型-6" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519462041036.jpg" alt></p>
+<h4 id="模型-6"><a href="#模型-6" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519462041036.jpg" alt=""></p>
 <p>模型首先对句子进行编码，编码过程中，不仅按照传统方法将词向量和位置向量拼接后输入到 Bi-GRU 中得到 $h^{gru}$，同时也在句法依存树上使用 GCN 来获得每个单词的句法知识，记作 $h^{gcn}$，其中，GCN的输入就是 $h^{gru}$。将这两者拼接后使用一个单词级别的注意力机制就可以得到句子的向量表示（其中，$r$ 是一个随机初始化的查询向量）：</p>
 <p>$$ s = \sum_{j=1}^m \alpha_i h_i^{concat}; \quad \alpha_i = \frac {\exp(h_i^{concat} · r)} {\sum_j \exp(h_j^{concat} · r)}; \quad h_i^{concat} = [h_i^{gcn};h_i^{gru}] $$</p>
-<p><img src="http://qiniu.zzysay.cn/15519462125899.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15519462125899.jpg" alt=""></p>
 <p>对于关系别名的信息，模型首先使用斯坦福的 Open IE 工具来抽取两个实体之间的关系短语集合 $P$。对于知识库关系，使用 PPDB 将其扩充到一个更大的知识库关系别名集合 $R$，随后把 $P$ 和 $R$ 映射到同一个语义空间中，对于 $P$ 中的每个关系短语 $p$，从集合 $R$ 中选出与其最相近的知识库关系 $h^{rel}$（$|P|&gt;1$时，把所有的$h^{rel}$取平均），最后，$h^{rel}$ 被拼接到句子向量 $s$ 之后，得到新的句子表示 $\hat{s}$。</p>
 <p>对于实体类型的信息，使用一个外部工具包 FIGER 来获取Freebase中的实体类型，对每个实体类型，指定一个实体类型向量 $h^{type}$，如果一个实体属于多个类型，就把多个类型的向量取平均，然后把这个向量拼接到包向量上，进行最后的关系分类：</p>
 <p>$$ B = \sum_i \alpha_i \hat{s_i}; \quad \hat{s_i} = [s_i; h_i^{rel}]; \quad \alpha_i = \frac {\exp(\hat{s_i}·q)} {\sum_j \exp(\hat{s_j}·q)}, \; \text{where q is a random query vector.} $$<br>$$ \quad \hat{B} = [B; h_{sub}^{type}; h_{obj}^{type}];  \quad p(y) = softmax(W·\hat{B}+b);$$</p>
 <h4 id="实验-6"><a href="#实验-6" class="headerlink" title="实验"></a>实验</h4><p>实验在 NYT (Riedel) 数据集和 GDS (Google Distant Supervision) 数据集上进行，对比了 RESIDE 和传统方法的表现性能，探讨了在关系别名部分是否使用 PPDB （即知识库关系别名空间的大小）对最终结果的影响。</p>
-<p><img src="http://qiniu.zzysay.cn/15519462237052.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15519462237052.jpg" alt=""></p>
 <p>通过上图的实验结果可以看出，在关系抽取任务中加入关系别名和实体类型的外部知识可以显著提升模型的性能，尤其是在高召回的场景下，准确率的提升十分可观：文中给出的结论是 P@100 的提升大约在2个百分点，P@300 的提升达到了 5 个以上的百分点。最后，实验还通过 Ablation Study 分析了不同因素对模型效果的提升，最后得出 RA &gt; GCN &gt; ET 的结论。</p>
 <hr>
 <p><a href="https://arxiv.org/pdf/1804.06987.pdf" target="_blank" rel="noopener">GDS</a> 是基于Google关系抽取语料集构建的一个远程监督数据集，保证了每个包中至少含有一个表达当前关系的实例，所以不需要人工评测 P@N 的准确性。GDS 共包含 perGraduatedInstitution、perHasDegree、perPlaceOfBirth、perPlaceOfDeath和NA五种关系，类别分布相对较均衡，每类大约有4k条句子，2k对实体。</p>
@@ -528,7 +528,7 @@
 <p><strong>Exploring Encoder-Decoder Model for Distant Supervised Relation Extraction</strong></p>
 </blockquote>
 <p>这是来自北京邮电大学的工作，文章使用编码解码框架来解决实体对的多关系问题。通常来讲，实体对之间的关系都具有依赖性，已知两个实体具有某种关系对预测其它关系而言是一种十分重要的信息。文章设计了一种方法来决定关系的预测顺序，并将上一个时间步预测出的关系作为下一个时间步的输入，从而实现对关系依赖的建模。</p>
-<h4 id="模型-7"><a href="#模型-7" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519463790659.jpg" alt></p>
+<h4 id="模型-7"><a href="#模型-7" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519463790659.jpg" alt=""></p>
 <p>模型使用CNN来编码句子得到向量表示$x_i$，进而得到包的向量表示 $B$，解码器使用 LSTM 来建模关系之间的联系，解码器的输出应该是一个关系的集合。对于第 $t$ 个时间步，LSTM 解码器的隐层状态 $s_t$ 和输出 $y_t = l_j$ 的概率可以使用以下方法来计算（其中，$l_j \in L$ 是第 $j$ 个关系）：</p>
 <p>$$ s_t = LSTM(s_{t-1}, y_{t-1}, B) ;\quad p(y_t=l_j|{y_1, …, y_{t-1}}, B) = \frac {\exp(l_jTs_t)} {\sum_r \exp(l_rTs_t)} $$</p>
 <p>在得到每一个时间步的输出之后，模型需要重点关注那些关系还尚未被预测出来的句子，这里使用一个注意力机制来动态调整包的向量表示，来降低那些关系已经被预测出来的句子的权重，在注意力权重时，使用了一个神经网络 $\eta$ 来计算当前句子向量$x_i$和解码器上一时刻隐状态 $s_{t-1}$ 的相似度：</p>
@@ -542,14 +542,14 @@
 <p>$$ L_{squared} = \sum_{t=1}^{n_B} \sum_{i=1}^{n_l} (q_{ti} - p_{ti})^2 $$</p>
 <p>其中，$n_B$ 是包中对应关系的数量，$n_l$ 是总的关系数量。$q_{ti} \in {0,1}$ 是 $t$ 时间第 $i$ 个关系的标签， $p_{ti}$ 是 $t$ 时间第 $i$ 个关系的预测概率。训练时，对每个包的关系末尾增加了一个 <end>，测试时，当解码器输出5个关系或输出<end>后即停止。</end></end></p>
 <h4 id="实验-7"><a href="#实验-7" class="headerlink" title="实验"></a>实验</h4><p>实验在 NYT 数据集上进行，分别使用 PR 曲线和 P@N 两种指标来评价模型性能。</p>
-<p><img src="http://qiniu.zzysay.cn/15519463923015.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15519463923015.jpg" alt=""></p>
 <p>由上图可以看出，Partial+IQ+ATT 达到了一个很优异的效果，相较于基线模型提高了近10个点。其中，Ave 和 Partial 指包向量的两种初始化方法，Freq 指根据关系频率降序来确定关系预测顺序，ATT指在解码器中加入注意力机制来调整包的表示。</p>
 <h3 id="ACL-2018-MultiDecoder"><a href="#ACL-2018-MultiDecoder" class="headerlink" title="[ACL 2018] MultiDecoder"></a>[ACL 2018] MultiDecoder</h3><blockquote>
 <p><strong>Extracting Relational Facts by an End-to-End Neural Model with Copy Mechanism</strong></p>
 </blockquote>
 <p>这是来自自动化所刘康老师组的工作，通常来讲，一个句子中会含有很多的实体三元组，但是以往的工作常常忽略了这一点。文章基于编码解码模型，主要关注三元组中实体和实体对的重叠（同一个实体或实体对参与多个关系）的情况。</p>
-<h4 id="模型-8"><a href="#模型-8" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519464573760.jpg" alt></p>
-<p><img src="http://qiniu.zzysay.cn/15519464657890.jpg" alt></p>
+<h4 id="模型-8"><a href="#模型-8" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519464573760.jpg" alt=""></p>
+<p><img src="http://qiniu.zzysay.cn/15519464657890.jpg" alt=""></p>
 <p>给定一个句子 $s=[x_1,…,x_n]$，编码器使用一个Bi-RNN来对句子进行编码，在 $t$ 时刻，得到其输出 $o_t^E$ 和隐藏状态 $h_t^E$：$o_t^E, h_t^E = f(x_i, h_{t-1}^E)$。解码器直接生成关系的三元组，每三个时间步为一个周期，每三个时间步为一个周期，第一个时间步，使用编码器的输出来预测关系，产生一个新的三元组，第二个时间步，从源句子中复制第一个实体，第三个时间步，从源句子中复制第二个实体。不断重复这个过程，就可以生成很多的三元组，最后输出一个NA标签来标志解码结束。</p>
 <p>使用单解码器时，在 $t$ 时刻，记作其输出 $o_t^D$ 和隐藏状态 $h_t^D$：$o_t^D, h_t^D = f(u_t, h_{t-1}^D)$，其中，$u_t = [v_t;c_t]·W^u$，$v_t$ 是上一个时间步复制过来的实体的向量或者预测的关系的向量，$c_t$ 是一个注意力向量：</p>
 <p>$$ c_t = \sum_{i=1}^n \alpha_i \times o_i^E; \quad \alpha_i = softmax(\beta);\quad \beta_i = selu([h_{t-1}^D; o_i^E]·w^c) $$</p>
@@ -562,7 +562,7 @@
 <p>单解码器模型中，解码器的最初输入是句子向量，多解码器模型中，每隔三个时间步，都使用一个新的解码器，并且重新输入一次原始的句子向量，把句子向量和上一时刻的隐层状态取平均作为当前解码器的输入。显然，这是一种更好的方法，相对只使用一个编码器可以有效避免错误传播的问题。</p>
 <h4 id="实验-8"><a href="#实验-8" class="headerlink" title="实验"></a>实验</h4><p>实验在 NYT 数据集和 WebNLG 数据集上进行，作者人工过滤掉了NYT 中不包含实体三元组的句子和长度大于100的句子，最后使用56195条作为训练，5000条作为验证，5000条作为测试。文章选取了一个17年的<a href="http://aclweb.org/anthology/D17-1182.pdf" target="_blank" rel="noopener">工作</a>作为基线，实验的重点在于探讨单编码器和多编码器的区别和模型对不同重叠程度数据的处理情况。</p>
 <p>文章把句子分成了三类，一类是实体没有重叠（Normal），一类是实体对完全重叠（EntityPairOverlap, EPO），还有一类是单实体重叠（SingleEntityOverlap. SEO）。</p>
-<p><img src="http://qiniu.zzysay.cn/15519465874810.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15519465874810.jpg" alt=""></p>
 <p>实验结果表明，模型提出的两种方法在这两个数据集上都取得了卓越的性能，文章提出的方法在实体无重叠的情况下，并没有超过基线模型，但是在实体有重叠的场景，各项指标都遥遥领先。最后，实验还展示了句子中三元组的数量对关系抽取性能的影响，并且对比了单解码器和多解码器在拷贝时的准确率。</p>
 <hr>
 <p><a href="http://aclweb.org/anthology/P17-1017.pdf" target="_blank" rel="noopener">WebNLG</a>是为自然语言生成准备的数据集，其中包括 246种关系，在这个数据集中，每个示例都包括一组三元组和一些对应的（标准人工）句子，每个句子中都包含示例中所有的三元组，论文对其进行了一系列过滤，最后剩下训练数据5019条，验证数据500条，测试数据703条。</p>
@@ -571,14 +571,14 @@
 <p><strong>Graph Convolution over Pruned Dependency Trees Improves Relation Extraction</strong></p>
 <p>这是来自Stanford University / Manning 老师组的工作，句子的句法依存树对关系分类来说是一种十分重要的信息，但传统的神经网络模型很难直接高效地处理此类信息，GCN作为CNN在图上的扩展，天然地适合处理这种非欧的结构。同时，为了更好地利用这种树状结构，文章还提出了一种以路径为核心的剪枝策略来降低噪声词的影响。</p>
 </blockquote>
-<h4 id="模型-9"><a href="#模型-9" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519466599452.jpg" alt></p>
+<h4 id="模型-9"><a href="#模型-9" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519466599452.jpg" alt=""></p>
 <p>直接在句子的依存树上使用 GCN 会面临两个问题：句子表示倾向于大度节点而忽略其他小度节点的信息，并且低层的隐状态不会被传递到高层，因为在依存树中节点不会和自己相连。文章使用两种策略来解决这两个问题：对隐层状态除以节点的度、给每个节点增加一个自环。我们定义 $A$ 为原始邻接矩阵，增加自环后 $\tilde{A} = A + I$，$d_i = \sum_j \tilde{A_{ij}}$。记第 $l$ 层的第 $i$ 个节点的输入为 $h^{(l-1)}_i$, 输出为 $h^{(l)}_i$，于是有：</p>
 <p>$$ h^{(l)}_i = \sigma (\sum_{j=1}^n A_{ij}W^{(l)}h_{j}^{(l-1)} + b^{(l)}) \quad \rightarrow \quad  h^{(l)}_i = \sigma (\sum_{j=1}^n \tilde{A_{ij}}W^{(l)}h_{j}^{(l-1)} / d_i + b^{(l)})  $$</p>
 <p>按照上图所示的模型，将句子中的每个单词转化成其词向量 $h^{0}$，经过 GCN 得到新的词表示 $h^{(L)}$，接最大池化层得到句子表示 $h_{sent}$。此外，还将 GCN 输出层中与头尾实体位置对应的单词单独取出进行最大池化，分别得到头尾实体的向量表示 $h_o$，$h_s$。最后把这三个向量首尾拼接进行关系分类：$ h_{final} = FFNN([h_{sent};h_{s};h_{o}]) $。</p>
 <p>GCN无法编码长距离信息，并且完全依赖于依存树的结构，这可能会放大句法分析带来的噪声，为了解决以上问题，模型在词向量层和图卷积层之间增加了一层 Bi-LSTM 来编码单词的上下文信息，最终得到C-GCN模型。</p>
 <p>文章提出了一种以依存路径为核心的剪枝，引入一个变量 $K$ 来衡量单词到 SDP 的距离。当$K=0$时，只保留 SDP 上的节点，当$K=\infty$ 时，则保留 LCA 上的全部节点，当$K=1$ 时，即保留 SDP 及其一阶邻居节点。</p>
 <h4 id="实验-9"><a href="#实验-9" class="headerlink" title="实验"></a>实验</h4><p>实验在 SemEval 2010 Task 8 和 TACRED 上进行，实验和分析十分详实，实验部分的侧重点在于展示模型在这两个数据集上的结果，并探讨 $K$ 值对模型结果的影响。</p>
-<p><img src="http://qiniu.zzysay.cn/15519466710066.jpg" alt></p>
+<p><img src="http://qiniu.zzysay.cn/15519466710066.jpg" alt=""></p>
 <p>如上图中的表1和表2所示，在两个数据集上，C-GCN的方法相较于 PA-LSTM 的方法都取得了大约1个点的提升，作者认为，这两种方法虽然性能相近，但是在数据处理上是互补的，于是引出了 C-GCN + PA-LSTM的Ensemble方法和下文对这两类模型的分析。下图中的图3展示了验证集上的 $F_1$ 值随着 $K$ 取值的变化情况，当$K=1$，即保留 SDP 及其一阶邻居节点时，所有的模型都达到了最好的效果。</p>
 <center><br><img src="http://qiniu.zzysay.cn/15519466837523.jpg" alt="-w300"><br></center>
 
@@ -728,7 +728,7 @@
       
 
       <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Zhenyu Zhang">
           <p class="site-author-name" itemprop="name">Zhenyu Zhang</p>
            
