@@ -79,7 +79,7 @@
 <meta property="og:image" content="http://qiniu.zzysay.cn/15519466599452.jpg">
 <meta property="og:image" content="http://qiniu.zzysay.cn/15519466710066.jpg">
 <meta property="og:image" content="http://qiniu.zzysay.cn/15519466837523.jpg">
-<meta property="og:updated_time" content="2019-03-07T09:07:04.960Z">
+<meta property="og:updated_time" content="2020-01-29T13:07:46.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于深度学习的关系抽取最新进展(2018)">
 <meta name="twitter:description" content="最早将深度学习应用到关系抽取的文章出现在COLING 2014上，近年来，基于深度学习的关系抽取呈现出蓬勃发展的趋势。但一直以来，学者们大都致力于解决远程监督标注数据产生的噪声问题，将一些在通用自然语言处理任务中效果很好的方法应用到关系抽取任务上。直到2018年，随着一些新技术和新思路的出现，学者们不再聚焦于传统的去噪任务，逐渐开始针对关系抽取任务的特点进行一些深入分析和大胆尝试。本文从2018年">
@@ -237,7 +237,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-03-07 17:07:04" itemprop="dateModified" datetime="2019-03-07T17:07:04+08:00">2019-03-07</time>
+                <time title="Modified: 2020-01-29 21:07:46" itemprop="dateModified" datetime="2020-01-29T21:07:46+08:00">2020-01-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -356,14 +356,14 @@
 <h4 id="模型-4"><a href="#模型-4" class="headerlink" title="模型"></a>模型</h4><p><img src="http://qiniu.zzysay.cn/15519459138774.jpg" alt=""></p>
 <p>模型的输入包括三个部分，原句子和两个实体的描述信息。对于关系分类来说，<a href="http://aclweb.org/anthology/P16-1072.pdf" target="_blank" rel="noopener">BRCNN</a> 是目前表现最好的一种句子编码器，输入的是两个实体之间的最短依存路径（SDP），由于实体描述信息中通常只有一个我们关注的实体，无法抽取SDP，所以只能使用CNN来进行编码。在输入部分，依旧使用词向量和位置向量相结合的方法，只是对于描述信息，我们只关注到当前实体的距离。</p>
 <p>文章使用单词级别的注意力机制来调整原始的词向量，使那些与实体对和关系相关的单词权重更高。对于句子中的单词 $w$，取其$m$个上下文单词来计算新的词表示 $x$：</p>
-<p>$$ x = \sum_i \alpha_i * w_i; \quad \alpha_i = \frac {\exp(f_i)} {\sum_j\exp(f_j)} $$</p>
+<p>$$ x = \sum_i \alpha_i \cdot  w_i; \quad \alpha_i = \frac {\exp(f_i)} {\sum_j\exp(f_j)} $$</p>
 <p>其中，$f_j$ 是一个衡量当前词和句子关系$r$以及句子中实体（对）之间的语义相关性的函数，对于原句子和描述信息分别有不同的计算方式：</p>
-<p>$$ f_i = \tanh(W<em> [w_i;w_{e1};w_{e2}]+ U</em>r) \quad or \quad f_i = \tanh(W_{1/2}<em> [w_i;w_{e1}/w_{e2}]+ U</em>r) $$</p>
+<p>$$ f_i = \tanh(W \cdot [w_i;w_{e1};w_{e2}]+ U \cdot r) \quad or \quad f_i = \tanh(W_{1/2} \cdot [w_i;w_{e1}/w_{e2}]+ U \cdot r) $$</p>
 <p>将调整后的词向量输入到编码器中，分别得到句子和描述信息的向量表示，在这里使用了一个句子级别的注意力机制把句子和描述信息的向量合并为一个全局向量：</p>
-<p>$$ s = \sum_i \alpha_i <em> s_i; \quad \alpha_i = \frac {\exp(g_i)} {\sum_j \exp(g_j)}; \quad g_i = s_i </em> r $$</p>
+<p>$$ s = \sum_i \alpha_i \cdot  s_i; \quad \alpha_i = \frac {\exp(g_i)} {\sum_j \exp(g_j)}; \quad g_i = s_i \cdot  r $$</p>
 <p>这就相当于是把每一个样本都转化为一个原始的句子向量和两个描述向量，然后使用注意力把向量加权相加，最后就可以使用这个全局向量进行关系分类。</p>
 <p>前人的工作表明在词向量级别加入一些对抗噪声的时候，通常可以获得更好的实验效果，论文同样也做了这样的尝试：</p>
-<p>$$ w_i = w_i + v_i; \quad v_i = \epsilon * g/||g||; \quad where\; g = \partial L/ \partial w_i $$</p>
+<p>$$ w_i = w_i + v_i; \quad v_i = \epsilon \cdot  g/||g||; \quad where\; g = \partial L/ \partial w_i $$</p>
 <h4 id="实验-4"><a href="#实验-4" class="headerlink" title="实验"></a>实验</h4><p>实验在 SemEval-2010 Task 8 上进行，文章首先使用该控制变量的词项逐一探讨模型中各个模块对实验效果的影响，即文本描述信息的重要度、两个注意力机制的影响和对抗训练的影响，最后和当前的基线方法做了对比，</p>
 <center><br><img src="http://qiniu.zzysay.cn/15519459378535.jpg" width="400/"><br></center>
 
@@ -458,7 +458,7 @@
 <h4 id="实验-9"><a href="#实验-9" class="headerlink" title="实验"></a>实验</h4><p>实验在 SemEval 2010 Task 8 和 TACRED 上进行，实验和分析十分详实，实验部分的侧重点在于展示模型在这两个数据集上的结果，并探讨 $K$ 值对模型结果的影响。</p>
 <p><img src="http://qiniu.zzysay.cn/15519466710066.jpg" alt=""></p>
 <p>如上图中的表1和表2所示，在两个数据集上，C-GCN的方法相较于 PA-LSTM 的方法都取得了大约1个点的提升，作者认为，这两种方法虽然性能相近，但是在数据处理上是互补的，于是引出了 C-GCN + PA-LSTM的Ensemble方法和下文对这两类模型的分析。下图中的图3展示了验证集上的 $F_1$ 值随着 $K$ 取值的变化情况，当$K=1$，即保留 SDP 及其一阶邻居节点时，所有的模型都达到了最好的效果。</p>
-<center><br><img src="http://qiniu.zzysay.cn/15519466837523.jpg" alt="-w300"><br></center>
+<center><br><img src="http://qiniu.zzysay.cn/15519466837523.jpg" width="400/"><br></center>
 
 <p>最后，文章针对模型和任务进行了全面的分析和讨论，首先，Ablation Study的结果表明，剪枝策略对模型的影响很大；随后 Case Study表明基于依存结构的模型可以更好的处理两个实体距离较远的情况，序列模型可以更好地捕获到上下文模式；最后使用可视化的方式展示了 C-GCN 预测正确的样例的情况。</p>
 <hr>
@@ -491,7 +491,7 @@
 <p>这是来自清华大学刘知远老师组的工作，文章面向少样本学习场景，提出了一个大规模有监督的关系分类数据集FewRel，并在这个数据集上系统地实现了近年来少样本学习的典型方法。作者首先使用远程监督构建了一个大规模的候选句子集合，然后针对每个关系，人工地筛选出了那些标签错误的句子，最后得到的FewRel共含有70000条句子，100个关系，每个关系含有700条句子。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>纵观整个基于深度学习的关系抽取的发展情况，在2018年以前，关系抽取领域面临的问题主要有两个，正如 Manning 在 EMNLP 2017 上的<a href="http://aclweb.org/anthology/D17-1004.pdf" target="_blank" rel="noopener">一篇论文</a>的观点：1) 之前的模型不足以适用于关系抽取任务；2) 缺少满足当前深度模型训练的标注数据，那篇文章也针对这两个点都做了一些改进，并发布了一个数据集 TACRED。整体来看，2018年关系抽取也主要都在解决这两个问题，研究者们开始关注句法结构这一在关系抽取任务中十分重要的信息，同时很多工作也使用或发布了一些新的数据集。除此之外，对于知识库知识的利用是在 2018 年得以长足发展的一个研究点，这个研究点会持续不断地发展下去，可以预见，这种 “知识+模型” 的方法将会应用到其他的自然语言处理任务中。目前自然语言处理任务中利用的知识多为语义特征标签，关系抽取领域利用知识库知识的工作仍旧停留在向量拼接的阶段，知识库知识的利用绝不限于此，我们应该用一种更有效的方法将其应用到更广泛的任务中去。</p>
 <p>不得不提的是，顶会上关于关系抽取的文章也越来越多，更多的人开始关注这一领域。综合来看，关系抽取接下来的发展方向可以概括为以下三个部分：1) 更先进的方法：强化学习，生成对抗网络，图卷积网络，胶囊网络；2) 更广的抽取范围：实体关系联合抽取，单句子多关系同时抽取，篇章级关系抽取；c) 更少的标注数据：无监督的关系抽取，少样本的关系抽取。AAAI 2019录取的文章也表达出了这个趋势，其中不乏一些使用新模型或者提出新问题的工作。</p>
-<center><br><a href="http://qiniu.zzysay.cn/DL4RE2018@zzy.pdf" target="_blank" rel="noopener">点击这里可下载 $PDF$ 版本</a><br></center>
+<center><br><a href="http://qiniu.zzysay.cn/DL4RE2018@zzy.pdf" target="_blank" rel="noopener">点击这里可下载 PDF 版本</a><br></center>
 
 
     </div>
