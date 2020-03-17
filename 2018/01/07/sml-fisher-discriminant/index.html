@@ -54,13 +54,13 @@
 <meta property="og:site_name" content="ZZY SAY">
 <meta property="og:description" content="基本思想">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15153038272195.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15153041398825.jpg">
-<meta property="og:updated_time" content="2019-03-07T07:19:51.238Z">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15153038272195.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15153041398825.jpg">
+<meta property="og:updated_time" content="2020-03-17T09:30:22.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性鉴别分析">
 <meta name="twitter:description" content="基本思想">
-<meta name="twitter:image" content="http://qiniu.zzysay.cn/15153038272195.jpg">
+<meta name="twitter:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15153038272195.jpg">
 
 <link rel="canonical" href="http://zzysay.github.io/2018/01/07/sml-fisher-discriminant/">
 
@@ -214,7 +214,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-03-07 15:19:51" itemprop="dateModified" datetime="2019-03-07T15:19:51+08:00">2019-03-07</time>
+                <time title="Modified: 2020-03-17 17:30:22" itemprop="dateModified" datetime="2020-03-17T17:30:22+08:00">2020-03-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,10 +245,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p><img src="http://qiniu.zzysay.cn/15153038272195.jpg" alt=""></p>
+        <h2 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h2><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15153038272195.jpg" alt=""></p>
 <a id="more"></a>
 <p>线性鉴别分析又被称为 Fisher 鉴别，其目标就是寻找一个 $\vec w$，使得 样本集 $D$ 投影后，类内距离最小，类间间距最大。</p>
-<p><img src="http://qiniu.zzysay.cn/15153041398825.jpg" alt=""></p>
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15153041398825.jpg" alt=""></p>
 <p>从上图可以直观地看出，右图方向上的 $\vec w$ 比左图方向上的 $\vec w$ 更能使 ${\vec x_i}$ 的投影值 ${\vec \lambda_i}$ 分隔开，所以我们说右图中的 $\vec w$ 明显有着更好的划分效果。</p>
 <h2 id="Fisher准则"><a href="#Fisher准则" class="headerlink" title="Fisher准则"></a>Fisher准则</h2><p>按照上文中提到的基本思想，Fisher 鉴别的目标函数又被称为 Fisher 准则：</p>
 <p>$$ \max J = \frac {类间平均距离}{类内平均距离} $$</p>
@@ -276,7 +276,7 @@
 <p>代入到 $S_w^{-1} S_b \vec w = \lambda \vec w $ 中得到：</p>
 <p>$$ S_w^{-1} \beta(\vec \mu_1-\vec \mu_2) = \lambda \vec w<br>\\ \Rightarrow \vec w = \frac {\beta} {\lambda} S_w^{-1}(\vec \mu_1-\vec \mu_2)<br> $$</p>
 <p>其中标量值可以忽略，所以$\vec w = S_w^{-1}(\vec \mu_1-\vec \mu_2)$ ，即只需要求出原始样本的均值和方差就可以求出最佳的方向 $w$。</p>
-<p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] 周晓飞,<a href="http://qiniu.zzysay.cn/Linear_Discriminant_Analysis.pdf" target="_blank" rel="noopener">《Fisher鉴别推导过程》</a></p>
+<p>参考文献：<br>[1] 周晓飞,《统计机器学习》,中国科学院大学2017年秋季研究生课程<br>[2] 周晓飞,<a href="http://p1auo1a1h.bkt.clouddn.com/Linear_Discriminant_Analysis.pdf" target="_blank" rel="noopener">《Fisher鉴别推导过程》</a></p>
 
     </div>
 

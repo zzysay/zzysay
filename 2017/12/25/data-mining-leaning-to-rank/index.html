@@ -54,33 +54,33 @@
 <meta property="og:site_name" content="ZZY SAY">
 <meta property="og:description" content="问题背景传统排序模型只考虑有限的排序因素如词频 $tf$、词的重要性 $idf$、文档长度等，并且各个因素的组合通常采用暴力加权求和，权重往往根据经验决定。但实际上有多种信息可以用于排序，比如域名、文本相关性、词项临近度、$URL$ 深度等等，所以可以采用机器学习的方法通过数据驱动的方式学习排序模型。模型学习流程如下：">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141906279952.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141910499309.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141912049009.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141913145249.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141915360901.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141918163690.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141929548931.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141930262236.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141931464439.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141942608072.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141944961806.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141945717468.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141954990542.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141958626532.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141962051402.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15141963851861.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15142016326519.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15142027131883.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15142026503582.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15142040696479.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15142046176127.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15142051801795.jpg">
-<meta property="og:updated_time" content="2019-03-07T07:16:22.651Z">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141906279952.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141910499309.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141912049009.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141913145249.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141915360901.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141918163690.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141929548931.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141930262236.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141931464439.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141942608072.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141944961806.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141945717468.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141954990542.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141958626532.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141962051402.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141963851861.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15142016326519.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15142027131883.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15142026503582.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15142040696479.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15142046176127.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15142051801795.jpg">
+<meta property="og:updated_time" content="2020-03-17T09:37:57.215Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从搜索排序到Learning to Rank算法">
 <meta name="twitter:description" content="问题背景传统排序模型只考虑有限的排序因素如词频 $tf$、词的重要性 $idf$、文档长度等，并且各个因素的组合通常采用暴力加权求和，权重往往根据经验决定。但实际上有多种信息可以用于排序，比如域名、文本相关性、词项临近度、$URL$ 深度等等，所以可以采用机器学习的方法通过数据驱动的方式学习排序模型。模型学习流程如下：">
-<meta name="twitter:image" content="http://qiniu.zzysay.cn/15141906279952.jpg">
+<meta name="twitter:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141906279952.jpg">
 
 <link rel="canonical" href="http://zzysay.github.io/2017/12/25/data-mining-leaning-to-rank/">
 
@@ -234,7 +234,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-03-07 15:16:22" itemprop="dateModified" datetime="2019-03-07T15:16:22+08:00">2019-03-07</time>
+                <time title="Modified: 2020-03-17 17:37:57" itemprop="dateModified" datetime="2020-03-17T17:37:57+08:00">2020-03-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -266,34 +266,34 @@
 
       
         <h2 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h2><p>传统排序模型只考虑有限的排序因素如词频 $tf$、词的重要性 $idf$、文档长度等，并且各个因素的组合通常采用<strong>暴力加权求和</strong>，权重往往根据<strong>经验</strong>决定。但实际上有多种信息可以用于排序，比如域名、文本相关性、词项临近度、$URL$ 深度等等，所以可以采用机器学习的方法通过数据驱动的方式学习排序模型。模型学习流程如下：</p>
-<p><img src="http://qiniu.zzysay.cn/15141906279952.jpg" alt=""></p>
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141906279952.jpg" alt=""></p>
 <a id="more"></a>
 <p>构造训练数据，对于一个查询 $q_i$，将其返回的文档按照相关度进行打分，训练模型。</p>
-<h2 id="排序函数与特征提取"><a href="#排序函数与特征提取" class="headerlink" title="排序函数与特征提取"></a>排序函数与特征提取</h2><p><img src="http://qiniu.zzysay.cn/15141910499309.jpg" alt=""></p>
-<h3 id="查询相关特征"><a href="#查询相关特征" class="headerlink" title="查询相关特征"></a>查询相关特征</h3><p><img src="http://qiniu.zzysay.cn/15141912049009.jpg" alt=""></p>
-<h3 id="查询无关特征"><a href="#查询无关特征" class="headerlink" title="查询无关特征"></a>查询无关特征</h3><p><img src="http://qiniu.zzysay.cn/15141913145249.jpg" alt=""></p>
+<h2 id="排序函数与特征提取"><a href="#排序函数与特征提取" class="headerlink" title="排序函数与特征提取"></a>排序函数与特征提取</h2><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141910499309.jpg" alt=""></p>
+<h3 id="查询相关特征"><a href="#查询相关特征" class="headerlink" title="查询相关特征"></a>查询相关特征</h3><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141912049009.jpg" alt=""></p>
+<h3 id="查询无关特征"><a href="#查询无关特征" class="headerlink" title="查询无关特征"></a>查询无关特征</h3><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141913145249.jpg" alt=""></p>
 <h2 id="Point-wise-Learning-to-Rank"><a href="#Point-wise-Learning-to-Rank" class="headerlink" title="Point-wise Learning to Rank"></a>Point-wise Learning to Rank</h2><h3 id="算法过程"><a href="#算法过程" class="headerlink" title="算法过程"></a>算法过程</h3><ul>
 <li>${\bf}\phi(q,d)$ 抽取出的特征向量当作是模型的训练特征，表示为训练数据空间内的一个点</li>
 <li>将 $(q,d)$ 对应的相关度标签当做是模型的分类类别（或者是回归值）</li>
 <li>利用已有的分类、回归算法来直接训练模型</li>
 <li>在测试集中，对于新的 $(q,d)$，抽取特征向量，应用模型得到输入结果直接作为这个 $pair$ 的相关度标签</li>
 </ul>
-<h3 id="算法实例"><a href="#算法实例" class="headerlink" title="算法实例"></a>算法实例</h3><p>Point-wise 把排序问题转化为了分类/回归问题：<br><img src="http://qiniu.zzysay.cn/15141915360901.jpg" alt=""></p>
+<h3 id="算法实例"><a href="#算法实例" class="headerlink" title="算法实例"></a>算法实例</h3><p>Point-wise 把排序问题转化为了分类/回归问题：<br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141915360901.jpg" alt=""></p>
 <p>上图是打分函数是线性模型的 Point-wise 排序，红、绿、圈分别是相关、部分相关、不相关的三种数据，可以看到，这三类数据都表示成了空间内的向量(从原点到表示点的向量)，每一维都是特征。如果每个特征向量都向线性分类模型的法向量(图中带箭头的蓝线)上做投影，那么很明显红点的投影长度大于绿点大于圈，所以他们之间能够彼此分开。</p>
 <h3 id="算法缺陷"><a href="#算法缺陷" class="headerlink" title="算法缺陷"></a>算法缺陷</h3><p>Point-wise 也有着严重的缺点，没有考虑 IR 任务的特殊性：</p>
 <ol>
 <li>对于同一个 $q$ 来说，检索只用考虑的是文档之间的序，即相对分数，不用算出绝对的打分</li>
 <li>不同 $q$ 之间的打分比较没有意义，打分是根据 $q$ 来的，不同的 $q$ 的长度不同，返回的文档不同，数据分布不同，所以实际上很难用一个模型来区分多个 $q$ 对应的 $(q,d,r)$ ，比如下图，在同一个 $q$ 内部可以进行三种类别的划分，但是不同的 $q$ 之间的数据分布差异性很大，无法找到一个分类器能够对所有的数据都进行划分。</li>
 </ol>
-<p><img src="http://qiniu.zzysay.cn/15141918163690.jpg" alt=""></p>
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141918163690.jpg" alt=""></p>
 <h2 id="Pair-wise-Learning-to-Rank"><a href="#Pair-wise-Learning-to-Rank" class="headerlink" title="Pair-wise Learning to Rank"></a>Pair-wise Learning to Rank</h2><h3 id="算法过程-1"><a href="#算法过程-1" class="headerlink" title="算法过程"></a>算法过程</h3><p>Pair-wise 的动机就是解决 Point-wise 的缺陷：对于序的学习。所以 Pair-wise 学习的是同一查询下，不同文档对 $(d_i,d_j)$ 之间的排序关系，也就是算法不关心打分函数值 $f(q,d_i)、f(q,d_j)$ 到底是多少，算法关心的是 $f(q,d_i)$ 是否大于 $f(q,d_j)$，如果大于，那么 $d_i$ 应当排在 $d_j$ 的前面，否则排在 $d_j$ 的后面，通过这样的转化，<strong>就把排序问题变为一个二值分类问题</strong>：$f(q,d_{i},d_{j})$是 否大于 $0$，如果大于 $0$，则那么 $d_i$ 排在 $d_j$ 的前面，否则排在$d_j$ 的后面。注意，这里的 $f$ 和上面的 $f(q,d_i)$ 表示的都是广义上的排序函数，并不表示他们的函数形式一样。</p>
 <h3 id="生成数据"><a href="#生成数据" class="headerlink" title="生成数据"></a>生成数据</h3><p>在已经标注好相关性的数据中，对于同一个 $q$ 下的文档，生成有序对的训练数据 $(d_i,d_j)$ 其中 $d_i$ 对于查询 $q$ 的相关性得分大于$d_j$，注意这里有三个点：</p>
 <ul>
 <li>只在同一个查询内产生有序对（不同查询下的得分比较没有意义）</li>
 <li>在同一个查询中，只对相关度不同的文档之间生成有序对，相关度相同的文档间不产生训练数据</li>
-<li>只生成正例 $(d_i,d_j)$，即使得 $f(q,d_{i},d_{j}) \gt 0$ 的有序对，也就是说 $d_i$ 的相关性得分大于$d_j$<br><img src="http://qiniu.zzysay.cn/15141929548931.jpg" alt=""></li>
+<li>只生成正例 $(d_i,d_j)$，即使得 $f(q,d_{i},d_{j}) \gt 0$ 的有序对，也就是说 $d_i$ 的相关性得分大于$d_j$<br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141929548931.jpg" alt=""></li>
 </ul>
-<h3 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h3><p><img src="http://qiniu.zzysay.cn/15141930262236.jpg" alt=""></p>
+<h3 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h3><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141930262236.jpg" alt=""></p>
 <ul>
 <li>${\bf}\phi(q,d)$ 就是通过各种方法抽取到的 $(q,d)$ 之间特征的特征向量</li>
 <li>$d_i \gt d_j$ 是指 $d_i$ 的相关性高于 $d_j$</li>
@@ -305,16 +305,16 @@
 </ul>
 </li>
 </ul>
-<p><img src="http://qiniu.zzysay.cn/15141931464439.jpg" alt=""></p>
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141931464439.jpg" alt=""></p>
 <h3 id="Ranking-SVM"><a href="#Ranking-SVM" class="headerlink" title="Ranking SVM"></a>Ranking SVM</h3><p>根据一般性训练步骤，分类函数 $f$ 套用 $SVM$，注意，这里的 $SVM$ 分类面仍然过原点，正负例样本的特征向量仍然关于原点中心对称。训练过程如下：</p>
 <ul>
 <li>构建训练样本集合 ${({\bf}\phi(q,d_i)-{\bf}\phi(q,d_j),+1)}$</li>
-<li>训练二分类 $SVM$，得到 $\bf w$，打分函数 $f(q,d)= \langle {\bf w},{\bf}\phi(q,d)\rangle$<br><img src="http://qiniu.zzysay.cn/15141942608072.jpg" alt=""></li>
+<li>训练二分类 $SVM$，得到 $\bf w$，打分函数 $f(q,d)= \langle {\bf w},{\bf}\phi(q,d)\rangle$<br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141942608072.jpg" alt=""></li>
 </ul>
 <p>回到之前 Point-wise 无法分离的数据，在 Ranking SVM 里面，要找到的就是法向量 $\bf w$，使得同一个查询下的不同相关度文档的特征向量，在向法向量方向投影时的投影长度大小之间的序不发生偏转（相关文档的投影长度大于不相关文档的投影长度）即 $\langle {\bf w},{\bf}\phi(q,d_i)\rangle \gt \langle {\bf w},{\bf}\phi(q,d_j) \rangle$那么就可以进行排序。</p>
-<p>在实际优化过程中，使用了<strong>软边距</strong>的 $SVM$ 模型，允许分类出现错误：<br><img src="http://qiniu.zzysay.cn/15141944961806.jpg" alt=""></p>
+<p>在实际优化过程中，使用了<strong>软边距</strong>的 $SVM$ 模型，允许分类出现错误：<br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141944961806.jpg" alt=""></p>
 <p>这和原始的软边距 $SVM$ 没有任何区别，只是将原来的变量 $\bf x$ 替换为了 $({\bf}\phi(q,d_i)-{\bf}\phi(q,d_j)$，即两个向量按位相减。</p>
-<p>在损失函数方面，Ranking SVM 的损失函数定义如下：<br><img src="http://qiniu.zzysay.cn/15141945717468.jpg" alt=""></p>
+<p>在损失函数方面，Ranking SVM 的损失函数定义如下：<br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141945717468.jpg" alt=""></p>
 <p>很明显，$L(\bf w)$ 是加了二范数正则化项的 $Hinge Loss$，忽略正则化项来看，如果 $f(q,d_i)-f(q,d_j) \gt 1 $ <em>(margin)</em>，那么就没有损失，如果小于 <em>margin</em>，那么认为分类出现了错误，错误越大（距离 <em>margin</em> 越远）那么 $loss$ 越高</p>
 <p><strong>算法缺陷</strong><br>总的来说，Ranking SVM 通过同一查询下的有序对特征向量差值将排序问题转化为了二分类问题，<strong>较好地解决了查询间差异的问题</strong>（只在同一查询内部进行比较），性能稳定，缺点如下：</p>
 <ul>
@@ -322,7 +322,7 @@
 <li>所有的有序对同等重要（$loss$ 函数直接加和），但是实际上用户从上往下浏览，排在前面的有序对更加重要，排序错误的代价应该更高</li>
 <li>违背了训练数据之间独立同分布的假设，比如 $3$ 个文档 $d_1、d_2、d_3$ 的相关度分别是 $3，2，2$，那么会产生两个训练数据 $({\bf}\phi(q,d_1)-{\bf}\phi(q,d_2),+1)$ 和 $({\bf}\phi(q,d_1)-{\bf}\phi(q,d_3),+1)$，很明显这两个数据之间并不独立，都含有 $d_1$ 的影响，但是<strong>对于 Pair-wise 方法来说，考虑序就必然会打破独立同分布的条件，目前无解</strong>。</li>
 </ul>
-<h3 id="IR-SVM"><a href="#IR-SVM" class="headerlink" title="IR SVM"></a>IR SVM</h3><p><strong>原始 Ranking SVM 存在的问题</strong><br><img src="http://qiniu.zzysay.cn/15141954990542.jpg" alt=""></p>
+<h3 id="IR-SVM"><a href="#IR-SVM" class="headerlink" title="IR SVM"></a>IR SVM</h3><p><strong>原始 Ranking SVM 存在的问题</strong><br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141954990542.jpg" alt=""></p>
 <p><strong>IR SVM进行的改进</strong></p>
 <ul>
 <li>在损失函数中引入 $\tau_i$ ，表示第 $i$ 个有序对的排序相关权重，有序对的排序越靠前（比如 $(d_1,d_2)$），$\tau_i$ 就越高</li>
@@ -330,24 +330,24 @@
 <li>$\tau_i$ 和 $\mu_i$ 通过启发式规则学习</li>
 </ul>
 <p>从这点看，IR SVM 实际上就是代价敏感Ranking SVM</p>
-<p><strong>损失函数</strong><br><img src="http://qiniu.zzysay.cn/15141958626532.jpg" alt=""></p>
+<p><strong>损失函数</strong><br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141958626532.jpg" alt=""></p>
 <p>可以看出，在 IR SVM 的损失函数中，不同 $level$ 的有序对的 $loss$ 权重并不相同。</p>
 <p>是否还有其他方式融入代价敏感权重？<br>可以让不同 $level$ 的有序对的 $margin$ 不同，接合变边距 $SVM$ 的思想。比如重要有序对不能分错，他们的 $margin$ 应该更大，不重要的有序对即使分错了页问题不大，他们的 $margin$ 可以小一点<br>$$L({\bf w})=\sum_{i=1}^N \mu_imax{0,\tau_i- \langle {\bf w},\phi(q_i,d_{i}^+)-\phi(q_i,d_{i}^-)\rangle }+\lambda|\bf w|^2$$</p>
-<h3 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h3><p>在优化方法上，IR SVM 也进行了改变，主要变的是将 Ranking SVM 中的固定惩罚项系数 $C$ 变成了可变的 $C_i$<br><img src="http://qiniu.zzysay.cn/15141962051402.jpg" alt=""></p>
+<h3 id="算法优化"><a href="#算法优化" class="headerlink" title="算法优化"></a>算法优化</h3><p>在优化方法上，IR SVM 也进行了改变，主要变的是将 Ranking SVM 中的固定惩罚项系数 $C$ 变成了可变的 $C_i$<br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141962051402.jpg" alt=""></p>
 <p>$C_i$ 与 $\tau_i、\mu_i$ 有关，使用可变的惩罚系数导致权重大（ $\tau_i\mu_i$ 大）的有序对的分类错误会被放大，也就是模型会更加关注权重大的有序对而忽略权重小的有序对。$C_i$ 变了，那么对偶后的 $a_i$ 的上界也就变了，对应到约束上就是原来正方体的约束空间（每个 $a_i$ 的约束范围都一致）变成了立方体空间（不同的 $a_i$ 的约束范围不一致）</p>
-<p><img src="http://qiniu.zzysay.cn/15141963851861.jpg" alt=""></p>
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15141963851861.jpg" alt=""></p>
 <h2 id="List-wise-Learning-to-Rank"><a href="#List-wise-Learning-to-Rank" class="headerlink" title="List-wise Learning to Rank"></a>List-wise Learning to Rank</h2><h3 id="算法动机"><a href="#算法动机" class="headerlink" title="算法动机"></a>算法动机</h3><p>Point-wise 和 Pair-wise 解决的都是单个网页或者单个网页序对之间的排序问题，解决单个网页的排序错误或者一个网页序对之间的排序错误。但是实际上在训练数据中，我们通常采用 MAP 或者 NDCG 来衡量排序的质量，但是 MAP 和 NDCG 都是对排序整体进行衡量，并不单独考虑某个网页或者某个网页序对的排序正确与否，这就导致了训练和测试的目标之间出现了差异<br>换句话说对 IR 排序的评价是对整体的排序结果进行评价，不等价于有多少个网页对的序正确，考虑的是整体的 List，不是单个网页。</p>
-<p><img src="http://qiniu.zzysay.cn/15142016326519.jpg" alt=""></p>
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15142016326519.jpg" alt=""></p>
 <p>从上图可以看出，在 Pair-wise 中，随着算法迭代次数上升，训练数据的损失函数不断下降，但是测试数据上的 NDCG 准则不降反升。这主要是因为 Pair-wise 优化的是网页对序，而 NDCG 评价的是整体的排序效果，Pair-wise 的假设：如果在 Pair 层面做的好，那么 List 层面也做得好，这一假设并不成立。</p>
-<h3 id="算法过程-2"><a href="#算法过程-2" class="headerlink" title="算法过程"></a>算法过程</h3><p><img src="http://qiniu.zzysay.cn/15142027131883.jpg" alt=""></p>
+<h3 id="算法过程-2"><a href="#算法过程-2" class="headerlink" title="算法过程"></a>算法过程</h3><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15142027131883.jpg" alt=""></p>
 <p>有多个正确的排序，因为相关度 $level$ 有限，同一 $level$ 的网页互换顺序不影响 MAP 打分。算法学的总是一个二分类器，是因为机器学习发展到现在能用的工具仍然很少，很多时候都会把原问题转化为二分类问题。</p>
-<p><img src="http://qiniu.zzysay.cn/15142026503582.jpg" alt=""></p>
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15142026503582.jpg" alt=""></p>
 <p>正确的排序的打分是 $+1$，不正确的打分为 $-1$，如果打分模型 $F$ 是线性的，那么目标是找到一个最优超平面 $F$ ，使得对于同一个 $q$，$\pi^+$ 样本的特征向量在法向量 $\bf w$ 上的投影长度要大于 $\pi^-$ 样本的投影长度。</p>
-<p>学习到排序模型后，对于未知的 $q$ 以及 $q$ 的文档集合 $\bf d$，最优排序 $\pi^*$ 是在所有可能的排序中使得 $F(q,{\bf d},\pi)$ 最大的 $\pi$。<br>对于查询 $q$ 返回的文档集合 $\bf d$ 的一种排序方案 $\pi $，打分函数 $F(q,{\bf d},\pi)$ 定义如下：<br><img src="http://qiniu.zzysay.cn/15142040696479.jpg" alt=""></p>
+<p>学习到排序模型后，对于未知的 $q$ 以及 $q$ 的文档集合 $\bf d$，最优排序 $\pi^*$ 是在所有可能的排序中使得 $F(q,{\bf d},\pi)$ 最大的 $\pi$。<br>对于查询 $q$ 返回的文档集合 $\bf d$ 的一种排序方案 $\pi $，打分函数 $F(q,{\bf d},\pi)$ 定义如下：<br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15142040696479.jpg" alt=""></p>
 <p>实际上 $\phi(q,{\bf w},\pi)$ 是对 $n\times (n-1)$ 个有序对的特征向量求和再平均，在这里有序对 $(d_k,d_l)$ 表示在排序方案 $\pi$ 中，$d_k$ 被排在了 $d_l$ 的前面，不再要求相关度不同（相关度相同但是排序在前的也算有序），乘以 $z_{kl}$ 是将负例也转化为正例。</p>
-<h3 id="SVM-MAP"><a href="#SVM-MAP" class="headerlink" title="SVM MAP"></a>SVM MAP</h3><p><img src="http://qiniu.zzysay.cn/15142046176127.jpg" alt=""></p>
+<h3 id="SVM-MAP"><a href="#SVM-MAP" class="headerlink" title="SVM MAP"></a>SVM MAP</h3><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15142046176127.jpg" alt=""></p>
 <p>在 Pair-wise 的 IR SVM 中，一个有序对对应着一个松弛变量，但是在 SVM MAP 里一个 $q_i$ 下的所有排序方案对 $(\pi_i^*,\phi)$ 都拥有相同的松弛变量，但是同一查询下的不同排序方案对的 SVM Margin 不同，定义为排序方案对中的两个排序方案之间的 MAP 差值。直观上理解，如果两个排序方案的 MAP 的差值很大，那么说明两个方案的差异很大，那么模型应该能够很好的区分这种差异，所以 Margin 应该很大。如果 MAP 的差值很小，说明两种方案区别不大，那么模型就不要求能够把这两个样本明显的分开，Margin 就可以比较小。</p>
-<p><img src="http://qiniu.zzysay.cn/15142051801795.jpg" alt=""></p>
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15142051801795.jpg" alt=""></p>
 <p>理论上可以证明，最小化 SVM MAP 的损失函数就等于最大化训练数据上的 MAP 评分，这样就实现了训练数据评价准则与测试数据评价准则的一致性。</p>
 <p>参考文献：<br>[1] 徐君,《网络数据挖掘》,中国科学院大学2017年秋季研究生课程 </p>
 

@@ -46,65 +46,65 @@
   };
 </script>
 
-  <meta name="description" content="概率图模型是用图结构来表达随机变量依赖关系的概率模型，用结点表示一个或一组随机变量，用边来表示随机变量之间的概率依赖关系。 信封问题 桌上有两个信封，其中一个信封装有一个红球（价值 $100$ 美元）和一个黑球，另外一个信封装有两个黑球。    你随机选了一个信封并从中随机取出一个球，发现是黑球。这时你被告知可以有一次换信封重新取球的机会，你会选择换还是不换？">
+  <meta name="description" content="概率图模型是用图结构来表达随机变量依赖关系的概率模型，用结点表示一个或一组随机变量，用边来表示随机变量之间的概率依赖关系。 信封问题 桌上有两个信封，其中一个信封装有一个红球（价值 $100$ 美元）和一个黑球，另外一个信封装有两个黑球。   你随机选了一个信封并从中随机取出一个球，发现是黑球。这时你被告知可以有一次换信封重新取球的机会，你会选择换还是不换？">
 <meta name="keywords" content="机器学习,贝叶斯网络,马尔科夫随机场,隐马尔科夫模型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="概率图模型">
 <meta property="og:url" content="http://zzysay.github.io/2018/01/20/sml-graphical-model/index.html">
 <meta property="og:site_name" content="ZZY SAY">
-<meta property="og:description" content="概率图模型是用图结构来表达随机变量依赖关系的概率模型，用结点表示一个或一组随机变量，用边来表示随机变量之间的概率依赖关系。 信封问题 桌上有两个信封，其中一个信封装有一个红球（价值 $100$ 美元）和一个黑球，另外一个信封装有两个黑球。    你随机选了一个信封并从中随机取出一个球，发现是黑球。这时你被告知可以有一次换信封重新取球的机会，你会选择换还是不换？">
+<meta property="og:description" content="概率图模型是用图结构来表达随机变量依赖关系的概率模型，用结点表示一个或一组随机变量，用边来表示随机变量之间的概率依赖关系。 信封问题 桌上有两个信封，其中一个信封装有一个红球（价值 $100$ 美元）和一个黑球，另外一个信封装有两个黑球。   你随机选了一个信封并从中随机取出一个球，发现是黑球。这时你被告知可以有一次换信封重新取球的机会，你会选择换还是不换？">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161638421731.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161646808392.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161650668582.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161652321973.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161661130293.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161666955989.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161667159426.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161714550504.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161716728438.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161718711708.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161719660025.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161720015563.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161722362384.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161722756115.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161725377594.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161733311326.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161738626844.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161747826775.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161751063100.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161757915195.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161759688352.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161762745904.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161774938117.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161776199110.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164297132667.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164307226329.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15161638421731.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164310489326.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164340497887.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164344075925.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164373686025.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164374091139.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164354254941.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164354800353.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164356735262.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164357352143.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164389564081.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164391191057.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164391405941.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164393261013.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164392939292.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164446772909.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164447274947.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164449061274.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164449625402.jpg">
-<meta property="og:image" content="http://qiniu.zzysay.cn/15164450146119.jpg">
-<meta property="og:updated_time" content="2019-03-07T07:19:59.495Z">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161638421731.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161646808392.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161650668582.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161652321973.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161661130293.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161666955989.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161667159426.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161714550504.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161716728438.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161718711708.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161719660025.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161720015563.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161722362384.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161722756115.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161725377594.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161733311326.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161738626844.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161747826775.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161751063100.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161757915195.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161759688352.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161762745904.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161774938117.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161776199110.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164297132667.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164307226329.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161638421731.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164310489326.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164340497887.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164344075925.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164373686025.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164374091139.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164354254941.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164354800353.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164356735262.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164357352143.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164389564081.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164391191057.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164391405941.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164393261013.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164392939292.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164446772909.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164447274947.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164449061274.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164449625402.jpg">
+<meta property="og:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164450146119.jpg">
+<meta property="og:updated_time" content="2020-03-17T09:17:51.658Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="概率图模型">
-<meta name="twitter:description" content="概率图模型是用图结构来表达随机变量依赖关系的概率模型，用结点表示一个或一组随机变量，用边来表示随机变量之间的概率依赖关系。 信封问题 桌上有两个信封，其中一个信封装有一个红球（价值 $100$ 美元）和一个黑球，另外一个信封装有两个黑球。    你随机选了一个信封并从中随机取出一个球，发现是黑球。这时你被告知可以有一次换信封重新取球的机会，你会选择换还是不换？">
-<meta name="twitter:image" content="http://qiniu.zzysay.cn/15161638421731.jpg">
+<meta name="twitter:description" content="概率图模型是用图结构来表达随机变量依赖关系的概率模型，用结点表示一个或一组随机变量，用边来表示随机变量之间的概率依赖关系。 信封问题 桌上有两个信封，其中一个信封装有一个红球（价值 $100$ 美元）和一个黑球，另外一个信封装有两个黑球。   你随机选了一个信封并从中随机取出一个球，发现是黑球。这时你被告知可以有一次换信封重新取球的机会，你会选择换还是不换？">
+<meta name="twitter:image" content="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161638421731.jpg">
 
 <link rel="canonical" href="http://zzysay.github.io/2018/01/20/sml-graphical-model/">
 
@@ -258,7 +258,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-03-07 15:19:59" itemprop="dateModified" datetime="2019-03-07T15:19:59+08:00">2019-03-07</time>
+                <time title="Modified: 2020-03-17 17:17:51" itemprop="dateModified" datetime="2020-03-17T17:17:51+08:00">2020-03-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -292,8 +292,7 @@
         <p>概率图模型是用<strong>图结构</strong>来表达随机变量依赖关系的<strong>概率模型</strong>，用结点表示一个或一组随机变量，用边来表示随机变量之间的概率依赖关系。</p>
 <p><strong>信封问题</strong></p>
 <p>桌上有两个信封，其中一个信封装有一个红球（价值 $100$ 美元）和一个黑球，另外一个信封装有两个黑球。 </p>
-<center><br><img src="http://qiniu.zzysay.cn/15161638421731.jpg" alt="-w300"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161638421731.jpg" width="300" align="middle"></p>
 <p>你随机选了一个信封并从中随机取出一个球，发现是黑球。<br>这时你被告知可以有一次换信封重新取球的机会，你会选择换还是不换？ </p>
 <a id="more"></a>
 <p>随机变量：<br>$E={1,0}, B={红，黑}$，<br>$P(E=1)=P(E=0)=1/2$<br>$P(B=红|E=1)=1/2, P(B=红|E=0)=0$</p>
@@ -301,56 +300,41 @@
 <p>$$ P(E=1|B=黑) = \frac {P(B=黑|E=1)P(E=1)} {P(B=黑|E=1)P(E=1)P(B=黑|E=0)P(E=0)} = \frac 1 3 $$</p>
 <p>所以我们选择<strong>换</strong>。</p>
 <h2 id="有向图模型"><a href="#有向图模型" class="headerlink" title="有向图模型"></a>有向图模型</h2><p>有向图模型又称贝叶斯网络，以有向边表示变量间的因果关系。</p>
-<h3 id="贝叶斯网络"><a href="#贝叶斯网络" class="headerlink" title="贝叶斯网络"></a>贝叶斯网络</h3><center><br><img src="http://qiniu.zzysay.cn/15161646808392.jpg" alt="-w555"><br></center>
-
+<h3 id="贝叶斯网络"><a href="#贝叶斯网络" class="headerlink" title="贝叶斯网络"></a>贝叶斯网络</h3><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161646808392.jpg" width="555" align="middle"></p>
 <p><strong>联合概率分布分解形式</strong></p>
-<center><br><img src="http://qiniu.zzysay.cn/15161650668582.jpg" alt="-w555"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161650668582.jpg" width="555" align="middle"></p>
 <p><strong>草坪问题</strong></p>
-<center><br><img src="http://qiniu.zzysay.cn/15161652321973.jpg" alt="-w555"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161652321973.jpg" width="555" align="middle"></p>
 <ul>
 <li>同时观测到下雨、给草坪浇水、草坪湿的概率有多大？<br>$$ P(G=1,S=1,R=1) = P(G=1|S=1,R=1)P(S=1|R=1)P(R=1) = 0.99 \times 0.01  \times 0.2 = 0.00198 $$</li>
-<li>当已知不下雨时，观测到草坪湿的概率有多大？<br>$$ P(G=1|R=0) = \frac {P(G=1,R=0)} {P(R=0)} =  \frac {\sum_{S \in {0,1}} P(G=1,S,R=0)} {P(R=0)} = \frac {0.288+0} {0.8} = 0.36 $$</li>
+<li>当已知不下雨时，观测到草坪湿的概率有多大？<br>$$ P(G=1|R=0) = \frac {P(G=1,R=0)} {P(R=0)} =  \frac {\sum_{S \in {0,1}} P(G=1,S,R=0)} {P(R=0)} =  \frac {0.288+0} {0.8} = 0.36 $$</li>
 <li>当已知草坪湿了后，推测下雨的概率有多大？<br>$$ P(R=1|G=1) = \frac {P(G=1,R=1)} {P(G=1)} = \frac {\sum_{S \in {0,1}} P(G=1,S,R=1)} {\sum_{S,R \in {0,1}}P(G=1,S,R)} = \frac {0.00198+0.1584} {0.00198+0.288+0.1584+0} \approx 0.3577 $$</li>
 <li>当已知草坪湿了后，推测给草坪浇过水的概率有多大？<br>$$ P(S=1|G=1) = \frac {P(G=1,S=1)} {P(G=1)} = \frac {\sum_{R \in {0,1}} P(G=1,S=1,R)} {\sum_{S,R \in {0,1}}P(G=1,S,R)} = \frac {0.00198+0.288} {0.00198+0.288+0.1584+0} \approx 0.6467$$</li>
 </ul>
-<h3 id="条件独立性"><a href="#条件独立性" class="headerlink" title="条件独立性"></a>条件独立性</h3><center><br><img src="http://qiniu.zzysay.cn/15161661130293.jpg" alt="-w555"><br><img src="http://qiniu.zzysay.cn/15161666955989.jpg" alt="-w555"><br><img src="http://qiniu.zzysay.cn/15161667159426.jpg" alt="-w555"><br></center>
-
-
+<h3 id="条件独立性"><a href="#条件独立性" class="headerlink" title="条件独立性"></a>条件独立性</h3><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161661130293.jpg" width="555" align="middle"><br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161666955989.jpg" width="555" align="middle"><br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161667159426.jpg" width="555" align="middle"></p>
 <h2 id="无向图模型"><a href="#无向图模型" class="headerlink" title="无向图模型"></a>无向图模型</h2><p>无向图模型又称马尔科夫随机场，以无向边表示变量间的简单相关。</p>
-<h3 id="马尔科夫随机场"><a href="#马尔科夫随机场" class="headerlink" title="马尔科夫随机场"></a>马尔科夫随机场</h3><center><br><img src="http://qiniu.zzysay.cn/15161714550504.jpg" alt="-w555"><br></center>
-
+<h3 id="马尔科夫随机场"><a href="#马尔科夫随机场" class="headerlink" title="马尔科夫随机场"></a>马尔科夫随机场</h3><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161714550504.jpg" width="555" align="middle"></p>
 <p>上图的极大团为 ${x_1,x_2}{x_1,x_3}{x_2,x_4}{x_3,x_5}{x_2,x_5,x_6}$</p>
 <p><strong>联合概率分布分解形式</strong></p>
-<center><br><img src="http://qiniu.zzysay.cn/15161716728438.jpg" alt="-w555"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161716728438.jpg" width="555" align="middle"></p>
 <p><strong>最简单的马尔科夫随机场</strong></p>
-<center><br><img src="http://qiniu.zzysay.cn/15161718711708.jpg" alt="-w555"><br></center>
-
-<h3 id="条件独立性-1"><a href="#条件独立性-1" class="headerlink" title="条件独立性"></a>条件独立性</h3><center><br><img src="http://qiniu.zzysay.cn/15161719660025.jpg" alt="-w555"><br><img src="http://qiniu.zzysay.cn/15161720015563.jpg" alt="-w555"><br></center>
-
-<h2 id="学习与推断"><a href="#学习与推断" class="headerlink" title="学习与推断"></a>学习与推断</h2><center><br><img src="http://qiniu.zzysay.cn/15161722362384.jpg" alt="-w555"><br><img src="http://qiniu.zzysay.cn/15161722756115.jpg" alt="-w555"><br><img src="http://qiniu.zzysay.cn/15161725377594.jpg" alt="-w555"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161718711708.jpg" width="555" align="middle"></p>
+<h3 id="条件独立性-1"><a href="#条件独立性-1" class="headerlink" title="条件独立性"></a>条件独立性</h3><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161719660025.jpg" width="555" align="middle"><br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161720015563.jpg" width="555" align="middle"></p>
+<h2 id="学习与推断"><a href="#学习与推断" class="headerlink" title="学习与推断"></a>学习与推断</h2><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161722362384.jpg" width="555" align="middle"><br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161722756115.jpg" width="555" align="middle"><br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161725377594.jpg" width="555" align="middle"></p>
 <h3 id="精确推断"><a href="#精确推断" class="headerlink" title="精确推断"></a>精确推断</h3><p>精确推断经过变换来计算 $P(x_E)$ 或 $P(x_Q|x_E)$ 的精确值。</p>
 <h4 id="变量消除"><a href="#变量消除" class="headerlink" title="变量消除"></a>变量消除</h4><p>算法动机：利用图模型的紧凑概率分布形式来削减计算量。</p>
-<center><br><img src="http://qiniu.zzysay.cn/15161733311326.jpg" alt="-w555"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161733311326.jpg" width="555" align="middle"></p>
 <p>变量消除的顺序为 $x_1$， $x_2$，$x_4$，$x_3$：</p>
 <p>$$ \begin{align}<br>P(x_5) &amp; = \sum_{x_4}\sum_{x_3}\sum_{x_2}\sum_{x_1} P(x_1)P(x_2|x_1)P(x_3|x_2)P(x_4|x_3)P(x_5|x_3) \nonumber \\<br>&amp; =  \sum_{x_4}\sum_{x_3}\sum_{x_2}P(x_3|x_2)P(x_4|x_3)P(x_5|x_3) \sum_{x_1} P(x_1)P(x_2|x_1)  \nonumber \\<br>&amp; =  \sum_{x_4}\sum_{x_3}\sum_{x_2}P(x_3|x_2)P(x_4|x_3)P(x_5|x_3) m_{12}(x_2) \nonumber \\<br>&amp; =  \sum_{x_4}\sum_{x_3}P(x_4|x_3)P(x_5|x_3) \sum_{x_2}P(x_3|x_2)m_{12}(x_2) \nonumber \\<br>&amp; =  \sum_{x_4}\sum_{x_3}P(x_4|x_3)P(x_5|x_3) m_{23}(x_3) \nonumber \\<br>&amp; =  \sum_{x_3}P(x_5|x_3) m_{23}(x_3)\sum_{x_4}P(x_4|x_3) \nonumber \\<br>&amp; =  \sum_{x_3}P(x_5|x_3) m_{23}(x_3) m_{43}(x_3) \nonumber \\<br>&amp; = m_{35}(x_5) \nonumber<br>\end{align}$$</p>
-<center><br><img src="http://qiniu.zzysay.cn/15161738626844.jpg" alt="-w555"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161738626844.jpg" width="555" align="middle"></p>
 <h4 id="信念传播"><a href="#信念传播" class="headerlink" title="信念传播"></a>信念传播</h4><p>算法动机：将变量消除过程中产生的中间结果视为可复用的消息，避免重复计算。</p>
-<center><br><img src="http://qiniu.zzysay.cn/15161747826775.jpg" alt="-w555"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161747826775.jpg" width="555" align="middle"></p>
 <ul>
 <li>$m_{12}(x_2)$ 是 $x_1$ 向 $x_2$ 传递的一个消息</li>
 <li>$m_{12}(x_2)$ 对 $x_1$ 进行了求和操作，是关于 $x_2$ 的函数</li>
 <li>$m_{12}(x_2)$ 仅与图的拓扑结构有关，与证据变量的选取无关<strong>（可复用）</strong></li>
 </ul>
-<center><br><img src="http://qiniu.zzysay.cn/15161751063100.jpg" alt="-w555"><br></center>
-
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161751063100.jpg" width="555" align="middle"></p>
 <h3 id="近似推断"><a href="#近似推断" class="headerlink" title="近似推断"></a>近似推断</h3><p>精确推断的计算复杂度随着极大团规模的增长呈指数级增长，适用范围有限。<br>近似推断采用的是采样的方法，在较低的时间复杂度下获得原问题的近似解，适用范围更广，可操作性更强。</p>
 <p><strong>基于采样的近似推断</strong></p>
 <p>问题：估计条件概率 $P(x_Q|x_E)$ ：</p>
@@ -361,16 +345,16 @@
 </ol>
 <h4 id="前向采样"><a href="#前向采样" class="headerlink" title="前向采样"></a>前向采样</h4><p>前向采样是依照贝叶斯网络的（条件）概率直接采样。</p>
 <p>问题：通过采样来确定 $P(B=1|E=0,J=1)$</p>
-<center><br><img src="http://qiniu.zzysay.cn/15161757915195.jpg" alt="-w555"><br></center><br>对于第一次采样，采样 $r\sim U(0,1)$；若 $r\lt 0.001$，则 $B=1$，否则 $B=0$。<br><br><center><br><img src="http://qiniu.zzysay.cn/15161759688352.jpg" alt="-w272"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161757915195.jpg" width="555" align="middle"></p>
+<p>对于第一次采样，采样 $r\sim U(0,1)$；若 $r\lt 0.001$，则 $B=1$，否则 $B=0$。</p>
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161759688352.jpg" width="300" align="middle"></p>
 <p>前向采样存在很多问题：</p>
 <ol>
 <li>对于小概率事件采样困难，可能经历漫长的采样过程也无法获得足够多满足条件的样本</li>
 <li>仅适用于贝叶斯网络，不适用于马尔科夫随机场</li>
 </ol>
 <h4 id="吉布斯采样"><a href="#吉布斯采样" class="headerlink" title="吉布斯采样"></a>吉布斯采样</h4><p>吉布斯采样直接依照条件概率 $P(x_Q|x_E)$ 进行采样</p>
-<center><br><img src="http://qiniu.zzysay.cn/15161762745904.jpg" alt="-w555"><br><img src="http://qiniu.zzysay.cn/15161774938117.jpg" alt="-w555"><br><img src="http://qiniu.zzysay.cn/15161776199110.jpg" alt="-w555"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161762745904.jpg" width="555" align="middle"><br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161774938117.jpg" width="555" align="middle"><br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161776199110.jpg" width="555" align="middle"></p>
 <p><strong>总结</strong></p>
 <ul>
 <li>吉布斯采样解决了小概率时间采样难的问题</li>
@@ -378,8 +362,7 @@
 <li>简单易推导，时间和空间开销合理</li>
 </ul>
 <h2 id="隐马尔科夫模型"><a href="#隐马尔科夫模型" class="headerlink" title="隐马尔科夫模型"></a>隐马尔科夫模型</h2><h3 id="模型介绍"><a href="#模型介绍" class="headerlink" title="模型介绍"></a>模型介绍</h3><p>隐马尔科夫模型（$Hidden\;Markov\;Model,HMM$）是关于时序的概率模型，是最简单的动态贝叶斯网络。</p>
-<center><br><img src="http://qiniu.zzysay.cn/15164297132667.jpg" alt="-w555"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164297132667.jpg" width="555" align="middle"></p>
 <p>其中，第三行的假设叫做齐次马尔可夫性假设，第四行的假设叫做观测独立性假设，显然，</p>
 <p>$$ P(x_1,y_1,\dots, x_n, y_n) = P(y_1)P(x_1|y_1) \prod_{t=2}^n P(y_t|y_t-1)P(x_t|y_t) $$</p>
 <p>隐马尔科夫模型由 $A$，$B$，$\pi$ 唯一决定， $A$，$B$，$\pi$ 是隐马尔科夫模型的三要素</p>
@@ -391,11 +374,9 @@
 <li><p><strong>初始状态概率向量</strong> $\pi=(\pi_1, \pi_2,\dots, \pi_N)$，其中<br>$$\pi = P(y_1 = s_i)\; 1\le i\le N $$<br>表示系统在初始状态状态为 $s_i$ 的概率。</p>
 </li>
 </ul>
-<h3 id="生成过程"><a href="#生成过程" class="headerlink" title="生成过程"></a>生成过程</h3><center><br><img src="http://qiniu.zzysay.cn/15164307226329.jpg" alt="-w555"><br></center>
-
+<h3 id="生成过程"><a href="#生成过程" class="headerlink" title="生成过程"></a>生成过程</h3><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164307226329.jpg" width="555" align="middle"></p>
 <p><strong>生成过程示例</strong></p>
-<center><br><img src="http://qiniu.zzysay.cn/15161638421731.jpg" alt="-w300"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15161638421731.jpg" width="300" align="middle"></p>
 <p>再回到最开始的信封问题，我们规定：</p>
 <ul>
 <li>等概率随机选择一个信封并从中随机抽取一个球，记录其颜色后放回</li>
@@ -404,8 +385,7 @@
 <li>如下下去重复进行五次，得到一个球的颜色观测序列<br>$$ {红,黑,黑,黑,红} $$</li>
 </ul>
 <p>于是可以得到：</p>
-<center><br><img src="http://qiniu.zzysay.cn/15164310489326.jpg" alt="-w555"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164310489326.jpg" width="555" align="middle"></p>
 <h3 id="三个基本问题"><a href="#三个基本问题" class="headerlink" title="三个基本问题"></a>三个基本问题</h3><ol>
 <li><strong>概率计算问题</strong>：给定模型 $\lambda = (A,B,\pi)$ 和观测序列 $x={x_1,\dots,x_n}$，计算在模型 $\lambda$ 下观测序列 $x$ 出现的概率 $P(x|\lambda)$，即评估模型与观测序列之间的匹配程度，典型方法有前向后向算法。</li>
 <li><strong>预测问题</strong>：给定模型 $\lambda = (A,B,\pi)$ 和观测序列 $x={x_1,\dots,x_n}$，求使得条件概率 $P(y|x,\lambda)$ 最大的状态序列 $y={y_1,\dots,y_n}$，即根据观测序列推断出的隐藏的状态模型（词项标注、语音识别），典型方法有维特比算法。</li>
@@ -425,28 +405,23 @@
 <h4 id="前向后向算法"><a href="#前向后向算法" class="headerlink" title="前向后向算法"></a>前向后向算法</h4><p><strong>前向算法</strong></p>
 <p><strong>前向概率</strong>：给定隐马尔科夫模型 $\lambda = (A,B,\pi)$，记到时刻 $t$ 部分观测序列为 $x_1,x_2\dots x_t$ 且状态为 $s_i$ 的概率为前向概率，记作<br>$$\alpha_t(i) = Pr(x_1,x_2\dots x_t,y_t=s_i|\lambda) $$</p>
 <p><strong>前向概率递推公式</strong></p>
-<center><br><img src="http://qiniu.zzysay.cn/15164340497887.jpg" alt=""><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164340497887.jpg" alt=""></p>
 <p>其中，$b_i(x_{t+1})$ 表示的是在状态为 $y_{t+1}=s_i$ 观测值为 $x_{t+1}$ 的观测概率，例如假设 $x_{t+1} = o_j$，则有 $b_i(x_{t+1}) = b_i(o_j) = b_{ij}$ </p>
-<center><br><img src="http://qiniu.zzysay.cn/15164344075925.jpg" alt=""><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164344075925.jpg" alt=""></p>
 <p>显然前向算法的时间复杂度为 $O(nN^2)$</p>
 <p><strong>算法实例</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15164373686025.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15164374091139.jpg" alt=""></p>
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164373686025.jpg" alt=""><br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164374091139.jpg" alt=""></p>
 <p><strong>后向算法</strong></p>
 <p><strong>后向概率</strong>：给定隐马尔科夫模型 $\lambda = (A,B,\pi)$，记在时刻 $t$ 状态为 $s_i$ 的条件下，从时刻 $t+1$ 到 $n$ 的部分观测序列为  $x_{t+1},x_{t+2}\dots x_n$ 的概率为后向概率，记作<br>$$\beta_t(i) = Pr(x_{t+1},x_{t+2}\dots x_n | y_t=s_i,\lambda) $$</p>
 <p><strong>后向概率递推公式</strong></p>
-<center><br><img src="http://qiniu.zzysay.cn/15164354254941.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15164354800353.jpg" alt=""><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164354254941.jpg" alt=""><br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164354800353.jpg" alt=""></p>
 <p>显然后向算法的时间复杂度也为 $O(nN^2)$</p>
 <p><strong>前向后向算法</strong></p>
 <p>利用前向概率和后向概率的递推公式，可以将观测序列统一写成</p>
-<center><br><img src="http://qiniu.zzysay.cn/15164356735262.jpg" alt="-w444"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164356735262.jpg" width="444" align="middle"></p>
 <p>$$Pr(x|\lambda) =\sum_{i=1}^N \alpha_t(i)\beta_t(i)\quad t=1,2,\dots n $$</p>
 <p>进一步展开：</p>
-<center><br><img src="http://qiniu.zzysay.cn/15164357352143.jpg" alt="-w444"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164357352143.jpg" width="444" align="middle"></p>
 <p>$$Pr(x|\lambda) =\sum_{i=1}^N\sum_{j=1}^N \alpha_t(i) a_{ij}b_j(x_{t+1})\beta_{t+1}(i)\quad t=1,2,\dots n-1 $$</p>
 <p><strong>相关概率和期望</strong></p>
 <ul>
@@ -464,29 +439,26 @@
 <li>近似算法</li>
 <li>维特比算法</li>
 </ul>
-<h4 id="近似算法"><a href="#近似算法" class="headerlink" title="近似算法"></a>近似算法</h4><p>在每个时刻 $t$ 选择在该时间最有可能出现的状态 $y_t^*$，得到一个状态序列 $y^*={y_1^*,y_2^*,\dots,y_n^*}$，将它作为预测结果</p>
+<h4 id="近似算法"><a href="#近似算法" class="headerlink" title="近似算法"></a>近似算法</h4><p>在每个时刻 $t$ 选择在该时间最有可能出现的状态 $y_t^<em>$，得到一个状态序列 $y^</em>={y_1^<em>,y_2^</em>,\dots,y_n^*}$，将它作为预测结果</p>
 <p>$$ y_t^* = \arg\max_{1\le i\le N} Pr(y_t=s_i|x,\lambda) = \arg\max_{1\le i\le N}\gamma_t(i) = \arg\max_{1\le i\le N}  \frac {\alpha_t(i)\beta_t(i)} {\sum_{j=1}^N \alpha_t(j)\beta_t(j)}\quad t=1,2,\dots, n$$</p>
 <p>近似算法的优点是计算简单，缺点是不能保证预测的状态序列整体是合法的，即可能会出现 $a_{ij}=0$ 的情况，尽管如此，近似算法仍然是有用的。</p>
-<h4 id="维特比算法"><a href="#维特比算法" class="headerlink" title="维特比算法"></a>维特比算法</h4><p>维特比算法实际上是利用动态规划来解隐马尔科夫模型的预测问题，根据动态规划的原理，如果最优路径在时刻 $t$ 通过节点 $i_t^*$，那么这一路径从节点  $i_t^*$ 到终点 $i_T^*$ 的部分路径，对于从 $i_t^*$ 到 $i_T^*$ 的所有可能路径来说，必然是最优的。<br>为了实现维特比算法，我们引入两个变量：</p>
+<h4 id="维特比算法"><a href="#维特比算法" class="headerlink" title="维特比算法"></a>维特比算法</h4><p>维特比算法实际上是利用动态规划来解隐马尔科夫模型的预测问题，根据动态规划的原理，如果最优路径在时刻 $t$ 通过节点 $i_t^<em>$，那么这一路径从节点  $i_t^</em>$ 到终点 $i_T^<em>$ 的部分路径，对于从 $i_t^</em>$ 到 $i_T^*$ 的所有可能路径来说，必然是最优的。<br>为了实现维特比算法，我们引入两个变量：</p>
 <ul>
 <li><strong>维特比向量</strong>：在时刻 $t$，隐马尔科夫模型沿着一条路径到达状态 $s_i$，并输出观测序列 $x_1,x_2,\dots,_t$ 的最大概率<br>$$ \begin{align} \delta_t(i) &amp;= \max_{y_1,y_2,\dots,y_{n-1}}Pr(y_t=s_i, y_{t-1},\dots , y_1,x_t,x_{t-1},\dots,x_1|\lambda) \nonumber \\&amp;=\max_{1\le j \le N}  \delta_{t-1}(j)a_{ji}b_i(x_t)\quad t=2,3,\dots, n  \nonumber \end{align}  $$<br>其中，$\delta_1(i) = \pi_1b_i(x_1) $</li>
 <li><strong>路径变量</strong>：记录该路径上状态 $s_i$ 的前一个状态，即概率最大路径上的前一个节点<br>$$ \phi_t(i) = \arg\max_{1\le j \le N}  \delta_{t-1}(j)a_{ji}b_i(x_t)\quad t=2,3,\dots,n  $$</li>
 </ul>
 <p><strong>算法过程</strong></p>
-<center><br><img src="http://qiniu.zzysay.cn/15164389564081.jpg" alt=""><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164389564081.jpg" alt=""></p>
 <p>显然维特比算法的计算复杂度为 $O(nN^2)$</p>
 <p><strong>算法实例</strong></p>
-<p><img src="http://qiniu.zzysay.cn/15164391191057.jpg" alt=""><br><img src="http://qiniu.zzysay.cn/15164391405941.jpg" alt=""></p>
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164391191057.jpg" alt=""><br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164391405941.jpg" alt=""></p>
 <h3 id="学习问题"><a href="#学习问题" class="headerlink" title="学习问题"></a>学习问题</h3><p>给定观测序列 $x={x_1,\dots,x_n}$，学习模型$\lambda = (A,B,\pi)$ 参数使得该序列出现的概率  $P(x|\lambda)$ 最大，即使训练模型能够更好地描述观测数据。</p>
 <ul>
 <li>监督学习方法</li>
 <li>非监督学习方法（$Baum-Welch$算法）</li>
 </ul>
-<h4 id="监督学习方法"><a href="#监督学习方法" class="headerlink" title="监督学习方法"></a>监督学习方法</h4><center><br><img src="http://qiniu.zzysay.cn/15164393261013.jpg" alt="-w555"><br></center>
-
-<h4 id="非监督学习方法"><a href="#非监督学习方法" class="headerlink" title="非监督学习方法"></a>非监督学习方法</h4><center><br><img src="http://qiniu.zzysay.cn/15164392939292.jpg" alt="-w555"><br></center>
-
+<h4 id="监督学习方法"><a href="#监督学习方法" class="headerlink" title="监督学习方法"></a>监督学习方法</h4><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164393261013.jpg" width="555" align="middle"></p>
+<h4 id="非监督学习方法"><a href="#非监督学习方法" class="headerlink" title="非监督学习方法"></a>非监督学习方法</h4><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164392939292.jpg" width="555" align="middle"></p>
 <h2 id="条件随机场"><a href="#条件随机场" class="headerlink" title="条件随机场"></a>条件随机场</h2><p>条件随机场（$Conditional\;Random\;Field,CRF$）是给定随机变量 $x$ 的条件下，随机变量 $y$ 的马尔科夫随机场。</p>
 <ul>
 <li>$G(V,E)$ 是 $y$ 中的随机变量构成的<strong>无向图</strong>，途中每个变量在给定 $x$ 的条件下都满足马尔可夫性<br>$$ P(y_v|x ,y_{V \backslash {v}})=P(y_v|x,y_{MB(v)}) $$<ul>
@@ -496,17 +468,13 @@
 </ul>
 </li>
 </ul>
-<h3 id="线性链条件随机场"><a href="#线性链条件随机场" class="headerlink" title="线性链条件随机场"></a>线性链条件随机场</h3><center><br><img src="http://qiniu.zzysay.cn/15164446772909.jpg" alt="-w555"><br><img src="http://qiniu.zzysay.cn/15164447274947.jpg" alt="-w555"><br></center>
-
+<h3 id="线性链条件随机场"><a href="#线性链条件随机场" class="headerlink" title="线性链条件随机场"></a>线性链条件随机场</h3><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164446772909.jpg" width="555" align="middle"><br><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164447274947.jpg" width="555" align="middle"></p>
 <p><strong>词性标注</strong></p>
 <p>隐马尔科夫模型：</p>
-<center><br><img src="http://qiniu.zzysay.cn/15164449061274.jpg" alt="-w555"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164449061274.jpg" width="555" align="middle"></p>
 <p>线性链条件随机场</p>
-<center><br><img src="http://qiniu.zzysay.cn/15164449625402.jpg" alt="-w555"><br></center>
-
-<h3 id="三个基本问题-1"><a href="#三个基本问题-1" class="headerlink" title="三个基本问题"></a>三个基本问题</h3><center><br><img src="http://qiniu.zzysay.cn/15164450146119.jpg" alt="-w555"><br></center>
-
+<p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164449625402.jpg" width="555" align="middle"></p>
+<h3 id="三个基本问题-1"><a href="#三个基本问题-1" class="headerlink" title="三个基本问题"></a>三个基本问题</h3><p><img src="https://zhenyu-1253816923.cos.ap-beijing.myqcloud.com/2020/03/17/15164450146119.jpg" width="555" align="middle"></p>
 <p>参考文献：<br>[1] 王泉,《统计机器学习》,中国科学院大学2017年秋季研究生课程</p>
 
     </div>
